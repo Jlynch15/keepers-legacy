@@ -9,6 +9,8 @@ extension Notification.Name {
     static let creatureInventoryDidChange = Notification.Name("creatureInventoryDidChange")
     /// Posted whenever a customer order is fulfilled or expires.
     static let customerOrdersDidChange    = Notification.Name("customerOrdersDidChange")
+    /// Posted when game state changes that may trigger story events (orders, breeding).
+    static let storyCheckNeeded           = Notification.Name("storyCheckNeeded")
 }
 
 // MARK: - DataManager
@@ -284,6 +286,38 @@ final class DataManager: ObservableObject {
         let request = BreedingRecordEntity.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(keyPath: \BreedingRecordEntity.date, ascending: false)]
         return (try? context.fetch(request)) ?? []
+    }
+
+    func allFulfilledOrdersCount() -> Int {
+        let request = CustomerOrderEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "isFulfilled == YES")
+        return (try? context.count(for: request)) ?? 0
+    }
+
+    // MARK: - Story State
+
+    func loadStoryState() -> PlayerStoryState {
+        let state = playerState()
+        var story = PlayerStoryState()
+        story.currentAct = Int(state.storyAct)
+
+        if let data = state.completedEventIDsData,
+           let ids = try? JSONDecoder().decode(Set<String>.self, from: data) {
+            story.completedEventIDs = ids
+        }
+        if let data = state.npcRelationshipsData,
+           let rels = try? JSONDecoder().decode([String: Int].self, from: data) {
+            story.npcRelationshipLevels = rels
+        }
+        return story
+    }
+
+    func saveStoryState(_ story: PlayerStoryState) {
+        let state = playerState()
+        state.storyAct                = Int16(story.currentAct)
+        state.completedEventIDsData   = try? JSONEncoder().encode(story.completedEventIDs)
+        state.npcRelationshipsData    = try? JSONEncoder().encode(story.npcRelationshipLevels)
+        save()
     }
 }
 

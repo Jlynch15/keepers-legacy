@@ -98,6 +98,10 @@ final class CustomerOrderViewModel: ObservableObject {
 
         lastFulfillmentResult = .success(creatureName: entry.name, coinsEarned: coinsEarned)
 
+        // Notify story system that an order was fulfilled (may trigger story events)
+        NotificationCenter.default.post(name: .storyCheckNeeded, object: nil,
+                                        userInfo: ["ordersCount": dataManager.allFulfilledOrdersCount()])
+
         // Generate a replacement order after a short delay
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
             guard let self else { return }

@@ -9,6 +9,7 @@ struct ContentView: View {
     @StateObject private var progressVM  = ProgressionViewModel()
     @StateObject private var orderVM     = CustomerOrderViewModel()
     @StateObject private var creatureVM  = CreatureViewModel()
+    @StateObject private var storyVM     = StoryViewModel()
 
     @State private var selectedTab: Tab  = .shop
     @State private var isLoading: Bool   = true
@@ -27,10 +28,20 @@ struct ContentView: View {
                     .transition(.opacity)
             }
 
-            // Level-up overlay — shown on top of all content
+            // Story event overlay — shown when a story event triggers
+            if let event = storyVM.pendingStoryEvent {
+                StoryEventView(event: event)
+                    .environmentObject(storyVM)
+                    .environmentObject(progressVM)
+                    .zIndex(99)
+            }
+
+            // Level-up overlay — shown on top of story events
             if let event = progressVM.pendingLevelUp {
                 LevelUpOverlayView(event: event) {
                     progressVM.pendingLevelUp = nil
+                    // After level-up dismisses, check if a story event should fire
+                    storyVM.checkTriggers(level: progressVM.level)
                 }
                 .zIndex(100)
             }
@@ -76,6 +87,7 @@ struct ContentView: View {
                     .tag(Tab.pedia)
 
                 SettingsView()
+                    .environmentObject(storyVM)
                     .tabItem { Label("Settings", systemImage: "gearshape.fill") }
                     .tag(Tab.settings)
             }
@@ -91,9 +103,14 @@ struct ContentView: View {
         await shopVM.load()
         await habitatVM.load()
         await orderVM.load(discoveredIDs: shopVM.discoveredCatalogIDs)
+        storyVM.load()
 
         try? await Task.sleep(nanoseconds: 1_200_000_000)
         isLoading = false
+
+        // Check for any story events that should fire immediately on load
+        // (e.g. act1_first_egg fires at level 1 — will trigger on very first launch)
+        storyVM.checkTriggers(level: progressVM.level)
     }
 }
 

@@ -31,10 +31,12 @@ enum StoryAct: Int, Codable, CaseIterable {
 struct StoryEvent: Identifiable {
     let id: String
     let act: StoryAct
+    let npcID: String               // Which NPC delivers this event
     let title: String
     let body: String
     let triggerCondition: TriggerCondition
     let unlocksFeature: GameFeature?
+    let advancesToNextAct: Bool     // If true, completing this event advances the story act
 
     enum TriggerCondition {
         case reachLevel(Int)
@@ -48,50 +50,62 @@ struct StoryEvent: Identifiable {
         StoryEvent(
             id: "act1_first_egg",
             act: .act1,
+            npcID: "elder_mira",
             title: "A Mysterious Egg",
-            body: "While tidying up the shop, you discover a glowing egg tucked behind the counter. Your uncle's note says: 'When the egg stirs, so does the magic.'",
+            body: "While tidying up the shop, you discover a glowing egg tucked behind the counter. Elder Mira examines it with knowing eyes.\n\n\"Your uncle always said this day would come. Tend to it carefully — magic recognizes patience.\"",
             triggerCondition: .reachLevel(1),
-            unlocksFeature: nil
+            unlocksFeature: nil,
+            advancesToNextAct: false
         ),
         StoryEvent(
             id: "act1_shop_secret",
             act: .act1,
+            npcID: "elder_mira",
             title: "The Shop's Secret",
-            body: "Your creatures begin acting strangely around the old display case. Something is hidden inside...",
+            body: "Your creatures begin acting strangely around the old display case. Elder Mira arrives unexpectedly, her expression grave.\n\n\"The case is a resonance vault. Only a true Keeper can open it. I think that's you.\"",
             triggerCondition: .reachLevel(10),
-            unlocksFeature: nil
+            unlocksFeature: nil,
+            advancesToNextAct: false
         ),
         StoryEvent(
             id: "act1_magic_discovered",
             act: .act1,
+            npcID: "elder_mira",
             title: "Magic Revealed",
-            body: "The truth is undeniable: this isn't just a pet shop. The creatures carry ancient magic, and so do you. Breeding is now possible.",
+            body: "The vault opens. Inside: a crystallized creature egg — the first of its kind in generations. Elder Mira's voice drops to a whisper.\n\n\"This isn't just a pet shop. These creatures carry ancient magic. And now, so do you. The lineage can continue.\"",
             triggerCondition: .completeEvent("act1_shop_secret"),
-            unlocksFeature: .breeding
+            unlocksFeature: .breeding,
+            advancesToNextAct: true
         ),
         StoryEvent(
             id: "act2_ancient_origins",
             act: .act2,
+            npcID: "scholar_rex",
             title: "Ancient Origins",
-            body: "The shop was founded by an ancient magical civilization. Their creatures were not just pets — they were living conduits of elemental power.",
+            body: "Scholar Rex arrives breathless, clutching weathered manuscripts.\n\n\"I've translated the vault inscriptions. This shop was a sanctuary — built by the Aelurin civilization to preserve elemental creatures when the old magic began to fade. Your uncle was the last guardian.\"",
             triggerCondition: .reachLevel(20),
-            unlocksFeature: nil
+            unlocksFeature: nil,
+            advancesToNextAct: false
         ),
         StoryEvent(
             id: "act2_revelation",
             act: .act2,
+            npcID: "elder_mira",
             title: "The Restoration",
-            body: "The magical habitat stirs. A new world opens behind the ordinary ones — a place where magical creatures can finally come home.",
+            body: "The shop trembles. A hidden door reveals itself behind the water habitat — a shimmering threshold.\n\n\"The magical habitat,\" Elder Mira breathes. \"The Aelurin sealed it to protect the rarest creatures. Your bond with the others has restored it. The door is open again.\"",
             triggerCondition: .reachLevel(25),
-            unlocksFeature: .magicalHabitat
+            unlocksFeature: .magicalHabitat,
+            advancesToNextAct: true
         ),
         StoryEvent(
             id: "act3_legacy",
             act: .act3,
+            npcID: "elder_mira",
             title: "Keeper's Legacy",
-            body: "Magic spreads beyond the shop walls. You must decide: guard it, share it, or let it flow freely into the world. The legacy is yours to define.",
+            body: "Magic spreads beyond the shop walls. Creatures from every element gather at your door. Elder Mira stands beside you one last time.\n\n\"The Aelurin spent generations searching for a Keeper worthy of this. You must now decide: guard the magic, share it with the world, or let it flow freely. The legacy is yours to define.\"",
             triggerCondition: .reachLevel(50),
-            unlocksFeature: nil
+            unlocksFeature: nil,
+            advancesToNextAct: false
         ),
     ]
 }

@@ -73,6 +73,10 @@ final class CreatureViewModel: ObservableObject {
 
         isBreeding    = false
         breedingResult = .success(offspringCatalogID: offspringCatalogID, mutationIndex: offspringMutation)
+
+        // Notify story system that a breed occurred (may trigger story events)
+        NotificationCenter.default.post(name: .storyCheckNeeded, object: nil,
+                                        userInfo: ["breedCount": dataManager.allBreedingRecords().count])
     }
 
     /// Genetic inheritance: weighted random mutation selection.

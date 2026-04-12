@@ -3,14 +3,46 @@ import SwiftUI
 // MARK: - Settings View
 
 struct SettingsView: View {
-    @AppStorage("iCloudSyncEnabled") private var iCloudSyncEnabled: Bool = true
-    @AppStorage("soundEnabled")      private var soundEnabled:      Bool = true
-    @AppStorage("musicEnabled")      private var musicEnabled:      Bool = true
-    @AppStorage("notificationsEnabled") private var notificationsEnabled: Bool = true
+    @EnvironmentObject var storyVM: StoryViewModel
+
+    @AppStorage("iCloudSyncEnabled")     private var iCloudSyncEnabled:     Bool = true
+    @AppStorage("soundEnabled")          private var soundEnabled:          Bool = true
+    @AppStorage("musicEnabled")          private var musicEnabled:          Bool = true
+    @AppStorage("notificationsEnabled")  private var notificationsEnabled:  Bool = true
 
     var body: some View {
         NavigationStack {
             List {
+                // Story Progress
+                Section("Story") {
+                    HStack {
+                        Image(systemName: "book.pages.fill")
+                            .foregroundColor(Color(hex: "#C99BFF"))
+                            .frame(width: 28)
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(storyVM.currentAct.title)
+                                .font(.system(size: 14, weight: .semibold, design: .rounded))
+                            Text("\(storyVM.completedEventsCount) of \(storyVM.totalEventsCount) events discovered")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
+                        Spacer()
+                    }
+                    .padding(.vertical, 2)
+
+                    NavigationLink {
+                        NPCRosterView()
+                            .environmentObject(storyVM)
+                    } label: {
+                        HStack {
+                            Image(systemName: "person.3.fill")
+                                .foregroundColor(Color(hex: "#C99BFF"))
+                                .frame(width: 28)
+                            Text("Characters")
+                        }
+                    }
+                }
+
                 // Cloud Sync
                 Section("iCloud") {
                     Toggle("Sync with iCloud", isOn: $iCloudSyncEnabled)
@@ -42,7 +74,7 @@ struct SettingsView: View {
                     HStack {
                         Text("Version")
                         Spacer()
-                        Text("1.0.0 (Phase 1)")
+                        Text("1.0.0 (Phase 4)")
                             .foregroundColor(.secondary)
                     }
                     HStack {
@@ -62,4 +94,5 @@ struct SettingsView: View {
 
 #Preview {
     SettingsView()
+        .environmentObject(StoryViewModel())
 }
