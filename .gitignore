@@ -58,6 +58,9 @@ Desktop.ini
 # VS Code
 .vscode/
 
+# Claude Code local settings (machine-specific, not for repo)
+.claude/
+
 # Secrets / credentials (never commit these)
 *.p12
 *.mobileprovision

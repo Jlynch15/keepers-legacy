@@ -28,6 +28,7 @@
         <attribute name="expiresAt" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="isFulfilled" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="minHappiness" attributeType="Double" defaultValueString="0.3" usesScalarValueType="YES"/>
         <attribute name="requiredCatalogID" attributeType="String"/>
         <attribute name="requiredRarity" attributeType="String" defaultValueString="Common"/>
     </entity>
@@ -44,6 +45,8 @@
         <attribute name="completedEventIDsData" optional="YES" attributeType="Binary"/>
         <attribute name="currentLevel" attributeType="Integer 16" defaultValueString="1" usesScalarValueType="YES"/>
         <attribute name="currentXP" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="discoveredCatalogIDsData" optional="YES" attributeType="Binary"/>
+        <attribute name="lastOrderGeneratedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="npcRelationshipsData" optional="YES" attributeType="Binary"/>
         <attribute name="stardust" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="storyAct" attributeType="Integer 16" defaultValueString="1" usesScalarValueType="YES"/>

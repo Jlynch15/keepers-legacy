@@ -1,9 +1,17 @@
 import CoreData
 import Foundation
 
+// MARK: - Notifications
+// Used for loose coupling between ViewModels when inventory changes.
+
+extension Notification.Name {
+    /// Posted whenever a creature is added, sold, or moved.
+    static let creatureInventoryDidChange = Notification.Name("creatureInventoryDidChange")
+    /// Posted whenever a customer order is fulfilled or expires.
+    static let customerOrdersDidChange    = Notification.Name("customerOrdersDidChange")
+}
+
 // MARK: - DataManager
-// Central Core Data stack for Keeper's Legacy.
-// All reads/writes go through this singleton.
 
 final class DataManager: ObservableObject {
 
@@ -20,15 +28,13 @@ final class DataManager: ObservableObject {
             container.persistentStoreDescriptions.first?.url = URL(fileURLWithPath: "/dev/null")
         }
 
-        // Enable CloudKit sync (iCloud backup — optional for user)
         if let description = container.persistentStoreDescriptions.first {
             description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
             description.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
         }
 
-        container.loadPersistentStores { storeDescription, error in
+        container.loadPersistentStores { _, error in
             if let error = error as NSError? {
-                // In production, handle gracefully (corrupt store recovery, etc.)
                 fatalError("Core Data failed to load: \(error), \(error.userInfo)")
             }
         }
@@ -37,11 +43,7 @@ final class DataManager: ObservableObject {
         container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
     }
 
-    var context: NSManagedObjectContext {
-        container.viewContext
-    }
-
-    // MARK: Save
+    var context: NSManagedObjectContext { container.viewContext }
 
     func save() {
         guard context.hasChanges else { return }
@@ -54,7 +56,6 @@ final class DataManager: ObservableObject {
 
     // MARK: - Player State
 
-    /// Returns the singleton PlayerStateEntity, creating it if it doesn't exist.
     func playerState() -> PlayerStateEntity {
         let request = PlayerStateEntity.fetchRequest()
         request.fetchLimit = 1
@@ -62,19 +63,40 @@ final class DataManager: ObservableObject {
             return existing
         }
         let state = PlayerStateEntity(context: context)
-        state.coins          = 500
-        state.stardust       = 0
-        state.currentLevel   = 1
-        state.currentXP      = 0
-        state.storyAct       = 1
-        state.unlockedFeaturesData = defaultUnlockedFeatures()
+        state.coins                  = 500
+        state.stardust               = 0
+        state.currentLevel           = 1
+        state.currentXP              = 0
+        state.storyAct               = 1
+        state.totalCoinsEarned       = 500
+        state.unlockedFeaturesData   = defaultUnlockedFeatures()
+        state.discoveredCatalogIDsData = nil
+        state.lastOrderGeneratedAt   = nil
         save()
         return state
     }
 
     private func defaultUnlockedFeatures() -> Data? {
-        let features: Set<String> = ["shop", "habitat", "feeding", "playing"]
-        return try? JSONEncoder().encode(features)
+        try? JSONEncoder().encode(Set(["shop", "habitat", "feeding", "playing"]))
+    }
+
+    // MARK: - Discovery Tracking
+
+    func loadDiscoveredCatalogIDs() -> Set<String> {
+        guard let data = playerState().discoveredCatalogIDsData else { return [] }
+        return (try? JSONDecoder().decode(Set<String>.self, from: data)) ?? []
+    }
+
+    func saveDiscoveredCatalogIDs(_ ids: Set<String>) {
+        playerState().discoveredCatalogIDsData = try? JSONEncoder().encode(ids)
+        save()
+    }
+
+    func markDiscovered(catalogID: String) {
+        var ids = loadDiscoveredCatalogIDs()
+        guard !ids.contains(catalogID) else { return }
+        ids.insert(catalogID)
+        saveDiscoveredCatalogIDs(ids)
     }
 
     // MARK: - Creatures
@@ -92,30 +114,42 @@ final class DataManager: ObservableObject {
         return try? context.fetch(request).first
     }
 
-    /// Create a new owned creature from a catalog entry.
+    /// Returns owned creatures matching a catalog ID and minimum happiness.
+    func ownedCreatures(matchingCatalogID catalogID: String, minHappiness: Double) -> [CreatureEntity] {
+        let request = CreatureEntity.fetchRequest()
+        request.predicate = NSPredicate(
+            format: "catalogID == %@ AND happiness >= %f",
+            catalogID, minHappiness
+        )
+        return (try? context.fetch(request)) ?? []
+    }
+
     @discardableResult
     func createCreature(catalogID: String, mutationIndex: Int = 0, parentIDs: [UUID] = []) -> CreatureEntity {
-        let entity = CreatureEntity(context: context)
-        entity.id                  = UUID()
-        entity.catalogID           = catalogID
-        entity.mutationIndex       = Int16(mutationIndex)
-        entity.hunger              = 0.8
-        entity.happiness           = 0.7
-        entity.cleanliness         = 0.9
-        entity.affection           = 0.5
-        entity.playfulness         = 0.8
-        entity.lifecycle           = LifecycleStage.adult.rawValue
-        entity.lifecycleStartDate  = Date()
+        let entity                   = CreatureEntity(context: context)
+        entity.id                    = UUID()
+        entity.catalogID             = catalogID
+        entity.mutationIndex         = Int16(mutationIndex)
+        entity.hunger                = 0.8
+        entity.happiness             = 0.7
+        entity.cleanliness           = 0.9
+        entity.affection             = 0.5
+        entity.playfulness           = 0.8
+        entity.lifecycle             = LifecycleStage.adult.rawValue
+        entity.lifecycleStartDate    = Date()
         entity.discoveredFavoriteToy = false
-        entity.parentIDsData       = try? JSONEncoder().encode(parentIDs)
-        entity.dateAcquired        = Date()
+        entity.parentIDsData         = try? JSONEncoder().encode(parentIDs)
+        entity.dateAcquired          = Date()
+        markDiscovered(catalogID: catalogID)
         save()
+        NotificationCenter.default.post(name: .creatureInventoryDidChange, object: nil)
         return entity
     }
 
     func deleteCreature(_ entity: CreatureEntity) {
         context.delete(entity)
         save()
+        NotificationCenter.default.post(name: .creatureInventoryDidChange, object: nil)
     }
 
     // MARK: - Habitats
@@ -126,22 +160,21 @@ final class DataManager: ObservableObject {
         return (try? context.fetch(request)) ?? []
     }
 
-    /// Creates the initial habitat if none exist.
     func setupInitialHabitats() {
         guard allHabitats().isEmpty else { return }
-        let starter = HabitatEntity(context: context)
-        starter.id             = UUID()
-        starter.type           = HabitatType.water.rawValue
-        starter.unlockedAtLevel = 0
+        let starter              = HabitatEntity(context: context)
+        starter.id               = UUID()
+        starter.type             = HabitatType.water.rawValue
+        starter.unlockedAtLevel  = 0
         starter.decorationIDsData = try? JSONEncoder().encode([String]())
         save()
     }
 
     func addHabitat(type: HabitatType, unlockedAtLevel: Int) {
-        let entity = HabitatEntity(context: context)
-        entity.id              = UUID()
-        entity.type            = type.rawValue
-        entity.unlockedAtLevel = Int16(unlockedAtLevel)
+        let entity              = HabitatEntity(context: context)
+        entity.id               = UUID()
+        entity.type             = type.rawValue
+        entity.unlockedAtLevel  = Int16(unlockedAtLevel)
         entity.decorationIDsData = try? JSONEncoder().encode([String]())
         save()
     }
@@ -150,33 +183,94 @@ final class DataManager: ObservableObject {
 
     func activeOrders() -> [CustomerOrderEntity] {
         let request = CustomerOrderEntity.fetchRequest()
-        request.predicate = NSPredicate(format: "isFulfilled == NO AND expiresAt > %@", Date() as CVarArg)
+        request.predicate = NSPredicate(
+            format: "isFulfilled == NO AND expiresAt > %@", Date() as CVarArg
+        )
+        request.sortDescriptors = [NSSortDescriptor(keyPath: \CustomerOrderEntity.expiresAt, ascending: true)]
+        return (try? context.fetch(request)) ?? []
+    }
+
+    func allOrders() -> [CustomerOrderEntity] {
+        let request = CustomerOrderEntity.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(keyPath: \CustomerOrderEntity.expiresAt, ascending: true)]
         return (try? context.fetch(request)) ?? []
     }
 
     @discardableResult
     func createOrder(
         creatureCatalogID: String,
-        rarity: String,
+        rarity: Rarity,
+        minHappiness: Double,
         coinReward: Int,
         expiresInHours: Double = 8
     ) -> CustomerOrderEntity {
-        let entity = CustomerOrderEntity(context: context)
-        entity.id                    = UUID()
-        entity.requiredCatalogID     = creatureCatalogID
-        entity.requiredRarity        = rarity
-        entity.coinReward            = Int32(coinReward)
-        entity.expiresAt             = Date().addingTimeInterval(expiresInHours * 3600)
-        entity.isFulfilled           = false
+        let entity               = CustomerOrderEntity(context: context)
+        entity.id                = UUID()
+        entity.requiredCatalogID = creatureCatalogID
+        entity.requiredRarity    = rarity.rawValue
+        entity.minHappiness      = minHappiness
+        entity.coinReward        = Int32(coinReward)
+        entity.expiresAt         = Date().addingTimeInterval(expiresInHours * 3600)
+        entity.isFulfilled       = false
         save()
         return entity
+    }
+
+    /// Generates new orders to fill up to `targetCount` active slots.
+    /// Only generates orders for creatures the player has already discovered (more fun, less frustrating).
+    /// Falls back to any creature if no discovered ones exist yet.
+    func generateOrdersIfNeeded(targetCount: Int = 3, discoveredIDs: Set<String>) {
+        let current = activeOrders().count
+        guard current < targetCount else { return }
+
+        let needed = targetCount - current
+
+        // Pull from discovered creatures first; fall back to all if needed
+        let pool: [CreatureCatalogEntry]
+        let discovered = CreatureCatalogEntry.allCreatures.filter { discoveredIDs.contains($0.id) }
+        pool = discovered.isEmpty ? Array(CreatureCatalogEntry.allCreatures.prefix(20)) : discovered
+
+        // Avoid duplicate catalog IDs in the same batch
+        let existingIDs = Set(activeOrders().compactMap { $0.requiredCatalogID })
+        let candidates  = pool.filter { !existingIDs.contains($0.id) }.shuffled()
+
+        for entry in candidates.prefix(needed) {
+            let range  = PricingTable.CustomerOrder.rewardRange(rarity: entry.rarity)
+            let reward = Int.random(in: range)
+            let minHappiness = entry.rarity == .rare ? 0.5 : 0.3
+            let expiryHours  = Double.random(in: 6...8)
+            createOrder(
+                creatureCatalogID: entry.id,
+                rarity:            entry.rarity,
+                minHappiness:      minHappiness,
+                coinReward:        reward,
+                expiresInHours:    expiryHours
+            )
+        }
+
+        playerState().lastOrderGeneratedAt = Date()
+        save()
+        NotificationCenter.default.post(name: .customerOrdersDidChange, object: nil)
+    }
+
+    /// Remove expired and fulfilled orders older than 24 hours to keep the DB clean.
+    func pruneStaleOrders() {
+        let cutoff  = Date().addingTimeInterval(-86400)
+        let request = CustomerOrderEntity.fetchRequest()
+        request.predicate = NSPredicate(
+            format: "(isFulfilled == YES OR expiresAt < %@) AND expiresAt < %@",
+            Date() as CVarArg, cutoff as CVarArg
+        )
+        let stale = (try? context.fetch(request)) ?? []
+        stale.forEach { context.delete($0) }
+        if !stale.isEmpty { save() }
     }
 
     // MARK: - Breeding Records
 
     @discardableResult
     func recordBreeding(parentAID: UUID, parentBID: UUID, offspringID: UUID) -> BreedingRecordEntity {
-        let entity = BreedingRecordEntity(context: context)
+        let entity         = BreedingRecordEntity(context: context)
         entity.id          = UUID()
         entity.parentAID   = parentAID
         entity.parentBID   = parentBID
@@ -187,15 +281,20 @@ final class DataManager: ObservableObject {
     }
 }
 
-// MARK: - Preview DataManager (in-memory, with sample data)
+// MARK: - Preview DataManager
 
 extension DataManager {
     static var preview: DataManager = {
         let manager = DataManager(inMemory: true)
-        let _ = manager.playerState()
+        let _       = manager.playerState()
         manager.setupInitialHabitats()
-        // Add a sample creature
-        manager.createCreature(catalogID: "aquaburst", mutationIndex: 0)
+        manager.createCreature(catalogID: "aquaburst",  mutationIndex: 0)
+        manager.createCreature(catalogID: "wildbloom",  mutationIndex: 1)
+        manager.createCreature(catalogID: "sparkburst", mutationIndex: 0)
+        // Seed a couple of sample orders
+        manager.createOrder(creatureCatalogID: "aquaburst",  rarity: .common,   minHappiness: 0.3, coinReward: 120)
+        manager.createOrder(creatureCatalogID: "cinderborne", rarity: .common,  minHappiness: 0.3, coinReward: 90)
+        manager.createOrder(creatureCatalogID: "pearlescent", rarity: .rare,    minHappiness: 0.5, coinReward: 800)
         return manager
     }()
 }
