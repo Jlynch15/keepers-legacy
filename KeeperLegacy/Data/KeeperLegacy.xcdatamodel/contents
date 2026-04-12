@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22F82" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="BreedingRecordEntity" representedClassName="BreedingRecordEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="offspringID" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="parentAID" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="parentBID" attributeType="UUID" usesScalarValueType="NO"/>
+    </entity>
+    <entity name="CreatureEntity" representedClassName="CreatureEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="affection" attributeType="Double" defaultValueString="0.5" usesScalarValueType="YES"/>
+        <attribute name="catalogID" attributeType="String"/>
+        <attribute name="cleanliness" attributeType="Double" defaultValueString="0.9" usesScalarValueType="YES"/>
+        <attribute name="dateAcquired" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="discoveredFavoriteToy" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="happiness" attributeType="Double" defaultValueString="0.7" usesScalarValueType="YES"/>
+        <attribute name="hunger" attributeType="Double" defaultValueString="0.8" usesScalarValueType="YES"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="lifecycle" attributeType="String" defaultValueString="Adult"/>
+        <attribute name="lifecycleStartDate" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="mutationIndex" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="nickname" optional="YES" attributeType="String"/>
+        <attribute name="parentIDsData" optional="YES" attributeType="Binary"/>
+        <attribute name="playfulness" attributeType="Double" defaultValueString="0.8" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="CustomerOrderEntity" representedClassName="CustomerOrderEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="coinReward" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="expiresAt" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="isFulfilled" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="requiredCatalogID" attributeType="String"/>
+        <attribute name="requiredRarity" attributeType="String" defaultValueString="Common"/>
+    </entity>
+    <entity name="HabitatEntity" representedClassName="HabitatEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="decorationIDsData" optional="YES" attributeType="Binary"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="occupantID" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="type" attributeType="String" defaultValueString="Water"/>
+        <attribute name="unlockedAtLevel" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="PlayerStateEntity" representedClassName="PlayerStateEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="claimedMilestonesData" optional="YES" attributeType="Binary"/>
+        <attribute name="coins" attributeType="Integer 32" defaultValueString="500" usesScalarValueType="YES"/>
+        <attribute name="completedEventIDsData" optional="YES" attributeType="Binary"/>
+        <attribute name="currentLevel" attributeType="Integer 16" defaultValueString="1" usesScalarValueType="YES"/>
+        <attribute name="currentXP" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="npcRelationshipsData" optional="YES" attributeType="Binary"/>
+        <attribute name="stardust" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="storyAct" attributeType="Integer 16" defaultValueString="1" usesScalarValueType="YES"/>
+        <attribute name="totalCoinsEarned" attributeType="Integer 32" defaultValueString="500" usesScalarValueType="YES"/>
+        <attribute name="totalCoinsSpent" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="totalStardustSpent" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="unlockedFeaturesData" optional="YES" attributeType="Binary"/>
+    </entity>
+</model>

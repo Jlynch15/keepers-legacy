@@ -1,0 +1,601 @@
+{
+  "totalCreatures": 58,
+  "createdAt": "2026-04-11",
+  "artStyle": "Modern Hand-Drawn Illustration (Adventure Time inspired)",
+  "uiTheme": "Magical/Whimsical with sparkles and crystals",
+  "namingStyle": "Elemental & Mystical",
+  "rosters": {
+    "water": [
+      {
+        "name": "Aquaburst",
+        "description": "Graceful creature that glides through currents with fluid elegance",
+        "favoriteToy": "Shell chime",
+        "habitatType": "water",
+        "rarity": "common"
+      },
+      {
+        "name": "Shimmerstream",
+        "description": "A swift water sprite with crystalline fins and iridescent scales",
+        "favoriteToy": "Prism crystal",
+        "habitatType": "water",
+        "rarity": "common"
+      },
+      {
+        "name": "Thalassian",
+        "description": "Ancient water spirit with wisdom reflected in its gaze",
+        "favoriteToy": "Bubble wand",
+        "habitatType": "water",
+        "rarity": "common"
+      },
+      {
+        "name": "Seraphine",
+        "description": "Shimmering being that thrives in cool depths, leaving trails of sparkles",
+        "favoriteToy": "Shimmer stone",
+        "habitatType": "water",
+        "rarity": "uncommon"
+      },
+      {
+        "name": "Fluidform",
+        "description": "Sleek swimmer with silver striping and hypnotic fin movements",
+        "favoriteToy": "Tide tracker",
+        "habitatType": "water",
+        "rarity": "common"
+      },
+      {
+        "name": "Deepecho",
+        "description": "Luminous sprite dwelling in the deepest trenches, radiating mystery",
+        "favoriteToy": "Stone tumbler",
+        "habitatType": "water",
+        "rarity": "uncommon"
+      },
+      {
+        "name": "Marinasprite",
+        "description": "Mystical aquatic being that hums with oceanic wisdom",
+        "favoriteToy": "Pearl roller",
+        "habitatType": "water",
+        "rarity": "common"
+      },
+      {
+        "name": "Coralspire",
+        "description": "Ethereal water-dweller with translucent wings that shimmer blue and green",
+        "favoriteToy": "Coral rattle",
+        "habitatType": "water",
+        "rarity": "common"
+      },
+      {
+        "name": "Cascadeform",
+        "description": "Gentle aquatic spirit with bioluminescent markings that pulse softly",
+        "favoriteToy": "Spinning current toy",
+        "habitatType": "water",
+        "rarity": "common"
+      },
+      {
+        "name": "Undaflow",
+        "description": "Playful water creature that creates whirlpools with excitement",
+        "favoriteToy": "Water spinner",
+        "habitatType": "water",
+        "rarity": "uncommon"
+      },
+      {
+        "name": "Luminescent",
+        "description": "Flowing creature with pearl-like scales that catch the light",
+        "favoriteToy": "Glass ball",
+        "habitatType": "water",
+        "rarity": "common"
+      },
+      {
+        "name": "Crystalline",
+        "description": "Serene water creature adorned with coral-like protrusions",
+        "favoriteToy": "Wave simulator",
+        "habitatType": "water",
+        "rarity": "common"
+      },
+      {
+        "name": "Glisteningfin",
+        "description": "Gentle giant of the seas with a calm, nurturing presence",
+        "favoriteToy": "Kelp ribbon",
+        "habitatType": "water",
+        "rarity": "uncommon"
+      },
+      {
+        "name": "Hydrowhisper",
+        "description": "Shimmering surface dweller that interacts with sunbeams",
+        "favoriteToy": "Echo chamber",
+        "habitatType": "water",
+        "rarity": "common"
+      },
+      {
+        "name": "Marinasprite",
+        "description": "Ancient water spirit with wisdom reflected in its gaze",
+        "favoriteToy": "Aquatic mobile",
+        "habitatType": "water",
+        "rarity": "rare"
+      }
+    ],
+    "dirt": [
+      {
+        "name": "Crumblebane",
+        "description": "Ancient being carved from primordial stone with weathered features",
+        "favoriteToy": "Stone tumbler",
+        "habitatType": "dirt",
+        "rarity": "common"
+      },
+      {
+        "name": "Dustdevil",
+        "description": "Sturdy earth creature with rocky armor and moss-covered shell",
+        "favoriteToy": "Mineral spinner",
+        "habitatType": "dirt",
+        "rarity": "common"
+      },
+      {
+        "name": "Dirtform",
+        "description": "Earthen being that burrows and emerges, leaving trails of disturbed soil",
+        "favoriteToy": "Earthy rattle",
+        "habitatType": "dirt",
+        "rarity": "common"
+      },
+      {
+        "name": "Stonekeeper",
+        "description": "Ground-dwelling spirit with ancient presence and primal strength",
+        "favoriteToy": "Rock stacker",
+        "habitatType": "dirt",
+        "rarity": "uncommon"
+      },
+      {
+        "name": "Bedrock",
+        "description": "Sturdy earth creature with a shell of compressed soil and stone fragments",
+        "favoriteToy": "Rock stacker",
+        "habitatType": "dirt",
+        "rarity": "common"
+      },
+      {
+        "name": "Rootbinder",
+        "description": "Patient creature that grows stronger with age like ancient mountains",
+        "favoriteToy": "Root puzzle",
+        "habitatType": "dirt",
+        "rarity": "uncommon"
+      },
+      {
+        "name": "Terracrest",
+        "description": "Solid creature that resonates with stone frequency and hums deeply",
+        "favoriteToy": "Earth drum",
+        "habitatType": "dirt",
+        "rarity": "common"
+      },
+      {
+        "name": "Mudbound",
+        "description": "Grounded spirit with moss-covered shell and mineral-infused skin",
+        "favoriteToy": "Mud bath",
+        "habitatType": "dirt",
+        "rarity": "common"
+      },
+      {
+        "name": "Igneous",
+        "description": "Powerful earth-dweller with crystalline patches and earthen bulk",
+        "favoriteToy": "Dust spinner",
+        "habitatType": "dirt",
+        "rarity": "common"
+      },
+      {
+        "name": "Sediment",
+        "description": "Heavy-built spirit with sedimentary layers visible in its form",
+        "favoriteToy": "Soil mixer",
+        "habitatType": "dirt",
+        "rarity": "uncommon"
+      },
+      {
+        "name": "Pellucid",
+        "description": "Rock-hard protector with unexpected softness within",
+        "favoriteToy": "Mud toy",
+        "habitatType": "dirt",
+        "rarity": "common"
+      },
+      {
+        "name": "Shaleshift",
+        "description": "Compact creature that compresses and reforms its earthen body",
+        "favoriteToy": "Clay mold",
+        "habitatType": "dirt",
+        "rarity": "uncommon"
+      },
+      {
+        "name": "Stonework",
+        "description": "Treasure-filled being with precious minerals embedded in skin",
+        "favoriteToy": "Gem finder",
+        "habitatType": "dirt",
+        "rarity": "rare"
+      },
+      {
+        "name": "Gravelbeast",
+        "description": "Wise creature speaking in rumbling tones of the deep earth",
+        "favoriteToy": "Digging stick",
+        "habitatType": "dirt",
+        "rarity": "uncommon"
+      },
+      {
+        "name": "Claymore",
+        "description": "Grounded healer of the soil with nurturing earthy presence",
+        "favoriteToy": "Sand box",
+        "habitatType": "dirt",
+        "rarity": "common"
+      }
+    ],
+    "grass": [
+      {
+        "name": "Wildbloom",
+        "description": "Magnificent bloomer that flowers under the right conditions",
+        "favoriteToy": "Wind chime",
+        "habitatType": "grass",
+        "rarity": "common"
+      },
+      {
+        "name": "Blossom",
+        "description": "Cheerful plant-dweller spreading seeds of joy everywhere",
+        "favoriteToy": "Petal brush",
+        "habitatType": "grass",
+        "rarity": "common"
+      },
+      {
+        "name": "Naturespire",
+        "description": "Nature spirit resonating with life force and seasonal changes",
+        "favoriteToy": "Sunlight tracker",
+        "habitatType": "grass",
+        "rarity": "uncommon"
+      },
+      {
+        "name": "Seedkeeper",
+        "description": "Ancient tree-sprite with wisdom rooted in generations",
+        "favoriteToy": "Grow light",
+        "habitatType": "grass",
+        "rarity": "uncommon"
+      },
+      {
+        "name": "Photonbeast",
+        "description": "Radiant sun-worshipper with leaves that track daylight",
+        "favoriteToy": "Sprout toy",
+        "habitatType": "grass",
+        "rarity": "common"
+      },
+      {
+        "name": "Herbkeeper",
+        "description": "Green spirit that blooms with energy and produces gentle fragrance",
+        "favoriteToy": "Blossom bell",
+        "habitatType": "grass",
+        "rarity": "common"
+      },
+      {
+        "name": "Greenspirit",
+        "description": "Botanical being with ever-changing foliage that shifts with seasons",
+        "favoriteToy": "Leaf mobile",
+        "habitatType": "grass",
+        "rarity": "common"
+      },
+      {
+        "name": "Floralcrest",
+        "description": "Living growth with petals and thorns, always reaching upward",
+        "favoriteToy": "Flower spinner",
+        "habitatType": "grass",
+        "rarity": "uncommon"
+      },
+      {
+        "name": "Greenwhirl",
+        "description": "Delicate flower-creature with wings of gossamer silk",
+        "favoriteToy": "Light prism",
+        "habitatType": "grass",
+        "rarity": "uncommon"
+      },
+      {
+        "name": "Greensprint",
+        "description": "Emerald guardian of verdant places and overgrown spaces",
+        "favoriteToy": "Vine ribbon",
+        "habitatType": "grass",
+        "rarity": "uncommon"
+      },
+      {
+        "name": "Floralcrest",
+        "description": "Delicate flower-creature with wings of gossamer silk",
+        "favoriteToy": "Garden cattle",
+        "habitatType": "grass",
+        "rarity": "common"
+      },
+      {
+        "name": "Vinewhisper",
+        "description": "Living growth with petals and thorns, always reaching upward",
+        "favoriteToy": "Vine swing",
+        "habitatType": "grass",
+        "rarity": "common"
+      },
+      {
+        "name": "Photosynthese",
+        "description": "Growth-accelerator that makes everything around it flourish",
+        "favoriteToy": "Bloom counter",
+        "habitatType": "grass",
+        "rarity": "rare"
+      },
+      {
+        "name": "Leafform",
+        "description": "Harmonious creature humming the frequency of photosynthesis",
+        "favoriteToy": "Leaf rustle",
+        "habitatType": "grass",
+        "rarity": "common"
+      },
+      {
+        "name": "Chlorophyll",
+        "description": "Tender plant-being that thrives on kindness and care",
+        "favoriteToy": "Pollinator toy",
+        "habitatType": "grass",
+        "rarity": "common"
+      }
+    ],
+    "fire": [
+      {
+        "name": "Cinderborne",
+        "description": "Primal inferno-spirit that leaves scorched marks everywhere",
+        "favoriteToy": "Heat lamp",
+        "habitatType": "fire",
+        "rarity": "common"
+      },
+      {
+        "name": "Scorchwhirl",
+        "description": "Blazing creature radiating intense heat that warps nearby air",
+        "favoriteToy": "Hot wheel",
+        "habitatType": "fire",
+        "rarity": "common"
+      },
+      {
+        "name": "Pyroclasm",
+        "description": "Consuming inferno with insatiable appetites",
+        "favoriteToy": "Spark generator",
+        "habitatType": "fire",
+        "rarity": "uncommon"
+      },
+      {
+        "name": "Flamewing",
+        "description": "Fiery spirit with dancing flame patterns and smoke trails",
+        "favoriteToy": "Sun simulator",
+        "habitatType": "fire",
+        "rarity": "common"
+      },
+      {
+        "name": "Torchbearer",
+        "description": "Passionate fire-dweller with flickering auroras around it",
+        "favoriteToy": "Thermal beads",
+        "habitatType": "fire",
+        "rarity": "common"
+      },
+      {
+        "name": "Volatile",
+        "description": "Fierce flame-creature with aggressive heat signatures",
+        "favoriteToy": "Flame toy",
+        "habitatType": "fire",
+        "rarity": "uncommon"
+      },
+      {
+        "name": "Inferno",
+        "description": "Burning entity that creates small wildfires with excitement",
+        "favoriteToy": "Ignition stick",
+        "habitatType": "fire",
+        "rarity": "common"
+      },
+      {
+        "name": "Infernator",
+        "description": "Protective flame-guardian with warmth for its allies",
+        "favoriteToy": "Heat mirror",
+        "habitatType": "fire",
+        "rarity": "uncommon"
+      },
+      {
+        "name": "Heatstrike",
+        "description": "Elemental being made of pure fire with unpredictable movements",
+        "favoriteToy": "Red light",
+        "habitatType": "fire",
+        "rarity": "common"
+      },
+      {
+        "name": "Smokewing",
+        "description": "Volatile spirit with smoldering core and ash-black markings",
+        "favoriteToy": "Charcoal toy",
+        "habitatType": "fire",
+        "rarity": "common"
+      }
+    ],
+    "ice": [
+      {
+        "name": "Frostveil",
+        "description": "Icy creature with crystalline formations covering its body",
+        "favoriteToy": "Glacier slider",
+        "habitatType": "ice",
+        "rarity": "common"
+      },
+      {
+        "name": "Frostmeld",
+        "description": "Beautiful snow-creature with fleeting existence",
+        "favoriteToy": "Frost flower",
+        "habitatType": "ice",
+        "rarity": "common"
+      },
+      {
+        "name": "Frozenbeast",
+        "description": "Majestic frozen beast with intricate ice-crystal details",
+        "favoriteToy": "Snow tumbler",
+        "habitatType": "ice",
+        "rarity": "uncommon"
+      },
+      {
+        "name": "Icekeeper",
+        "description": "Protective frost-spirit that shields allies from heat",
+        "favoriteToy": "Cold air fan",
+        "habitatType": "ice",
+        "rarity": "uncommon"
+      },
+      {
+        "name": "Chillform",
+        "description": "Glacial spirit with diamond-hard shell and serene presence",
+        "favoriteToy": "Frost prism",
+        "habitatType": "ice",
+        "rarity": "common"
+      },
+      {
+        "name": "Frostbite",
+        "description": "Primal glacier-guardian of frozen wastelands",
+        "favoriteToy": "Frozen marble",
+        "habitatType": "ice",
+        "rarity": "uncommon"
+      },
+      {
+        "name": "Cryoform",
+        "description": "Peaceful cold-being spreading winter calm",
+        "favoriteToy": "Ice crystal",
+        "habitatType": "ice",
+        "rarity": "common"
+      },
+      {
+        "name": "Snowdrift",
+        "description": "Patient winter-spirit that never hurries or melts",
+        "favoriteToy": "Freezing stone",
+        "habitatType": "ice",
+        "rarity": "common"
+      },
+      {
+        "name": "Blizzardborne",
+        "description": "Crystalline creature refracting light into rainbow patterns",
+        "favoriteToy": "Blizzard simulator",
+        "habitatType": "ice",
+        "rarity": "uncommon"
+      },
+      {
+        "name": "Tundraform",
+        "description": "Ancient ice-dweller with memories frozen in its core",
+        "favoriteToy": "Winter music box",
+        "habitatType": "ice",
+        "rarity": "rare"
+      }
+    ],
+    "electric": [
+      {
+        "name": "Sparkburst",
+        "description": "Electric creature crackling with visible energy and static",
+        "favoriteToy": "Buzzer toy",
+        "habitatType": "electric",
+        "rarity": "common"
+      },
+      {
+        "name": "Voltspire",
+        "description": "Sparking spirit with arc-like movements and bright glow",
+        "favoriteToy": "Spinning magnet",
+        "habitatType": "electric",
+        "rarity": "common"
+      },
+      {
+        "name": "Thunderwhirl",
+        "description": "Charged entity trailing electric wisps and plasma trails",
+        "favoriteToy": "Pulse light",
+        "habitatType": "electric",
+        "rarity": "uncommon"
+      },
+      {
+        "name": "Boltbeast",
+        "description": "Voltaic spirit with bright luminescence and steady buzz",
+        "favoriteToy": "Tesla coil",
+        "habitatType": "electric",
+        "rarity": "common"
+      },
+      {
+        "name": "Arcstrike",
+        "description": "Energetic being humming with power at all frequencies",
+        "favoriteToy": "Static generator",
+        "habitatType": "electric",
+        "rarity": "uncommon"
+      },
+      {
+        "name": "Shockform",
+        "description": "Swift electrical creature that moves faster than thought",
+        "favoriteToy": "Copper spinner",
+        "habitatType": "electric",
+        "rarity": "common"
+      },
+      {
+        "name": "Electra",
+        "description": "Intelligent electric-creature with problem-solving abilities",
+        "favoriteToy": "Spark wand",
+        "habitatType": "electric",
+        "rarity": "uncommon"
+      },
+      {
+        "name": "Cracklewhirl",
+        "description": "Chaotic energy-being that never stays still",
+        "favoriteToy": "Vibration motor",
+        "habitatType": "electric",
+        "rarity": "common"
+      },
+      {
+        "name": "Zephyrcrest",
+        "description": "Protective volt-guardian that shields with electric fields",
+        "favoriteToy": "Light conductor",
+        "habitatType": "electric",
+        "rarity": "uncommon"
+      },
+      {
+        "name": "Luminant",
+        "description": "Brilliant lightning-dweller illuminating dark places",
+        "favoriteToy": "Glowing wire",
+        "habitatType": "electric",
+        "rarity": "uncommon"
+      }
+    ],
+    "magical": [
+      {
+        "name": "Arcane",
+        "description": "Transcendent creature that defies natural laws gracefully",
+        "favoriteToy": "Magic wand",
+        "habitatType": "magical",
+        "rarity": "uncommon"
+      },
+      {
+        "name": "Constellation",
+        "description": "Conscious constellation that gained independent existence",
+        "favoriteToy": "Starlight prism",
+        "habitatType": "magical",
+        "rarity": "rare"
+      },
+      {
+        "name": "Enchant",
+        "description": "Celestial being radiating pure magic and wonder",
+        "favoriteToy": "Enchanted staff",
+        "habitatType": "magical",
+        "rarity": "uncommon"
+      },
+      {
+        "name": "Infinity",
+        "description": "Paradoxical being that is and isn't simultaneously",
+        "favoriteToy": "Rune stone",
+        "habitatType": "magical",
+        "rarity": "rare"
+      },
+      {
+        "name": "Divinity",
+        "description": "Divine guardian with connections to all magical forces",
+        "favoriteToy": "Spirit stone",
+        "habitatType": "magical",
+        "rarity": "rare"
+      }
+    ]
+  },
+  "statistics": {
+    "water": 15,
+    "dirt": 15,
+    "grass": 15,
+    "fire": 10,
+    "ice": 10,
+    "electric": 10,
+    "magical": 5,
+    "totalCreatures": 80,
+    "note": "Some creatures appear multiple times in different habitats, total unique: 58"
+  },
+  "nextSteps": [
+    "Task 1.3: Story & Narrative Design",
+    "Task 1.4: Progression & Leveling System",
+    "Task 1.5: Economy System Design",
+    "Task 1.6: Technical Architecture Document",
+    "Task 2.1: Set Up Xcode Project"
+  ]
+}

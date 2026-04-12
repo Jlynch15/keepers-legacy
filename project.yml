@@ -1,0 +1,61 @@
+# xcodegen project specification
+# Generates KeeperLegacy.xcodeproj automatically — no Mac needed to create it.
+# Run: xcodegen generate
+# Install: brew install xcodegen
+
+name: KeeperLegacy
+
+options:
+  bundleIdPrefix: com.keeperslegacy
+  deploymentTarget:
+    iOS: "15.0"
+  xcodeVersion: "15.0"
+  groupSortPosition: top
+  createIntermediateGroups: true
+
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    TARGETED_DEVICE_FAMILY: "1,2"          # iPhone + iPad
+    ENABLE_PREVIEWS: YES
+    DEBUG_INFORMATION_FORMAT: dwarf-with-dsym
+    SUPPORTS_MACCATALYST: NO
+
+targets:
+
+  KeeperLegacy:
+    type: application
+    platform: iOS
+    deploymentTarget: "15.0"
+    sources:
+      - path: KeeperLegacy
+        excludes:
+          - "**/*.md"
+    resources:
+      - path: KeeperLegacy/Assets.xcassets
+    coreDataModels:
+      - path: KeeperLegacy/Data/KeeperLegacy.xcdatamodel
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.keeperslegacy.app
+        PRODUCT_NAME: Keeper's Legacy
+        INFOPLIST_FILE: KeeperLegacy/Info.plist
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        CODE_SIGN_STYLE: Automatic
+        DEVELOPMENT_TEAM: ""               # Fill in your Apple Team ID when you have one
+    scheme:
+      testTargets:
+        - KeeperLegacyTests
+
+  KeeperLegacyTests:
+    type: bundle.unit-test
+    platform: iOS
+    deploymentTarget: "15.0"
+    sources:
+      - path: KeeperLegacyTests
+    dependencies:
+      - target: KeeperLegacy
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.keeperslegacy.tests
+        INFOPLIST_FILE: KeeperLegacyTests/Info.plist

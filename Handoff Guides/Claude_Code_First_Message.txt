@@ -1,0 +1,207 @@
+# Claude Code First Message Template
+
+**Copy and paste this entire message into Claude Code when you start your first development conversation.**
+
+---
+
+## YOUR FIRST CLAUDE CODE MESSAGE
+
+```
+I'm building an iOS game called "Keeper's Legacy" and I have complete design documents ready.
+
+Here's what I need:
+
+GAME OVERVIEW:
+- Title: Keeper's Legacy (iOS 15+)
+- Platform: iPhone + iPad (universal)
+- Type: Creature collection/care sim (like a spiritual successor to original Monster Rancher)
+- Status: Complete design phase, ready for development
+
+DESIGN DOCUMENTS PROVIDED:
+I'll upload 7 design JSON files that contain ALL specifications:
+1. creature_roster_complete.json - 58 creatures with names, descriptions, favorite toys
+2. story_design_v1.json - Complete 3-act story structure, NPCs, character arcs
+3. progression_system_v1.json - 50 level progression, feature unlocks, pacing
+4. economy_system_v1.json - Currency system (Coins + Stardust), pricing, balance
+5. technical_architecture_v1.json - Tech stack: Swift, SwiftUI, SpriteKit, Core Data, CloudKit, MVVM
+6. art_assets_v1.json - Visual design: Adventure Time-inspired, pastel + magical colors
+7. Monster_Pet_Shop_GDD.md - Full Game Design Document (reference)
+
+TECHNICAL REQUIREMENTS (from design):
+- Language: Swift (native iOS)
+- UI Framework: SwiftUI
+- Graphics: SpriteKit (2D)
+- Database: Core Data (local) + CloudKit (iCloud sync)
+- Architecture: MVVM
+- Target: 60 FPS, <150MB RAM, <200MB app size
+- Minimum: iOS 15+
+- Offline-first (works without internet)
+
+WHAT I NEED YOU TO DO:
+
+**Phase 1 (Week 1-2): Project Setup**
+- Create Xcode project structure for iOS game
+- Read all design JSON files and understand the game
+- Create Swift data models based on creature_roster, economy, and progression specs
+- Set up Core Data models
+- Create basic app launch screen
+
+**Phase 2 (Weeks 2-5): Core Gameplay**
+- Build Shop View (showing creatures for purchase)
+- Build Habitat View (showing player's creatures)
+- Implement creature care mechanics (feed, play, interact)
+- Implement purchase system (buying creatures with Coins)
+- Implement earning system (selling creatures, customer orders)
+- Create Monsterpedia (creature collection view)
+
+**Phase 3 (Weeks 5-7): Game Systems**
+- Implement breeding system (unlocks at level 12-15)
+- Implement mutation system (4 variants per creature)
+- Implement progression/leveling (levels 1-50)
+- Implement milestone rewards
+- Implement habitat expansion
+- Implement economy balance
+
+**Phase 4 (Week 8): Story Integration**
+- Implement 3-act story progression
+- Add NPC interactions
+- Gate features by story progress
+- Add story revelations
+
+**Phase 5 (Weeks 9-10): Polish & Testing**
+- Optimize performance
+- Test economy balance
+- Test progression pacing
+- Bug fixes
+- Ready for App Store
+
+DESIGN REFERENCE:
+- For creature data → creature_roster_complete.json
+- For pricing/economy → economy_system_v1.json
+- For level unlocks → progression_system_v1.json
+- For story structure → story_design_v1.json
+- For visual specs → art_assets_v1.json
+- For overall vision → Monster_Pet_Shop_GDD.md
+
+MY BACKGROUND:
+I'm NOT a coder/programmer. I did the design phase. You handle the code. 
+Just explain things clearly if I ask questions.
+
+TIMELINE:
+~10 weeks to completion. I work asynchronously - no daily standups, 
+just review progress regularly and provide direction.
+
+NEXT STEP:
+1. I'll upload all 7 design files
+2. You read them and ask any clarifying questions
+3. We start Phase 1 immediately after
+
+Ready to start?
+```
+
+---
+
+## HOW TO USE THIS TEMPLATE
+
+1. **Go to claude.ai** or open **Claude Code**
+2. **Start a new conversation**
+3. **Paste this entire template** (everything between the code block)
+4. **Hit send**
+5. **Claude Code will respond** asking if you have files to upload
+
+Then **follow the Claude Code Handoff Guide** for what to do next.
+
+---
+
+## WHAT CLAUDE CODE WILL LIKELY RESPOND
+
+Claude Code will ask something like:
+
+**"I understand! I can help you build this. I've read your brief. A few clarifying questions before we start:**
+
+**1. Do you have the 7 design JSON files ready to upload?**
+**2. Should I start with Phase 1 (project setup) or do you have an existing Xcode project?**
+**3. Any features you want prioritized first?"**
+
+**You respond:**
+```
+Yes, I'm uploading the 7 design files now.
+Start fresh with Phase 1 project setup.
+Priority: Get the shop and creature care working first.
+```
+
+---
+
+## AFTER YOU SEND THE FIRST MESSAGE
+
+Claude Code will:
+1. Confirm it understands the requirements
+2. Ask you to upload the design files
+3. Start building the project
+4. Walk you through what it's creating
+
+**You just follow along and provide feedback!**
+
+---
+
+## SAMPLE FOLLOW-UP MESSAGES
+
+Once development starts, here are examples of what you'll say:
+
+**Week 1:**
+```
+"I've reviewed the project setup. Looks good. 
+Now implement the Shop View showing all creatures. 
+Use the creature data from creature_roster_complete.json.
+Display: creature name, element icon, price in Coins."
+```
+
+**Week 3:**
+```
+"The shop is working great. 
+Now let's implement the Habitat View.
+Players should see their owned creatures in isometric view.
+Add buttons for Feed, Play, and Breed (unlock at level 12).
+Match the pastel colors from art_assets_v1.json."
+```
+
+**Week 5:**
+```
+"Habitats look amazing. 
+Now implement breeding system per economy_system_v1.json:
+- Common breeding: 200-500 coins
+- Rare breeding: 1000+ coins
+- Create 4 mutations per creature
+- Show breeding success animation"
+```
+
+You just keep directing development this way!
+
+---
+
+## TIPS FOR SUCCESS
+
+**DO:**
+- ✅ Be specific about what you want
+- ✅ Reference your design documents
+- ✅ Provide feedback regularly
+- ✅ Ask questions if you don't understand something
+
+**DON'T:**
+- ❌ Say "just build the game" (be specific)
+- ❌ Use technical jargon you don't understand
+- ❌ Try to code yourself (let Claude Code handle it)
+- ❌ Make huge design changes mid-development (stick to your designs)
+
+---
+
+## YOU'RE READY!
+
+Download your 7 design files, paste this template into Claude Code, and start building.
+
+**Questions before you begin? Ask now!**
+
+---
+
+**Generated: 2026-04-12**
+**Status: READY TO START DEVELOPMENT**

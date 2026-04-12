@@ -1,0 +1,181 @@
+{
+  "projectName": "Monster Pet Shop",
+  "exportDate": "2026-04-12T04:36:58.016Z",
+  "version": "1.0",
+  "phase": "Task 1.5: Economy System Design",
+  "economyFoundation": {
+    "soft_currency_name": "Coins",
+    "premium_currency_name": "Stardust",
+    "premium_pricing": "500 Stardust = $4.99 (smaller pack)",
+    "cosmetic_monetization": "Mix of all cosmetics",
+    "cosmetic_price_range": "Cheap ($0.99-$1.99)",
+    "breeding_cost": "Variable by rarity (rare = more expensive)",
+    "food_pricing": "Moderate with variety (10-30 coins)",
+    "habitat_expansion_cost": "Moderate (2000-5000 coins per habitat)",
+    "selling_monsters": "Variable by rarity/happiness (happy & rare = more)",
+    "customer_orders": "Equal importance to selling",
+    "daily_rewards": "Minimal - small cosmetic rewards",
+    "starter_pack": "No - only cosmetic monetization",
+    "speed_ups": "No - no paid speed-ups (avoid pay-to-win)",
+    "balance_philosophy": "All of the above",
+    "currency_sources": "Mix of all sources equally"
+  },
+  "completionPercentage": 100,
+  "metadata": {
+    "questionsAnswered": 15,
+    "totalQuestions": 15,
+    "locked": true,
+    "status": "COMPLETE",
+    "nextTask": "Task 1.6: Technical Architecture Specification"
+  },
+  "summary": {
+    "currencySystem": {
+      "softCurrency": "Coins - earned through gameplay",
+      "premiumCurrency": "Stardust - purchased with real money",
+      "exchangeRate": "500 Stardust = $4.99 USD (approximately 100.2 Stardust per $1)"
+    },
+    "monetization": {
+      "model": "Cosmetics-only (zero pay-to-win)",
+      "purchasables": {
+        "shopThemes": "$0.99-$1.99",
+        "monsterAccessories": "$0.99-$1.99",
+        "habitatDecorations": "$0.99-$1.99"
+      },
+      "starterPack": "None - cosmetics only monetization",
+      "speedUps": "Not available for purchase (avoid pay-to-win)"
+    },
+    "earnMechanics": {
+      "sellingMonsters": "Variable by rarity and happiness (happy rare creatures = more coins)",
+      "customerOrders": "Equal importance to selling (dual income path)",
+      "dailyRewards": "Minimal - small cosmetic rewards to encourage login",
+      "levelMilestones": "Coin rewards at levels 5, 10, 25, 50",
+      "overallStrategy": "Multiple income sources equally balanced"
+    },
+    "costStructure": {
+      "food": "10-30 coins (moderate cost, variety available)",
+      "breeding": "Variable by rarity (common = cheap, rare = expensive)",
+      "habitatExpansion": "2000-5000 coins per new habitat",
+      "philosophy": "Free-to-play friendly, no forced spending"
+    },
+    "balancePhilosophy": {
+      "principle1": "Free players can reach max level without spending",
+      "principle2": "Cosmetics only - zero gameplay advantage from purchase",
+      "principle3": "Players spend naturally, never feel forced",
+      "overallGoal": "Support development while respecting player experience"
+    }
+  },
+  "detailedEconomy": {
+    "currencies": {
+      "coins": {
+        "name": "Coins",
+        "type": "Soft Currency",
+        "earned": true,
+        "purchased": false,
+        "uses": [
+          "Buy food",
+          "Breed creatures",
+          "Expand habitats",
+          "Unlock cosmetics (if any free options)"
+        ]
+      },
+      "stardust": {
+        "name": "Stardust",
+        "type": "Premium Currency",
+        "earned": false,
+        "purchased": true,
+        "pricingTier": "500 Stardust = $4.99",
+        "uses": [
+          "Purchase cosmetic items",
+          "Purchase shop themes",
+          "Purchase habitat decorations",
+          "Purchase monster accessories"
+        ]
+      }
+    },
+    "pricing": {
+      "cosmetics": {
+        "priceRange": "$0.99-$1.99 per item",
+        "categories": [
+          "Shop themes (UI skins, visual styles)",
+          "Monster accessories (hats, scarves, cosmetics)",
+          "Habitat decorations (flowers, lights, props)"
+        ],
+        "packOptions": "Individual purchases OR bundled cosmetic sets"
+      },
+      "bundles": "Optional themed bundles (e.g., Spring Collection, Summer Vibes) at discounted rates",
+      "neverMonetized": [
+        "Breeding system (core mechanic)",
+        "Creature rarity/mutations (purely RNG)",
+        "Habitat functionality (gameplay feature)",
+        "Story progression (narrative content)",
+        "Leveling speed (account progression)"
+      ]
+    },
+    "earningPaths": {
+      "primarySources": [
+        "Selling monsters to customers (rarity + happiness = payout)",
+        "Completing customer orders (reward in coins)",
+        "Leveling up (milestone rewards at 5, 10, 25, 50)",
+        "Daily login rewards (cosmetic items, minimal coins)"
+      ],
+      "coinPayout": {
+        "sellingCommonCreature": "Base 50-100 coins (happy multiplier 1.5x-2x)",
+        "sellingRareCreature": "Base 500-1000 coins (happy multiplier 1.5x-2x)",
+        "customerOrder": "50-500 coins depending on difficulty",
+        "levelMilestones": "Scaled by level (increases with progression)"
+      }
+    },
+    "spendingPaths": {
+      "food": {
+        "cost": "10-30 coins per food type",
+        "variety": "Multiple food options at different price points",
+        "purpose": "Monster care (happiness, health)"
+      },
+      "breeding": {
+        "costStructure": "Variable by rarity of parents",
+        "commonBreeding": "200-500 coins",
+        "rareBreeding": "1000-5000 coins",
+        "legendaryBreeding": "5000-10000+ coins",
+        "purpose": "Create new monsters with mutations"
+      },
+      "habitatExpansion": {
+        "costStructure": "2000-5000 coins per new habitat",
+        "scaledProgression": "Increases slightly later in game",
+        "purpose": "Expand creature collection capacity"
+      },
+      "cosmetics": {
+        "costStructure": "$0.99-$1.99 per item (premium currency)",
+        "purpose": "Visual customization (no gameplay impact)"
+      }
+    }
+  },
+  "developmentNotes": {
+    "coinRewards": {
+      "dailyLimit": "Consider daily earning caps to maintain progression pacing",
+      "customerOrders": "Should spawn 2-4 times per day, refresh every 6-8 hours",
+      "sellingMonsters": "Implement happiness multiplier (happy = 1.5-2x coins)",
+      "rarityMultiplier": "Rare creatures worth 5-10x common creatures"
+    },
+    "stardustPricing": {
+      "recommendation": "500 Stardust = $4.99 (player-friendly, not predatory)",
+      "futureExpansion": "Consider 1000 Stardust = $9.99, 2500 Stardust = $19.99 tiers later",
+      "noBulkDiscounts": "Keep pricing consistent to maintain fairness"
+    },
+    "balancingEquation": {
+      "goal": "Level 50 reachable in 4-6 months without spending",
+      "assumption": "30 minutes daily play = 1 level every 2-3 hours",
+      "coinEarning": "200-500 coins per 30 minutes gameplay",
+      "coinSpending": "Food ~20 coins/day, breeding 500-2000 coins/week, habitats 2000-5000 coins rare"
+    },
+    "noPayToWin": {
+      "enforcement": "Stardust ONLY purchases cosmetics, never gameplay mechanics",
+      "mechanics": "Breeding, habitats, mutations, leveling speed - all free/earnable",
+      "cosmetics": "Visual only - shop themes, decorations, accessories"
+    }
+  },
+  "nextSteps": [
+    "Task 1.6: Technical Architecture specification",
+    "Finalize all design documents",
+    "Transition to Claude Code for development phase"
+  ]
+}

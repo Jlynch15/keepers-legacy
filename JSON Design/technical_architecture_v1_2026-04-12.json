@@ -1,0 +1,276 @@
+{
+  "projectName": "Monster Pet Shop",
+  "exportDate": "2026-04-12T04:43:37.549Z",
+  "version": "1.0",
+  "phase": "Task 1.6: Technical Architecture Specification",
+  "technicalArchitecture": {
+    "platform_version": "iOS 15+ (recommended, good balance)",
+    "ui_framework": "SwiftUI (modern, future-proof)",
+    "graphics_framework": "SpriteKit (2D, optimized for games)",
+    "database": "Core Data (SQL-based, native) - RECOMMENDED FOR THIS PROJECT",
+    "cloud_save": "Yes - iCloud integration (CloudKit)",
+    "architecture_pattern": "MVVM (ViewModel layer) - RECOMMENDED FOR THIS PROJECT",
+    "target_fps": "60 FPS (smooth, current standard)",
+    "app_size": "Under 200 MB (acceptable)",
+    "memory_target": "Under 150 MB (recommended)",
+    "dependency_management": "Minimal dependencies (native only)",
+    "testing_strategy": "Rapid prototyping for now, but will be tested for Logic and UI as we reach milestones",
+    "version_control": "Git with branching strategy (main/dev) - RECOMMENDED FOR THIS PROJECT",
+    "internationalization": "Yes - localization support built in",
+    "offline_online": "Offline-first (works completely offline)",
+    "analytics": "Basic telemetry (crash reports only)"
+  },
+  "completionPercentage": 100,
+  "metadata": {
+    "questionsAnswered": 15,
+    "totalQuestions": 15,
+    "locked": true,
+    "status": "COMPLETE",
+    "expertRecommendations": true,
+    "nextTask": "Task 1.7: Art Asset List & Production Breakdown (OPTIONAL)"
+  },
+  "summary": {
+    "technicalStack": {
+      "language": "Swift (native iOS language)",
+      "minimumOS": "iOS 15+ (covers ~95% of active devices)",
+      "uiFramework": "SwiftUI (modern declarative UI, future-proof)",
+      "graphicsEngine": "SpriteKit (optimized for 2D games like yours)",
+      "database": "Core Data (native iOS persistence, zero external dependencies)",
+      "cloudSync": "CloudKit (Apple's native iCloud service, free tier available)",
+      "architecture": "MVVM (Model-View-ViewModel - best for SwiftUI)"
+    },
+    "performance": {
+      "targetFrameRate": "60 FPS (smooth animations for creatures)",
+      "appSize": "Under 200 MB (fits easily on all devices)",
+      "memoryFootprint": "Under 150 MB (efficient, won't crash old devices)",
+      "loadTime": "Under 3 seconds from launch to playable"
+    },
+    "development": {
+      "dependencies": "None external (SwiftUI + SpriteKit + Core Data all native)",
+      "buildTool": "Xcode (Apple's native IDE, free)",
+      "versionControl": "Git (standard, integrates with Xcode)",
+      "branches": "main (stable) + develop (active work)",
+      "testing": "Unit tests for economy/progression logic, UI tests for key screens"
+    },
+    "features": {
+      "offlineFirst": "Game works completely offline, no internet required",
+      "cloudSync": "Optional iCloud save (player can enable/disable)",
+      "localization": "Built-in support for multiple languages (English + future translations)",
+      "analytics": "Minimal - only crash reports sent (privacy-respectful)"
+    }
+  },
+  "expertRecommendations": {
+    "databaseChoice": {
+      "selected": "Core Data",
+      "why": [
+        "Native to iOS - zero external dependencies",
+        "Perfect for your creature/economy/progression data structure",
+        "Free - no backend costs",
+        "Integrates seamlessly with CloudKit for iCloud sync",
+        "Well-documented with extensive community support"
+      ],
+      "alternative": "Realm would be faster, but requires learning new syntax"
+    },
+    "architectureChoice": {
+      "selected": "MVVM",
+      "why": [
+        "Perfect for SwiftUI (designed for MVVM)",
+        "Clean separation: Models (data) → ViewModels (logic) → Views (UI)",
+        "Easy to test - business logic separated from UI",
+        "Scales well as game grows",
+        "Claude Code will understand this pattern instantly"
+      ],
+      "structure": {
+        "Models": "Creature, Monster, Habitat, Economy (from your design JSONs)",
+        "ViewModels": "CreatureViewModel, EconomyViewModel, ProgressionViewModel (handles logic)",
+        "Views": "ShopView, HabitatView, BreedingView (displays data)"
+      }
+    },
+    "versionControlChoice": {
+      "selected": "Git with main/develop branches",
+      "why": [
+        "main branch = stable, tested code",
+        "develop branch = active development",
+        "Easy to track changes and revert if needed",
+        "Professional standard (portable to team later)",
+        "Xcode integrates natively"
+      ]
+    }
+  },
+  "projectStructure": {
+    "architecture": "MVVM",
+    "layers": {
+      "models": {
+        "description": "Data structures (will be auto-generated from your JSON design files)",
+        "files": [
+          "Creature.swift",
+          "Monster.swift",
+          "Habitat.swift",
+          "Economy.swift",
+          "Progression.swift",
+          "Story.swift"
+        ]
+      },
+      "viewmodels": {
+        "description": "Business logic and game rules",
+        "files": [
+          "ShopViewModel.swift",
+          "HabitatViewModel.swift",
+          "CreatureViewModel.swift",
+          "EconomyViewModel.swift",
+          "ProgressionViewModel.swift"
+        ]
+      },
+      "views": {
+        "description": "SwiftUI user interface",
+        "files": [
+          "ShopView.swift",
+          "HabitatView.swift",
+          "BreedingView.swift",
+          "PediaView.swift",
+          "SettingsView.swift"
+        ]
+      },
+      "data": {
+        "description": "Core Data and CloudKit integration",
+        "files": [
+          "DataManager.swift",
+          "CloudSyncManager.swift"
+        ]
+      },
+      "assets": {
+        "description": "Game content (sprites, animations)",
+        "folders": [
+          "Creatures/",
+          "UI/",
+          "Audio/"
+        ]
+      }
+    }
+  },
+  "dataPersistence": {
+    "localStorage": {
+      "system": "Core Data",
+      "stores": [
+        "Creatures (all instances player owns)",
+        "Habitats (player's habitats and contents)",
+        "Economy (coins, Stardust, transactions)",
+        "Progression (current level, experience)",
+        "Story (completed acts, unlocked features)"
+      ]
+    },
+    "cloudSync": {
+      "system": "CloudKit (iCloud)",
+      "automatic": true,
+      "optional": true,
+      "userCanDisable": true,
+      "benefits": [
+        "Backup if device is lost/replaced",
+        "Seamless sync across devices (if player has multiple iPhones/iPads)",
+        "No server costs (uses Apple's infrastructure)"
+      ]
+    }
+  },
+  "codeQualityStrategy": {
+    "phase1_rapid": {
+      "focus": "Get mechanics working",
+      "testing": "Manual testing through gameplay",
+      "timeline": "Weeks 1-8"
+    },
+    "phase2_milestone": {
+      "focus": "Test critical systems",
+      "unitTests": "Economy logic, progression curves, breeding mechanics",
+      "uiTests": "Creature purchasing, breeding flow, habitat expansion",
+      "timeline": "Weeks 8-12"
+    },
+    "phase3_polish": {
+      "focus": "Full quality pass",
+      "refactor": "Clean up code, optimize performance",
+      "testing": "Comprehensive testing across all features",
+      "timeline": "Weeks 12-14"
+    }
+  },
+  "buildConfiguration": {
+    "supportedDevices": [
+      "iPhone (all sizes)",
+      "iPad (all sizes)"
+    ],
+    "minimumOS": "iOS 15.0",
+    "maximumOS": "Latest (no upper limit)",
+    "orientations": [
+      "Portrait (primary)",
+      "Landscape (secondary support)"
+    ],
+    "safAreas": "Respected (notches, home indicators)",
+    "darkMode": "Supported"
+  },
+  "performanceOptimizations": {
+    "graphics": {
+      "spriteKitSettings": "Vsync enabled, 60 FPS locked",
+      "animationFrameRate": "30 FPS for idle creatures (60 when interacting)",
+      "textureAtlasing": "Group creature sprites into atlases for efficiency"
+    },
+    "memory": {
+      "assetLoading": "Load habitats on-demand, unload when switching",
+      "cacheStrategy": "Cache frequently-used creatures, purge old habitats",
+      "targetMemory": "Keep under 150 MB even with all creatures loaded"
+    },
+    "storage": {
+      "appSize": "Target under 200 MB (includes base assets, allows room for growth)",
+      "coreDataSize": "Optimize queries, prune old data periodically"
+    }
+  },
+  "localization": {
+    "supportedLanguages": "English (launch), prepared for: Spanish, French, German, Japanese",
+    "implementation": "Xcode localizable strings (.strings files)",
+    "scope": {
+      "ui": "All UI text",
+      "creatures": "Creature names and descriptions",
+      "story": "Story text and NPC dialogue",
+      "economy": "Shop text, pricing, labels"
+    }
+  },
+  "privacyAndSecurity": {
+    "dataCollected": [
+      "Crash reports only (via CloudKit diagnostics)"
+    ],
+    "dataNotCollected": [
+      "User behavior tracking",
+      "Device identifiers",
+      "Location data",
+      "Ad targeting data"
+    ],
+    "cloudKitBehavior": "Player data encrypted in transit and at rest on iCloud",
+    "privacyPolicy": "Simple: 'We only send crash reports to fix bugs'"
+  },
+  "transitionalHandoff": {
+    "readyForClaudeCode": true,
+    "requiredFiles": [
+      "creature_roster_complete.json",
+      "story_design_v1.json",
+      "progression_system_v1.json",
+      "economy_system_v1.json",
+      "technical_architecture_v1.json"
+    ],
+    "automatedCodeGeneration": [
+      "Core Data models (from creature/economy/progression JSONs)",
+      "Swift Codable structures (from all design JSONs)",
+      "GameConfig.swift (constants from progression/economy)"
+    ]
+  },
+  "developmentTimeline": {
+    "setup": "1 week - Xcode project, Core Data models, basic UI",
+    "coreFeatures": "4 weeks - Creatures, habitats, basic care mechanics",
+    "systems": "2 weeks - Breeding, economy, progression",
+    "story": "1 week - Narrative integration, NPCs",
+    "testing": "1 week - Bug fixes, optimization, quality pass",
+    "launch": "1 week - App Store submission, final polish",
+    "total": "10 weeks to App Store readiness"
+  },
+  "nextSteps": [
+    "Task 1.7 (OPTIONAL): Art Asset List & Production Breakdown",
+    "Transition to Claude Code with all 5 design JSONs",
+    "Claude Code creates project structure and data models",
+    "Begin development phase with complete design specs"
+  ]
+}
