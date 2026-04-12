@@ -39,8 +39,8 @@ final class CreatureViewModel: ObservableObject {
             breedingResult = .failure(reason: "Creatures must be the same habitat type to breed.")
             return
         }
-        guard entryA.lifecycle == LifecycleStage.adult.rawValue,
-              entryB.lifecycle == LifecycleStage.adult.rawValue else {
+        guard parentA.lifecycle == LifecycleStage.adult.rawValue,
+              parentB.lifecycle == LifecycleStage.adult.rawValue else {
             breedingResult = .failure(reason: "Both creatures must be adults to breed.")
             return
         }

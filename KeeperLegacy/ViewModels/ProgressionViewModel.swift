@@ -1,9 +1,16 @@
 import Foundation
 import Combine
 
+// MARK: - Level-Up Event
+
+struct LevelUpEvent: Identifiable {
+    let id       = UUID()
+    let newLevel: Int
+    let unlockedFeature: GameFeature?   // nil if no new feature this level
+    let milestoneReward: MilestoneReward?
+}
+
 // MARK: - ProgressionViewModel
-// Owns all player state: coins, stardust, level, XP, story act.
-// Single source of truth for the currency header and feature gate checks.
 
 @MainActor
 final class ProgressionViewModel: ObservableObject {
@@ -14,19 +21,22 @@ final class ProgressionViewModel: ObservableObject {
     @Published var storyAct: Int = 1
     @Published var unlockedFeatures: Set<String> = ["shop", "habitat", "feeding", "playing"]
 
+    /// Set when a level-up occurs — consumed by ContentView to show the overlay.
+    @Published var pendingLevelUp: LevelUpEvent? = nil
+
     private let dataManager = DataManager.shared
 
     // MARK: Load
 
     func load() async {
-        let state = dataManager.playerState()
+        let state        = dataManager.playerState()
         coins            = Int(state.coins)
         stardust         = Int(state.stardust)
         level            = Int(state.currentLevel)
         xp               = Int(state.currentXP)
         storyAct         = Int(state.storyAct)
-        if let data = state.unlockedFeaturesData,
-           let features = try? JSONDecoder().decode(Set<String>.self, from: data) {
+        if let data      = state.unlockedFeaturesData,
+           let features  = try? JSONDecoder().decode(Set<String>.self, from: data) {
             unlockedFeatures = features
         }
     }
@@ -35,6 +45,7 @@ final class ProgressionViewModel: ObservableObject {
 
     func canAffordCoins(_ amount: Int) -> Bool { coins >= amount }
 
+    @discardableResult
     func spendCoins(_ amount: Int) -> Bool {
         guard canAffordCoins(amount) else { return false }
         coins -= amount
@@ -50,23 +61,32 @@ final class ProgressionViewModel: ObservableObject {
     // MARK: XP / Leveling
 
     func addXP(_ amount: Int) {
-        var progression = localProgression
+        var progression  = localProgression
         let levelsGained = progression.addXP(amount)
-        xp    = progression.currentXP
-        level = progression.currentLevel
+        xp               = progression.currentXP
+        level            = progression.currentLevel
         unlockedFeatures = progression.unlockedFeatures
 
+        // Fire level-up events one at a time (usually just one)
         for newLevel in levelsGained {
-            handleLevelUp(newLevel)
+            let milestone = MilestoneReward.milestones[newLevel]
+            if let m = milestone {
+                coins    += m.coinBonus
+                stardust += m.stardustBonus
+            }
+
+            // Determine if a new feature just unlocked at exactly this level
+            let newFeature = GameFeature.allCases.first { feature in
+                feature.requiredLevel == newLevel && feature.requiredStoryAct == nil
+            }
+
+            pendingLevelUp = LevelUpEvent(
+                newLevel:        newLevel,
+                unlockedFeature: newFeature,
+                milestoneReward: milestone
+            )
         }
         persist()
-    }
-
-    private func handleLevelUp(_ newLevel: Int) {
-        if let milestone = MilestoneReward.milestones[newLevel] {
-            earnCoins(milestone.coinBonus)
-            stardust += milestone.stardustBonus
-        }
     }
 
     // MARK: Feature Gating
@@ -87,27 +107,27 @@ final class ProgressionViewModel: ObservableObject {
 
     // MARK: XP helpers
 
-    var xpToNextLevel: Int { XPCurve.xpRequired(forLevel: level) }
+    var xpToNextLevel: Int   { XPCurve.xpRequired(forLevel: level) }
     var xpFraction:    Double { xpToNextLevel > 0 ? Double(xp) / Double(xpToNextLevel) : 0 }
 
     // MARK: Persistence
 
     private var localProgression: PlayerProgression {
-        var p = PlayerProgression()
-        p.currentLevel     = level
-        p.currentXP        = xp
+        var p            = PlayerProgression()
+        p.currentLevel   = level
+        p.currentXP      = xp
         p.unlockedFeatures = unlockedFeatures
-        p.storyAct         = storyAct
+        p.storyAct       = storyAct
         return p
     }
 
     private func persist() {
-        let state         = dataManager.playerState()
-        state.coins       = Int32(coins)
-        state.stardust    = Int32(stardust)
-        state.currentLevel = Int16(level)
-        state.currentXP   = Int32(xp)
-        state.storyAct    = Int16(storyAct)
+        let state              = dataManager.playerState()
+        state.coins            = Int32(coins)
+        state.stardust         = Int32(stardust)
+        state.currentLevel     = Int16(level)
+        state.currentXP        = Int32(xp)
+        state.storyAct         = Int16(storyAct)
         state.unlockedFeaturesData = try? JSONEncoder().encode(unlockedFeatures)
         dataManager.save()
     }

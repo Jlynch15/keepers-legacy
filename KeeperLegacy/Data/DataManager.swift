@@ -279,6 +279,12 @@ final class DataManager: ObservableObject {
         save()
         return entity
     }
+
+    func allBreedingRecords() -> [BreedingRecordEntity] {
+        let request = BreedingRecordEntity.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(keyPath: \BreedingRecordEntity.date, ascending: false)]
+        return (try? context.fetch(request)) ?? []
+    }
 }
 
 // MARK: - Preview DataManager

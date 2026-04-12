@@ -10,6 +10,7 @@ struct HabitatView: View {
 
     @State private var selectedHabitatIndex: Int = 0
     @State private var showCareSheet: Bool = false
+    @State private var showHabitatTypePicker: Bool = false
 
     private var habitats: [HabitatEntity] { habitatVM.habitats }
 
@@ -35,6 +36,11 @@ struct HabitatView: View {
                         .environmentObject(progressVM)
                 }
             }
+            .sheet(isPresented: $showHabitatTypePicker) {
+                HabitatTypePickerView()
+                    .environmentObject(habitatVM)
+                    .environmentObject(progressVM)
+            }
         }
     }
 
@@ -55,7 +61,7 @@ struct HabitatView: View {
                 // "Add Habitat" slot (if expansions available)
                 if habitatVM.canAddHabitat(atLevel: progressVM.level) {
                     AddHabitatButton {
-                        habitatVM.addNextHabitat(progressVM: progressVM)
+                        showHabitatTypePicker = true
                     }
                 }
             }
@@ -177,10 +183,13 @@ struct AddHabitatButton: View {
 struct OccupiedHabitatPanel: View {
     @EnvironmentObject var habitatVM:  HabitatViewModel
     @EnvironmentObject var progressVM: ProgressionViewModel
+    @EnvironmentObject var creatureVM: CreatureViewModel
 
     let habitat: HabitatEntity
     let creature: CreatureEntity
     let onCare: () -> Void
+
+    @State private var showBreedingSheet: Bool = false
 
     private var catalogEntry: CreatureCatalogEntry? {
         CreatureCatalogEntry.find(byID: creature.catalogID ?? "")
@@ -189,7 +198,7 @@ struct OccupiedHabitatPanel: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 20) {
-                // Creature display
+                // Creature display with mutation badge
                 creatureDisplay
 
                 // Stat bars
@@ -207,8 +216,36 @@ struct OccupiedHabitatPanel: View {
                     }
                 }
                 .padding(.horizontal)
+
+                // Breed button — only visible once feature is unlocked
+                if progressVM.isFeatureUnlocked(.breeding) {
+                    Button { showBreedingSheet = true } label: {
+                        HStack(spacing: 8) {
+                            Image(systemName: "heart.fill")
+                            Text("Breed")
+                                .font(.system(size: 15, weight: .bold, design: .rounded))
+                        }
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 12)
+                        .background(Color(hex: "#FFF0FF"))
+                        .foregroundColor(Color(hex: "#C99BFF"))
+                        .clipShape(RoundedRectangle(cornerRadius: 14))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 14)
+                                .stroke(Color(hex: "#C99BFF").opacity(0.4), lineWidth: 1.5)
+                        )
+                    }
+                    .padding(.horizontal)
+                    .disabled(creature.lifecycle != LifecycleStage.adult.rawValue)
+                }
             }
             .padding(.vertical, 20)
+        }
+        .sheet(isPresented: $showBreedingSheet) {
+            BreedingView(parentA: creature)
+                .environmentObject(creatureVM)
+                .environmentObject(progressVM)
+                .environmentObject(habitatVM)
         }
     }
 
@@ -239,6 +276,16 @@ struct OccupiedHabitatPanel: View {
                     RarityBadge(rarity: entry.rarity)
                 }
             }
+        }
+        .overlay(alignment: .topTrailing) {
+            Text("V\(creature.mutationIndex + 1)")
+                .font(.system(size: 12, weight: .bold, design: .rounded))
+                .foregroundColor(.white)
+                .padding(.horizontal, 10)
+                .padding(.vertical, 5)
+                .background(Color.black.opacity(0.3))
+                .clipShape(Capsule())
+                .padding(14)
         }
         .padding(.horizontal)
     }

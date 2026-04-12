@@ -8,6 +8,7 @@ struct ContentView: View {
     @StateObject private var habitatVM   = HabitatViewModel()
     @StateObject private var progressVM  = ProgressionViewModel()
     @StateObject private var orderVM     = CustomerOrderViewModel()
+    @StateObject private var creatureVM  = CreatureViewModel()
 
     @State private var selectedTab: Tab  = .shop
     @State private var isLoading: Bool   = true
@@ -24,6 +25,14 @@ struct ContentView: View {
             } else {
                 mainTabView
                     .transition(.opacity)
+            }
+
+            // Level-up overlay — shown on top of all content
+            if let event = progressVM.pendingLevelUp {
+                LevelUpOverlayView(event: event) {
+                    progressVM.pendingLevelUp = nil
+                }
+                .zIndex(100)
             }
         }
         .animation(.easeInOut(duration: 0.5), value: isLoading)
@@ -57,6 +66,7 @@ struct ContentView: View {
                 HabitatView()
                     .environmentObject(habitatVM)
                     .environmentObject(progressVM)
+                    .environmentObject(creatureVM)
                     .tabItem { Label("Habitats", systemImage: "house.fill") }
                     .tag(Tab.habitats)
 
