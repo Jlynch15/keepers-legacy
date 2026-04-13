@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280">
+<title>Keeper's Legacy — Shop Floor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=IM+Fell+English:ital@0;1&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    /* Warm cabin palette */
+    --bg:       #2A1E10;
+    --bg-dark:  #1E1408;
+    --wall:     #3E2A14;
+    --wall-lt:  #5A3E20;
+    --floor:    #4A3418;
+    --floor-lt: #5E4422;
+    --floor-dk: #3A2810;
+    --text:     #F0E8D8;
+    --muted:    #B8A080;
+    --gold:     #E8B830;
+    --gold-lt:  #F0CC50;
+    --water:    #4AA8E0;
+    --grass:    #4AB84A;
+    --dirt:     #C08840;
+    --fire:     #E06030;
+    --ice:      #60D0E0;
+    --elec:     #E8D020;
+    --magic:    #9860E0;
+  }
+
+  html, body {
+    width: 1280px; height: 720px;
+    overflow: hidden;
+    background: var(--bg);
+    font-family: 'Crimson Text', serif;
+    color: var(--text);
+  }
+
+  /* ── MAIN LAYOUT ────────────────────────────────────── */
+  .layout {
+    display: flex;
+    width: 1280px; height: 720px;
+  }
+
+  /* ── SHOP SCENE (fills left, minus sidebar) ─────────── */
+  .shop-scene {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    background: radial-gradient(ellipse 80% 60% at 50% 40%, #3A2A16 0%, var(--bg) 100%);
+  }
+
+  /* Warm ambient light from above */
+  .shop-scene::before {
+    content: '';
+    position: absolute; inset: 0; pointer-events: none; z-index: 0;
+    background:
+      radial-gradient(ellipse 50% 30% at 50% 0%, rgba(232,184,48,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 30% 25% at 25% 15%, rgba(232,184,48,0.04) 0%, transparent 60%),
+      radial-gradient(ellipse 30% 25% at 75% 15%, rgba(232,184,48,0.04) 0%, transparent 60%);
+  }
+
+  /* ── BACK WALLS (warm wood) ─────────────────────────── */
+  .wall-left, .wall-right {
+    position: absolute; left: 0; top: 0;
+    width: 1210px; height: 720px;
+    z-index: 2; pointer-events: none;
+  }
+  .wall-left {
+    clip-path: polygon(0px 0px, 590px 50px, 590px 185px, 0px 480px);
+    background:
+      repeating-linear-gradient(185deg, transparent 0px, transparent 18px, rgba(0,0,0,0.10) 18px, rgba(0,0,0,0.10) 20px),
+      linear-gradient(160deg, #6B4A28 0%, #5A3E20 30%, #4A3218 60%, #3E2A14 100%);
+  }
+  .wall-right {
+    clip-path: polygon(590px 50px, 1210px 0px, 1210px 495px, 590px 185px);
+    background:
+      repeating-linear-gradient(175deg, transparent 0px, transparent 18px, rgba(0,0,0,0.12) 18px, rgba(0,0,0,0.12) 20px),
+      linear-gradient(20deg, #3A2810 0%, #4A3218 30%, #5A3E20 70%, #4E3820 100%);
+  }
+  /* Wall trims */
+  .wall-trim-left {
+    position: absolute; left: 0; top: 0; z-index: 3;
+    width: 600px; height: 4px; pointer-events: none;
+    clip-path: polygon(0 0, 100% 50px, 100% 100%, 0 100%);
+    background: linear-gradient(90deg, rgba(232,184,48,0.2), rgba(232,184,48,0.08));
+  }
+  .wall-trim-right {
+    position: absolute; left: 580px; top: 0; z-index: 3;
+    width: 630px; height: 4px; pointer-events: none;
+    clip-path: polygon(0 50px, 100% 0, 100% 100%, 0 100%);
+    background: linear-gradient(90deg, rgba(232,184,48,0.08), rgba(232,184,48,0.2));
+  }
+  .wall-corner {
+    position: absolute; left: 588px; top: 50px; z-index: 4;
+    width: 3px; height: 140px;
+    background: linear-gradient(180deg, rgba(232,184,48,0.4) 0%, rgba(232,184,48,0.15) 50%, transparent 100%);
+    pointer-events: none;
+  }
+
+  /* ── STORE SIGN ─────────────────────────────────────── */
+  .store-sign {
+    position: absolute; top: 10px; left: 16px;
+    z-index: 10; white-space: nowrap;
+  }
+  .sign-banner {
+    display: flex; align-items: center; gap: 12px;
+    padding: 6px 22px;
+    background: linear-gradient(180deg, rgba(30,22,8,0.9), rgba(20,14,4,0.9));
+    border: 1.5px solid rgba(232,184,48,0.45);
+    border-radius: 4px;
+    outline: 1px solid rgba(232,184,48,0.15);
+    outline-offset: -4px;
+    box-shadow: 0 0 18px rgba(232,184,48,0.18), inset 0 0 12px rgba(0,0,0,0.4);
+  }
+  .sign-corner { font-size: 12px; color: var(--gold); opacity: 0.8; line-height: 1; }
+  .sign-text { display: flex; flex-direction: column; align-items: center; gap: 1px; }
+  .sign-title {
+    font-family: 'Cinzel', serif; font-size: 15px; font-weight: 700;
+    color: var(--gold); letter-spacing: 3px;
+    text-shadow: 0 0 14px rgba(232,184,48,0.35);
+  }
+  .sign-sub {
+    font-family: 'IM Fell English', serif; font-style: italic;
+    font-size: 11px; color: rgba(232,184,48,0.65); letter-spacing: 1px;
+  }
+
+  /* ── INFO STRIP (top-right of scene) ────────────────── */
+  .info-strip {
+    position: absolute; top: 10px; right: 16px;
+    z-index: 10;
+    display: flex; align-items: center; gap: 12px;
+    padding: 5px 18px;
+    background: rgba(30,22,10,0.80);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(232,184,48,0.15);
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+  }
+  .info-level {
+    background: var(--gold); color: #1A1208;
+    font-family: 'Cinzel', serif; font-size: 11px; font-weight: 700;
+    padding: 2px 10px; border-radius: 10px;
+  }
+  .info-xp {
+    width: 90px; height: 6px;
+    background: rgba(0,0,0,0.4);
+    border-radius: 3px; overflow: hidden;
+    border: 1px solid rgba(232,184,48,0.15);
+  }
+  .info-xp-fill {
+    height: 100%; width: 62%;
+    background: linear-gradient(90deg, var(--gold), var(--gold-lt));
+    border-radius: 3px;
+  }
+  .info-coins {
+    font-family: 'Cinzel', serif; font-size: 12px; font-weight: 600;
+    color: var(--gold-lt);
+  }
+
+  /* ── ISO FLOOR TILES ────────────────────────────────── */
+  #floor-tiles { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+  .floor-tile {
+    position: absolute;
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  }
+
+  /* ── ISOMETRIC PEDESTAL HABITATS ──────────────────────── */
+  /*  Each pedestal: diamond top face (biome view) + two side faces (decorative)
+      Positioned with --sx/--sy at the diamond center, like the original design.
+      TW=160, TH=80 for the top face. Side face height=60px.
+  */
+  .habitat {
+    position: absolute;
+    width: 160px; height: 80px;
+    left: calc(var(--sx) - 80px);
+    top:  calc(var(--sy) - 40px);
+    z-index: var(--hz, 5);
+    cursor: pointer;
+    transition: filter 0.2s;
+  }
+  .habitat:not(.locked):hover {
+    filter: drop-shadow(0 0 16px var(--hglow)) brightness(1.1);
+  }
+  .habitat:not(.locked) {
+    filter: drop-shadow(0 0 8px var(--hglow));
+  }
+  .habitat.locked {
+    filter: grayscale(0.6) brightness(0.45);
+    pointer-events: none;
+  }
+
+  /* Top face — diamond shape with biome interior */
+  .hab-top {
+    position: absolute; inset: 0;
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    z-index: 3; overflow: hidden;
+  }
+  /* Glass sheen on top */
+  .hab-top::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.04) 25%, transparent 50%);
+    z-index: 1;
+  }
+
+  /* Biome-specific top face backgrounds */
+  .hab-top.water  { background: linear-gradient(180deg, #1A4870, #0E2840); }
+  .hab-top.grass  { background: linear-gradient(180deg, #1A4A1A, #0E2E0E); }
+  .hab-top.dirt   { background: linear-gradient(180deg, #5A3A18, #3A2410); }
+  .hab-top.fire   { background: linear-gradient(180deg, #4A1808, #2A0E04); }
+  .hab-top.ice    { background: linear-gradient(180deg, #1A4A50, #0E2E38); }
+  .hab-top.elec   { background: linear-gradient(180deg, #3A3808, #222004); }
+  .hab-top.magic  { background: linear-gradient(180deg, #2A1848, #180E2A); }
+
+  /* Biome color glow inside the top face */
+  .hab-top::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 55%, var(--hglow) 0%, transparent 65%);
+    opacity: 0.6; z-index: 0;
+  }
+
+  /* Left (SW) side face — pedestal wall */
+  .hab-side-l {
+    position: absolute;
+    left: 0; top: 40px;
+    width: 80px; height: 100px;
+    clip-path: polygon(0% 0%, 100% 40%, 100% 100%, 0% 60%);
+    z-index: 2; overflow: hidden;
+    background: linear-gradient(180deg,
+      var(--hc-side, #4A3218) 0%,
+      #2A1A0A 100%);
+  }
+  /* Decorative trim on left side */
+  .hab-side-l::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 6px;
+    background: var(--hc-rim, #5A3E20);
+  }
+
+  /* Right (SE) side face */
+  .hab-side-r {
+    position: absolute;
+    left: 80px; top: 40px;
+    width: 80px; height: 100px;
+    clip-path: polygon(0% 40%, 100% 0%, 100% 60%, 0% 100%);
+    z-index: 2; overflow: hidden;
+    background: linear-gradient(180deg,
+      var(--hc-side2, #3E2810) 0%,
+      #201408 100%);
+  }
+  .hab-side-r::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 6px;
+    background: var(--hc-rim2, #4A3218);
+  }
+
+  /* Ground shadow under each pedestal */
+  .hab-shadow {
+    position: absolute;
+    left: calc(var(--sx) - 90px);
+    top:  calc(var(--sy) + 50px);
+    width: 180px; height: 40px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse, rgba(0,0,0,0.30), transparent 70%);
+    z-index: 1; pointer-events: none;
+  }
+
+  /* Label floating above the pedestal */
+  .hab-label {
+    position: absolute; z-index: 12;
+    left: calc(var(--sx) - 60px);
+    top:  calc(var(--sy) - 70px);
+    width: 120px; text-align: center;
+    pointer-events: none;
+  }
+  .hab-icon { font-size: 18px; display: block; line-height: 1; margin-bottom: 2px; }
+  .hab-name {
+    font-family: 'Cinzel', serif; font-size: 11px; font-weight: 700;
+    color: var(--text); letter-spacing: 0.4px;
+    display: block; text-shadow: 0 1px 5px rgba(0,0,0,0.8);
+  }
+  .hab-count {
+    font-family: 'Cinzel', serif; font-size: 9px;
+    color: var(--muted); display: block;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.7);
+  }
+  .hab-lock-badge {
+    display: inline-flex; align-items: center; gap: 3px;
+    font-family: 'Cinzel', serif; font-size: 9px; font-weight: 700;
+    padding: 2px 7px; border-radius: 8px;
+    background: rgba(26,18,8,0.85);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: rgba(200,170,100,0.7); margin-top: 3px;
+  }
+
+  /* Creatures on top of the pedestal */
+  .hab-creature {
+    position: absolute; z-index: 4;
+    font-size: var(--cs, 22px);
+    animation: creature-idle 2.5s ease-in-out infinite var(--cdly, 0s);
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
+  }
+  @keyframes creature-idle {
+    0%,100% { transform: translateY(0) scaleX(1); }
+    30%     { transform: translateY(-4px) scaleX(1.02); }
+    60%     { transform: translateY(2px) scaleX(0.98); }
+  }
+
+  /* Free-roaming creatures on the floor */
+  .floor-creature {
+    position: absolute; z-index: 6;
+    font-size: 22px;
+    filter: drop-shadow(0 3px 6px rgba(0,0,0,0.5));
+    animation: wander var(--dur, 16s) ease-in-out infinite var(--dly, 0s);
+    pointer-events: none;
+  }
+  @keyframes wander {
+    0%,100% { transform: translate(0,0); }
+    20%     { transform: translate(var(--wx1,20px), var(--wy1,10px)); }
+    45%     { transform: translate(var(--wx2,-15px), var(--wy2,15px)); }
+    70%     { transform: translate(var(--wx3,25px), var(--wy3,-8px)); }
+  }
+
+  /* ── DECORATIVE ELEMENTS ────────────────────────────── */
+  .wall-decor {
+    position: absolute; z-index: 5;
+    pointer-events: none;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
+  }
+  .floor-plant {
+    position: absolute; z-index: 5;
+    pointer-events: none;
+    filter: drop-shadow(0 3px 6px rgba(0,0,0,0.5));
+  }
+  .lantern {
+    position: absolute; z-index: 5;
+    display: flex; flex-direction: column; align-items: center;
+    pointer-events: none;
+  }
+  .lantern-chain {
+    width: 1px; height: var(--chain, 30px);
+    background: linear-gradient(180deg, rgba(232,184,48,0.1), rgba(232,184,48,0.3));
+  }
+  .lantern-body {
+    font-size: 18px;
+    filter: drop-shadow(0 0 12px rgba(232,184,48,0.5));
+  }
+  /* Lantern warm light pool */
+  .lantern-glow {
+    position: absolute; z-index: 1;
+    width: var(--gw, 200px); height: var(--gh, 100px);
+    border-radius: 50%;
+    background: radial-gradient(ellipse, rgba(232,184,48,0.06), transparent 70%);
+    pointer-events: none;
+  }
+
+  /* Vine borders */
+  .vine-border {
+    position: absolute; top: 0; width: 50px; height: 100%;
+    z-index: 8; pointer-events: none;
+  }
+  .vine-border--left { left: 0; }
+  .vine-border--right { right: 70px; /* clear sidebar */ }
+  .vine-border--left::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60px 100px at 0% 15%, rgba(40,100,30,0.15), transparent),
+      radial-gradient(ellipse 50px 80px at 5% 45%, rgba(50,120,40,0.12), transparent),
+      radial-gradient(ellipse 55px 90px at 0% 70%, rgba(40,100,30,0.14), transparent);
+  }
+  .vine-border--right::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60px 100px at 100% 20%, rgba(40,100,30,0.15), transparent),
+      radial-gradient(ellipse 50px 80px at 95% 50%, rgba(50,120,40,0.12), transparent),
+      radial-gradient(ellipse 55px 90px at 100% 75%, rgba(40,100,30,0.14), transparent);
+  }
+  .vine-leaf {
+    position: absolute; z-index: 8;
+    pointer-events: none; font-size: 18px;
+    filter: drop-shadow(0 0 4px rgba(40,100,30,0.3));
+  }
+
+  /* Welcome mat */
+  .welcome-mat {
+    position: absolute; z-index: 5;
+    width: 70px; height: 24px;
+    background: rgba(74,184,74,0.12);
+    border: 1px solid rgba(74,184,74,0.10);
+    border-radius: 3px;
+    transform: skewX(-26deg) skewY(14deg);
+    pointer-events: none;
+  }
+
+  /* ── COUNTER (placeholder) ────────────────────────────── */
+  .counter-placeholder {
+    position: absolute; z-index: 9;
+    display: flex; flex-direction: column;
+    align-items: center; gap: 4px;
+    pointer-events: none;
+  }
+  .counter-marker {
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background: rgba(90,64,32,0.6);
+    border: 2px solid rgba(232,184,48,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4), 0 0 8px rgba(232,184,48,0.1);
+  }
+  .counter-marker-label {
+    font-family: 'Cinzel', serif; font-size: 9px; font-weight: 700;
+    color: var(--gold); letter-spacing: 0.5px;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+  }
+
+  /* ── ENTRANCE DOOR (isometric) ──────────────────────── */
+  .door {
+    position: absolute;
+    width: 160px; height: 80px;
+    left: calc(var(--sx) - 80px);
+    top:  calc(var(--sy) - 40px);
+    z-index: var(--hz, 8);
+    filter: drop-shadow(0 0 6px rgba(80,200,60,0.10));
+  }
+  .door-top {
+    position: absolute; inset: 0;
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    background: linear-gradient(140deg, #2A3A1A, #1A2810);
+    z-index: 3;
+  }
+  .door-top::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 50%, rgba(80,200,60,0.15), transparent 60%);
+  }
+  .door-side-l {
+    position: absolute; left: 0; top: 40px;
+    width: 80px; height: 90px;
+    clip-path: polygon(0% 0%, 100% 44%, 100% 100%, 0% 56%);
+    background: linear-gradient(180deg, #1A2810, #0E1808);
+    z-index: 2; overflow: hidden;
+  }
+  /* Arch opening on left face */
+  .door-arch {
+    position: absolute;
+    left: 20%; right: 15%; top: 15%; bottom: 0;
+    background: radial-gradient(ellipse at 50% 80%, rgba(80,200,60,0.25) 0%, rgba(0,0,0,0.5) 70%);
+    border-radius: 40% 40% 0 0 / 35% 35% 0 0;
+  }
+  .door-side-r {
+    position: absolute; left: 80px; top: 40px;
+    width: 80px; height: 90px;
+    clip-path: polygon(0% 44%, 100% 0%, 100% 56%, 0% 100%);
+    background: linear-gradient(180deg, #142008, #0A1406);
+    z-index: 2;
+  }
+  .door-shadow {
+    position: absolute;
+    left: calc(var(--sx) - 90px);
+    top:  calc(var(--sy) + 35px);
+    width: 180px; height: 35px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse, rgba(0,0,0,0.28), transparent 70%);
+    z-index: 1; pointer-events: none;
+  }
+  .door-glow {
+    position: absolute;
+    left: calc(var(--sx) - 50px);
+    top:  calc(var(--sy) + 30px);
+    width: 100px; height: 25px;
+    background: radial-gradient(ellipse, rgba(80,200,60,0.12), transparent);
+    border-radius: 50%; z-index: 1; pointer-events: none;
+  }
+  .door-label-text {
+    position: absolute; z-index: 12;
+    left: calc(var(--sx) - 40px);
+    top:  calc(var(--sy) - 60px);
+    width: 80px; text-align: center;
+    font-family: 'Cinzel', serif; font-size: 9px; font-weight: 700;
+    color: rgba(80,200,60,0.7); letter-spacing: 0.5px;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+    pointer-events: none;
+  }
+
+  /* Story badge */
+  .story-badge {
+    position: absolute; top: 46px; right: 16px; z-index: 10;
+    background: rgba(152,96,224,0.85);
+    border: 1.5px solid rgba(152,96,224,0.5);
+    border-radius: 20px; padding: 5px 12px;
+    font-family: 'Cinzel', serif; font-size: 10px; font-weight: 700;
+    color: white; letter-spacing: 0.3px;
+    box-shadow: 0 0 14px rgba(152,96,224,0.5);
+    animation: story-pulse 2s ease-in-out infinite;
+    display: flex; align-items: center; gap: 6px; cursor: pointer;
+  }
+  @keyframes story-pulse {
+    0%,100% { box-shadow: 0 0 12px rgba(152,96,224,0.4); }
+    50%     { box-shadow: 0 0 22px rgba(152,96,224,0.75); }
+  }
+
+  /* HUD hint */
+  .hud-hint {
+    position: absolute; bottom: 16px; left: 18px; z-index: 10;
+    background: rgba(30,22,10,0.85);
+    border: 1px solid rgba(232,184,48,0.18);
+    border-radius: 8px; padding: 7px 13px;
+    font-family: 'Cinzel', serif; font-size: 10px;
+    color: rgba(232,184,48,0.55); letter-spacing: 0.4px;
+  }
+
+  /* ── RIGHT SIDEBAR MENU ─────────────────────────────── */
+  .sidebar {
+    width: 70px; flex-shrink: 0;
+    background: linear-gradient(180deg, #1A1208 0%, #140E06 100%);
+    border-left: 2px solid rgba(232,184,48,0.15);
+    display: flex; flex-direction: column;
+    align-items: center;
+    padding: 12px 0;
+    gap: 4px;
+    z-index: 20;
+  }
+  .sidebar-btn {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 3px;
+    width: 58px; height: 58px;
+    border-radius: 10px;
+    background: transparent;
+    border: 1.5px solid transparent;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .sidebar-btn:hover {
+    background: rgba(232,184,48,0.06);
+    border-color: rgba(232,184,48,0.15);
+  }
+  .sidebar-btn.active {
+    background: rgba(232,184,48,0.10);
+    border-color: rgba(232,184,48,0.3);
+    box-shadow: 0 0 10px rgba(232,184,48,0.08);
+  }
+  .sidebar-icon {
+    font-size: 24px; line-height: 1;
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.4));
+  }
+  .sidebar-label {
+    font-family: 'Cinzel', serif; font-size: 8px; font-weight: 600;
+    color: rgba(232,184,48,0.5); letter-spacing: 0.3px;
+    text-transform: uppercase;
+  }
+  .sidebar-btn.active .sidebar-label { color: var(--gold-lt); }
+  .sidebar-btn.active .sidebar-icon {
+    filter: drop-shadow(0 0 5px rgba(232,184,48,0.4)) drop-shadow(0 1px 2px rgba(0,0,0,0.4));
+  }
+  .sidebar-spacer { flex: 1; }
+  .sidebar-divider {
+    width: 36px; height: 1px;
+    background: rgba(232,184,48,0.1);
+    margin: 2px 0;
+  }
+</style>
+</head>
+<body>
+
+<div class="layout">
+
+<!-- ── SHOP SCENE ──────────────────────────────────────── -->
+<div class="shop-scene" id="shop">
+
+  <!-- ════ INFO STRIP + SIGN ════ -->
+  <div class="store-sign">
+    <div class="sign-banner">
+      <div class="sign-corner">✦</div>
+      <div class="sign-text">
+        <span class="sign-title">Keeper's Legacy</span>
+        <span class="sign-sub">✦ Creature Emporium ✦</span>
+      </div>
+      <div class="sign-corner">✦</div>
+    </div>
+  </div>
+
+  <div class="info-strip">
+    <span class="info-level">Lv. 12</span>
+    <div class="info-xp"><div class="info-xp-fill"></div></div>
+    <span class="info-coins">✦ 1,250</span>
+  </div>
+
+  <div class="story-badge">✦ Elder Mira awaits...</div>
+
+  <!-- ════ WALLS ════ -->
+  <div class="wall-left"></div>
+  <div class="wall-right"></div>
+  <div class="wall-trim-left"></div>
+  <div class="wall-trim-right"></div>
+  <div class="wall-corner"></div>
+
+  <!-- Floor tiles -->
+  <div id="floor-tiles"></div>
+
+  <!-- ════ LANTERNS + WARM LIGHT ════ -->
+  <div class="lantern" style="left:160px; top:0px; --chain:45px;">
+    <div class="lantern-chain"></div>
+    <div class="lantern-body">🏮</div>
+  </div>
+  <div class="lantern-glow" style="left:80px; top:60px; --gw:220px; --gh:120px;"></div>
+
+  <div class="lantern" style="left:480px; top:0px; --chain:30px;">
+    <div class="lantern-chain"></div>
+    <div class="lantern-body">🏮</div>
+  </div>
+  <div class="lantern-glow" style="left:400px; top:45px; --gw:200px; --gh:100px;"></div>
+
+  <div class="lantern" style="left:880px; top:0px; --chain:40px;">
+    <div class="lantern-chain"></div>
+    <div class="lantern-body">🏮</div>
+  </div>
+  <div class="lantern-glow" style="left:800px; top:55px; --gw:210px; --gh:110px;"></div>
+
+  <!-- ════ VINE BORDERS ════ -->
+  <div class="vine-border vine-border--left"></div>
+  <div class="vine-border vine-border--right"></div>
+  <div class="vine-leaf" style="left:2px; top:80px; transform:rotate(-10deg);">🌿</div>
+  <div class="vine-leaf" style="left:5px; top:240px; transform:rotate(8deg);">🍃</div>
+  <div class="vine-leaf" style="left:0px; top:420px; transform:rotate(-6deg);">🌿</div>
+  <div class="vine-leaf" style="left:4px; top:580px; transform:rotate(10deg);">🍃</div>
+
+  <!-- ════ WALL DECORATIONS ════ -->
+  <div class="wall-decor" style="left:100px; top:140px; font-size:20px;">🪴</div>
+  <div class="wall-decor" style="left:380px; top:90px; font-size:18px;">🌱</div>
+  <div class="wall-decor" style="left:760px; top:90px; font-size:18px;">🌱</div>
+  <div class="wall-decor" style="left:1000px; top:130px; font-size:20px;">🪴</div>
+
+  <!-- ════ ISOMETRIC PEDESTAL HABITATS ════ -->
+  <!--
+    Arranged in natural room depth:
+    Back row (near wall): Water, Grass, Dirt — higher on screen
+    Middle row: Fire, Ice, Electric — mid-depth
+    Front row: Magical — closest to viewer
+    Each has: ground shadow, pedestal (top + 2 sides), label, creatures on top
+  -->
+
+  <!-- ═══ BACK ROW (near wall, z=3) ═══ -->
+
+  <!-- WATER — unlocked, 3 creatures -->
+  <div class="hab-shadow" style="--sx:280px; --sy:340px;"></div>
+  <div class="habitat" style="--sx:280px; --sy:340px; --hz:4;
+       --hglow:rgba(74,168,224,0.3);
+       --hc-side:#1A4060; --hc-rim:#2870A0; --hc-side2:#14304A; --hc-rim2:#205888;"
+       onclick="location='habitat-category.html'">
+    <div class="hab-top water"></div>
+    <div class="hab-side-l"></div>
+    <div class="hab-side-r"></div>
+    <div class="hab-creature" style="left:45px; top:10px; --cs:24px; --cdly:0s">🐠</div>
+    <div class="hab-creature" style="left:75px; top:18px; --cs:20px; --cdly:0.8s">🐟</div>
+    <div class="hab-creature" style="left:60px; top:32px; --cs:18px; --cdly:1.5s">🐡</div>
+  </div>
+  <div class="hab-label" style="--sx:280px; --sy:340px;">
+    <span class="hab-icon">💧</span>
+    <span class="hab-name">Water</span>
+    <span class="hab-count">3 / 12</span>
+  </div>
+
+  <!-- GRASS — unlocked, 1 creature -->
+  <div class="hab-shadow" style="--sx:590px; --sy:220px;"></div>
+  <div class="habitat" style="--sx:590px; --sy:220px; --hz:3;
+       --hglow:rgba(74,184,74,0.3);
+       --hc-side:#1A4A1A; --hc-rim:#287828; --hc-side2:#143A14; --hc-rim2:#206820;"
+       onclick="location='habitat-category.html'">
+    <div class="hab-top grass"></div>
+    <div class="hab-side-l"></div>
+    <div class="hab-side-r"></div>
+    <div class="hab-creature" style="left:60px; top:16px; --cs:22px; --cdly:0.3s">🌱</div>
+  </div>
+  <div class="hab-label" style="--sx:590px; --sy:220px;">
+    <span class="hab-icon">🌿</span>
+    <span class="hab-name">Grass</span>
+    <span class="hab-count">1 / 12</span>
+  </div>
+
+  <!-- DIRT — unlocked, empty -->
+  <div class="hab-shadow" style="--sx:880px; --sy:320px;"></div>
+  <div class="habitat" style="--sx:880px; --sy:320px; --hz:4;
+       --hglow:rgba(192,136,64,0.25);
+       --hc-side:#5A3A18; --hc-rim:#805820; --hc-side2:#4A3010; --hc-rim2:#684818;"
+       onclick="location='habitat-category.html'">
+    <div class="hab-top dirt"></div>
+    <div class="hab-side-l"></div>
+    <div class="hab-side-r"></div>
+  </div>
+  <div class="hab-label" style="--sx:880px; --sy:320px;">
+    <span class="hab-icon">🪨</span>
+    <span class="hab-name">Dirt</span>
+    <span class="hab-count">0 / 12</span>
+  </div>
+
+  <!-- ═══ MIDDLE ROW (z=5) ═══ -->
+
+  <!-- FIRE — locked -->
+  <div class="hab-shadow" style="--sx:380px; --sy:460px;"></div>
+  <div class="habitat locked" style="--sx:380px; --sy:460px; --hz:6;
+       --hglow:rgba(224,96,48,0.2);
+       --hc-side:#4A1808; --hc-rim:#A03010; --hc-side2:#3A1206; --hc-rim2:#802810;">
+    <div class="hab-top fire"></div>
+    <div class="hab-side-l"></div>
+    <div class="hab-side-r"></div>
+  </div>
+  <div class="hab-label" style="--sx:380px; --sy:460px; filter:grayscale(0.6) brightness(0.5)">
+    <span class="hab-icon">🔥</span>
+    <span class="hab-name">Fire</span>
+    <span class="hab-lock-badge">🔒 Lv. 15</span>
+  </div>
+
+  <!-- ICE — locked -->
+  <div class="hab-shadow" style="--sx:620px; --sy:385px;"></div>
+  <div class="habitat locked" style="--sx:620px; --sy:385px; --hz:6;
+       --hglow:rgba(96,208,224,0.2);
+       --hc-side:#1A4A50; --hc-rim:#3090A0; --hc-side2:#143A40; --hc-rim2:#287888;">
+    <div class="hab-top ice"></div>
+    <div class="hab-side-l"></div>
+    <div class="hab-side-r"></div>
+  </div>
+  <div class="hab-label" style="--sx:620px; --sy:385px; filter:grayscale(0.6) brightness(0.5)">
+    <span class="hab-icon">❄️</span>
+    <span class="hab-name">Ice</span>
+    <span class="hab-lock-badge">🔒 Lv. 18</span>
+  </div>
+
+  <!-- ELECTRIC — locked -->
+  <div class="hab-shadow" style="--sx:880px; --sy:475px;"></div>
+  <div class="habitat locked" style="--sx:880px; --sy:475px; --hz:6;
+       --hglow:rgba(232,208,32,0.2);
+       --hc-side:#3A3808; --hc-rim:#A09010; --hc-side2:#2E2C06; --hc-rim2:#807010;">
+    <div class="hab-top elec"></div>
+    <div class="hab-side-l"></div>
+    <div class="hab-side-r"></div>
+  </div>
+  <div class="hab-label" style="--sx:880px; --sy:475px; filter:grayscale(0.6) brightness(0.5)">
+    <span class="hab-icon">⚡</span>
+    <span class="hab-name">Electric</span>
+    <span class="hab-lock-badge">🔒 Lv. 20</span>
+  </div>
+
+  <!-- ═══ FRONT ROW (z=7) ═══ -->
+
+  <!-- MAGICAL — locked -->
+  <div class="hab-shadow" style="--sx:590px; --sy:600px;"></div>
+  <div class="habitat locked" style="--sx:590px; --sy:600px; --hz:9;
+       --hglow:rgba(152,96,224,0.2);
+       --hc-side:#2A1848; --hc-rim:#5830A0; --hc-side2:#1E1038; --hc-rim2:#482888;">
+    <div class="hab-top magic"></div>
+    <div class="hab-side-l"></div>
+    <div class="hab-side-r"></div>
+  </div>
+  <div class="hab-label" style="--sx:590px; --sy:600px; filter:grayscale(0.6) brightness(0.5)">
+    <span class="hab-icon">✨</span>
+    <span class="hab-name">Magical</span>
+    <span class="hab-lock-badge">🔒 Lv. 25</span>
+  </div>
+
+  <!-- ════ FREE-ROAMING CREATURES ════ -->
+  <div class="floor-creature" style="left:440px; top:480px; --dur:20s; --dly:0s;
+       --wx1:25px; --wy1:10px; --wx2:-18px; --wy2:14px; --wx3:20px; --wy3:-8px;">🐠</div>
+  <div class="floor-creature" style="left:720px; top:510px; --dur:24s; --dly:3s;
+       --wx1:-20px; --wy1:12px; --wx2:18px; --wy2:-10px; --wx3:-15px; --wy3:16px;">🌱</div>
+
+  <!-- ════ FLOOR PLANTS ════ -->
+  <div class="floor-plant" style="left:100px; top:460px; font-size:26px;">🪴</div>
+  <div class="floor-plant" style="left:1050px; top:480px; font-size:22px;">🌿</div>
+  <div class="floor-plant" style="left:480px; top:300px; font-size:18px;">🌱</div>
+
+  <!-- ════ COUNTER (isometric, lower-left) ════ -->
+  <!-- Counter: placeholder (proper isometric art in Godot phase) -->
+  <div class="counter-placeholder" style="left:120px; top:500px;">
+    <div class="counter-marker">🪙</div>
+    <span class="counter-marker-label">Counter</span>
+  </div>
+
+  <!-- ════ ENTRANCE DOOR (isometric, right side on junction line) ════ -->
+  <div class="door-shadow" style="--sx:1100px; --sy:440px;"></div>
+  <div class="door-glow" style="--sx:1100px; --sy:440px;"></div>
+  <div class="door" style="--sx:1100px; --sy:440px; --hz:6;">
+    <div class="door-top"></div>
+    <div class="door-side-l">
+      <div class="door-arch"></div>
+    </div>
+    <div class="door-side-r"></div>
+  </div>
+  <div class="door-label-text" style="--sx:1100px; --sy:440px;">🚪 Entrance</div>
+
+  <!-- HUD hint -->
+  <div class="hud-hint">Click a habitat to manage creatures</div>
+
+</div><!-- /shop-scene -->
+
+<!-- ── RIGHT SIDEBAR ──────────────────────────────────── -->
+<div class="sidebar">
+  <div class="sidebar-btn active">
+    <span class="sidebar-icon">🏠</span>
+    <span class="sidebar-label">Home</span>
+  </div>
+  <div class="sidebar-btn" onclick="location='shop.html'">
+    <span class="sidebar-icon">🛒</span>
+    <span class="sidebar-label">Shop</span>
+  </div>
+  <div class="sidebar-btn" onclick="location='orders.html'">
+    <span class="sidebar-icon">📜</span>
+    <span class="sidebar-label">Orders</span>
+  </div>
+  <div class="sidebar-btn">
+    <span class="sidebar-icon">🧬</span>
+    <span class="sidebar-label">Breed</span>
+  </div>
+  <div class="sidebar-btn">
+    <span class="sidebar-icon">📖</span>
+    <span class="sidebar-label">Pedia</span>
+  </div>
+  <div class="sidebar-spacer"></div>
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-btn">
+    <span class="sidebar-icon">⚙</span>
+    <span class="sidebar-label">Settings</span>
+  </div>
+</div>
+
+</div><!-- /layout -->
+
+<script>
+(function() {
+  const TW = 130, TH = 65, OX = 590, OY = 50;
+  const el = document.getElementById('floor-tiles');
+  for (let gx = -9; gx <= 16; gx++) {
+    for (let gy = -3; gy <= 16; gy++) {
+      const sx = OX + (gx - gy) * TW / 2;
+      const sy = OY + (gx + gy) * TH / 2;
+      if (sx < -70 || sx > 1220 || sy < 38 || sy > 720) continue;
+      const t = document.createElement('div');
+      t.className = 'floor-tile';
+      t.style.left   = (sx - TW/2) + 'px';
+      t.style.top    = (sy - TH/2) + 'px';
+      t.style.width  = TW + 'px';
+      t.style.height = TH + 'px';
+      const plank = ((gx % 3) + 3) % 3;
+      const plankColors = [
+        ['#5E4422','#4A3418'],
+        ['#544020','#4A3818'],
+        ['#4E3A1C','#3E2E12']
+      ];
+      const [c1, c2] = plankColors[plank];
+      t.style.background = `linear-gradient(135deg,${c1},${c2})`;
+      t.style.outline = '1px solid rgba(0,0,0,0.25)';
+      t.style.outlineOffset = '-1px';
+      el.appendChild(t);
+    }
+  }
+})();
+</script>
+</body>
+</html>

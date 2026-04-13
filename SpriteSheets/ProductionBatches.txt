@@ -1,0 +1,369 @@
+Art integration done. Now here are the remaining 51 creatures in batches of 4–5, organized by habitat type so each batch is a coherent set to work through together.
+
+---
+
+## Remaining Sprite Sheets — Production Batches
+
+**Same spec as before:** 512×512 SVG, 4×4 grid, 128×128 per cell, no text nodes, no background fills.
+- **Columns (left→right):** V1 · V2 · V3 · V4 (mutation variants)
+- **Rows (top→bottom):** Idle · Interact · Happy · Sad
+
+---
+
+### Batch 1 — Water (5)
+
+**`shimmerstream_sheet.svg`**
+Prismatic fish-like creature with mirror-bright scales that refract light into rainbows. Large eyes, fan tail.
+V1: Rainbow Silver · V2: Deep Blue · V3: Rose Gold · V4: Midnight Black
+
+**`seraphine_sheet.svg`**
+Elegant aquatic creature with long flowing fins resembling angel wings. Graceful, elongated form.
+V1: Celestial White · V2: Ocean Blue · V3: Lavender · V4: Gold
+
+**`deepecho_sheet.svg`**
+Dark, deep-sea creature with bioluminescent markings along its sides. Wide haunting eyes, no visible light source — it IS the light.
+V1: Abyss Black · V2: Bioluminescent Blue · V3: Deep Purple · V4: Emerald
+
+**`tidecaller_sheet.svg`**
+Stocky, weather-worn water creature with small antenna-like sensors on its head. Cloud/wave patterns on body.
+V1: Storm Grey · V2: Seafoam · V3: Sandy Tan · V4: Slate Blue
+
+**`coralsprite_sheet.svg`**
+Small, lively creature with tiny coral formations growing from its fingertips and head. Round body, wide grin.
+V1: Vivid Orange · V2: Pink Coral · V3: Pale Yellow · V4: Purple
+
+---
+
+### Batch 2 — Water (5)
+
+**`mistwalker_sheet.svg`**
+Wispy, semi-translucent creature that appears to float just above the ground. Trailing mist effect behind it. Soft, blurred edges.
+V1: Misty White · V2: Grey Blue · V3: Pale Green · V4: Silver
+
+**`wavecrest_sheet.svg`**
+Athletic, streamlined creature mid-surf-pose at rest. Confident posture, wave-crest fin on top of head.
+V1: Ocean Blue · V2: Foam White · V3: Sunset Orange · V4: Turquoise
+
+**`pearlescent_sheet.svg`**
+Round, glowing creature with a smooth pearl-like surface. Inner light intensifies in Happy row.
+V1: Pure White · V2: Blush Pink · V3: Champagne · V4: Iridescent
+
+**`riptide_sheet.svg`**
+Fast, sleek creature with a powerful tail. Streamlined body, forward-leaning even at idle. Speed lines implied in posture.
+V1: Electric Blue · V2: Navy · V3: Bright Teal · V4: Storm White
+
+**`bubblesnout_sheet.svg`**
+Chubby creature with a comically oversized round snout. Bubbles float around it at all times.
+V1: Sky Blue · V2: Soft Pink · V3: Lime Green · V4: Pale Yellow
+
+---
+
+### Batch 3 — Water (4)
+
+**`kelpling_sheet.svg`**
+Creature wearing a flowing cape of living kelp that sways even in still air. Cape is the dominant visual feature.
+V1: Forest Green · V2: Dark Blue · V3: Brown · V4: Golden Yellow
+
+**`frostfin_sheet.svg`**
+Water/ice hybrid — sleek aquatic body with permanent ice-crystal tips on each fin.
+V1: Ice Blue · V2: Glacier White · V3: Pale Purple · V4: Crystal Clear
+
+**`swirlpool_sheet.svg`**
+Round, soft creature whose body naturally spirals like a shell. Resting curl becomes an open spin in Interact/Happy.
+V1: Turquoise · V2: Deep Blue · V3: Teal · V4: Aquamarine
+
+**`luminara_sheet.svg`**
+Rare deep-sea creature — the bioluminescence here should be dramatic. Dark body, bright internal glow that radiates outward. Happy row should nearly light up the cell.
+V1: Electric Blue · V2: Neon Green · V3: Vivid Pink · V4: Golden White
+
+---
+
+### Batch 4 — Dirt (5)
+
+**`dustdevil_sheet.svg`**
+Small, spinning creature with a perpetual mini dust tornado around its lower half. Round head peeks above the swirl.
+V1: Dust Brown · V2: Tan · V3: Russet · V4: Pale Beige
+
+**`bedrock_sheet.svg`**
+Massive, squat, immovable-looking creature made of layered stone. Cracks of mineral color run across its surface.
+V1: Granite Grey · V2: Dark Brown · V3: Iron Black · V4: Sandy Tan
+
+**`stonework_sheet.svg`**
+Creature with hardened, chisel-like claws it holds proudly. Geometric carved patterns on its body/shell.
+V1: Marble White · V2: Obsidian · V3: Sandstone · V4: Moss Green
+
+**`mudbubble_sheet.svg`**
+Absolutely round creature caked in mud. Huge delighted grin. Happy row — covered in mud, blissful. Sad row — clean, horrified.
+V1: Chocolate Brown · V2: Clay Red · V3: Grey Mud · V4: Pale Yellow
+
+**`terraclaw_sheet.svg`**
+Sturdy burrowing creature with oversized digging claws it holds in front. Shovel-shaped tail.
+V1: Earth Brown · V2: Orange Clay · V3: Dark Grey · V4: Sand
+
+---
+
+### Batch 5 — Dirt (5)
+
+**`sandwhistle_sheet.svg`**
+Lithe creature with visible hollow pores/holes across its torso that it uses to whistle. Wind-swept posture.
+V1: Desert Sand · V2: Pale Orange · V3: Tan · V4: Dune Gold
+
+**`rootbound_sheet.svg`**
+Creature with visible roots growing from its feet that curl underneath like a natural anchor. Friendly face, stocky body.
+V1: Brown · V2: Dark Root · V3: Pale Wood · V4: Mossy Green
+
+**`gravelgrip_sheet.svg`**
+Creature with hands/paws permanently coated in a layer of gravel. Arms slightly extended to show the texture proudly.
+V1: Gravel Grey · V2: Slate · V3: Brown · V4: Black Pebble
+
+**`claymold_sheet.svg`**
+Soft, slightly asymmetrical creature that looks hand-sculpted. Lumpy in a charming way. Interact row: reshaping itself.
+V1: Red Clay · V2: Grey · V3: Terracotta · V4: Dark Brown
+
+**`pebblesnap_sheet.svg`**
+Alert, compact creature with a powerful whip-like tail it holds coiled at rest. Ready-to-flick posture.
+V1: Brown · V2: Spotted Grey · V3: Sandy · V4: Dark Tan
+
+---
+
+### Batch 6 — Dirt (4)
+
+**`moundmaker_sheet.svg`**
+Creative, builder-type creature holding a tiny replica of a dirt mound it made. Proud, chest-out posture.
+V1: Earth Brown · V2: Red Soil · V3: Sand · V4: Clay Orange
+
+**`tunnelworm_sheet.svg`**
+Long, cylindrical creature with a smooth drill-shaped head. Curls into a coil at idle. Extends fully in Interact.
+V1: Dark Brown · V2: Pink Worm · V3: Grey · V4: Pale Tan
+
+**`quartzling_sheet.svg`**
+Creature with quartz crystal spines along its back. Spines chime and shimmer. Elegant posture, somewhat cat-like.
+V1: Rose Quartz · V2: Smoky Grey · V3: Clear Crystal · V4: Amethyst
+
+**`geoheart_sheet.svg`**
+The rarest dirt creature — visible glittering geode in its chest (like a window). Body built around showcasing it.
+V1: Purple Geode · V2: Blue Crystal · V3: Pink Quartz · V4: Gold Vein
+
+---
+
+### Batch 7 — Grass (5)
+
+**`blossom_sheet.svg`**
+Gentle creature with large petal-shaped ears that drift petals when it shakes its head. Soft, round.
+V1: Cherry Blossom · V2: White · V3: Lavender · V4: Peach
+
+**`photosynthese_sheet.svg`**
+Creature with leaf-panel "wings" on its back that tilt toward light. Glows brighter in Happy row.
+V1: Bright Green · V2: Yellow Green · V3: Deep Forest · V4: Lime
+
+**`chlorophyll_sheet.svg`**
+Smooth creature that visibly shifts color shade based on mood — the different rows should subtly reflect this even within a single variant.
+V1: Lime Green · V2: Forest Green · V3: Sage · V4: Jade
+
+**`vinetwist_sheet.svg`**
+Creature with long affectionate vines trailing from its arms that reach toward things. Vines curl and uncurl in Interact.
+V1: Leafy Green · V2: Brown Vine · V3: Purple Flower · V4: Yellow Bud
+
+**`meadowpuff_sheet.svg`**
+Perfectly round, fluffy creature like a living tumbleweed. Almost no visible limbs — it rolls. Happy row: rolling fast.
+V1: Cream White · V2: Soft Green · V3: Butter Yellow · V4: Sky Blue
+
+---
+
+### Batch 8 — Grass (5)
+
+**`thornback_sheet.svg`**
+Large defensive creature with visible thorns across its back, but the gentlest face imaginable. Contradiction is the design.
+V1: Dark Green · V2: Brown Thorn · V3: Red Berry · V4: Mossy
+
+**`fernwhisper_sheet.svg`**
+Tall, slender creature surrounded by ferns it gestures with like a conductor. Communicate-through-leaves posture.
+V1: Fern Green · V2: Light Olive · V3: Deep Teal · V4: Pale Yellow
+
+**`seedling_sheet.svg`**
+Small, young-looking creature in a constant state of sprouting new features. Different small details emerge per animation row.
+V1: Spring Green · V2: Soft Brown · V3: Pale Yellow · V4: Mint
+
+**`mossback_sheet.svg`**
+Wide, slow creature with a thick moss coat on its back. Tiny implied insects visible on it. Patient, gentle posture.
+V1: Moss Green · V2: Dark Brown · V3: Grey · V4: Bright Green
+
+**`pollencloud_sheet.svg`**
+Fluffy creature trailing golden pollen wherever it walks. Pollen cloud is always present — denser in Happy row.
+V1: Golden Yellow · V2: Pale Orange · V3: Cream · V4: Honey
+
+---
+
+### Batch 9 — Grass (4)
+
+**`leafdancer_sheet.svg`**
+Lithe, expressive creature mid-dance using fallen leaves as props. Animate rows should show progression of a leaf-dance.
+V1: Autumn Orange · V2: Yellow · V3: Red · V4: Brown
+
+**`rootweaver_sheet.svg`**
+Skilled creature holding a partially completed woven root basket. Crafting posture at idle, weaving in Interact.
+V1: Root Brown · V2: Pale Wood · V3: Dark Earth · V4: Olive
+
+**`sproutling_sheet.svg`**
+Rare — small head sprout that blooms into a full flower only in Happy row. Wilted in Sad. Closed bud at Idle.
+V1: Fresh Green · V2: Pink Bloom · V3: White Blossom · V4: Sunny Yellow
+
+**`verdantheart_sheet.svg`**
+Rarest grass creature — living seed visible as a glowing heart in its chest. Ancient, composed, majestic posture.
+V1: Emerald · V2: Deep Forest · V3: Jade · V4: Golden Green
+
+---
+
+### Batch 10 — Fire (5)
+
+**`scorchwhirl_sheet.svg`**
+Spinning creature leaving scorched spiral ground marks. Idle: mid-spin blur. Interact: spiraling outward.
+V1: Bright Orange · V2: Red · V3: Yellow · V4: Charcoal
+
+**`flamewing_sheet.svg`**
+Winged creature with wings of actual living flame. Wings fold at idle, spread dramatically in Happy/Interact.
+V1: Crimson · V2: Golden Flame · V3: Blue Fire · V4: White Hot
+
+**`volatile_sheet.svg`**
+Visually expressive creature — each animation row significantly changes its flame intensity. Calm at idle, explosive at Happy.
+V1: Explosive Red · V2: Bright Yellow · V3: Orange · V4: Purple Flame
+
+**`emberpaw_sheet.svg`**
+Small, cute creature with glowing paw pads. Leaves subtle glow prints behind it. Warm, approachable design.
+V1: Orange · V2: Red · V3: Yellow Glow · V4: Deep Ember
+
+**`sparksnout_sheet.svg`**
+Round creature with an oversized crackling snout. Sparks pop from it constantly — more in Interact, minimal in Sad.
+V1: Electric Orange · V2: Yellow · V3: Red · V4: Gold
+
+---
+
+### Batch 11 — Fire (4)
+
+**`magmakin_sheet.svg`**
+Slow, heavy creature with a lava-like surface — glowing cracks across its dark rock body. Molten orange shows through.
+V1: Magma Red · V2: Dark Orange · V3: Black Rock · V4: Glowing Red
+
+**`ashwalker_sheet.svg`**
+Calm, contemplative fire-type that prefers cool ash to flames. Gentle, monk-like posture. Ash trails lightly behind it.
+V1: Silver Ash · V2: Pale Grey · V3: White Ash · V4: Soft Black
+
+**`solarflare_sheet.svg`**
+Rare — radiant creature that appears to emit golden light outward. Happy row: almost too bright to look at directly.
+V1: Solar Gold · V2: Bright White · V3: Orange Flame · V4: Deep Yellow
+
+**`infernokin_sheet.svg`**
+Rarest fire creature. Dark, cosmic, born-from-meteors feel. Deep crimson and obsidian with starfire-blue accents. Imposing silhouette.
+V1: Deep Crimson · V2: Obsidian Black · V3: Bright Orange · V4: Starfire Blue
+
+---
+
+### Batch 12 — Ice (5)
+
+**`frostbite_sheet.svg`**
+Playful creature with clearly visible ice-crystal teeth it shows off constantly. Puppy-like energy. Interact: playful nip.
+V1: Arctic White · V2: Ice Blue · V3: Pale Grey · V4: Teal Ice
+
+**`tundraform_sheet.svg`**
+Sculptor-type ice creature with chisel-like appendages. Surrounded by simple ice shapes it made. Interact row: actively carving.
+V1: Glacier Blue · V2: Snow White · V3: Deep Ice · V4: Pale Teal
+
+**`blizzardborne_sheet.svg`**
+Speed-built creature riding a mini self-contained blizzard that swirls around its lower body.
+V1: Storm White · V2: Grey Blue · V3: Pale Violet · V4: Arctic Blue
+
+**`snowpuff_sheet.svg`**
+Perfectly spherical. Maximum roundness. Barely any limbs. Bounces in Interact. Nearly a perfect circle in Happy.
+V1: Pure White · V2: Sky Blue · V3: Soft Grey · V4: Pale Pink
+
+**`crystalmane_sheet.svg`**
+Majestic, lion-like posture with a mane made of crystalline ice spines that catch and scatter light.
+V1: Crystal Clear · V2: Ice Blue · V3: Pale Purple · V4: Silver
+
+---
+
+### Batch 13 — Ice (4)
+
+**`permafrost_sheet.svg`**
+Ancient, slow-moving rare creature. Icy exterior with deep blue interior glow. Weathered and massive. Minimal animation — stillness is the character.
+V1: Deep Ice Blue · V2: Grey · V3: Pale White · V4: Midnight Blue
+
+**`hailstone_sheet.svg`**
+Alert, compact creature with a loaded-sling posture. Small hailstones orbit it. Interact row: launching one with precision.
+V1: Clear Ice · V2: White · V3: Blue Grey · V4: Frost Blue
+
+**`glaciercalve_sheet.svg`**
+Unique mechanic — in Happy row, a smaller version of itself is visible beside it (the "calved" copy). Single creature at idle.
+V1: Glacier Blue · V2: White · V3: Pale Teal · V4: Ice Pink
+
+**`aurorakin_sheet.svg`**
+Rare, nocturnal-feel creature emitting cascading aurora light from its fur. Happy row: fur fully illuminated in aurora colors regardless of V1–V4 base color.
+V1: Aurora Green · V2: Purple · V3: Pink Aurora · V4: Blue Glow
+
+---
+
+### Batch 14 — Electric (5)
+
+**`voltspire_sheet.svg`**
+Tall, spire-shaped electric creature. Arcs of electricity run between its points. Posture like a living Tesla coil.
+V1: Bright Yellow · V2: Electric Blue · V3: White · V4: Purple Arc
+
+**`electra_sheet.svg`**
+The original — dignified, ancient, crackling quietly. Classic electric creature look. Regal posture.
+V1: Classic Yellow · V2: Silver · V3: Gold · V4: Blue White
+
+**`luminant_sheet.svg`**
+Steady soft glow — like a living lantern. Round, calm, warm. Happy row: glow at maximum intensity.
+V1: Warm Yellow · V2: Soft White · V3: Pale Blue · V4: Golden
+
+**`thunderpup_sheet.svg`**
+Young, puppy-like creature with oversized ears. Tiny barks create visible mini thunder rings. Exuberant posture.
+V1: Sky Blue · V2: Yellow · V3: White · V4: Storm Grey
+
+**`staticfur_sheet.svg`**
+Fluffy creature with fur permanently standing on end. Interact row: brushed flat, horrified expression.
+V1: Pale Yellow · V2: White Fluff · V3: Blue Tint · V4: Silver Grey
+
+---
+
+### Batch 15 — Electric (4)
+
+**`arcdancer_sheet.svg`**
+Graceful, dancer-like creature weaving between arc paths. Flowing, ribbon-like limbs.
+V1: Electric Blue · V2: Purple Arc · V3: White · V4: Neon Yellow
+
+**`stormcaller_sheet.svg`**
+Brooding, weather-sensing creature with a storm cloud subtly forming above its head when agitated. Calm at idle.
+V1: Storm Grey · V2: Dark Blue · V3: Electric Yellow · V4: Cloud White
+
+**`thunderheart_sheet.svg`**
+Rare — visible heartbeat as soft concentric thunder rings pulse from its chest. Rhythmic, calming, powerful.
+V1: Deep Blue · V2: Gold · V3: Storm White · V4: Purple
+
+**`zenithstrike_sheet.svg`**
+Rarest electric creature. Apex predator design — tall, commanding, a single lightning bolt mark down its center.
+V1: Pure White · V2: Gold Strike · V3: Electric Blue · V4: Neon Green
+
+---
+
+### Batch 16 — Magical (4)
+
+**`constellation_sheet.svg`**
+Dark-bodied creature with stars literally mapped across its surface in real-time patterns. Each V1–V4 has a different constellation arrangement.
+V1: Midnight Blue · V2: Gold Stars · V3: Silver · V4: Deep Space
+
+**`infinity_sheet.svg`**
+Abstract, reality-bending creature. Body forms a subtle infinity loop shape. Interact row: appears to briefly duplicate.
+V1: Void Black · V2: Neon Loop · V3: Rainbow · V4: Pure White
+
+**`divinity_sheet.svg`**
+The rarest non-final creature. Golden, radiantly calm. Aura of light around it that makes nearby cells feel brighter.
+V1: Holy Gold · V2: White Light · V3: Soft Purple · V4: Celestial Blue
+
+**`cosmicwarden_sheet.svg`**
+Final creature. Guardian, ancient, cosmic. Design should feel like a culmination — elements from multiple habitat types subtly present. Deep purple, star-gold, commanding.
+V1: Cosmic Purple · V2: Star Gold · V3: Deep Blue · V4: Ethereal Green
+
+---
+
+That's 16 batches covering all 51 remaining creatures. The imageset folders and `prepare_sprites.py` are already in place — once each batch is done, just drop the SVGs into `SpriteSheets/` and run `python prepare_sprites.py` to convert and place them all.

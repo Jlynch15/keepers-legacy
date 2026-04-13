@@ -37,7 +37,7 @@ struct CreatureSpritesheet {
         mutation:       Int,
         state:          CreatureAnimationState
     ) -> SKTexture {
-        let sheetName = "\(catalogID)_sheet"
+        let sheetName = "creature_\(catalogID)_atlas"
 
         guard let sheet = SKTexture(imageNamed: sheetName) as SKTexture?,
               !sheetName.isEmpty else {
@@ -69,7 +69,7 @@ struct CreatureSpritesheet {
         mutation:  Int,
         state:     CreatureAnimationState = .idle
     ) -> UIImage {
-        let sheetName = "\(catalogID)_sheet"
+        let sheetName = "creature_\(catalogID)_atlas"
 
         guard let sheet = UIImage(named: sheetName) else {
             return placeholderImage(for: catalogID)

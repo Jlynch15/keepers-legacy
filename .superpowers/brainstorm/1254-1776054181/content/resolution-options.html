@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Keeper's Legacy — Resolution Options</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; overflow: hidden; }
+
+    :root {
+      --bg-primary: #1a1a1e;
+      --bg-secondary: #2a2a2e;
+      --bg-tertiary: #3a3a3e;
+      --border: #4a4a4e;
+      --text-primary: #f0e8d8;
+      --text-secondary: #9a8a7a;
+      --text-tertiary: #6a6a6e;
+      --accent: #e8b830;
+      --accent-hover: #f0cc50;
+      --success: #4ab84a;
+      --selected-bg: rgba(232, 184, 48, 0.12);
+      --selected-border: #e8b830;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      display: flex;
+      flex-direction: column;
+      line-height: 1.5;
+    }
+
+    .header {
+      background: var(--bg-secondary);
+      padding: 0.5rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    .header h1 { font-size: 0.85rem; font-weight: 500; color: var(--text-secondary); }
+    .header .status { font-size: 0.7rem; color: var(--success); display: flex; align-items: center; gap: 0.4rem; }
+    .header .status::before { content: ''; width: 6px; height: 6px; background: var(--success); border-radius: 50%; }
+
+    .main { flex: 1; overflow-y: auto; }
+    #claude-content { padding: 2rem; min-height: 100%; }
+
+    .indicator-bar {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border);
+      padding: 0.5rem 1.5rem;
+      flex-shrink: 0;
+      text-align: center;
+    }
+    .indicator-bar span { font-size: 0.75rem; color: var(--text-secondary); }
+    .indicator-bar .selected-text { color: var(--accent); font-weight: 500; }
+
+    h2 { font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem; }
+    h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .subtitle { color: var(--text-secondary); margin-bottom: 1.5rem; }
+    .label { font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
+
+    .section { margin-bottom: 2rem; }
+
+    .options { display: flex; flex-direction: column; gap: 0.75rem; }
+    .option {
+      background: var(--bg-secondary);
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .option:hover { border-color: var(--accent); }
+    .option.selected { background: var(--selected-bg); border-color: var(--selected-border); }
+    .option .letter {
+      background: var(--bg-tertiary);
+      color: var(--text-secondary);
+      width: 1.75rem; height: 1.75rem;
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 600; font-size: 0.85rem; flex-shrink: 0;
+    }
+    .option.selected .letter { background: var(--accent); color: #1a1a1e; }
+    .option .content { flex: 1; }
+    .option .content h3 { font-size: 0.95rem; margin-bottom: 0.15rem; }
+    .option .content p { color: var(--text-secondary); font-size: 0.85rem; margin: 0; }
+    .option .content .tag {
+      display: inline-block;
+      background: var(--bg-tertiary);
+      color: var(--text-secondary);
+      font-size: 0.7rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      margin-top: 0.35rem;
+      margin-right: 0.25rem;
+    }
+    .option .content .tag.steam { border: 1px solid #4aa8e0; color: #4aa8e0; }
+    .option .content .tag.ios { border: 1px solid #9860e0; color: #9860e0; }
+    .option .content .tag.ipad { border: 1px solid #e06030; color: #e06030; }
+    .option .content .tag.recommended { border: 1px solid var(--accent); color: var(--accent); }
+
+    .note {
+      background: var(--bg-secondary);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      padding: 1rem 1.25rem;
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+    .note strong { color: var(--text-primary); }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Keeper's Legacy — Brainstorming</h1>
+    <div class="status">Connected</div>
+  </div>
+
+  <div class="main">
+    <div id="claude-content">
+      <h2>Which resolution set should the game support?</h2>
+      <p class="subtitle">Select the set of resolutions players can choose from in Settings. All options include iOS/iPad for future port.</p>
+
+      <div class="options">
+        <div class="option" data-choice="a" onclick="toggleSelect(this)">
+          <div class="letter">A</div>
+          <div class="content">
+            <h3>Standard Set (Recommended)</h3>
+            <p>The most common resolutions for indie games. Covers 95%+ of Steam players and all Apple devices.</p>
+            <div style="margin-top: 0.5rem;">
+              <span class="tag steam">1280x720 (720p)</span>
+              <span class="tag steam">1920x1080 (1080p)</span>
+              <span class="tag steam">2560x1440 (1440p)</span>
+              <span class="tag ios">1170x2532 (iPhone 14/15)</span>
+              <span class="tag ios">1290x2796 (iPhone Pro Max)</span>
+              <span class="tag ipad">2048x2732 (iPad Pro 12.9")</span>
+              <span class="tag ipad">1640x2360 (iPad Air)</span>
+              <span class="tag recommended">Recommended</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="option" data-choice="b" onclick="toggleSelect(this)">
+          <div class="letter">B</div>
+          <div class="content">
+            <h3>Extended Set</h3>
+            <p>Adds ultrawide and 4K for enthusiast PC players. More resolution options = more testing needed.</p>
+            <div style="margin-top: 0.5rem;">
+              <span class="tag steam">1280x720 (720p)</span>
+              <span class="tag steam">1920x1080 (1080p)</span>
+              <span class="tag steam">2560x1440 (1440p)</span>
+              <span class="tag steam">3840x2160 (4K)</span>
+              <span class="tag steam">2560x1080 (Ultrawide)</span>
+              <span class="tag steam">3440x1440 (UW 1440p)</span>
+              <span class="tag ios">1170x2532 (iPhone 14/15)</span>
+              <span class="tag ios">1290x2796 (iPhone Pro Max)</span>
+              <span class="tag ipad">2048x2732 (iPad Pro 12.9")</span>
+              <span class="tag ipad">1640x2360 (iPad Air)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="option" data-choice="c" onclick="toggleSelect(this)">
+          <div class="letter">C</div>
+          <div class="content">
+            <h3>Minimal Set</h3>
+            <p>Just the essentials. Faster to build and test, expand later if players request more.</p>
+            <div style="margin-top: 0.5rem;">
+              <span class="tag steam">1280x720 (720p)</span>
+              <span class="tag steam">1920x1080 (1080p)</span>
+              <span class="tag ios">1170x2532 (iPhone)</span>
+              <span class="tag ipad">2048x2732 (iPad Pro)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="note">
+        <strong>How this works:</strong> The game renders at a base resolution (1280x720) and scales up cleanly to larger sizes. iOS resolutions are portrait — the game will auto-rotate the layout for mobile. During development we build at 720p and everything scales from there.
+      </div>
+    </div>
+  </div>
+
+  <div class="indicator-bar">
+    <span id="indicator-text">Click an option above, then return to the terminal</span>
+  </div>
+
+  <script>
+    const STATE_DIR = "";
+    function toggleSelect(el) {
+      const wasSelected = el.classList.contains('selected');
+      el.closest('.options').querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+      if (!wasSelected) {
+        el.classList.add('selected');
+        const choice = el.dataset.choice;
+        const text = el.querySelector('h3')?.textContent || '';
+        document.getElementById('indicator-text').innerHTML = 'Selected: <span class="selected-text">' + text + '</span> — return to terminal';
+        // Record event
+        if (window._recordEvent) window._recordEvent({type:'click', choice, text});
+      } else {
+        document.getElementById('indicator-text').textContent = 'Click an option above, then return to the terminal';
+      }
+    }
+  </script>
+</body>
+</html>

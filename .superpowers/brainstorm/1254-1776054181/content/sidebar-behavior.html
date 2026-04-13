@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Keeper's Legacy — Sidebar Behavior</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; overflow: hidden; }
+    :root {
+      --bg-primary: #1a1a1e;
+      --bg-secondary: #2a2a2e;
+      --bg-tertiary: #3a3a3e;
+      --border: #4a4a4e;
+      --text-primary: #f0e8d8;
+      --text-secondary: #9a8a7a;
+      --text-tertiary: #6a6a6e;
+      --accent: #e8b830;
+      --accent-hover: #f0cc50;
+      --success: #4ab84a;
+      --selected-bg: rgba(232, 184, 48, 0.12);
+      --selected-border: #e8b830;
+    }
+    body { font-family: system-ui, -apple-system, sans-serif; background: var(--bg-primary); color: var(--text-primary); display: flex; flex-direction: column; line-height: 1.5; }
+    .header { background: var(--bg-secondary); padding: 0.5rem 1.5rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); flex-shrink: 0; }
+    .header h1 { font-size: 0.85rem; font-weight: 500; color: var(--text-secondary); }
+    .header .status { font-size: 0.7rem; color: var(--success); display: flex; align-items: center; gap: 0.4rem; }
+    .header .status::before { content: ''; width: 6px; height: 6px; background: var(--success); border-radius: 50%; }
+    .main { flex: 1; overflow-y: auto; }
+    #claude-content { padding: 2rem; min-height: 100%; }
+    .indicator-bar { background: var(--bg-secondary); border-top: 1px solid var(--border); padding: 0.5rem 1.5rem; flex-shrink: 0; text-align: center; }
+    .indicator-bar span { font-size: 0.75rem; color: var(--text-secondary); }
+    .indicator-bar .selected-text { color: var(--accent); font-weight: 500; }
+    h2 { font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .subtitle { color: var(--text-secondary); margin-bottom: 1.5rem; }
+
+    /* Layout mockups */
+    .mockup-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+    @media (max-width: 800px) { .mockup-row { grid-template-columns: 1fr; } }
+
+    .mockup-card {
+      background: var(--bg-secondary);
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .mockup-card:hover { border-color: var(--accent); }
+    .mockup-card.selected { background: var(--selected-bg); border-color: var(--selected-border); }
+
+    .mockup-label {
+      padding: 0.75rem 1rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .mockup-label h3 { font-size: 0.95rem; }
+    .mockup-label .tag {
+      font-size: 0.65rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+    }
+    .mockup-label p { color: var(--text-secondary); font-size: 0.8rem; margin-top: 0.25rem; }
+
+    .mockup-preview {
+      background: #0c0907;
+      height: 220px;
+      position: relative;
+      display: flex;
+    }
+
+    /* Mini sidebar mockup */
+    .mini-sidebar {
+      width: 50px;
+      background: #1a1208;
+      border-left: 1px solid #3a2818;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 8px 0;
+      gap: 6px;
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+    }
+    .mini-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 6px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      gap: 1px;
+    }
+    .mini-btn .label { font-size: 5px; color: #9a8070; }
+    .mini-btn.active { background: rgba(232, 184, 48, 0.15); }
+    .mini-btn.active .label { color: #e8b830; }
+
+    .mini-content {
+      flex: 1;
+      margin-right: 50px;
+      position: relative;
+    }
+
+    /* Content area styling */
+    .mini-topbar {
+      background: rgba(12,9,7,0.8);
+      height: 28px;
+      display: flex;
+      align-items: center;
+      padding: 0 8px;
+      font-size: 7px;
+      color: #b8a080;
+      gap: 6px;
+    }
+    .mini-room {
+      background: #2a1e10;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #5a3e20;
+      font-size: 9px;
+    }
+
+    /* Transition styles */
+    .transition-arrow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 24px;
+      color: var(--accent);
+      opacity: 0.6;
+    }
+
+    .fade-overlay {
+      position: absolute;
+      inset: 0;
+      right: 50px;
+      background: rgba(0,0,0,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 8px;
+      letter-spacing: 1px;
+    }
+
+    .slide-indicator {
+      position: absolute;
+      bottom: 8px;
+      left: 8px;
+      right: 58px;
+      height: 3px;
+      background: #3a2818;
+      border-radius: 2px;
+    }
+    .slide-indicator::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 40%;
+      height: 100%;
+      background: var(--accent);
+      border-radius: 2px;
+      animation: slide-in 1.5s ease infinite;
+    }
+    @keyframes slide-in {
+      0% { transform: translateX(-100%); opacity: 0; }
+      50% { transform: translateX(0); opacity: 1; }
+      100% { transform: translateX(0); opacity: 1; }
+    }
+
+    .note {
+      background: var(--bg-secondary);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      padding: 1rem 1.25rem;
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+    .note strong { color: var(--text-primary); }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Keeper's Legacy — Brainstorming</h1>
+    <div class="status">Connected</div>
+  </div>
+
+  <div class="main">
+    <div id="claude-content">
+      <h2>How should screen transitions work?</h2>
+      <p class="subtitle">The sidebar stays visible on all main screens. How should the content area change when you tap a nav button?</p>
+
+      <div class="mockup-row">
+        <!-- Option A: Instant swap -->
+        <div class="mockup-card" data-choice="a" onclick="toggleSelect(this)">
+          <div class="mockup-preview">
+            <div class="mini-content">
+              <div class="mini-topbar">Home &nbsp;|&nbsp; Level 5 &nbsp;|&nbsp; 500 coins</div>
+              <div class="mini-room" style="height: calc(100% - 28px);">
+                [ Habitat Floor ]
+              </div>
+            </div>
+            <div class="mini-sidebar">
+              <div class="mini-btn active"><span>🏠</span><span class="label">Home</span></div>
+              <div class="mini-btn"><span>🛒</span><span class="label">Shop</span></div>
+              <div class="mini-btn"><span>📋</span><span class="label">Orders</span></div>
+              <div class="mini-btn"><span>🥚</span><span class="label">Breed</span></div>
+              <div class="mini-btn"><span>📖</span><span class="label">Pedia</span></div>
+              <div style="flex:1"></div>
+              <div class="mini-btn"><span>⚙️</span><span class="label">Settings</span></div>
+            </div>
+          </div>
+          <div class="mockup-label">
+            <div>
+              <h3>A. Instant Swap</h3>
+              <p>Content changes immediately — no animation. Snappy and responsive.</p>
+              <span class="tag">Simplest</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Option B: Crossfade -->
+        <div class="mockup-card" data-choice="b" onclick="toggleSelect(this)">
+          <div class="mockup-preview">
+            <div class="mini-content">
+              <div class="mini-topbar">Shop &nbsp;|&nbsp; Filter: All</div>
+              <div class="mini-room" style="height: calc(100% - 28px); opacity: 0.5;">
+                [ Shop fading in... ]
+              </div>
+              <div class="fade-overlay" style="opacity: 0.3;">CROSSFADE</div>
+            </div>
+            <div class="mini-sidebar">
+              <div class="mini-btn"><span>🏠</span><span class="label">Home</span></div>
+              <div class="mini-btn active"><span>🛒</span><span class="label">Shop</span></div>
+              <div class="mini-btn"><span>📋</span><span class="label">Orders</span></div>
+              <div class="mini-btn"><span>🥚</span><span class="label">Breed</span></div>
+              <div class="mini-btn"><span>📖</span><span class="label">Pedia</span></div>
+              <div style="flex:1"></div>
+              <div class="mini-btn"><span>⚙️</span><span class="label">Settings</span></div>
+            </div>
+          </div>
+          <div class="mockup-label">
+            <div>
+              <h3>B. Crossfade</h3>
+              <p>Old screen fades out, new screen fades in (~0.3s). Smooth and polished.</p>
+              <span class="tag">Recommended</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mockup-row">
+        <!-- Option C: Slide -->
+        <div class="mockup-card" data-choice="c" onclick="toggleSelect(this)">
+          <div class="mockup-preview">
+            <div class="mini-content">
+              <div class="mini-topbar">Orders &nbsp;|&nbsp; 3 Active</div>
+              <div class="mini-room" style="height: calc(100% - 28px);">
+                [ Orders sliding in → ]
+              </div>
+              <div class="slide-indicator"></div>
+            </div>
+            <div class="mini-sidebar">
+              <div class="mini-btn"><span>🏠</span><span class="label">Home</span></div>
+              <div class="mini-btn"><span>🛒</span><span class="label">Shop</span></div>
+              <div class="mini-btn active"><span>📋</span><span class="label">Orders</span></div>
+              <div class="mini-btn"><span>🥚</span><span class="label">Breed</span></div>
+              <div class="mini-btn"><span>📖</span><span class="label">Pedia</span></div>
+              <div style="flex:1"></div>
+              <div class="mini-btn"><span>⚙️</span><span class="label">Settings</span></div>
+            </div>
+          </div>
+          <div class="mockup-label">
+            <div>
+              <h3>C. Slide Left/Right</h3>
+              <p>Content slides based on nav position (left items slide left, right items slide right). Mobile-app feel.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Option D: Fade to black -->
+        <div class="mockup-card" data-choice="d" onclick="toggleSelect(this)">
+          <div class="mockup-preview">
+            <div class="mini-content" style="background: #000;">
+              <div class="mini-topbar" style="opacity: 0.3;">...</div>
+              <div class="mini-room" style="height: calc(100% - 28px); background: #000; color: #3a2818;">
+                [ Brief black → new screen ]
+              </div>
+            </div>
+            <div class="mini-sidebar">
+              <div class="mini-btn"><span>🏠</span><span class="label">Home</span></div>
+              <div class="mini-btn"><span>🛒</span><span class="label">Shop</span></div>
+              <div class="mini-btn"><span>📋</span><span class="label">Orders</span></div>
+              <div class="mini-btn active"><span>🥚</span><span class="label">Breed</span></div>
+              <div class="mini-btn"><span>📖</span><span class="label">Pedia</span></div>
+              <div style="flex:1"></div>
+              <div class="mini-btn"><span>⚙️</span><span class="label">Settings</span></div>
+            </div>
+          </div>
+          <div class="mockup-label">
+            <div>
+              <h3>D. Fade Through Black</h3>
+              <p>Screen fades to black briefly, then new screen fades in. Dramatic, storybook feel.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="note">
+        <strong>Note:</strong> Story events and level-up screens are always immersive (full-screen takeover with no sidebar). This choice only affects navigation between the main screens (Home, Shop, Orders, Breed, Pedia, Settings).
+      </div>
+    </div>
+  </div>
+
+  <div class="indicator-bar">
+    <span id="indicator-text">Click an option above, then return to the terminal</span>
+  </div>
+
+  <script>
+    function toggleSelect(el) {
+      const wasSelected = el.classList.contains('selected');
+      document.querySelectorAll('.mockup-card').forEach(o => o.classList.remove('selected'));
+      if (!wasSelected) {
+        el.classList.add('selected');
+        const choice = el.dataset.choice;
+        const text = el.querySelector('h3')?.textContent || '';
+        document.getElementById('indicator-text').innerHTML = 'Selected: <span class="selected-text">' + text + '</span> — return to terminal';
+        if (window._recordEvent) window._recordEvent({type:'click', choice, text});
+      } else {
+        document.getElementById('indicator-text').textContent = 'Click an option above, then return to the terminal';
+      }
+    }
+  </script>
+</body>
+</html>

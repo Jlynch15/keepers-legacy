@@ -1,0 +1,16 @@
+<Project Sdk="Godot.NET.Sdk/4.2.2">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <RootNamespace>KeeperLegacy</RootNamespace>
+    <AssemblyName>KeeperLegacy</AssemblyName>
+  </PropertyGroup>
+
+  <!-- Unit test support via NUnit (run outside Godot for pure logic tests) -->
+  <ItemGroup>
+    <PackageReference Include="NUnit" Version="4.0.1" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+  </ItemGroup>
+</Project>

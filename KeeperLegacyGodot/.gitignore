@@ -1,0 +1,25 @@
+# Godot 4
+.godot/
+*.uid
+
+# Mono/C# build artifacts
+.mono/
+bin/
+obj/
+*.user
+
+# VS / Rider
+.vs/
+.idea/
+*.suo
+*.userprefs
+
+# macOS
+.DS_Store
+
+# Export artifacts
+export/
+*.exe
+*.x86_64
+*.apk
+*.ipa

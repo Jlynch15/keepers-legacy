@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280">
+<title>Keeper's Legacy — Story Event</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=IM+Fell+English:ital@0;1&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:         #0C0907;
+    --panel:      #1A1208;
+    --border:     #3A2818;
+    --header:     #080604;
+    --header2:    #0F0A06;
+    --text:       #F0E8D8;
+    --muted:      #9A8070;
+    --gold:       #E8B830;
+    --gold-lt:    #F0CC50;
+    --magic:      #9860E0;
+  }
+
+  html, body {
+    width: 1280px; height: 720px;
+    overflow: hidden;
+    background: #050304;
+    font-family: 'Crimson Text', serif;
+    color: var(--text);
+  }
+
+  /* ── ATMOSPHERIC BACKGROUND ─────────────────────────── */
+  .atmos {
+    position: fixed; inset: 0; z-index: 0;
+    background:
+      radial-gradient(ellipse 800px 500px at 50% 60%, rgba(20,12,30,0.9), transparent),
+      radial-gradient(ellipse 600px 400px at 30% 30%, rgba(10,20,15,0.8), transparent),
+      radial-gradient(ellipse 500px 350px at 75% 70%, rgba(15,10,25,0.7), transparent),
+      linear-gradient(180deg, #050308 0%, #0A0810 30%, #0C0A14 60%, #080608 100%);
+  }
+  /* Misty layers */
+  .atmos::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 400px 200px at 20% 80%, rgba(74,168,224,0.04), transparent),
+      radial-gradient(ellipse 350px 180px at 80% 20%, rgba(152,96,224,0.04), transparent),
+      radial-gradient(ellipse 500px 250px at 50% 50%, rgba(232,184,48,0.02), transparent);
+    animation: mist-drift 20s ease-in-out infinite;
+  }
+  @keyframes mist-drift {
+    0%,100% { transform: translateX(0) translateY(0); }
+    50%     { transform: translateX(20px) translateY(-10px); }
+  }
+  /* Subtle star field */
+  .atmos::after {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(1px 1px at 12% 15%, rgba(255,255,255,0.3), transparent),
+      radial-gradient(1px 1px at 28% 8%, rgba(255,255,255,0.2), transparent),
+      radial-gradient(1px 1px at 45% 22%, rgba(255,255,255,0.15), transparent),
+      radial-gradient(1px 1px at 62% 12%, rgba(255,255,255,0.25), transparent),
+      radial-gradient(1px 1px at 78% 18%, rgba(255,255,255,0.2), transparent),
+      radial-gradient(1px 1px at 88% 25%, rgba(255,255,255,0.15), transparent),
+      radial-gradient(1px 1px at 35% 5%, rgba(255,255,255,0.3), transparent),
+      radial-gradient(1px 1px at 55% 28%, rgba(255,255,255,0.1), transparent),
+      radial-gradient(1.5px 1.5px at 20% 30%, rgba(232,184,48,0.3), transparent),
+      radial-gradient(1.5px 1.5px at 70% 10%, rgba(152,96,224,0.25), transparent);
+  }
+
+  /* Floating mystical particles */
+  .myst-particle {
+    position: fixed; z-index: 1;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: myst-float var(--dur, 10s) ease-in-out infinite var(--dly, 0s);
+  }
+  @keyframes myst-float {
+    0%,100% { transform: translateY(0) translateX(0) scale(1); opacity: var(--op1, 0.3); }
+    30%     { transform: translateY(var(--dy1, -30px)) translateX(var(--dx1, 15px)) scale(1.2); opacity: var(--op2, 0.6); }
+    60%     { transform: translateY(var(--dy2, -15px)) translateX(var(--dx2, -10px)) scale(0.8); opacity: var(--op1, 0.3); }
+    80%     { transform: translateY(var(--dy3, -40px)) translateX(var(--dx3, 20px)) scale(1.1); opacity: var(--op2, 0.6); }
+  }
+
+  /* Shimmer glints (brief sparkle flashes) */
+  .shimmer-glint {
+    position: fixed; z-index: 2;
+    width: 2px; height: 2px;
+    pointer-events: none;
+    background: white;
+    border-radius: 50%;
+    animation: glint-flash var(--dur, 5s) ease-in-out infinite var(--dly, 0s);
+  }
+  .shimmer-glint::before, .shimmer-glint::after {
+    content: '';
+    position: absolute;
+    background: rgba(255,255,255,0.6);
+    border-radius: 1px;
+  }
+  .shimmer-glint::before {
+    width: 1px; height: var(--len, 12px);
+    left: 0; top: calc(50% - var(--len, 12px) / 2);
+  }
+  .shimmer-glint::after {
+    width: var(--len, 12px); height: 1px;
+    top: 0; left: calc(50% - var(--len, 12px) / 2);
+  }
+  @keyframes glint-flash {
+    0%,85%,100% { opacity: 0; transform: scale(0.5) rotate(0deg); }
+    90%         { opacity: var(--peak, 0.7); transform: scale(1) rotate(20deg); }
+    95%         { opacity: 0.1; transform: scale(0.8) rotate(30deg); }
+  }
+
+  /* ── DARK OVERLAY ──────────────────────────────────── */
+  .overlay {
+    position: fixed; inset: 0; z-index: 3;
+    background: radial-gradient(ellipse 600px 400px at 50% 50%, rgba(20,10,5,0.3), rgba(20,10,5,0.6));
+  }
+
+  /* ── STORY CARD ────────────────────────────────────── */
+  .story-card {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    width: 540px;
+    background: var(--panel);
+    border: 2px solid rgba(232,184,48,0.3);
+    border-radius: 14px;
+    box-shadow:
+      0 0 60px rgba(232,184,48,0.08),
+      0 0 120px rgba(152,96,224,0.06),
+      0 10px 50px rgba(0,0,0,0.7),
+      inset 0 1px 0 rgba(255,255,255,0.04);
+    overflow: hidden;
+  }
+
+  /* Soft ambient edge glow */
+  .story-card::before {
+    content: '';
+    position: absolute; inset: -8px;
+    border-radius: 20px;
+    background: radial-gradient(ellipse at 50% 0%, rgba(232,184,48,0.12), transparent 60%),
+                radial-gradient(ellipse at 50% 100%, rgba(152,96,224,0.08), transparent 60%);
+    z-index: -1;
+    filter: blur(12px);
+    animation: edge-breathe 5s ease-in-out infinite;
+  }
+  @keyframes edge-breathe {
+    0%,100% { opacity: 0.7; }
+    50%     { opacity: 1; }
+  }
+
+  /* Parchment texture */
+  .story-card::after {
+    content: '';
+    position: absolute; inset: 0; pointer-events: none; z-index: 0;
+    border-radius: 14px;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 24px, rgba(255,255,255,0.010) 24px, rgba(255,255,255,0.010) 25px),
+      repeating-linear-gradient(90deg, transparent, transparent 24px, rgba(255,255,255,0.008) 24px, rgba(255,255,255,0.008) 25px);
+  }
+
+  /* Gold top banner */
+  .story-card-header {
+    position: relative; z-index: 1;
+    background: linear-gradient(180deg, var(--header) 0%, var(--header2) 100%);
+    padding: 16px 22px;
+    display: flex; align-items: center; gap: 14px;
+    border-bottom: 2px solid var(--gold);
+  }
+
+  /* NPC portrait */
+  .npc-portrait {
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    border: 3px solid var(--gold);
+    background: radial-gradient(circle at 38% 30%, #3A2818, #1A1208);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 32px;
+    flex-shrink: 0;
+    box-shadow: 0 0 20px rgba(232,184,48,0.25), 0 4px 14px rgba(0,0,0,0.5);
+    position: relative;
+    overflow: visible;
+  }
+  /* Magical aura around portrait */
+  .npc-portrait::before {
+    content: '';
+    position: absolute; inset: -6px;
+    border-radius: 50%;
+    border: 1px solid rgba(232,184,48,0.2);
+    animation: portrait-pulse 3s ease-in-out infinite;
+  }
+  .npc-portrait::after {
+    content: '';
+    position: absolute; inset: -12px;
+    border-radius: 50%;
+    border: 1px solid rgba(152,96,224,0.12);
+    animation: portrait-pulse 3s ease-in-out infinite 1.5s;
+  }
+  @keyframes portrait-pulse {
+    0%,100% { transform: scale(1); opacity: 0.5; }
+    50%     { transform: scale(1.08); opacity: 1; }
+  }
+
+  .npc-info { flex: 1; }
+  .npc-name {
+    font-family: 'Cinzel', serif;
+    font-size: 18px; font-weight: 700;
+    color: var(--gold-lt);
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 12px rgba(232,184,48,0.3), 1px 1px 3px rgba(0,0,0,0.5);
+    margin-bottom: 3px;
+  }
+  .npc-role {
+    font-family: 'IM Fell English', serif;
+    font-style: italic; font-size: 15px;
+    color: rgba(229,185,100,0.7);
+  }
+  .story-act-badge {
+    font-family: 'Cinzel', serif;
+    font-size: 9px; font-weight: 700;
+    padding: 3px 9px; border-radius: 10px;
+    background: rgba(152,96,224,0.15);
+    border: 1px solid rgba(152,96,224,0.35);
+    color: rgba(200,160,240,0.9);
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    box-shadow: 0 0 8px rgba(152,96,224,0.15);
+  }
+
+  /* Corner ornaments */
+  .corner-ornament {
+    position: absolute; z-index: 2;
+    font-size: 14px; color: rgba(232,184,48,0.35);
+    pointer-events: none; line-height: 1;
+    animation: ornament-glow 4s ease-in-out infinite;
+  }
+  .corner-tl { top: 7px; left: 9px; }
+  .corner-tr { top: 7px; right: 9px; }
+  .corner-bl { bottom: 7px; left: 9px; }
+  .corner-br { bottom: 7px; right: 9px; }
+  @keyframes ornament-glow {
+    0%,100% { color: rgba(232,184,48,0.3); text-shadow: none; }
+    50%     { color: rgba(232,184,48,0.6); text-shadow: 0 0 6px rgba(232,184,48,0.3); }
+  }
+
+  /* Card body */
+  .story-card-body {
+    position: relative; z-index: 1;
+    padding: 22px 28px 18px;
+  }
+
+  /* Act progress dots */
+  .act-dots {
+    display: flex; gap: 6px;
+    justify-content: center;
+    margin-bottom: 14px;
+  }
+  .act-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: rgba(139,94,60,0.25);
+    border: 1px solid var(--border);
+    transition: all 0.3s;
+  }
+  .act-dot.active {
+    background: var(--gold);
+    border-color: var(--gold);
+    box-shadow: 0 0 6px rgba(232,184,48,0.4);
+  }
+
+  .story-event-title {
+    font-family: 'Cinzel', serif;
+    font-size: 22px; font-weight: 700;
+    color: var(--text);
+    letter-spacing: 0.5px;
+    text-align: center;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+  }
+  .story-divider {
+    width: 100px; height: 2px;
+    margin: 8px auto 18px;
+    background: linear-gradient(90deg, transparent, var(--gold), rgba(152,96,224,0.5), var(--gold), transparent);
+  }
+  .story-text {
+    font-family: 'IM Fell English', serif;
+    font-size: 18px;
+    line-height: 1.75;
+    color: var(--text);
+    text-align: left;
+  }
+  .story-text p { margin-bottom: 12px; }
+  .story-text p:last-child { margin-bottom: 0; }
+
+  /* Emphasized quote */
+  .story-emphasis {
+    display: block;
+    font-style: italic;
+    color: var(--gold-lt);
+    padding: 10px 18px;
+    border-left: 3px solid var(--gold);
+    margin: 12px 0;
+    background: linear-gradient(90deg, rgba(232,184,48,0.06), transparent);
+    border-radius: 0 6px 6px 0;
+    text-shadow: 0 0 8px rgba(232,184,48,0.15);
+  }
+
+  /* Card footer */
+  .story-card-footer {
+    position: relative; z-index: 1;
+    padding: 0 28px 24px;
+    display: flex; justify-content: center;
+  }
+  .continue-btn {
+    font-family: 'Cinzel', serif;
+    font-size: 14px; font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 12px 52px;
+    border-radius: 8px;
+    border: 2px solid var(--gold);
+    background: linear-gradient(180deg, var(--header2) 0%, var(--header) 100%);
+    color: var(--gold-lt);
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(232,184,48,0.12), 0 4px 16px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08);
+    transition: all 0.15s;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .continue-btn:hover {
+    background: linear-gradient(180deg, #2A2008 0%, #1A1208 100%);
+    box-shadow: 0 0 30px rgba(232,184,48,0.2), 0 6px 20px rgba(0,0,0,0.6);
+    transform: translateY(-1px);
+  }
+  .continue-arrow {
+    font-size: 16px;
+    animation: pulse-arrow 1.4s ease-in-out infinite;
+  }
+  @keyframes pulse-arrow {
+    0%, 100% { transform: translateX(0); }
+    50%     { transform: translateX(4px); }
+  }
+
+  /* Skip button (subtle, top-right) */
+  .skip-btn {
+    position: fixed; top: 16px; right: 20px;
+    z-index: 20;
+    font-family: 'Cinzel', serif; font-size: 10px; font-weight: 600;
+    color: rgba(240,232,216,0.3);
+    background: none; border: none;
+    cursor: pointer; letter-spacing: 0.5px;
+    transition: color 0.15s;
+  }
+  .skip-btn:hover { color: rgba(240,232,216,0.6); }
+</style>
+</head>
+<body>
+
+<!-- ── ATMOSPHERIC BACKGROUND ─────────────────────────── -->
+<div class="atmos"></div>
+
+<!-- Mystical floating particles -->
+<div class="myst-particle" style="left:8%; top:20%; width:4px; height:4px; background:rgba(232,184,48,0.3); box-shadow:0 0 8px rgba(232,184,48,0.2); --dur:12s; --dly:0s; --dy1:-30px; --dx1:15px; --dy2:-10px; --dx2:-8px; --dy3:-40px; --dx3:12px; --op1:0.2; --op2:0.5"></div>
+<div class="myst-particle" style="left:18%; top:65%; width:3px; height:3px; background:rgba(152,96,224,0.3); box-shadow:0 0 6px rgba(152,96,224,0.2); --dur:16s; --dly:2s; --dy1:-25px; --dx1:-12px; --dy2:-35px; --dx2:10px; --dy3:-15px; --dx3:-15px; --op1:0.15; --op2:0.4"></div>
+<div class="myst-particle" style="left:75%; top:25%; width:5px; height:5px; background:rgba(232,184,48,0.25); box-shadow:0 0 10px rgba(232,184,48,0.15); --dur:14s; --dly:1s; --dy1:-40px; --dx1:20px; --dy2:-20px; --dx2:-15px; --dy3:-50px; --dx3:8px; --op1:0.2; --op2:0.55"></div>
+<div class="myst-particle" style="left:85%; top:70%; width:3px; height:3px; background:rgba(152,96,224,0.25); box-shadow:0 0 6px rgba(152,96,224,0.15); --dur:18s; --dly:4s; --dy1:-20px; --dx1:-10px; --dy2:-40px; --dx2:15px; --dy3:-25px; --dx3:-8px; --op1:0.15; --op2:0.4"></div>
+<div class="myst-particle" style="left:45%; top:80%; width:4px; height:4px; background:rgba(232,184,48,0.2); box-shadow:0 0 8px rgba(232,184,48,0.1); --dur:15s; --dly:3s; --dy1:-35px; --dx1:8px; --dy2:-15px; --dx2:-12px; --dy3:-45px; --dx3:18px; --op1:0.1; --op2:0.35"></div>
+<div class="myst-particle" style="left:30%; top:35%; width:3px; height:3px; background:rgba(152,96,224,0.2); box-shadow:0 0 6px rgba(152,96,224,0.1); --dur:20s; --dly:6s; --dy1:-30px; --dx1:12px; --dy2:-45px; --dx2:-8px; --dy3:-20px; --dx3:15px; --op1:0.1; --op2:0.3"></div>
+<div class="myst-particle" style="left:60%; top:15%; width:5px; height:5px; background:rgba(232,184,48,0.3); box-shadow:0 0 10px rgba(232,184,48,0.2); --dur:11s; --dly:5s; --dy1:-50px; --dx1:-15px; --dy2:-25px; --dx2:10px; --dy3:-35px; --dx3:-12px; --op1:0.2; --op2:0.5"></div>
+<div class="myst-particle" style="left:92%; top:45%; width:3px; height:3px; background:rgba(152,96,224,0.3); box-shadow:0 0 6px rgba(152,96,224,0.2); --dur:13s; --dly:7s; --dy1:-25px; --dx1:8px; --dy2:-40px; --dx2:-12px; --dy3:-15px; --dx3:15px; --op1:0.15; --op2:0.45"></div>
+
+<!-- Additional particles - gold -->
+<div class="myst-particle" style="left:5%; top:40%; width:3px; height:3px; background:rgba(232,184,48,0.25); box-shadow:0 0 8px rgba(232,184,48,0.15); --dur:17s; --dly:2s; --dy1:-20px; --dx1:10px; --dy2:-45px; --dx2:-6px; --dy3:-30px; --dx3:14px; --op1:0.15; --op2:0.4"></div>
+<div class="myst-particle" style="left:15%; top:85%; width:4px; height:4px; background:rgba(232,184,48,0.3); box-shadow:0 0 10px rgba(232,184,48,0.2); --dur:11s; --dly:8s; --dy1:-50px; --dx1:-15px; --dy2:-20px; --dx2:12px; --dy3:-35px; --dx3:-10px; --op1:0.2; --op2:0.5"></div>
+<div class="myst-particle" style="left:52%; top:8%; width:3px; height:3px; background:rgba(232,184,48,0.2); box-shadow:0 0 6px rgba(232,184,48,0.1); --dur:19s; --dly:4.5s; --dy1:-15px; --dx1:18px; --dy2:-30px; --dx2:-10px; --dy3:-45px; --dx3:6px; --op1:0.1; --op2:0.35"></div>
+<div class="myst-particle" style="left:88%; top:15%; width:5px; height:5px; background:rgba(232,184,48,0.25); box-shadow:0 0 12px rgba(232,184,48,0.15); --dur:14s; --dly:1.5s; --dy1:-35px; --dx1:-12px; --dy2:-50px; --dx2:8px; --dy3:-20px; --dx3:-18px; --op1:0.15; --op2:0.45"></div>
+<!-- Additional particles - purple -->
+<div class="myst-particle" style="left:3%; top:75%; width:4px; height:4px; background:rgba(152,96,224,0.25); box-shadow:0 0 8px rgba(152,96,224,0.15); --dur:16s; --dly:5s; --dy1:-40px; --dx1:14px; --dy2:-20px; --dx2:-8px; --dy3:-55px; --dx3:10px; --op1:0.15; --op2:0.4"></div>
+<div class="myst-particle" style="left:70%; top:90%; width:3px; height:3px; background:rgba(152,96,224,0.3); box-shadow:0 0 6px rgba(152,96,224,0.2); --dur:12s; --dly:3.5s; --dy1:-30px; --dx1:-10px; --dy2:-50px; --dx2:15px; --dy3:-25px; --dx3:-12px; --op1:0.2; --op2:0.5"></div>
+<div class="myst-particle" style="left:95%; top:55%; width:4px; height:4px; background:rgba(152,96,224,0.2); box-shadow:0 0 8px rgba(152,96,224,0.1); --dur:21s; --dly:9s; --dy1:-25px; --dx1:-15px; --dy2:-35px; --dx2:10px; --dy3:-15px; --dx3:-8px; --op1:0.1; --op2:0.35"></div>
+<div class="myst-particle" style="left:40%; top:5%; width:3px; height:3px; background:rgba(152,96,224,0.25); box-shadow:0 0 6px rgba(152,96,224,0.15); --dur:15s; --dly:6.5s; --dy1:-45px; --dx1:12px; --dy2:-25px; --dx2:-15px; --dy3:-35px; --dx3:8px; --op1:0.15; --op2:0.4"></div>
+<!-- Additional particles - warm white -->
+<div class="myst-particle" style="left:22%; top:50%; width:2px; height:2px; background:rgba(240,232,216,0.2); box-shadow:0 0 4px rgba(240,232,216,0.1); --dur:18s; --dly:10s; --dy1:-30px; --dx1:8px; --dy2:-15px; --dx2:-12px; --dy3:-40px; --dx3:6px; --op1:0.1; --op2:0.3"></div>
+<div class="myst-particle" style="left:68%; top:42%; width:2px; height:2px; background:rgba(240,232,216,0.15); box-shadow:0 0 4px rgba(240,232,216,0.08); --dur:22s; --dly:11s; --dy1:-20px; --dx1:-10px; --dy2:-40px; --dx2:14px; --dy3:-25px; --dx3:-8px; --op1:0.08; --op2:0.25"></div>
+
+<!-- Shimmer glints scattered across the scene -->
+<div class="shimmer-glint" style="left:12%; top:18%; --dur:4s; --dly:0s; --len:14px; --peak:0.8"></div>
+<div class="shimmer-glint" style="left:78%; top:22%; --dur:5.5s; --dly:1.5s; --len:10px; --peak:0.6"></div>
+<div class="shimmer-glint" style="left:25%; top:72%; --dur:6s; --dly:3s; --len:12px; --peak:0.7"></div>
+<div class="shimmer-glint" style="left:85%; top:65%; --dur:4.5s; --dly:0.8s; --len:10px; --peak:0.5"></div>
+<div class="shimmer-glint" style="left:50%; top:12%; --dur:7s; --dly:2.5s; --len:16px; --peak:0.9"></div>
+<div class="shimmer-glint" style="left:6%; top:48%; --dur:5s; --dly:4s; --len:10px; --peak:0.6"></div>
+<div class="shimmer-glint" style="left:92%; top:40%; --dur:6.5s; --dly:1s; --len:12px; --peak:0.7"></div>
+<div class="shimmer-glint" style="left:38%; top:85%; --dur:4.8s; --dly:5.5s; --len:14px; --peak:0.65"></div>
+<div class="shimmer-glint" style="left:65%; top:78%; --dur:5.2s; --dly:3.5s; --len:10px; --peak:0.55"></div>
+<div class="shimmer-glint" style="left:42%; top:32%; --dur:7.5s; --dly:6s; --len:12px; --peak:0.7"></div>
+
+<!-- Dark overlay -->
+<div class="overlay"></div>
+
+<!-- Skip button -->
+<button class="skip-btn">Skip ▸</button>
+
+<!-- ── STORY CARD ────────────────────────────────────── -->
+<div class="story-card">
+
+  <!-- Corner ornaments -->
+  <span class="corner-ornament corner-tl">✦</span>
+  <span class="corner-ornament corner-tr">✦</span>
+  <span class="corner-ornament corner-bl">✦</span>
+  <span class="corner-ornament corner-br">✦</span>
+
+  <!-- Header with NPC portrait -->
+  <div class="story-card-header">
+    <div class="npc-portrait">🧙</div>
+    <div class="npc-info">
+      <div class="npc-name">Elder Mira</div>
+      <div class="npc-role">Keeper of the Wilds</div>
+    </div>
+    <div class="story-act-badge">Act I · Ch. 1</div>
+  </div>
+
+  <!-- Story text body -->
+  <div class="story-card-body">
+
+    <div class="act-dots">
+      <div class="act-dot active"></div>
+      <div class="act-dot"></div>
+      <div class="act-dot"></div>
+    </div>
+
+    <div class="story-event-title">A Mysterious Egg</div>
+    <div class="story-divider"></div>
+
+    <div class="story-text">
+      <p>While tidying up the shop after a long afternoon, you hear a faint sound — a soft, rhythmic tapping from beneath the counter.</p>
+
+      <span class="story-emphasis">"Something stirs within that egg. It has chosen you, Keeper."</span>
+
+      <p>Elder Mira appears in the doorway, her eyes gleaming with recognition. She sets a worn leather satchel on the counter and gestures toward the glowing egg nestled inside.</p>
+    </div>
+
+  </div>
+
+  <!-- Continue button -->
+  <div class="story-card-footer">
+    <button class="continue-btn">
+      Continue
+      <span class="continue-arrow">▶</span>
+    </button>
+  </div>
+
+</div>
+
+</body>
+</html>

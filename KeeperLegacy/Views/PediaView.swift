@@ -143,8 +143,7 @@ struct PediaCard: View {
                         .frame(height: 80)
 
                     if isDiscovered {
-                        Text(habitatEmoji)
-                            .font(.system(size: 36))
+                        CreatureImageView(catalogID: entry.id, mutation: 0, size: 56)
                     } else {
                         Image(systemName: "questionmark")
                             .font(.system(size: 28, weight: .bold))
@@ -164,17 +163,6 @@ struct PediaCard: View {
         }
     }
 
-    private var habitatEmoji: String {
-        switch entry.habitatType {
-        case .water:    return "🌊"
-        case .dirt:     return "🪨"
-        case .grass:    return "🌿"
-        case .fire:     return "🔥"
-        case .ice:      return "❄️"
-        case .electric: return "⚡"
-        case .magical:  return "✨"
-        }
-    }
 }
 
 // MARK: - Pedia Detail Sheet
@@ -203,8 +191,7 @@ struct PediaDetailView: View {
                             .frame(height: 200)
 
                         if isDiscovered {
-                            Text(habitatEmoji)
-                                .font(.system(size: 80))
+                            CreatureImageView(catalogID: entry.id, mutation: 0, size: 130)
                         } else {
                             Image(systemName: "questionmark.circle.fill")
                                 .font(.system(size: 64))
@@ -238,14 +225,17 @@ struct PediaDetailView: View {
                             Text("Variants (\(entry.mutations.count))")
                                 .font(.system(size: 14, weight: .semibold, design: .rounded))
                             ScrollView(.horizontal, showsIndicators: false) {
-                                HStack(spacing: 8) {
+                                HStack(spacing: 10) {
                                     ForEach(entry.mutations, id: \.index) { mutation in
-                                        Text(mutation.colorHint)
-                                            .font(.system(size: 11, design: .rounded))
-                                            .padding(.horizontal, 10)
-                                            .padding(.vertical, 5)
-                                            .background(Color(hex: entry.habitatType.displayColor).opacity(0.2))
-                                            .clipShape(Capsule())
+                                        VStack(spacing: 4) {
+                                            CreatureImageView(catalogID: entry.id, mutation: mutation.index, size: 52)
+                                            Text(mutation.colorHint)
+                                                .font(.system(size: 10, design: .rounded))
+                                                .padding(.horizontal, 8)
+                                                .padding(.vertical, 4)
+                                                .background(Color(hex: entry.habitatType.displayColor).opacity(0.2))
+                                                .clipShape(Capsule())
+                                        }
                                     }
                                 }
                             }
@@ -268,17 +258,6 @@ struct PediaDetailView: View {
         }
     }
 
-    private var habitatEmoji: String {
-        switch entry.habitatType {
-        case .water:    return "🌊"
-        case .dirt:     return "🪨"
-        case .grass:    return "🌿"
-        case .fire:     return "🔥"
-        case .ice:      return "❄️"
-        case .electric: return "⚡"
-        case .magical:  return "✨"
-        }
-    }
 }
 
 struct InfoRow: View {

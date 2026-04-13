@@ -264,9 +264,11 @@ struct OccupiedHabitatPanel: View {
                 .frame(height: 220)
 
             VStack(spacing: 8) {
-                // Placeholder creature art
-                Text(habitatEmoji)
-                    .font(.system(size: 80))
+                CreatureImageView(
+                    catalogID: creature.catalogID ?? "",
+                    mutation: Int(creature.mutationIndex),
+                    size: 120
+                )
 
                 Text(catalogEntry?.name ?? "Unknown")
                     .font(.system(size: 18, weight: .bold, design: .rounded))
@@ -290,17 +292,6 @@ struct OccupiedHabitatPanel: View {
         .padding(.horizontal)
     }
 
-    private var habitatEmoji: String {
-        switch HabitatType(rawValue: habitat.type ?? "Water") ?? .water {
-        case .water:    return "🌊"
-        case .dirt:     return "🪨"
-        case .grass:    return "🌿"
-        case .fire:     return "🔥"
-        case .ice:      return "❄️"
-        case .electric: return "⚡"
-        case .magical:  return "✨"
-        }
-    }
 }
 
 // MARK: - Stat Bars

@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280">
+<title>Keeper's Legacy — Creature Shop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=IM+Fell+English:ital@0;1&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:         #0C0907;
+    --panel:      #1A1208;
+    --border:     #3A2818;
+    --text:       #F0E8D8;
+    --muted:      #9A8070;
+    --gold:       #E8B830;
+    --gold-lt:    #F0CC50;
+    --green:      #3A9040;
+
+    --water:  #4AA8E0;  --grass: #4AB84A;  --dirt:  #C08840;
+    --fire:   #E06030;  --ice:   #60D0E0;  --elec:  #E8D020;
+    --magic:  #9860E0;
+
+    --common-color:    #888888;
+    --uncommon-color:  #48A850;
+    --rare-color:      #5080D8;
+    --legendary-color: #E08030;
+  }
+
+  html, body {
+    width: 1280px; height: 720px;
+    overflow: hidden;
+    background: var(--bg);
+    font-family: 'Crimson Text', serif;
+    color: var(--text);
+  }
+
+  /* ── PARCHMENT TEXTURE + AMBIENT ────────────────────── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(255,255,255,0.012) 28px, rgba(255,255,255,0.012) 29px),
+      repeating-linear-gradient(90deg, transparent, transparent 28px, rgba(255,255,255,0.008) 28px, rgba(255,255,255,0.008) 29px);
+  }
+  /* Warm ambient glow */
+  body::after {
+    content: '';
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background:
+      radial-gradient(ellipse 600px 400px at 50% 20%, rgba(232,184,48,0.04), transparent),
+      radial-gradient(ellipse 400px 300px at 20% 60%, rgba(232,184,48,0.025), transparent),
+      radial-gradient(ellipse 400px 300px at 80% 50%, rgba(232,184,48,0.025), transparent);
+  }
+
+  /* Floating gold particles */
+  .gold-particle {
+    position: fixed; z-index: 1;
+    width: var(--s, 3px); height: var(--s, 3px);
+    border-radius: 50%;
+    background: rgba(232,184,48,0.3);
+    box-shadow: 0 0 4px rgba(232,184,48,0.2);
+    pointer-events: none;
+    animation: particle-float var(--dur, 12s) ease-in-out infinite var(--dly, 0s);
+  }
+  @keyframes particle-float {
+    0%,100% { transform: translateY(0) translateX(0); opacity: 0.3; }
+    25%     { transform: translateY(var(--dy1, -40px)) translateX(var(--dx1, 15px)); opacity: 0.6; }
+    50%     { transform: translateY(var(--dy2, -20px)) translateX(var(--dx2, -10px)); opacity: 0.2; }
+    75%     { transform: translateY(var(--dy3, -50px)) translateX(var(--dx3, 20px)); opacity: 0.5; }
+  }
+
+  /* ── OVERLAY BAR (full-width, with integrated filters) ── */
+  .overlay-bar {
+    position: absolute; top: 0; left: 0; right: 0;
+    z-index: 30;
+    display: flex; flex-direction: column;
+    background: rgba(12,9,7,0.85);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(232,184,48,0.12);
+    box-shadow: 0 2px 14px rgba(0,0,0,0.5);
+  }
+  /* Top row: back + title + pill + coins */
+  .bar-top {
+    display: flex; align-items: center; gap: 0;
+    padding: 0 16px;
+    height: 44px;
+  }
+  .back-btn {
+    display: flex; align-items: center; gap: 6px;
+    font-family: 'Cinzel', serif; font-size: 11px; font-weight: 600;
+    color: rgba(232,184,48,0.75);
+    cursor: pointer; padding: 5px 8px 5px 0;
+    border: none; background: none;
+    transition: color 0.15s; letter-spacing: 0.3px;
+  }
+  .back-btn:hover { color: var(--gold-lt); }
+  .bar-sep {
+    width: 1px; height: 24px;
+    background: rgba(58,40,24,0.8);
+    margin: 0 12px;
+  }
+  .bar-info {
+    display: flex; align-items: center; gap: 8px; flex: 1;
+  }
+  .bar-icon { font-size: 18px; line-height: 1; }
+  .bar-title {
+    font-family: 'Cinzel', serif; font-size: 14px; font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.4px;
+    text-shadow: 0 0 10px rgba(232,184,48,0.3);
+  }
+  .bar-subtitle {
+    font-family: 'IM Fell English', serif;
+    font-style: italic; font-size: 11px;
+    color: var(--muted);
+  }
+  .bar-pill {
+    font-family: 'Cinzel', serif; font-size: 10px; font-weight: 700;
+    padding: 2px 8px; border-radius: 8px;
+    background: rgba(232,184,48,0.12);
+    border: 1px solid rgba(232,184,48,0.3);
+    color: var(--gold);
+  }
+  .bar-coins {
+    font-family: 'Cinzel', serif; font-size: 11px; font-weight: 600;
+    color: var(--gold-lt);
+    background: rgba(232,184,48,0.08);
+    border: 1px solid rgba(232,184,48,0.2);
+    border-radius: 8px; padding: 3px 8px;
+  }
+
+  /* Filter row (integrated into overlay bar) */
+  .bar-filters {
+    display: flex; align-items: center; gap: 6px;
+    padding: 0 16px 8px;
+  }
+  .filter-btn {
+    font-family: 'Cinzel', serif;
+    font-size: 10px; font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 14px;
+    border: 1.5px solid rgba(58,40,24,0.6);
+    background: rgba(26,18,8,0.6);
+    color: var(--muted);
+    cursor: pointer;
+    letter-spacing: 0.3px;
+    display: flex; align-items: center; gap: 4px;
+    transition: all 0.15s;
+  }
+  .filter-btn:hover { border-color: rgba(232,184,48,0.3); color: var(--text); }
+  .filter-btn.active { background: var(--border); color: #FFF8EC; border-color: var(--border); }
+  .filter-btn.water.active  { background: var(--water); border-color: var(--water); }
+  .filter-btn.grass.active  { background: var(--grass); border-color: var(--grass); }
+  .filter-btn.dirt.active   { background: var(--dirt);  border-color: var(--dirt); }
+  .filter-btn.fire.active   { background: var(--fire);  border-color: var(--fire); }
+  .filter-btn.ice.active    { background: var(--ice);   border-color: var(--ice); color: #111; }
+  .filter-btn.elec.active   { background: var(--elec);  border-color: var(--elec); color: #111; }
+  .filter-btn.magic.active  { background: var(--magic); border-color: var(--magic); }
+  .filter-dot { width: 7px; height: 7px; border-radius: 50%; }
+  .filter-spacer { flex: 1; }
+  .search-wrap { position: relative; display: flex; align-items: center; }
+  .search-icon { position: absolute; left: 9px; font-size: 11px; color: var(--muted); z-index: 1; }
+  .search-box {
+    font-family: 'Crimson Text', serif; font-size: 13px;
+    padding: 4px 10px 4px 26px;
+    border-radius: 14px;
+    border: 1.5px solid rgba(58,40,24,0.6);
+    background: rgba(26,18,8,0.6);
+    color: var(--text); width: 160px; outline: none;
+  }
+  .search-box::placeholder { color: var(--muted); }
+
+  /* ── CREATURE GRID ──────────────────────────────────── */
+  .grid-scroll {
+    position: relative; z-index: 2;
+    margin-top: 88px; /* below 2-row overlay bar */
+    height: calc(720px - 88px);
+    overflow-y: auto;
+    padding: 10px 28px 20px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+  .grid-section {
+    margin-bottom: 18px;
+    border-radius: 12px;
+    padding: 14px 16px 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  /* Section ambient background glow */
+  .grid-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    border-radius: 12px;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .grid-section.water-section { border: 1px solid rgba(74,168,224,0.10); }
+  .grid-section.water-section::before {
+    background:
+      radial-gradient(ellipse 300px 150px at 10% 80%, rgba(74,168,224,0.06), transparent),
+      radial-gradient(ellipse 200px 100px at 90% 20%, rgba(74,168,224,0.04), transparent),
+      linear-gradient(180deg, rgba(74,168,224,0.02), transparent 60%);
+  }
+  .grid-section.grass-section { border: 1px solid rgba(74,184,74,0.10); }
+  .grid-section.grass-section::before {
+    background:
+      radial-gradient(ellipse 300px 150px at 15% 70%, rgba(74,184,74,0.06), transparent),
+      radial-gradient(ellipse 200px 100px at 85% 30%, rgba(74,184,74,0.04), transparent),
+      linear-gradient(180deg, rgba(74,184,74,0.02), transparent 60%);
+  }
+  .grid-section.fire-section { border: 1px solid rgba(224,96,48,0.10); }
+  .grid-section.fire-section::before {
+    background:
+      radial-gradient(ellipse 300px 150px at 20% 80%, rgba(224,96,48,0.06), transparent),
+      radial-gradient(ellipse 200px 100px at 80% 30%, rgba(224,96,48,0.04), transparent),
+      linear-gradient(180deg, rgba(224,96,48,0.02), transparent 60%);
+  }
+  /* Section particles */
+  .section-particle {
+    position: absolute; pointer-events: none; z-index: 0;
+  }
+  /* Water bubbles */
+  .section-bubble {
+    border-radius: 50%;
+    background: rgba(74,168,224,0.20);
+    border: 1px solid rgba(120,200,255,0.30);
+    animation: section-bubble-rise linear infinite;
+  }
+  @keyframes section-bubble-rise {
+    0%   { transform: translateY(0); opacity: 0.4; }
+    100% { transform: translateY(-80px); opacity: 0; }
+  }
+  /* Grass swaying leaves */
+  .section-leaf {
+    font-size: 12px; opacity: 0.25;
+    animation: section-leaf-sway 3s ease-in-out infinite;
+    transform-origin: bottom center;
+  }
+  @keyframes section-leaf-sway {
+    0%,100% { transform: rotate(-8deg); }
+    50%     { transform: rotate(8deg); }
+  }
+  /* Fire embers */
+  .section-ember {
+    width: var(--s, 3px); height: var(--s, 3px);
+    border-radius: 50%;
+    background: rgba(224,96,48,0.5);
+    box-shadow: 0 0 4px rgba(224,96,48,0.4);
+    animation: section-ember-rise linear infinite;
+  }
+  @keyframes section-ember-rise {
+    0%   { transform: translateY(0) translateX(0); opacity: 0.6; }
+    50%  { transform: translateY(-40px) translateX(var(--dx, 8px)); opacity: 0.3; }
+    100% { transform: translateY(-80px) translateX(var(--dx2, -5px)); opacity: 0; }
+  }
+
+  .grid-section-label {
+    font-family: 'Cinzel', serif;
+    font-size: 11px; font-weight: 700;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    padding-left: 8px;
+    border-left: 3px solid var(--border);
+    position: relative; z-index: 1;
+  }
+  .grid-section.water-section .grid-section-label { border-left-color: var(--water); }
+  .grid-section.grass-section .grid-section-label { border-left-color: var(--grass); }
+  .grid-section.fire-section  .grid-section-label { border-left-color: var(--fire); }
+  .creature-grid {
+    display: flex; flex-wrap: wrap; gap: 12px;
+    position: relative; z-index: 1;
+  }
+
+  /* ── CREATURE CARD (170px) ──────────────────────────── */
+  .creature-card {
+    width: 170px;
+    background: var(--panel);
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 2px 3px 10px rgba(0,0,0,0.15);
+    cursor: pointer;
+    transition: transform 0.12s, box-shadow 0.12s;
+    position: relative;
+  }
+  .creature-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 3px 6px 18px rgba(0,0,0,0.25);
+  }
+  .creature-card.locked { opacity: 0.55; cursor: default; }
+  .creature-card.locked:hover { transform: none; box-shadow: 2px 3px 10px rgba(0,0,0,0.15); }
+
+  .card-habitat-bar { height: 5px; width: 100%; }
+  .card-habitat-bar.water  { background: var(--water); }
+  .card-habitat-bar.grass  { background: var(--grass); }
+  .card-habitat-bar.dirt   { background: var(--dirt); }
+  .card-habitat-bar.fire   { background: var(--fire); }
+  .card-habitat-bar.ice    { background: var(--ice); }
+  .card-habitat-bar.elec   { background: var(--elec); }
+  .card-habitat-bar.magic  { background: var(--magic); }
+
+  .card-sprite-area {
+    height: 100px;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%);
+    position: relative;
+  }
+  .creature-sprite {
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 32px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.18);
+  }
+  .sprite-water { background: radial-gradient(circle at 38% 38%, #A8D8F0, var(--water)); }
+  .sprite-grass { background: radial-gradient(circle at 38% 38%, #A0D890, var(--grass)); }
+  .sprite-dirt  { background: radial-gradient(circle at 38% 38%, #D0A870, var(--dirt)); }
+  .sprite-fire  { background: radial-gradient(circle at 38% 38%, #F0A070, var(--fire)); }
+  .sprite-ice   { background: radial-gradient(circle at 38% 38%, #C0E8F0, var(--ice)); }
+  .sprite-elec  { background: radial-gradient(circle at 38% 38%, #F0E870, var(--elec)); }
+  .sprite-magic { background: radial-gradient(circle at 38% 38%, #C8A0E8, var(--magic)); }
+
+  .rarity-badge {
+    position: absolute; top: 6px; right: 6px;
+    font-family: 'Cinzel', serif;
+    font-size: 8px; font-weight: 700;
+    padding: 2px 6px; border-radius: 4px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase; color: white;
+  }
+  .rarity-common    { background: var(--common-color); }
+  .rarity-uncommon  { background: var(--uncommon-color); }
+  .rarity-rare      { background: var(--rare-color); }
+  .rarity-legendary { background: var(--legendary-color); }
+
+  .new-badge {
+    position: absolute; top: 6px; left: 6px;
+    background: var(--fire); color: white;
+    font-family: 'Cinzel', serif;
+    font-size: 8px; font-weight: 700;
+    padding: 2px 6px; border-radius: 4px;
+    letter-spacing: 0.5px;
+  }
+
+  .card-info { padding: 8px 10px 10px; }
+  .card-name {
+    font-family: 'Cinzel', serif;
+    font-size: 12px; font-weight: 600;
+    color: var(--text); letter-spacing: 0.3px;
+    margin-bottom: 6px; line-height: 1.2;
+  }
+  .card-buy-row {
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .card-price {
+    font-family: 'Cinzel', serif;
+    font-size: 13px; font-weight: 700;
+    color: var(--gold);
+    display: flex; align-items: center; gap: 3px;
+  }
+  .card-price-icon { font-size: 11px; }
+  .buy-btn {
+    font-family: 'Cinzel', serif;
+    font-size: 10px; font-weight: 700;
+    padding: 4px 10px; border-radius: 6px;
+    border: 1.5px solid var(--green);
+    background: var(--green); color: #FFF8EC;
+    cursor: pointer; letter-spacing: 0.3px;
+    transition: all 0.15s;
+  }
+  .buy-btn:hover { background: #48B058; }
+
+  /* Lock overlay */
+  .lock-overlay {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 4px;
+    background: rgba(12,9,7,0.82);
+    backdrop-filter: blur(1px);
+  }
+  .lock-icon { font-size: 22px; }
+  .lock-label {
+    font-family: 'Cinzel', serif;
+    font-size: 9px; font-weight: 700;
+    color: var(--muted); text-align: center;
+    line-height: 1.3; letter-spacing: 0.3px;
+  }
+
+  /* ── LAYOUT WRAPPER ──────────────────────────────────── */
+  .layout { display: flex; width: 1280px; height: 720px; }
+  .main-content { flex: 1; position: relative; overflow: hidden; }
+
+  /* ── RIGHT SIDEBAR MENU ─────────────────────────────── */
+  .sidebar {
+    width: 70px; flex-shrink: 0;
+    background: linear-gradient(180deg, #1A1208 0%, #140E06 100%);
+    border-left: 2px solid rgba(232,184,48,0.15);
+    display: flex; flex-direction: column;
+    align-items: center; padding: 12px 0; gap: 4px; z-index: 20;
+  }
+  .sidebar-btn {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 3px;
+    width: 58px; height: 58px; border-radius: 10px;
+    background: transparent; border: 1.5px solid transparent;
+    cursor: pointer; transition: all 0.15s;
+  }
+  .sidebar-btn:hover { background: rgba(232,184,48,0.06); border-color: rgba(232,184,48,0.15); }
+  .sidebar-btn.active { background: rgba(232,184,48,0.10); border-color: rgba(232,184,48,0.3); box-shadow: 0 0 10px rgba(232,184,48,0.08); }
+  .sidebar-icon { font-size: 24px; line-height: 1; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.4)); }
+  .sidebar-label { font-family: 'Cinzel', serif; font-size: 8px; font-weight: 600; color: rgba(232,184,48,0.5); letter-spacing: 0.3px; text-transform: uppercase; }
+  .sidebar-btn.active .sidebar-label { color: #F0CC50; }
+  .sidebar-btn.active .sidebar-icon { filter: drop-shadow(0 0 5px rgba(232,184,48,0.4)) drop-shadow(0 1px 2px rgba(0,0,0,0.4)); }
+  .sidebar-spacer { flex: 1; }
+  .sidebar-divider { width: 36px; height: 1px; background: rgba(232,184,48,0.1); margin: 2px 0; }
+</style>
+</head>
+<body>
+
+<!-- Gold particles -->
+<div class="gold-particle" style="left:8%; top:25%; --s:3px; --dur:14s; --dly:0s; --dy1:-35px; --dx1:12px; --dy2:-15px; --dx2:-8px; --dy3:-45px; --dx3:18px"></div>
+<div class="gold-particle" style="left:22%; top:55%; --s:2px; --dur:18s; --dly:3s; --dy1:-25px; --dx1:-10px; --dy2:-40px; --dx2:15px; --dy3:-20px; --dx3:-12px"></div>
+<div class="gold-particle" style="left:45%; top:35%; --s:4px; --dur:12s; --dly:1.5s; --dy1:-45px; --dx1:20px; --dy2:-25px; --dx2:-15px; --dy3:-50px; --dx3:10px"></div>
+<div class="gold-particle" style="left:65%; top:70%; --s:2px; --dur:16s; --dly:5s; --dy1:-30px; --dx1:-8px; --dy2:-50px; --dx2:12px; --dy3:-35px; --dx3:-15px"></div>
+<div class="gold-particle" style="left:82%; top:40%; --s:3px; --dur:15s; --dly:2s; --dy1:-40px; --dx1:15px; --dy2:-20px; --dx2:-10px; --dy3:-55px; --dx3:8px"></div>
+<div class="gold-particle" style="left:35%; top:80%; --s:2px; --dur:20s; --dly:7s; --dy1:-20px; --dx1:-12px; --dy2:-35px; --dx2:18px; --dy3:-25px; --dx3:-8px"></div>
+<div class="gold-particle" style="left:55%; top:15%; --s:3px; --dur:13s; --dly:4s; --dy1:-50px; --dx1:8px; --dy2:-30px; --dx2:-15px; --dy3:-40px; --dx3:20px"></div>
+<div class="gold-particle" style="left:92%; top:60%; --s:2px; --dur:17s; --dly:6s; --dy1:-35px; --dx1:-18px; --dy2:-45px; --dx2:10px; --dy3:-25px; --dx3:-12px"></div>
+
+<!-- ── MAIN LAYOUT ─────────────────────────────────────── -->
+<div class="layout">
+<div class="main-content">
+
+<!-- ── OVERLAY BAR (inside main-content, absolute positioned) ── -->
+<div class="overlay-bar">
+  <div class="bar-top">
+    <button class="back-btn" onclick="location='habitat-floor.html'">
+      <span>◀</span> Home
+    </button>
+    <div class="bar-sep"></div>
+    <div class="bar-info">
+      <span class="bar-icon">🛒</span>
+      <div>
+        <div class="bar-title">Creature Shop</div>
+        <div class="bar-subtitle">Browse & Purchase</div>
+      </div>
+      <div class="bar-pill">12 available</div>
+    </div>
+    <span class="bar-coins">✦ 1,250</span>
+  </div>
+  <div class="bar-filters">
+    <button class="filter-btn active">All</button>
+    <button class="filter-btn water"><span class="filter-dot" style="background:var(--water)"></span>Water</button>
+    <button class="filter-btn grass"><span class="filter-dot" style="background:var(--grass)"></span>Grass</button>
+    <button class="filter-btn dirt"><span class="filter-dot" style="background:var(--dirt)"></span>Dirt</button>
+    <button class="filter-btn fire"><span class="filter-dot" style="background:var(--fire)"></span>Fire</button>
+    <button class="filter-btn ice"><span class="filter-dot" style="background:var(--ice)"></span>Ice</button>
+    <button class="filter-btn elec"><span class="filter-dot" style="background:var(--elec)"></span>Elec</button>
+    <button class="filter-btn magic"><span class="filter-dot" style="background:var(--magic)"></span>Magic</button>
+    <div class="filter-spacer"></div>
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input class="search-box" placeholder="Search..." />
+    </div>
+  </div>
+</div>
+<div class="grid-scroll">
+
+  <!-- WATER section -->
+  <div class="grid-section water-section">
+    <!-- Water bubbles -->
+    <div class="section-particle section-bubble" style="width:5px;height:5px; left:3%; bottom:20%; animation-duration:4.5s; animation-delay:0s"></div>
+    <div class="section-particle section-bubble" style="width:3px;height:3px; left:12%; bottom:30%; animation-duration:3.8s; animation-delay:1.2s"></div>
+    <div class="section-particle section-bubble" style="width:4px;height:4px; right:8%; bottom:15%; animation-duration:5.0s; animation-delay:0.6s"></div>
+    <div class="section-particle section-bubble" style="width:3px;height:3px; right:20%; bottom:40%; animation-duration:4.2s; animation-delay:2.0s"></div>
+    <div class="section-particle section-bubble" style="width:5px;height:5px; left:50%; bottom:10%; animation-duration:4.8s; animation-delay:1.5s"></div>
+    <div class="grid-section-label">💧 Water Creatures</div>
+    <div class="creature-grid">
+
+      <div class="creature-card">
+        <div class="card-habitat-bar water"></div>
+        <div class="card-sprite-area">
+          <div class="creature-sprite sprite-water">🐟</div>
+          <span class="rarity-badge rarity-common">Common</span>
+          <span class="new-badge">Owned</span>
+        </div>
+        <div class="card-info">
+          <div class="card-name">Aquaburst</div>
+          <div class="card-buy-row">
+            <div class="card-price"><span class="card-price-icon">✦</span> 150</div>
+            <button class="buy-btn">Buy</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="creature-card">
+        <div class="card-habitat-bar water"></div>
+        <div class="card-sprite-area">
+          <div class="creature-sprite sprite-water">🐠</div>
+          <span class="rarity-badge rarity-common">Common</span>
+        </div>
+        <div class="card-info">
+          <div class="card-name">Shimmerfin</div>
+          <div class="card-buy-row">
+            <div class="card-price"><span class="card-price-icon">✦</span> 150</div>
+            <button class="buy-btn">Buy</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="creature-card">
+        <div class="card-habitat-bar water"></div>
+        <div class="card-sprite-area">
+          <div class="creature-sprite sprite-water">🐡</div>
+          <span class="rarity-badge rarity-common">Common</span>
+        </div>
+        <div class="card-info">
+          <div class="card-name">Tidecaller</div>
+          <div class="card-buy-row">
+            <div class="card-price"><span class="card-price-icon">✦</span> 150</div>
+            <button class="buy-btn">Buy</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="creature-card">
+        <div class="card-habitat-bar water"></div>
+        <div class="card-sprite-area">
+          <div class="creature-sprite sprite-water">🐙</div>
+          <span class="rarity-badge rarity-uncommon">Uncommon</span>
+        </div>
+        <div class="card-info">
+          <div class="card-name">Deepecho</div>
+          <div class="card-buy-row">
+            <div class="card-price"><span class="card-price-icon">✦</span> 400</div>
+            <button class="buy-btn">Buy</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="creature-card">
+        <div class="card-habitat-bar water"></div>
+        <div class="card-sprite-area">
+          <div class="creature-sprite sprite-water">🦑</div>
+          <span class="rarity-badge rarity-uncommon">Uncommon</span>
+        </div>
+        <div class="card-info">
+          <div class="card-name">Seraphine</div>
+          <div class="card-buy-row">
+            <div class="card-price"><span class="card-price-icon">✦</span> 400</div>
+            <button class="buy-btn">Buy</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="creature-card locked">
+        <div class="card-habitat-bar water"></div>
+        <div class="card-sprite-area">
+          <div class="creature-sprite sprite-water" style="opacity:0.3">❓</div>
+          <span class="rarity-badge rarity-rare">Rare</span>
+        </div>
+        <div class="card-info">
+          <div class="card-name">???</div>
+          <div class="card-buy-row">
+            <div class="card-price"><span class="card-price-icon">✦</span> ???</div>
+          </div>
+        </div>
+        <div class="lock-overlay">
+          <span class="lock-icon">🔒</span>
+          <span class="lock-label">Undiscovered</span>
+        </div>
+      </div>
+
+      <div class="creature-card locked">
+        <div class="card-habitat-bar water"></div>
+        <div class="card-sprite-area">
+          <div class="creature-sprite sprite-water" style="opacity:0.3">✨</div>
+          <span class="rarity-badge rarity-legendary">Legendary</span>
+        </div>
+        <div class="card-info">
+          <div class="card-name">???</div>
+          <div class="card-buy-row">
+            <div class="card-price"><span class="card-price-icon">✦</span> ???</div>
+          </div>
+        </div>
+        <div class="lock-overlay">
+          <span class="lock-icon">🔒</span>
+          <span class="lock-label">Undiscovered</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- GRASS section -->
+  <div class="grid-section grass-section">
+    <!-- Grass swaying leaves -->
+    <div class="section-particle section-leaf" style="left:2%; bottom:15%; animation-delay:0s;">🍃</div>
+    <div class="section-particle section-leaf" style="left:15%; bottom:25%; animation-delay:0.8s;">🌿</div>
+    <div class="section-particle section-leaf" style="right:5%; bottom:20%; animation-delay:1.4s;">🍃</div>
+    <div class="section-particle section-leaf" style="right:18%; bottom:10%; animation-delay:0.4s;">🌿</div>
+    <div class="grid-section-label">🌿 Grass Creatures</div>
+    <div class="creature-grid">
+
+      <div class="creature-card">
+        <div class="card-habitat-bar grass"></div>
+        <div class="card-sprite-area">
+          <div class="creature-sprite sprite-grass">🌱</div>
+          <span class="rarity-badge rarity-common">Common</span>
+          <span class="new-badge">Owned</span>
+        </div>
+        <div class="card-info">
+          <div class="card-name">Wildbloom</div>
+          <div class="card-buy-row">
+            <div class="card-price"><span class="card-price-icon">✦</span> 150</div>
+            <button class="buy-btn">Buy</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="creature-card">
+        <div class="card-habitat-bar grass"></div>
+        <div class="card-sprite-area">
+          <div class="creature-sprite sprite-grass">🍀</div>
+          <span class="rarity-badge rarity-common">Common</span>
+        </div>
+        <div class="card-info">
+          <div class="card-name">Cloverkin</div>
+          <div class="card-buy-row">
+            <div class="card-price"><span class="card-price-icon">✦</span> 150</div>
+            <button class="buy-btn">Buy</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="creature-card">
+        <div class="card-habitat-bar grass"></div>
+        <div class="card-sprite-area">
+          <div class="creature-sprite sprite-grass">🦋</div>
+          <span class="rarity-badge rarity-uncommon">Uncommon</span>
+        </div>
+        <div class="card-info">
+          <div class="card-name">Petal Wing</div>
+          <div class="card-buy-row">
+            <div class="card-price"><span class="card-price-icon">✦</span> 400</div>
+            <button class="buy-btn">Buy</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="creature-card locked">
+        <div class="card-habitat-bar grass"></div>
+        <div class="card-sprite-area">
+          <div class="creature-sprite sprite-grass" style="opacity:0.3">❓</div>
+          <span class="rarity-badge rarity-rare">Rare</span>
+        </div>
+        <div class="card-info">
+          <div class="card-name">???</div>
+          <div class="card-buy-row">
+            <div class="card-price"><span class="card-price-icon">✦</span> ???</div>
+          </div>
+        </div>
+        <div class="lock-overlay">
+          <span class="lock-icon">🔒</span>
+          <span class="lock-label">Undiscovered</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FIRE section -->
+  <div class="grid-section fire-section">
+    <!-- Fire embers -->
+    <div class="section-particle section-ember" style="left:5%; bottom:20%; --s:3px; --dx:10px; --dx2:-6px; animation-duration:3.5s; animation-delay:0s"></div>
+    <div class="section-particle section-ember" style="left:18%; bottom:30%; --s:2px; --dx:-8px; --dx2:5px; animation-duration:4.0s; animation-delay:1.0s"></div>
+    <div class="section-particle section-ember" style="right:10%; bottom:15%; --s:3px; --dx:6px; --dx2:-10px; animation-duration:3.2s; animation-delay:0.5s"></div>
+    <div class="section-particle section-ember" style="right:25%; bottom:35%; --s:2px; --dx:-5px; --dx2:8px; animation-duration:4.5s; animation-delay:1.8s"></div>
+    <div class="section-particle section-ember" style="left:45%; bottom:10%; --s:4px; --dx:12px; --dx2:-8px; animation-duration:3.8s; animation-delay:2.2s"></div>
+    <div class="grid-section-label">🔥 Fire Creatures — <span style="color:var(--fire);font-size:10px">Unlocks at Level 15</span></div>
+    <div class="creature-grid">
+
+      <div class="creature-card locked">
+        <div class="card-habitat-bar fire"></div>
+        <div class="card-sprite-area">
+          <div class="creature-sprite sprite-fire" style="opacity:0.3">❓</div>
+          <span class="rarity-badge rarity-common">Common</span>
+        </div>
+        <div class="card-info">
+          <div class="card-name">???</div>
+          <div class="card-buy-row">
+            <div class="card-price"><span class="card-price-icon">✦</span> ???</div>
+          </div>
+        </div>
+        <div class="lock-overlay">
+          <span class="lock-icon">🔒</span>
+          <span class="lock-label">Unlock at<br>Level 15</span>
+        </div>
+      </div>
+
+      <div class="creature-card locked">
+        <div class="card-habitat-bar fire"></div>
+        <div class="card-sprite-area">
+          <div class="creature-sprite sprite-fire" style="opacity:0.3">❓</div>
+          <span class="rarity-badge rarity-common">Common</span>
+        </div>
+        <div class="card-info">
+          <div class="card-name">???</div>
+          <div class="card-buy-row">
+            <div class="card-price"><span class="card-price-icon">✦</span> ???</div>
+          </div>
+        </div>
+        <div class="lock-overlay">
+          <span class="lock-icon">🔒</span>
+          <span class="lock-label">Unlock at<br>Level 15</span>
+        </div>
+      </div>
+
+      <div class="creature-card locked">
+        <div class="card-habitat-bar fire"></div>
+        <div class="card-sprite-area">
+          <div class="creature-sprite sprite-fire" style="opacity:0.3">❓</div>
+          <span class="rarity-badge rarity-uncommon">Uncommon</span>
+        </div>
+        <div class="card-info">
+          <div class="card-name">???</div>
+          <div class="card-buy-row">
+            <div class="card-price"><span class="card-price-icon">✦</span> ???</div>
+          </div>
+        </div>
+        <div class="lock-overlay">
+          <span class="lock-icon">🔒</span>
+          <span class="lock-label">Unlock at<br>Level 15</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+</div><!-- /main-content -->
+
+<!-- ── RIGHT SIDEBAR ──── -->
+<div class="sidebar">
+  <div class="sidebar-btn" onclick="location='habitat-floor.html'">
+    <span class="sidebar-icon">🏠</span><span class="sidebar-label">Home</span>
+  </div>
+  <div class="sidebar-btn active" onclick="location='shop.html'">
+    <span class="sidebar-icon">🛒</span><span class="sidebar-label">Shop</span>
+  </div>
+  <div class="sidebar-btn" onclick="location='orders.html'">
+    <span class="sidebar-icon">📜</span><span class="sidebar-label">Orders</span>
+  </div>
+  <div class="sidebar-btn">
+    <span class="sidebar-icon">🧬</span><span class="sidebar-label">Breed</span>
+  </div>
+  <div class="sidebar-btn">
+    <span class="sidebar-icon">📖</span><span class="sidebar-label">Pedia</span>
+  </div>
+  <div class="sidebar-spacer"></div>
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-btn">
+    <span class="sidebar-icon">⚙</span><span class="sidebar-label">Settings</span>
+  </div>
+</div>
+
+</div><!-- /layout -->
+
+</body>
+</html>

@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280">
+<title>Keeper's Legacy — Creature Detail</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=IM+Fell+English:ital@0;1&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:         #0C0907;
+    --panel:      #1A1208;
+    --panel2:     #221A0E;
+    --border:     #3A2818;
+    --text:       #F0E8D8;
+    --muted:      #9A8070;
+    --gold:       #E8B830;
+    --gold-lt:    #F0CC50;
+    --green:      #3A9040;
+    /* Water theme */
+    --habitat:    #4AA8E0;
+    --habitat-dk: #2878A8;
+    --habitat-glow: rgba(74,168,224,0.25);
+  }
+
+  html, body {
+    width: 1280px; height: 720px;
+    overflow: hidden;
+    background: var(--bg);
+    font-family: 'Crimson Text', serif;
+    color: var(--text);
+  }
+
+  /* ── OVERLAY BAR (translucent, top) ─────────────────── */
+  .overlay-bar {
+    position: absolute; top: 0; left: 0;
+    width: 698px;
+    z-index: 30;
+    display: flex; align-items: center; gap: 0;
+    padding: 0 16px;
+    height: 44px;
+    background: rgba(12,9,7,0.80);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(74,168,224,0.12);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+  }
+  .back-btn {
+    display: flex; align-items: center; gap: 6px;
+    font-family: 'Cinzel', serif; font-size: 11px; font-weight: 600;
+    color: rgba(232,184,48,0.75);
+    cursor: pointer; padding: 5px 8px 5px 0;
+    border: none; background: none;
+    transition: color 0.15s; letter-spacing: 0.3px;
+  }
+  .back-btn:hover { color: var(--gold-lt); }
+  .bar-sep {
+    width: 1px; height: 24px;
+    background: rgba(58,40,24,0.8);
+    margin: 0 12px;
+  }
+  .bar-info {
+    display: flex; align-items: center; gap: 8px; flex: 1;
+  }
+  .bar-icon { font-size: 18px; line-height: 1; }
+  .bar-title {
+    font-family: 'Cinzel', serif; font-size: 14px; font-weight: 700;
+    color: var(--habitat);
+    letter-spacing: 0.4px;
+    text-shadow: 0 0 10px rgba(74,168,224,0.3);
+  }
+  .bar-subtitle {
+    font-family: 'IM Fell English', serif;
+    font-style: italic; font-size: 11px;
+    color: var(--muted);
+  }
+  .bar-pill {
+    font-family: 'Cinzel', serif; font-size: 10px; font-weight: 700;
+    padding: 2px 8px; border-radius: 8px;
+    background: rgba(74,168,224,0.15);
+    border: 1px solid rgba(74,168,224,0.35);
+    color: var(--habitat);
+  }
+  .bar-coins {
+    font-family: 'Cinzel', serif; font-size: 11px; font-weight: 600;
+    color: var(--gold-lt);
+    background: rgba(232,184,48,0.08);
+    border: 1px solid rgba(232,184,48,0.2);
+    border-radius: 8px; padding: 3px 8px;
+  }
+
+  /* ── MAIN LAYOUT (full viewport, 2-column 60/40) ────── */
+  .main-layout {
+    display: flex;
+    width: 1280px; height: 720px;
+    position: relative;
+  }
+
+  /* ── LEFT: SHOWCASE (60%) ───────────────────────────── */
+  .showcase-panel {
+    flex: 0 0 698px;
+    position: relative; overflow: hidden;
+    background: linear-gradient(180deg, #061828 0%, #0A2038 25%, #0E3050 55%, #1A4060 78%, #1E2A1E 100%);
+  }
+
+  /* Water surface */
+  .env-surface {
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, rgba(74,168,224,0.6), rgba(120,200,255,0.8), rgba(74,168,224,0.6), transparent);
+    animation: surface-shimmer 3s ease-in-out infinite;
+    z-index: 5;
+  }
+  @keyframes surface-shimmer {
+    0%,100% { opacity: 0.6; }
+    50%      { opacity: 1; }
+  }
+
+  /* Caustic rays */
+  .env-rays {
+    position: absolute; inset: 0; pointer-events: none;
+    background:
+      radial-gradient(ellipse 350px 100px at 20% 0%, rgba(74,168,224,0.10), transparent),
+      radial-gradient(ellipse 250px 80px at 55% 0%, rgba(74,168,224,0.07), transparent),
+      radial-gradient(ellipse 180px 50px at 80% 0%, rgba(74,168,224,0.05), transparent);
+  }
+
+  /* Light shafts */
+  .light-shaft {
+    position: absolute; top: 0; pointer-events: none;
+    width: var(--w, 60px); height: 100%;
+    background: linear-gradient(180deg,
+      rgba(74,168,224,0.08) 0%,
+      rgba(74,168,224,0.03) 40%,
+      transparent 75%);
+    transform: skewX(var(--skew, -8deg));
+    opacity: var(--op, 0.5);
+    animation: shaft-pulse var(--dur, 6s) ease-in-out infinite var(--dly, 0s);
+  }
+  @keyframes shaft-pulse {
+    0%,100% { opacity: var(--op, 0.5); }
+    50%     { opacity: calc(var(--op, 0.5) * 0.35); }
+  }
+
+  /* Bubbles */
+  .bubble {
+    position: absolute; border-radius: 50%;
+    background: rgba(74,168,224,0.25);
+    border: 1px solid rgba(120,200,255,0.4);
+    animation: bubble-rise linear infinite;
+    pointer-events: none;
+  }
+  @keyframes bubble-rise {
+    0%   { transform: translateY(0) scale(1); opacity: 0.5; }
+    80%  { opacity: 0.25; }
+    100% { transform: translateY(-400px) scale(0.5); opacity: 0; }
+  }
+
+  /* Sandy floor */
+  .env-floor {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 65px;
+    background: linear-gradient(180deg, transparent 0%, rgba(192,136,64,0.25) 30%, rgba(160,110,40,0.45) 70%, rgba(140,95,35,0.55) 100%);
+    border-top: 1px solid rgba(192,136,64,0.12);
+    z-index: 1;
+  }
+  .env-floor::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 8px 5px at 12% 55%, rgba(220,180,100,0.12), transparent),
+      radial-gradient(ellipse 6px 4px at 30% 70%, rgba(200,160,80,0.10), transparent),
+      radial-gradient(ellipse 7px 4px at 50% 50%, rgba(220,180,100,0.08), transparent),
+      radial-gradient(ellipse 8px 5px at 70% 65%, rgba(200,160,80,0.12), transparent),
+      radial-gradient(ellipse 6px 4px at 88% 55%, rgba(220,180,100,0.10), transparent);
+  }
+
+  /* Seaweed */
+  .seaweed {
+    position: absolute; bottom: 55px;
+    font-size: 22px;
+    animation: sway 2.8s ease-in-out infinite;
+    transform-origin: bottom center;
+    z-index: 2;
+  }
+  @keyframes sway {
+    0%,100% { transform: rotate(-5deg); }
+    50%     { transform: rotate(5deg); }
+  }
+
+  /* Coral & rocks */
+  .coral { position: absolute; z-index: 2; pointer-events: none; }
+  .rock  { position: absolute; z-index: 1; pointer-events: none; opacity: 0.7; }
+
+  /* Background fish */
+  .bg-fish {
+    position: absolute;
+    font-size: 12px; opacity: 0.12;
+    pointer-events: none;
+    animation: drift var(--dur, 16s) linear infinite;
+    z-index: 0;
+  }
+  @keyframes drift {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(var(--dx, 400px)); }
+  }
+
+  /* Main creature display */
+  .showcase-creature {
+    position: absolute;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    display: flex; flex-direction: column;
+    align-items: center; gap: 12px;
+  }
+  .creature-glow {
+    position: absolute;
+    width: 200px; height: 80px;
+    bottom: -30px; left: 50%; transform: translateX(-50%);
+    background: radial-gradient(ellipse, rgba(74,168,224,0.35), transparent);
+    border-radius: 50%;
+    z-index: 0;
+  }
+  .showcase-blob {
+    width: 140px; height: 140px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, rgba(120,210,255,0.4), rgba(20,100,160,0.9));
+    border: 3px solid rgba(74,168,224,0.7);
+    box-shadow: 0 0 40px rgba(74,168,224,0.5), 0 10px 24px rgba(0,0,0,0.5);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 64px;
+    position: relative; z-index: 2;
+    animation: showcase-bob 2.2s ease-in-out infinite, showcase-glow 3s ease-in-out infinite;
+  }
+  @keyframes showcase-bob {
+    0%,100% { transform: translateY(0) scaleY(1) scaleX(1); }
+    45%     { transform: translateY(-10px) scaleY(1.03) scaleX(0.97); }
+    55%     { transform: translateY(-10px) scaleY(1.03) scaleX(0.97); }
+    90%     { transform: translateY(3px) scaleY(0.96) scaleX(1.04); }
+  }
+  @keyframes showcase-glow {
+    0%,100% { box-shadow: 0 0 40px rgba(74,168,224,0.5), 0 10px 24px rgba(0,0,0,0.5); }
+    50%     { box-shadow: 0 0 60px rgba(74,168,224,0.75), 0 10px 24px rgba(0,0,0,0.5); }
+  }
+
+  /* Name plate beneath creature */
+  .showcase-name-plate {
+    text-align: center; z-index: 2;
+  }
+  .creature-big-name {
+    font-family: 'Cinzel', serif; font-size: 24px; font-weight: 700;
+    color: var(--text);
+    text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+  }
+  .creature-species {
+    font-family: 'IM Fell English', serif;
+    font-style: italic; font-size: 14px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+  .creature-stage-pill {
+    display: inline-block;
+    font-family: 'Cinzel', serif; font-size: 10px; font-weight: 700;
+    padding: 3px 10px; border-radius: 10px;
+    background: rgba(74,168,224,0.2);
+    border: 1px solid rgba(74,168,224,0.4);
+    color: var(--habitat);
+    margin-top: 6px;
+  }
+
+  /* Showcase label */
+  .showcase-label {
+    position: absolute; bottom: 12px; left: 16px;
+    font-family: 'Cinzel', serif; font-size: 10px;
+    color: rgba(74,168,224,0.5);
+    letter-spacing: 0.5px; z-index: 10;
+  }
+
+  /* ── RIGHT: CARE PANEL (40%) ────────────────────────── */
+  .care-panel {
+    flex: 1;
+    display: flex; flex-direction: column;
+    background: var(--panel);
+    border-left: 1px solid rgba(74,168,224,0.12);
+    padding: 16px 24px 20px;
+    gap: 16px;
+    overflow-y: auto;
+  }
+
+  /* Mood quote at top of care panel */
+  .mood-quote {
+    font-family: 'IM Fell English', serif;
+    font-style: italic; font-size: 13px;
+    color: rgba(232,184,48,0.65);
+    padding: 10px 14px;
+    background: rgba(232,184,48,0.04);
+    border: 1px solid rgba(232,184,48,0.08);
+    border-radius: 8px;
+    line-height: 1.5;
+  }
+
+  /* Stats section */
+  .stats-section { display: flex; flex-direction: column; gap: 9px; }
+  .section-label {
+    font-family: 'Cinzel', serif; font-size: 10px; font-weight: 700;
+    letter-spacing: 1px; color: var(--muted);
+    text-transform: uppercase;
+    display: flex; align-items: center; gap: 8px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(58,40,24,0.6);
+  }
+
+  .stat-row {
+    display: flex; align-items: center; gap: 10px;
+  }
+  .stat-icon { font-size: 14px; flex-shrink: 0; line-height: 1; }
+  .stat-label {
+    font-family: 'Cinzel', serif; font-size: 10px; font-weight: 600;
+    color: var(--muted); width: 80px; flex-shrink: 0;
+    letter-spacing: 0.3px;
+  }
+  .stat-bar-outer {
+    flex: 1; height: 9px;
+    background: rgba(0,0,0,0.35);
+    border-radius: 5px; overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+  .stat-bar-fill {
+    height: 100%; border-radius: 5px;
+    position: relative;
+  }
+  .stat-bar-fill::after {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 50%;
+    background: rgba(255,255,255,0.2);
+    border-radius: 5px 5px 0 0;
+  }
+  .stat-pct {
+    font-family: 'Cinzel', serif; font-size: 10px; font-weight: 700;
+    color: var(--muted); width: 28px; text-align: right; flex-shrink: 0;
+  }
+  .stat-pct.low  { color: #D4622A; }
+  .stat-pct.mid  { color: #C9941A; }
+  .stat-pct.high { color: var(--green); }
+
+  /* Divider */
+  .care-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(58,40,24,0.8), transparent);
+  }
+
+  /* Action buttons — 2x3 grid */
+  .actions-section { display: flex; flex-direction: column; gap: 9px; }
+  .action-buttons {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .action-btn {
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 12px;
+    border-radius: 9px;
+    border: 1.5px solid var(--border);
+    background: var(--panel2);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .action-btn:hover {
+    border-color: rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.04);
+    transform: translateY(-1px);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+  }
+  .action-btn.feed:hover    { border-color: rgba(212,98,42,0.5);   background: rgba(212,98,42,0.07); }
+  .action-btn.play:hover    { border-color: rgba(201,148,26,0.5);  background: rgba(201,148,26,0.07); }
+  .action-btn.clean:hover   { border-color: rgba(74,168,224,0.5);  background: rgba(74,168,224,0.07); }
+  .action-btn.pet:hover     { border-color: rgba(152,96,224,0.5);  background: rgba(152,96,224,0.07); }
+  .action-btn.move:hover    { border-color: rgba(232,184,48,0.5);  background: rgba(232,184,48,0.07); }
+  .action-btn.sell:hover    { border-color: rgba(58,144,64,0.5);   background: rgba(58,144,64,0.07); }
+
+  .action-btn-icon { font-size: 20px; flex-shrink: 0; }
+  .action-btn-info { flex: 1; }
+  .action-btn-label {
+    font-family: 'Cinzel', serif; font-size: 11px; font-weight: 700;
+    color: var(--text); letter-spacing: 0.3px;
+  }
+  .action-btn-sub {
+    font-family: 'Crimson Text', serif; font-size: 10px;
+    color: var(--muted); margin-top: 1px;
+  }
+  .action-btn-value {
+    font-family: 'Cinzel', serif; font-size: 11px; font-weight: 700;
+    color: var(--gold); flex-shrink: 0;
+  }
+  .action-btn-value.need {
+    font-size: 9px; color: var(--muted);
+    background: rgba(255,255,255,0.05);
+    padding: 2px 5px; border-radius: 5px;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  /* ── RIGHT SIDEBAR MENU ─────────────────────────────── */
+  .sidebar {
+    width: 70px; flex-shrink: 0;
+    background: linear-gradient(180deg, #1A1208 0%, #140E06 100%);
+    border-left: 2px solid rgba(232,184,48,0.15);
+    display: flex; flex-direction: column;
+    align-items: center; padding: 12px 0; gap: 4px; z-index: 20;
+  }
+  .sidebar-btn {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 3px;
+    width: 58px; height: 58px; border-radius: 10px;
+    background: transparent; border: 1.5px solid transparent;
+    cursor: pointer; transition: all 0.15s;
+  }
+  .sidebar-btn:hover { background: rgba(232,184,48,0.06); border-color: rgba(232,184,48,0.15); }
+  .sidebar-btn.active { background: rgba(232,184,48,0.10); border-color: rgba(232,184,48,0.3); box-shadow: 0 0 10px rgba(232,184,48,0.08); }
+  .sidebar-icon { font-size: 24px; line-height: 1; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.4)); }
+  .sidebar-label { font-family: 'Cinzel', serif; font-size: 8px; font-weight: 600; color: rgba(232,184,48,0.5); letter-spacing: 0.3px; text-transform: uppercase; }
+  .sidebar-btn.active .sidebar-label { color: #F0CC50; }
+  .sidebar-btn.active .sidebar-icon { filter: drop-shadow(0 0 5px rgba(232,184,48,0.4)) drop-shadow(0 1px 2px rgba(0,0,0,0.4)); }
+  .sidebar-spacer { flex: 1; }
+  .sidebar-divider { width: 36px; height: 1px; background: rgba(232,184,48,0.1); margin: 2px 0; }
+</style>
+</head>
+<body>
+
+<!-- ── OVERLAY BAR ────────────────────────────────────── -->
+<div class="overlay-bar">
+  <button class="back-btn" onclick="location='habitat-category.html'">
+    <span>◀</span> Habitat 1
+  </button>
+  <div class="bar-sep"></div>
+  <div class="bar-info">
+    <span class="bar-icon">🐠</span>
+    <div>
+      <div class="bar-title">Tidecaller</div>
+      <div class="bar-subtitle">Aquatic Rare · Water Type</div>
+    </div>
+    <div class="bar-pill">Adult</div>
+  </div>
+  <span class="bar-coins">✦ 1,250</span>
+</div>
+
+<!-- ── MAIN LAYOUT ────────────────────────────────────── -->
+<div class="main-layout">
+
+  <!-- ── LEFT: SHOWCASE PANEL (60%) ──── -->
+  <div class="showcase-panel">
+    <div class="env-surface"></div>
+    <div class="env-rays"></div>
+
+    <!-- Light shafts -->
+    <div class="light-shaft" style="left:8%;  --w:55px; --skew:-10deg; --op:0.45; --dur:7s;   --dly:0s"></div>
+    <div class="light-shaft" style="left:28%; --w:75px; --skew:-6deg;  --op:0.6;  --dur:5.5s; --dly:1.2s"></div>
+    <div class="light-shaft" style="left:52%; --w:50px; --skew:-12deg; --op:0.35; --dur:8s;   --dly:2.5s"></div>
+    <div class="light-shaft" style="left:75%; --w:60px; --skew:-8deg;  --op:0.5;  --dur:6.5s; --dly:0.8s"></div>
+
+    <!-- Bubbles -->
+    <div class="bubble" style="width:6px;height:6px; left:10%; bottom:30%; animation-duration:5.2s; animation-delay:0s"></div>
+    <div class="bubble" style="width:4px;height:4px; left:22%; bottom:45%; animation-duration:4.4s; animation-delay:1.2s"></div>
+    <div class="bubble" style="width:8px;height:8px; left:38%; bottom:25%; animation-duration:6.1s; animation-delay:0.5s"></div>
+    <div class="bubble" style="width:5px;height:5px; left:55%; bottom:50%; animation-duration:4.8s; animation-delay:2.0s"></div>
+    <div class="bubble" style="width:4px;height:4px; left:65%; bottom:35%; animation-duration:5.6s; animation-delay:0.8s"></div>
+    <div class="bubble" style="width:7px;height:7px; left:78%; bottom:28%; animation-duration:4.2s; animation-delay:1.5s"></div>
+    <div class="bubble" style="width:5px;height:5px; left:88%; bottom:42%; animation-duration:5.9s; animation-delay:0.3s"></div>
+    <div class="bubble" style="width:3px;height:3px; left:45%; bottom:60%; animation-duration:6.4s; animation-delay:2.8s"></div>
+
+    <!-- Background fish -->
+    <div class="bg-fish" style="left:-20px; top:30%; --dur:20s; --dx:800px;">🐟</div>
+    <div class="bg-fish" style="left:780px; top:60%; --dur:24s; --dx:-820px; transform:scaleX(-1);">🐟</div>
+
+    <!-- Coral -->
+    <div class="coral" style="left:3%;  bottom:52px; font-size:28px;">🪸</div>
+    <div class="coral" style="left:12%; bottom:50px; font-size:20px;">🪸</div>
+    <div class="coral" style="right:5%; bottom:54px; font-size:26px;">🪸</div>
+    <div class="coral" style="right:15%; bottom:48px; font-size:18px;">🪸</div>
+    <div class="coral" style="left:42%; bottom:52px; font-size:16px;">🪸</div>
+
+    <!-- Rocks -->
+    <div class="rock" style="left:1%;  bottom:42px; font-size:22px;">🪨</div>
+    <div class="rock" style="right:2%; bottom:45px; font-size:24px;">🪨</div>
+    <div class="rock" style="left:35%; bottom:44px; font-size:16px;">🪨</div>
+
+    <!-- Seaweed -->
+    <span class="seaweed" style="left:5%;">🌿</span>
+    <span class="seaweed" style="left:15%; animation-delay:0.7s;">🌿</span>
+    <span class="seaweed" style="left:48%; animation-delay:1.4s;">🌿</span>
+    <span class="seaweed" style="left:70%; animation-delay:1.1s;">🌿</span>
+    <span class="seaweed" style="left:82%; animation-delay:0.3s;">🌿</span>
+    <span class="seaweed" style="left:92%; animation-delay:1.6s;">🌿</span>
+
+    <!-- Sandy floor -->
+    <div class="env-floor"></div>
+
+    <!-- Main creature (centered) -->
+    <div class="showcase-creature">
+      <div class="creature-glow"></div>
+      <div class="showcase-blob">🐠</div>
+      <div class="showcase-name-plate">
+        <div class="creature-big-name">Tidecaller</div>
+        <div class="creature-species">Aquatic Rare · Water Type</div>
+        <div class="creature-stage-pill">Adult</div>
+      </div>
+    </div>
+
+    <div class="showcase-label">Water · Habitat 1 · Tidecaller</div>
+  </div>
+
+  <!-- ── RIGHT: CARE PANEL (40%) ──── -->
+  <div class="care-panel">
+
+    <!-- Mood quote (creature-specific) -->
+    <div class="mood-quote">
+      "Tidecaller seems content — splashing playfully near the surface."
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-section">
+      <div class="section-label">✦ &nbsp;Creature Needs</div>
+
+      <div class="stat-row">
+        <span class="stat-icon">🍖</span>
+        <span class="stat-label">Hunger</span>
+        <div class="stat-bar-outer">
+          <div class="stat-bar-fill" style="width:72%; background: linear-gradient(90deg, #B84010, #D4622A)"></div>
+        </div>
+        <span class="stat-pct mid">72%</span>
+      </div>
+
+      <div class="stat-row">
+        <span class="stat-icon">🎾</span>
+        <span class="stat-label">Happiness</span>
+        <div class="stat-bar-outer">
+          <div class="stat-bar-fill" style="width:85%; background: linear-gradient(90deg, #A87010, #C9941A)"></div>
+        </div>
+        <span class="stat-pct high">85%</span>
+      </div>
+
+      <div class="stat-row">
+        <span class="stat-icon">🛁</span>
+        <span class="stat-label">Cleanliness</span>
+        <div class="stat-bar-outer">
+          <div class="stat-bar-fill" style="width:90%; background: linear-gradient(90deg, #2878A8, #4AA8E0)"></div>
+        </div>
+        <span class="stat-pct high">90%</span>
+      </div>
+
+      <div class="stat-row">
+        <span class="stat-icon">💜</span>
+        <span class="stat-label">Affection</span>
+        <div class="stat-bar-outer">
+          <div class="stat-bar-fill" style="width:60%; background: linear-gradient(90deg, #6040A8, #9860E0)"></div>
+        </div>
+        <span class="stat-pct mid">60%</span>
+      </div>
+    </div>
+
+    <div class="care-divider"></div>
+
+    <!-- Action buttons (2x3 grid: Feed, Play, Clean, Pet, Move, Sell) -->
+    <div class="actions-section">
+      <div class="section-label">✦ &nbsp;Care Actions</div>
+
+      <div class="action-buttons">
+
+        <div class="action-btn feed">
+          <span class="action-btn-icon">🍖</span>
+          <div class="action-btn-info">
+            <div class="action-btn-label">Feed</div>
+            <div class="action-btn-sub">+25 Hunger</div>
+          </div>
+          <span class="action-btn-value need">× 4</span>
+        </div>
+
+        <div class="action-btn play">
+          <span class="action-btn-icon">🎾</span>
+          <div class="action-btn-info">
+            <div class="action-btn-label">Play</div>
+            <div class="action-btn-sub">+20 Happiness</div>
+          </div>
+        </div>
+
+        <div class="action-btn clean">
+          <span class="action-btn-icon">🛁</span>
+          <div class="action-btn-info">
+            <div class="action-btn-label">Clean</div>
+            <div class="action-btn-sub">+30 Cleanliness</div>
+          </div>
+        </div>
+
+        <div class="action-btn pet">
+          <span class="action-btn-icon">💜</span>
+          <div class="action-btn-info">
+            <div class="action-btn-label">Pet</div>
+            <div class="action-btn-sub">+15 Affection</div>
+          </div>
+        </div>
+
+        <div class="action-btn move">
+          <span class="action-btn-icon">📦</span>
+          <div class="action-btn-info">
+            <div class="action-btn-label">Move</div>
+            <div class="action-btn-sub">Transfer habitat</div>
+          </div>
+        </div>
+
+        <div class="action-btn sell">
+          <span class="action-btn-icon">💰</span>
+          <div class="action-btn-info">
+            <div class="action-btn-label">Sell</div>
+            <div class="action-btn-sub">Rare · Adult</div>
+          </div>
+          <span class="action-btn-value">520 g</span>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── RIGHT SIDEBAR ──── -->
+  <div class="sidebar">
+    <div class="sidebar-btn active" onclick="location='habitat-floor.html'">
+      <span class="sidebar-icon">🏠</span><span class="sidebar-label">Home</span>
+    </div>
+    <div class="sidebar-btn" onclick="location='shop.html'">
+      <span class="sidebar-icon">🛒</span><span class="sidebar-label">Shop</span>
+    </div>
+    <div class="sidebar-btn" onclick="location='orders.html'">
+      <span class="sidebar-icon">📜</span><span class="sidebar-label">Orders</span>
+    </div>
+    <div class="sidebar-btn">
+      <span class="sidebar-icon">🧬</span><span class="sidebar-label">Breed</span>
+    </div>
+    <div class="sidebar-btn">
+      <span class="sidebar-icon">📖</span><span class="sidebar-label">Pedia</span>
+    </div>
+    <div class="sidebar-spacer"></div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-btn">
+      <span class="sidebar-icon">⚙</span><span class="sidebar-label">Settings</span>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

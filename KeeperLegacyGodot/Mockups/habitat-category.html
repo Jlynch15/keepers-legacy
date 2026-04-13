@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280">
+<title>Keeper's Legacy — Water Habitats</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=IM+Fell+English:ital@0;1&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:         #0C0907;
+    --panel:      #1A1208;
+    --panel2:     #221A0E;
+    --border:     #3A2818;
+    --text:       #F0E8D8;
+    --muted:      #9A8070;
+    --gold:       #E8B830;
+    --gold-lt:    #F0CC50;
+    --green:      #3A9040;
+    /* Water habitat theme */
+    --habitat:    #4AA8E0;
+    --habitat-dk: #2878A8;
+    --habitat-glow: rgba(74,168,224,0.25);
+  }
+
+  html, body {
+    width: 1280px; height: 720px;
+    overflow: hidden;
+    background: var(--bg);
+    font-family: 'Crimson Text', serif;
+    color: var(--text);
+  }
+
+  /* ── MAIN LAYOUT (full viewport) ────────────────────── */
+  .main-layout {
+    display: flex;
+    width: 1280px; height: 720px;
+  }
+
+  /* ── ENVIRONMENT PANEL (left 2/3) ───────────────────── */
+  .env-panel {
+    flex: 0 0 820px;
+    display: flex; flex-direction: column;
+    position: relative; overflow: hidden;
+  }
+
+  /* ── OVERLAY BAR (translucent, top of env panel) ────── */
+  .overlay-bar {
+    position: absolute; top: 0; left: 0; right: 0;
+    z-index: 20;
+    display: flex; align-items: center; gap: 0;
+    padding: 0 16px;
+    height: 44px;
+    background: rgba(12,9,7,0.80);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(74,168,224,0.15);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+  }
+  .back-btn {
+    display: flex; align-items: center; gap: 6px;
+    font-family: 'Cinzel', serif; font-size: 11px; font-weight: 600;
+    color: rgba(232,184,48,0.75);
+    cursor: pointer;
+    padding: 5px 8px 5px 0;
+    border: none; background: none;
+    transition: color 0.15s;
+    letter-spacing: 0.3px;
+  }
+  .back-btn:hover { color: var(--gold-lt); }
+  .back-arrow { font-size: 13px; }
+  .bar-sep {
+    width: 1px; height: 24px;
+    background: rgba(58,40,24,0.8);
+    margin: 0 12px;
+  }
+  .habitat-info {
+    display: flex; align-items: center; gap: 8px; flex: 1;
+  }
+  .habitat-icon { font-size: 18px; line-height: 1; }
+  .habitat-name {
+    font-family: 'Cinzel', serif; font-size: 14px; font-weight: 700;
+    color: var(--habitat);
+    letter-spacing: 0.4px;
+    text-shadow: 0 0 10px rgba(74,168,224,0.3);
+  }
+  .habitat-sub {
+    font-family: 'IM Fell English', serif;
+    font-style: italic; font-size: 11px;
+    color: var(--muted);
+  }
+  .habitat-count-pill {
+    font-family: 'Cinzel', serif; font-size: 10px; font-weight: 700;
+    padding: 2px 8px; border-radius: 8px;
+    background: rgba(74,168,224,0.15);
+    border: 1px solid rgba(74,168,224,0.35);
+    color: var(--habitat);
+  }
+  .bar-coins {
+    font-family: 'Cinzel', serif; font-size: 11px; font-weight: 600;
+    color: var(--gold-lt);
+    background: rgba(232,184,48,0.08);
+    border: 1px solid rgba(232,184,48,0.2);
+    border-radius: 8px; padding: 3px 8px;
+  }
+
+  /* ── HABITAT SLOT TABS ──────────────────────────────── */
+  .slot-tabs {
+    display: flex; gap: 0;
+    background: rgba(8,6,4,0.9);
+    border-bottom: 1px solid rgba(74,168,224,0.2);
+    position: relative; z-index: 10;
+    margin-top: 44px; /* below overlay bar */
+  }
+  .slot-tab {
+    flex: 1;
+    display: flex; align-items: center; justify-content: center; gap: 7px;
+    padding: 9px 16px;
+    font-family: 'Cinzel', serif; font-size: 11px; font-weight: 600;
+    color: var(--muted);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.15s;
+    letter-spacing: 0.3px;
+  }
+  .slot-tab:hover { color: var(--text); background: rgba(74,168,224,0.05); }
+  .slot-tab.active {
+    color: var(--habitat);
+    border-bottom-color: var(--habitat);
+    background: rgba(74,168,224,0.08);
+  }
+  .slot-tab.locked { opacity: 0.45; cursor: default; }
+  .slot-tab.locked:hover { background: none; color: var(--muted); }
+  .tab-lock-icon { font-size: 10px; }
+  .tab-count {
+    font-size: 10px; padding: 1px 5px;
+    border-radius: 8px;
+    background: rgba(74,168,224,0.2);
+    color: var(--habitat);
+  }
+  .slot-tab.active .tab-count {
+    background: rgba(74,168,224,0.3);
+  }
+
+  /* ── ENVIRONMENT VIEW ───────────────────────────────── */
+  .env-view {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg, #061828 0%, #0A2038 30%, #0E3050 60%, #1A4060 80%, #1E2A1E 100%);
+  }
+
+  /* Caustic light rays from surface */
+  .env-rays {
+    position: absolute; inset: 0; pointer-events: none;
+    background:
+      radial-gradient(ellipse 300px 80px at 25% 0%, rgba(74,168,224,0.12), transparent),
+      radial-gradient(ellipse 200px 60px at 65% 0%, rgba(74,168,224,0.08), transparent),
+      radial-gradient(ellipse 160px 40px at 85% 0%, rgba(74,168,224,0.06), transparent);
+  }
+
+  /* Light shafts */
+  .light-shaft {
+    position: absolute; top: 0; pointer-events: none;
+    width: var(--w, 60px);
+    height: 100%;
+    background: linear-gradient(180deg,
+      rgba(74,168,224,0.10) 0%,
+      rgba(74,168,224,0.04) 40%,
+      transparent 80%);
+    transform: skewX(var(--skew, -8deg));
+    opacity: var(--op, 0.6);
+    animation: shaft-pulse var(--dur, 6s) ease-in-out infinite var(--dly, 0s);
+  }
+  @keyframes shaft-pulse {
+    0%,100% { opacity: var(--op, 0.6); }
+    50%     { opacity: calc(var(--op, 0.6) * 0.4); }
+  }
+
+  /* Water surface line */
+  .env-surface {
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, rgba(74,168,224,0.6), rgba(120,200,255,0.8), rgba(74,168,224,0.6), transparent);
+    animation: surface-shimmer 3s ease-in-out infinite;
+    z-index: 5;
+  }
+  @keyframes surface-shimmer {
+    0%,100% { opacity: 0.6; }
+    50%      { opacity: 1; }
+  }
+
+  /* Bubble particles */
+  .bubble {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(74,168,224,0.3);
+    border: 1px solid rgba(120,200,255,0.5);
+    animation: bubble-rise linear infinite;
+    pointer-events: none;
+  }
+  @keyframes bubble-rise {
+    0%   { transform: translateY(0) scale(1); opacity: 0.6; }
+    80%  { opacity: 0.3; }
+    100% { transform: translateY(-220px) scale(0.6); opacity: 0; }
+  }
+
+  /* Sandy floor */
+  .env-floor {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 55px;
+    background: linear-gradient(180deg, transparent 0%, rgba(192,136,64,0.25) 30%, rgba(160,110,40,0.45) 70%, rgba(140,95,35,0.55) 100%);
+    border-top: 1px solid rgba(192,136,64,0.15);
+    z-index: 1;
+  }
+  /* Sand texture */
+  .env-floor::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 6px 4px at 15% 60%, rgba(220,180,100,0.15), transparent),
+      radial-gradient(ellipse 4px 3px at 35% 75%, rgba(200,160,80,0.12), transparent),
+      radial-gradient(ellipse 5px 3px at 55% 55%, rgba(220,180,100,0.10), transparent),
+      radial-gradient(ellipse 6px 4px at 75% 70%, rgba(200,160,80,0.14), transparent),
+      radial-gradient(ellipse 4px 3px at 90% 50%, rgba(220,180,100,0.12), transparent);
+  }
+
+  /* Seaweed decorations */
+  .seaweed {
+    position: absolute; bottom: 48px;
+    font-size: 22px;
+    animation: sway 2.8s ease-in-out infinite;
+    transform-origin: bottom center;
+    z-index: 2;
+  }
+  @keyframes sway {
+    0%,100% { transform: rotate(-5deg); }
+    50%      { transform: rotate(5deg); }
+  }
+
+  /* Coral & rock formations */
+  .coral {
+    position: absolute; z-index: 2;
+    pointer-events: none;
+  }
+  .rock {
+    position: absolute; z-index: 1;
+    pointer-events: none;
+    opacity: 0.7;
+  }
+
+  /* Background fish silhouettes */
+  .bg-fish {
+    position: absolute;
+    font-size: 14px;
+    opacity: 0.15;
+    pointer-events: none;
+    animation: drift var(--dur, 12s) linear infinite;
+    z-index: 0;
+  }
+  @keyframes drift {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(var(--dx, 300px)); }
+  }
+
+  /* Creatures in environment */
+  .env-creature {
+    position: absolute;
+    display: flex; flex-direction: column; align-items: center; gap: 3px;
+    cursor: pointer;
+    z-index: 4;
+    animation:
+      wander-env var(--dur, 4s) ease-in-out infinite var(--dly, 0s);
+  }
+  @keyframes wander-env {
+    0%         { transform: translate(0, 0); }
+    15%        { transform: translate(var(--wx1,  30px), var(--wy1, -40px)); }
+    30%        { transform: translate(var(--wx2, -50px), var(--wy2,  20px)); }
+    50%        { transform: translate(var(--wx3,  60px), var(--wy3,  50px)); }
+    65%        { transform: translate(var(--wx4, -30px), var(--wy4, -60px)); }
+    80%        { transform: translate(var(--wx5,  40px), var(--wy5,  30px)); }
+    100%       { transform: translate(0, 0); }
+  }
+  .env-creature-blob {
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 38% 35%, rgba(255,255,255,0.3), var(--habitat-dk));
+    border: 2px solid rgba(74,168,224,0.6);
+    box-shadow: 0 0 12px rgba(74,168,224,0.4), 0 4px 8px rgba(0,0,0,0.4);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px;
+    animation: bob 1.8s ease-in-out infinite var(--dly, 0s);
+    transition: transform 0.1s;
+  }
+  .env-creature-blob:hover {
+    box-shadow: 0 0 20px rgba(74,168,224,0.7), 0 4px 8px rgba(0,0,0,0.4);
+    transform: scale(1.1);
+  }
+  @keyframes bob {
+    0%,100% { transform: scaleY(1) scaleX(1); }
+    50%     { transform: scaleY(0.92) scaleX(1.06); }
+  }
+  .env-creature-name {
+    font-family: 'Crimson Text', serif;
+    font-size: 11px; color: rgba(240,232,216,0.8);
+    text-shadow: 0 1px 3px rgba(0,0,0,0.7);
+    white-space: nowrap;
+  }
+  .env-creature-stage {
+    font-size: 9px;
+    padding: 1px 5px; border-radius: 8px;
+    background: rgba(74,168,224,0.25);
+    color: var(--habitat);
+    font-family: 'Cinzel', serif;
+  }
+
+  /* Creature count label */
+  .env-label {
+    position: absolute; bottom: 10px; right: 14px;
+    font-family: 'Cinzel', serif; font-size: 10px;
+    color: rgba(74,168,224,0.6);
+    letter-spacing: 0.5px;
+    z-index: 10;
+  }
+
+  /* ── ROSTER PANEL (right 1/3) ───────────────────────── */
+  .roster-panel {
+    flex: 1;
+    display: flex; flex-direction: column;
+    background: var(--panel);
+    border-left: 1px solid rgba(74,168,224,0.15);
+  }
+  .roster-header {
+    padding: 12px 16px 10px;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .roster-title {
+    font-family: 'Cinzel', serif; font-size: 12px; font-weight: 700;
+    color: var(--text); letter-spacing: 0.5px;
+  }
+  .roster-subtitle {
+    font-family: 'Crimson Text', serif; font-size: 11px;
+    color: var(--muted); margin-top: 1px;
+  }
+  .roster-capacity {
+    font-family: 'Cinzel', serif; font-size: 11px; font-weight: 700;
+    color: var(--habitat);
+    background: rgba(74,168,224,0.12);
+    border: 1px solid rgba(74,168,224,0.3);
+    border-radius: 6px; padding: 3px 8px;
+  }
+
+  /* 2x2 creature grid */
+  .creature-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 14px;
+    flex: 1;
+  }
+  .creature-slot {
+    aspect-ratio: 1;
+    border-radius: 10px;
+    border: 1.5px solid rgba(74,168,224,0.2);
+    background: rgba(74,168,224,0.05);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 6px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .creature-slot:hover {
+    border-color: rgba(74,168,224,0.5);
+    background: rgba(74,168,224,0.1);
+  }
+  .creature-slot.empty {
+    border-style: dashed;
+    border-color: rgba(74,168,224,0.15);
+    background: transparent;
+  }
+  .creature-slot.selected {
+    border-color: var(--habitat);
+    background: rgba(74,168,224,0.15);
+    box-shadow: 0 0 12px rgba(74,168,224,0.25);
+  }
+
+  /* Creature in slot */
+  .slot-blob {
+    width: 54px; height: 54px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 38% 35%, rgba(255,255,255,0.25), var(--habitat-dk));
+    border: 2px solid rgba(74,168,224,0.5);
+    box-shadow: 0 0 10px rgba(74,168,224,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px;
+    animation: bob 1.8s ease-in-out infinite var(--dly, 0s);
+  }
+  .slot-name {
+    font-family: 'Cinzel', serif; font-size: 10px; font-weight: 600;
+    color: var(--text); text-align: center;
+  }
+  .slot-stage {
+    font-size: 9px; padding: 1px 5px; border-radius: 8px;
+    background: rgba(74,168,224,0.2); color: var(--habitat);
+    font-family: 'Cinzel', serif;
+  }
+  .slot-dots {
+    display: flex; gap: 3px;
+  }
+  .slot-dot {
+    width: 5px; height: 5px; border-radius: 50%;
+  }
+
+  /* Empty slot */
+  .slot-empty-icon { font-size: 22px; color: rgba(74,168,224,0.25); }
+  .slot-empty-label {
+    font-family: 'Crimson Text', serif; font-size: 11px;
+    color: rgba(74,168,224,0.45); text-align: center;
+    line-height: 1.3;
+  }
+  .slot-add-btn {
+    font-family: 'Cinzel', serif; font-size: 9px; font-weight: 700;
+    letter-spacing: 0.3px;
+    padding: 4px 10px; border-radius: 6px;
+    border: 1px solid rgba(74,168,224,0.35);
+    background: rgba(74,168,224,0.1);
+    color: var(--habitat); cursor: pointer;
+    transition: all 0.15s;
+  }
+  .slot-add-btn:hover {
+    background: rgba(74,168,224,0.2);
+    border-color: rgba(74,168,224,0.6);
+  }
+
+  /* Habitat nav footer */
+  .roster-footer {
+    padding: 10px 14px;
+    border-top: 1px solid var(--border);
+    display: flex; gap: 8px;
+  }
+  .habitat-nav-btn {
+    flex: 1;
+    font-family: 'Cinzel', serif; font-size: 11px; font-weight: 600;
+    padding: 9px 12px;
+    border-radius: 8px;
+    border: 1.5px solid var(--border);
+    background: var(--panel2);
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.15s;
+    letter-spacing: 0.3px;
+    text-align: center;
+  }
+  .habitat-nav-btn:hover {
+    border-color: rgba(74,168,224,0.4);
+    color: var(--habitat);
+    background: rgba(74,168,224,0.07);
+  }
+  .habitat-nav-btn.add-habitat {
+    border-color: rgba(74,168,224,0.35);
+    color: var(--habitat);
+    background: rgba(74,168,224,0.08);
+  }
+  .habitat-nav-btn.add-habitat:hover {
+    background: rgba(74,168,224,0.15);
+    border-color: var(--habitat);
+  }
+
+  /* ── RIGHT SIDEBAR MENU ─────────────────────────────── */
+  .sidebar {
+    width: 70px; flex-shrink: 0;
+    background: linear-gradient(180deg, #1A1208 0%, #140E06 100%);
+    border-left: 2px solid rgba(232,184,48,0.15);
+    display: flex; flex-direction: column;
+    align-items: center; padding: 12px 0; gap: 4px; z-index: 20;
+  }
+  .sidebar-btn {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 3px;
+    width: 58px; height: 58px; border-radius: 10px;
+    background: transparent; border: 1.5px solid transparent;
+    cursor: pointer; transition: all 0.15s;
+  }
+  .sidebar-btn:hover { background: rgba(232,184,48,0.06); border-color: rgba(232,184,48,0.15); }
+  .sidebar-btn.active { background: rgba(232,184,48,0.10); border-color: rgba(232,184,48,0.3); box-shadow: 0 0 10px rgba(232,184,48,0.08); }
+  .sidebar-icon { font-size: 24px; line-height: 1; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.4)); }
+  .sidebar-label { font-family: 'Cinzel', serif; font-size: 8px; font-weight: 600; color: rgba(232,184,48,0.5); letter-spacing: 0.3px; text-transform: uppercase; }
+  .sidebar-btn.active .sidebar-label { color: #F0CC50; }
+  .sidebar-btn.active .sidebar-icon { filter: drop-shadow(0 0 5px rgba(232,184,48,0.4)) drop-shadow(0 1px 2px rgba(0,0,0,0.4)); }
+  .sidebar-spacer { flex: 1; }
+  .sidebar-divider { width: 36px; height: 1px; background: rgba(232,184,48,0.1); margin: 2px 0; }
+</style>
+</head>
+<body>
+
+<div class="main-layout">
+
+  <!-- ── ENVIRONMENT PANEL ──── -->
+  <div class="env-panel">
+
+    <!-- Translucent overlay bar -->
+    <div class="overlay-bar">
+      <button class="back-btn" onclick="location='habitat-floor.html'">
+        <span class="back-arrow">◀</span> The Shop
+      </button>
+      <div class="bar-sep"></div>
+      <div class="habitat-info">
+        <span class="habitat-icon">💧</span>
+        <div>
+          <div class="habitat-name">Water Habitats</div>
+          <div class="habitat-sub">Aquatic · Oceanic · Deep Sea</div>
+        </div>
+        <div class="habitat-count-pill">4 / 12</div>
+      </div>
+      <span class="bar-coins">✦ 1,250</span>
+    </div>
+
+    <!-- Habitat slot tabs -->
+    <div class="slot-tabs">
+      <div class="slot-tab active">
+        <span>Habitat 1</span>
+        <span class="tab-count">3/4</span>
+      </div>
+      <div class="slot-tab">
+        <span>Habitat 2</span>
+        <span class="tab-count">1/4</span>
+      </div>
+      <div class="slot-tab locked">
+        <span class="tab-lock-icon">🔒</span>
+        <span>Habitat 3</span>
+        <span style="font-size:9px;color:var(--muted)">Lv.20</span>
+      </div>
+    </div>
+
+    <!-- Biome environment view -->
+    <div class="env-view">
+      <div class="env-rays"></div>
+      <div class="env-surface"></div>
+
+      <!-- Light shafts -->
+      <div class="light-shaft" style="left:10%; --w:50px; --skew:-10deg; --op:0.5; --dur:7s; --dly:0s"></div>
+      <div class="light-shaft" style="left:30%; --w:70px; --skew:-6deg; --op:0.7; --dur:5.5s; --dly:1.2s"></div>
+      <div class="light-shaft" style="left:55%; --w:45px; --skew:-12deg; --op:0.4; --dur:8s; --dly:2.5s"></div>
+      <div class="light-shaft" style="left:78%; --w:55px; --skew:-8deg; --op:0.55; --dur:6.5s; --dly:0.8s"></div>
+
+      <!-- Bubble particles -->
+      <div class="bubble" style="width:6px;height:6px; left:8%;  bottom:25%; animation-duration:5.2s; animation-delay:0s"></div>
+      <div class="bubble" style="width:4px;height:4px; left:18%; bottom:35%; animation-duration:4.4s; animation-delay:1.2s"></div>
+      <div class="bubble" style="width:8px;height:8px; left:34%; bottom:20%; animation-duration:6.1s; animation-delay:0.5s"></div>
+      <div class="bubble" style="width:5px;height:5px; left:50%; bottom:40%; animation-duration:4.8s; animation-delay:2.0s"></div>
+      <div class="bubble" style="width:4px;height:4px; left:62%; bottom:28%; animation-duration:5.6s; animation-delay:0.8s"></div>
+      <div class="bubble" style="width:7px;height:7px; left:75%; bottom:22%; animation-duration:4.2s; animation-delay:1.5s"></div>
+      <div class="bubble" style="width:5px;height:5px; left:88%; bottom:38%; animation-duration:5.9s; animation-delay:0.3s"></div>
+      <div class="bubble" style="width:4px;height:4px; left:22%; bottom:55%; animation-duration:6.4s; animation-delay:2.8s"></div>
+      <div class="bubble" style="width:6px;height:6px; left:55%; bottom:60%; animation-duration:4.9s; animation-delay:1.8s"></div>
+      <div class="bubble" style="width:3px;height:3px; left:42%; bottom:15%; animation-duration:5.0s; animation-delay:3.2s"></div>
+      <div class="bubble" style="width:5px;height:5px; left:70%; bottom:45%; animation-duration:5.5s; animation-delay:0.6s"></div>
+
+      <!-- Background fish silhouettes -->
+      <div class="bg-fish" style="left:-30px; top:35%; --dur:18s; --dx:860px;">🐟</div>
+      <div class="bg-fish" style="left:820px; top:55%; --dur:22s; --dx:-880px; transform:scaleX(-1);">🐟</div>
+      <div class="bg-fish" style="left:-20px; top:70%; --dur:15s; --dx:860px; animation-delay:4s;">🐠</div>
+
+      <!-- Coral formations -->
+      <div class="coral" style="left:4%; bottom:42px; font-size:26px;">🪸</div>
+      <div class="coral" style="left:12%; bottom:40px; font-size:20px;">🪸</div>
+      <div class="coral" style="right:8%; bottom:44px; font-size:24px;">🪸</div>
+      <div class="coral" style="right:18%; bottom:38px; font-size:18px;">🪸</div>
+      <div class="coral" style="left:45%; bottom:42px; font-size:16px;">🪸</div>
+
+      <!-- Rock formations -->
+      <div class="rock" style="left:2%; bottom:35px; font-size:20px;">🪨</div>
+      <div class="rock" style="right:3%; bottom:38px; font-size:22px;">🪨</div>
+      <div class="rock" style="left:38%; bottom:36px; font-size:16px;">🪨</div>
+
+      <!-- Seaweed -->
+      <span class="seaweed" style="left:6%;">🌿</span>
+      <span class="seaweed" style="left:14%; animation-delay:0.7s;">🌿</span>
+      <span class="seaweed" style="left:52%; animation-delay:1.4s;">🌿</span>
+      <span class="seaweed" style="left:72%; animation-delay:1.1s;">🌿</span>
+      <span class="seaweed" style="left:80%; animation-delay:0.3s;">🌿</span>
+      <span class="seaweed" style="left:90%; animation-delay:1.6s;">🌿</span>
+
+      <!-- Creature 1 — Tidecaller (middle-left, gentle wander) -->
+      <div class="env-creature" style="left:140px; top:160px;
+           --dur:18s; --dly:0s;
+           --wx1: 35px; --wy1:-30px;
+           --wx2:-40px; --wy2: 25px;
+           --wx3: 30px; --wy3: 35px;
+           --wx4:-25px; --wy4:-30px;
+           --wx5: 20px; --wy5: 15px;">
+        <div class="env-creature-blob">🐠</div>
+        <div class="env-creature-name">Tidecaller</div>
+        <div class="env-creature-stage">Adult</div>
+      </div>
+
+      <!-- Creature 2 — Shimmerstream (upper-center, lazy drift) -->
+      <div class="env-creature" style="left:350px; top:80px;
+           --dur:22s; --dly:1.5s;
+           --wx1:-35px; --wy1: 30px;
+           --wx2: 25px; --wy2: 45px;
+           --wx3:-20px; --wy3: 20px;
+           --wx4: 30px; --wy4:-25px;
+           --wx5:-20px; --wy5: 15px;">
+        <div class="env-creature-blob">🐟</div>
+        <div class="env-creature-name">Shimmerstream</div>
+        <div class="env-creature-stage">Adult</div>
+      </div>
+
+      <!-- Creature 3 — Coralsprite baby (lower-right, gentle bobbing) -->
+      <div class="env-creature" style="left:540px; top:280px;
+           --dur:14s; --dly:0.6s;
+           --wx1: 20px; --wy1:-20px;
+           --wx2:-30px; --wy2: 15px;
+           --wx3: 18px; --wy3: 25px;
+           --wx4:-15px; --wy4:-18px;
+           --wx5: 22px; --wy5: 10px;">
+        <div class="env-creature-blob" style="width:40px;height:40px;font-size:18px;">🐡</div>
+        <div class="env-creature-name">Coralsprite</div>
+        <div class="env-creature-stage">Baby</div>
+      </div>
+
+      <!-- Sand floor -->
+      <div class="env-floor"></div>
+
+      <div class="env-label">Habitat 1 · 3 / 4</div>
+    </div>
+
+  </div>
+
+  <!-- ── ROSTER PANEL ──── -->
+  <div class="roster-panel">
+
+    <div class="roster-header">
+      <div>
+        <div class="roster-title">Habitat 1 — Roster</div>
+        <div class="roster-subtitle">💧 Main Water Enclosure</div>
+      </div>
+      <div class="roster-capacity">3 / 4</div>
+    </div>
+
+    <!-- 2x2 creature slot grid -->
+    <div class="creature-grid">
+
+      <!-- Slot 1 — Tidecaller -->
+      <div class="creature-slot selected">
+        <div class="slot-blob" style="--dly:0s">🐠</div>
+        <div class="slot-name">Tidecaller</div>
+        <div class="slot-stage">Adult</div>
+        <div class="slot-dots">
+          <div class="slot-dot" style="background:#D4622A" title="Hunger 72%"></div>
+          <div class="slot-dot" style="background:#C9941A" title="Happy 85%"></div>
+          <div class="slot-dot" style="background:#4AA8E0" title="Clean 90%"></div>
+          <div class="slot-dot" style="background:#9860E0" title="Affection 60%"></div>
+        </div>
+      </div>
+
+      <!-- Slot 2 — Shimmerstream -->
+      <div class="creature-slot">
+        <div class="slot-blob" style="--dly:0.5s">🐟</div>
+        <div class="slot-name">Shimmerstream</div>
+        <div class="slot-stage">Adult</div>
+        <div class="slot-dots">
+          <div class="slot-dot" style="background:#D4622A"></div>
+          <div class="slot-dot" style="background:#C9941A"></div>
+          <div class="slot-dot" style="background:#4AA8E0"></div>
+          <div class="slot-dot" style="background:#9860E0"></div>
+        </div>
+      </div>
+
+      <!-- Slot 3 — Coralsprite -->
+      <div class="creature-slot">
+        <div class="slot-blob" style="--dly:1.1s; width:42px;height:42px;font-size:20px">🐡</div>
+        <div class="slot-name">Coralsprite</div>
+        <div class="slot-stage">Baby</div>
+        <div class="slot-dots">
+          <div class="slot-dot" style="background:#D4622A"></div>
+          <div class="slot-dot" style="background:#C9941A"></div>
+          <div class="slot-dot" style="background:#4AA8E0"></div>
+          <div class="slot-dot" style="background:#9860E0"></div>
+        </div>
+      </div>
+
+      <!-- Slot 4 — Empty -->
+      <div class="creature-slot empty">
+        <span class="slot-empty-icon">+</span>
+        <div class="slot-empty-label">Empty Slot</div>
+        <button class="slot-add-btn">Add Creature</button>
+      </div>
+
+    </div>
+
+    <!-- Footer navigation -->
+    <div class="roster-footer">
+      <button class="habitat-nav-btn">◀  Habitat 2</button>
+      <button class="habitat-nav-btn add-habitat">+ New Habitat</button>
+    </div>
+
+  </div>
+
+  <!-- ── RIGHT SIDEBAR ──── -->
+  <div class="sidebar">
+    <div class="sidebar-btn active" onclick="location='habitat-floor.html'">
+      <span class="sidebar-icon">🏠</span><span class="sidebar-label">Home</span>
+    </div>
+    <div class="sidebar-btn" onclick="location='shop.html'">
+      <span class="sidebar-icon">🛒</span><span class="sidebar-label">Shop</span>
+    </div>
+    <div class="sidebar-btn" onclick="location='orders.html'">
+      <span class="sidebar-icon">📜</span><span class="sidebar-label">Orders</span>
+    </div>
+    <div class="sidebar-btn">
+      <span class="sidebar-icon">🧬</span><span class="sidebar-label">Breed</span>
+    </div>
+    <div class="sidebar-btn">
+      <span class="sidebar-icon">📖</span><span class="sidebar-label">Pedia</span>
+    </div>
+    <div class="sidebar-spacer"></div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-btn">
+      <span class="sidebar-icon">⚙</span><span class="sidebar-label">Settings</span>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

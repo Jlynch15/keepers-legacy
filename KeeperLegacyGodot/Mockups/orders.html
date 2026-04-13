@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280">
+<title>Keeper's Legacy — Orders</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=IM+Fell+English:ital@0;1&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:         #0C0907;
+    --panel:      #1A1208;
+    --border:     #3A2818;
+    --text:       #F0E8D8;
+    --muted:      #9A8070;
+    --gold:       #E8B830;
+    --gold-lt:    #F0CC50;
+    --green:      #3A9040;
+    --urgent:     #D03030;
+
+    --water: #4AA8E0; --grass: #4AB84A; --dirt: #C08840;
+    --fire:  #E06030; --ice:   #60D0E0;
+
+    --common-color:    #888888;
+    --uncommon-color:  #48A850;
+    --rare-color:      #5080D8;
+    --legendary-color: #E08030;
+  }
+
+  html, body {
+    width: 1280px; height: 720px;
+    overflow: hidden;
+    background: var(--bg);
+    font-family: 'Crimson Text', serif;
+    color: var(--text);
+  }
+
+  /* ── PARCHMENT + AMBIENT ────────────────────────────── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(255,255,255,0.012) 28px, rgba(255,255,255,0.012) 29px),
+      repeating-linear-gradient(90deg, transparent, transparent 28px, rgba(255,255,255,0.008) 28px, rgba(255,255,255,0.008) 29px);
+  }
+  body::after {
+    content: '';
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background:
+      radial-gradient(ellipse 600px 400px at 50% 25%, rgba(232,184,48,0.04), transparent),
+      radial-gradient(ellipse 400px 300px at 15% 65%, rgba(232,184,48,0.025), transparent),
+      radial-gradient(ellipse 400px 300px at 85% 55%, rgba(232,184,48,0.025), transparent);
+  }
+
+  /* Gold particles */
+  .gold-particle {
+    position: fixed; z-index: 1;
+    width: var(--s, 3px); height: var(--s, 3px);
+    border-radius: 50%;
+    background: rgba(232,184,48,0.3);
+    box-shadow: 0 0 4px rgba(232,184,48,0.2);
+    pointer-events: none;
+    animation: particle-float var(--dur, 12s) ease-in-out infinite var(--dly, 0s);
+  }
+  @keyframes particle-float {
+    0%,100% { transform: translateY(0) translateX(0); opacity: 0.3; }
+    25%     { transform: translateY(var(--dy1, -40px)) translateX(var(--dx1, 15px)); opacity: 0.6; }
+    50%     { transform: translateY(var(--dy2, -20px)) translateX(var(--dx2, -10px)); opacity: 0.2; }
+    75%     { transform: translateY(var(--dy3, -50px)) translateX(var(--dx3, 20px)); opacity: 0.5; }
+  }
+
+  /* ── OVERLAY BAR (full-width, matching shop) ────────── */
+  .overlay-bar {
+    position: absolute; top: 0; left: 0; right: 0;
+    z-index: 30;
+    display: flex; align-items: center; gap: 0;
+    padding: 0 16px;
+    height: 44px;
+    background: rgba(12,9,7,0.85);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(232,184,48,0.12);
+    box-shadow: 0 2px 14px rgba(0,0,0,0.5);
+  }
+  .back-btn {
+    display: flex; align-items: center; gap: 6px;
+    font-family: 'Cinzel', serif; font-size: 11px; font-weight: 600;
+    color: rgba(232,184,48,0.75);
+    cursor: pointer; padding: 5px 8px 5px 0;
+    border: none; background: none;
+    transition: color 0.15s; letter-spacing: 0.3px;
+  }
+  .back-btn:hover { color: var(--gold-lt); }
+  .bar-sep {
+    width: 1px; height: 24px;
+    background: rgba(58,40,24,0.8);
+    margin: 0 12px;
+  }
+  .bar-info {
+    display: flex; align-items: center; gap: 8px; flex: 1;
+  }
+  .bar-icon { font-size: 18px; line-height: 1; }
+  .bar-title {
+    font-family: 'Cinzel', serif; font-size: 14px; font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.4px;
+    text-shadow: 0 0 10px rgba(232,184,48,0.3);
+  }
+  .bar-subtitle {
+    font-family: 'IM Fell English', serif;
+    font-style: italic; font-size: 11px;
+    color: var(--muted);
+  }
+  .bar-pill {
+    font-family: 'Cinzel', serif; font-size: 10px; font-weight: 700;
+    padding: 2px 8px; border-radius: 8px;
+    background: rgba(232,184,48,0.12);
+    border: 1px solid rgba(232,184,48,0.3);
+    color: var(--gold);
+  }
+  .refresh-btn {
+    font-family: 'Cinzel', serif; font-size: 10px; font-weight: 600;
+    padding: 3px 10px; border-radius: 10px;
+    border: 1px solid rgba(232,184,48,0.2);
+    background: rgba(232,184,48,0.06);
+    color: var(--muted); cursor: pointer;
+    letter-spacing: 0.3px;
+    transition: all 0.15s;
+  }
+  .refresh-btn:hover { border-color: rgba(232,184,48,0.4); color: var(--gold); }
+  .bar-coins {
+    font-family: 'Cinzel', serif; font-size: 11px; font-weight: 600;
+    color: var(--gold-lt);
+    background: rgba(232,184,48,0.08);
+    border: 1px solid rgba(232,184,48,0.2);
+    border-radius: 8px; padding: 3px 8px;
+    margin-left: 8px;
+  }
+
+  /* ── ORDERS GRID ────────────────────────────────────── */
+  .orders-scroll {
+    position: relative; z-index: 2;
+    margin-top: 54px;
+    height: calc(720px - 54px);
+    overflow-y: auto;
+    padding: 10px 28px 20px;
+    display: flex; flex-wrap: wrap; gap: 14px;
+    align-content: flex-start;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+
+  /* ── ORDER CARD (stacked/taller) ────────────────────── */
+  .order-card {
+    width: 290px;
+    background: var(--panel);
+    border: 1.5px solid rgba(255,255,255,0.06);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 3px 18px rgba(0,0,0,0.4);
+    position: relative;
+    transition: box-shadow 0.15s, transform 0.12s;
+    display: flex; flex-direction: column;
+  }
+  .order-card:hover {
+    box-shadow: 0 5px 26px rgba(0,0,0,0.5);
+    transform: translateY(-2px);
+  }
+
+  /* Habitat tint on card */
+  .order-card.water-card { border-color: rgba(74,168,224,0.20); }
+  .order-card.grass-card { border-color: rgba(74,184,74,0.20); }
+  .order-card.ice-card   { border-color: rgba(96,208,224,0.20); }
+  .order-card.dirt-card  { border-color: rgba(192,136,64,0.20); }
+
+  /* Urgency top strip */
+  .urgency-strip {
+    height: 4px; width: 100%;
+  }
+  .urgency-ok     { background: var(--green); }
+  .urgency-soon   { background: var(--gold); }
+  .urgency-urgent { background: var(--urgent); animation: pulse-red 1s ease-in-out infinite; }
+  @keyframes pulse-red { 0%,100% { opacity: 1; } 50% { opacity: 0.6; } }
+
+  /* Creature showcase area */
+  .card-showcase {
+    height: 100px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .card-showcase.water-bg  { background: linear-gradient(180deg, rgba(74,168,224,0.12), rgba(74,168,224,0.03)); }
+  .card-showcase.grass-bg  { background: linear-gradient(180deg, rgba(74,184,74,0.12), rgba(74,184,74,0.03)); }
+  .card-showcase.ice-bg    { background: linear-gradient(180deg, rgba(96,208,224,0.12), rgba(96,208,224,0.03)); }
+  .card-showcase.dirt-bg   { background: linear-gradient(180deg, rgba(192,136,64,0.12), rgba(192,136,64,0.03)); }
+
+  .card-sprite {
+    width: 64px; height: 64px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 30px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.2);
+  }
+  .sprite-water { background: radial-gradient(circle at 38% 38%, #A8D8F0, var(--water)); }
+  .sprite-grass { background: radial-gradient(circle at 38% 38%, #A0D890, var(--grass)); }
+  .sprite-dirt  { background: radial-gradient(circle at 38% 38%, #D0A870, var(--dirt)); }
+  .sprite-ice   { background: radial-gradient(circle at 38% 38%, #C0E8F0, var(--ice)); }
+
+  .card-rarity {
+    position: absolute; top: 8px; right: 8px;
+    font-family: 'Cinzel', serif; font-size: 8px; font-weight: 700;
+    padding: 2px 6px; border-radius: 4px;
+    letter-spacing: 0.5px; text-transform: uppercase; color: white;
+  }
+  .rarity-common    { background: var(--common-color); }
+  .rarity-uncommon  { background: var(--uncommon-color); }
+  .rarity-rare      { background: var(--rare-color); }
+
+  .card-reward {
+    position: absolute; top: 8px; left: 8px;
+    font-family: 'Cinzel', serif; font-size: 13px; font-weight: 700;
+    color: var(--gold);
+    display: flex; align-items: center; gap: 3px;
+    background: rgba(12,9,7,0.7);
+    padding: 2px 8px; border-radius: 6px;
+    border: 1px solid rgba(232,184,48,0.2);
+  }
+
+  /* Card body */
+  .card-body {
+    padding: 10px 14px 12px;
+    display: flex; flex-direction: column; gap: 8px;
+    flex: 1;
+  }
+  .card-creature-name {
+    font-family: 'Cinzel', serif; font-size: 14px; font-weight: 700;
+    color: var(--text); letter-spacing: 0.3px;
+  }
+
+  /* NPC section */
+  .npc-row {
+    display: flex; align-items: center; gap: 8px;
+    padding: 6px 8px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 6px;
+  }
+  .npc-portrait {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: rgba(232,184,48,0.1);
+    border: 1.5px solid rgba(232,184,48,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; flex-shrink: 0;
+  }
+  .npc-info { flex: 1; }
+  .npc-name {
+    font-family: 'Cinzel', serif; font-size: 10px; font-weight: 700;
+    color: var(--text); letter-spacing: 0.3px;
+  }
+  .npc-quote {
+    font-family: 'IM Fell English', serif; font-style: italic;
+    font-size: 10px; color: var(--muted);
+    line-height: 1.3; margin-top: 1px;
+  }
+
+  /* Requirements */
+  .card-reqs {
+    display: flex; flex-wrap: wrap; gap: 6px;
+  }
+  .req-tag {
+    font-family: 'Cinzel', serif; font-size: 9px; font-weight: 600;
+    padding: 3px 7px; border-radius: 6px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    color: var(--muted);
+    display: flex; align-items: center; gap: 4px;
+    letter-spacing: 0.2px;
+  }
+  .req-met   { color: var(--green); border-color: rgba(58,144,64,0.2); }
+  .req-unmet { color: var(--urgent); border-color: rgba(208,48,48,0.2); }
+
+  /* Timer */
+  .card-timer {
+    display: flex; align-items: center; gap: 8px;
+  }
+  .timer-bar-outer {
+    flex: 1; height: 5px; background: rgba(0,0,0,0.15);
+    border-radius: 3px; overflow: hidden;
+  }
+  .timer-bar-fill { height: 100%; border-radius: 3px; }
+  .timer-ok     { background: var(--green); }
+  .timer-soon   { background: var(--gold); }
+  .timer-urgent { background: var(--urgent); animation: pulse-red 1s ease-in-out infinite; }
+  .timer-text {
+    font-family: 'Cinzel', serif; font-size: 10px; font-weight: 600;
+    white-space: nowrap;
+  }
+  .timer-ok-text     { color: var(--green); }
+  .timer-soon-text   { color: var(--gold); }
+  .timer-urgent-text { color: var(--urgent); }
+
+  /* Fulfill button */
+  .card-action {
+    padding: 0 14px 12px;
+  }
+  .fulfill-btn {
+    width: 100%;
+    font-family: 'Cinzel', serif; font-size: 11px; font-weight: 700;
+    padding: 8px 12px; border-radius: 8px;
+    border: 2px solid var(--green); background: var(--green);
+    color: #FFF8EC; cursor: pointer; letter-spacing: 0.3px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    transition: all 0.15s; text-align: center;
+  }
+  .fulfill-btn:hover { background: #48B058; }
+  .fulfill-btn.disabled {
+    background: transparent; border-color: var(--common-color);
+    color: var(--common-color); cursor: default;
+  }
+
+  /* ── LAYOUT WRAPPER ──────────────────────────────────── */
+  .layout { display: flex; width: 1280px; height: 720px; }
+  .main-content { flex: 1; position: relative; overflow: hidden; }
+
+  /* ── RIGHT SIDEBAR MENU ─────────────────────────────── */
+  .sidebar {
+    width: 70px; flex-shrink: 0;
+    background: linear-gradient(180deg, #1A1208 0%, #140E06 100%);
+    border-left: 2px solid rgba(232,184,48,0.15);
+    display: flex; flex-direction: column;
+    align-items: center; padding: 12px 0; gap: 4px; z-index: 20;
+  }
+  .sidebar-btn {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 3px;
+    width: 58px; height: 58px; border-radius: 10px;
+    background: transparent; border: 1.5px solid transparent;
+    cursor: pointer; transition: all 0.15s;
+  }
+  .sidebar-btn:hover { background: rgba(232,184,48,0.06); border-color: rgba(232,184,48,0.15); }
+  .sidebar-btn.active { background: rgba(232,184,48,0.10); border-color: rgba(232,184,48,0.3); box-shadow: 0 0 10px rgba(232,184,48,0.08); }
+  .sidebar-icon { font-size: 24px; line-height: 1; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.4)); }
+  .sidebar-label { font-family: 'Cinzel', serif; font-size: 8px; font-weight: 600; color: rgba(232,184,48,0.5); letter-spacing: 0.3px; text-transform: uppercase; }
+  .sidebar-btn.active .sidebar-label { color: #F0CC50; }
+  .sidebar-btn.active .sidebar-icon { filter: drop-shadow(0 0 5px rgba(232,184,48,0.4)) drop-shadow(0 1px 2px rgba(0,0,0,0.4)); }
+  .sidebar-spacer { flex: 1; }
+  .sidebar-divider { width: 36px; height: 1px; background: rgba(232,184,48,0.1); margin: 2px 0; }
+</style>
+</head>
+<body>
+
+<!-- Gold particles -->
+<div class="gold-particle" style="left:10%; top:30%; --s:3px; --dur:14s; --dly:0s; --dy1:-35px; --dx1:12px; --dy2:-15px; --dx2:-8px; --dy3:-45px; --dx3:18px"></div>
+<div class="gold-particle" style="left:25%; top:60%; --s:2px; --dur:18s; --dly:3s; --dy1:-25px; --dx1:-10px; --dy2:-40px; --dx2:15px; --dy3:-20px; --dx3:-12px"></div>
+<div class="gold-particle" style="left:50%; top:40%; --s:4px; --dur:12s; --dly:1.5s; --dy1:-45px; --dx1:20px; --dy2:-25px; --dx2:-15px; --dy3:-50px; --dx3:10px"></div>
+<div class="gold-particle" style="left:70%; top:75%; --s:2px; --dur:16s; --dly:5s; --dy1:-30px; --dx1:-8px; --dy2:-50px; --dx2:12px; --dy3:-35px; --dx3:-15px"></div>
+<div class="gold-particle" style="left:88%; top:35%; --s:3px; --dur:15s; --dly:2s; --dy1:-40px; --dx1:15px; --dy2:-20px; --dx2:-10px; --dy3:-55px; --dx3:8px"></div>
+<div class="gold-particle" style="left:40%; top:85%; --s:2px; --dur:20s; --dly:7s; --dy1:-20px; --dx1:-12px; --dy2:-35px; --dx2:18px; --dy3:-25px; --dx3:-8px"></div>
+
+<!-- ── MAIN LAYOUT ─────────────────────────────────────── -->
+<div class="layout">
+<div class="main-content">
+
+<!-- ── OVERLAY BAR (inside main-content, absolute positioned) ── -->
+<div class="overlay-bar">
+  <button class="back-btn" onclick="location='habitat-floor.html'">
+    <span>◀</span> Home
+  </button>
+  <div class="bar-sep"></div>
+  <div class="bar-info">
+    <span class="bar-icon">📜</span>
+    <div>
+      <div class="bar-title">Order Board</div>
+      <div class="bar-subtitle">Customer Requests</div>
+    </div>
+    <div class="bar-pill">4 active</div>
+  </div>
+  <button class="refresh-btn">↻ Refresh</button>
+  <span class="bar-coins">✦ 1,250</span>
+</div>
+<div class="orders-scroll">
+
+  <!-- Order 1: Aquaburst — urgent, can fulfill -->
+  <div class="order-card water-card">
+    <div class="urgency-strip urgency-urgent"></div>
+    <div class="card-showcase water-bg">
+      <div class="card-sprite sprite-water">🐟</div>
+      <div class="card-rarity rarity-common">Common</div>
+      <div class="card-reward">✦ 180</div>
+    </div>
+    <div class="card-body">
+      <div class="card-creature-name">Aquaburst</div>
+      <div class="npc-row">
+        <div class="npc-portrait">🧔</div>
+        <div class="npc-info">
+          <div class="npc-name">Merchant Aldric</div>
+          <div class="npc-quote">"My aquarium needs restocking — the finest water creatures, please!"</div>
+        </div>
+      </div>
+      <div class="card-reqs">
+        <span class="req-tag">💧 Water</span>
+        <span class="req-tag req-met">😊 40% ✓</span>
+        <span class="req-tag">🎖 Common</span>
+      </div>
+      <div class="card-timer">
+        <div class="timer-bar-outer"><div class="timer-bar-fill timer-urgent" style="width:12%"></div></div>
+        <span class="timer-text timer-urgent-text">⏰ 1h 24m</span>
+      </div>
+    </div>
+    <div class="card-action">
+      <button class="fulfill-btn">Fulfill Order</button>
+    </div>
+  </div>
+
+  <!-- Order 2: Wildbloom — good timer, can fulfill -->
+  <div class="order-card grass-card">
+    <div class="urgency-strip urgency-ok"></div>
+    <div class="card-showcase grass-bg">
+      <div class="card-sprite sprite-grass">🌱</div>
+      <div class="card-rarity rarity-common">Common</div>
+      <div class="card-reward">✦ 210</div>
+    </div>
+    <div class="card-body">
+      <div class="card-creature-name">Wildbloom</div>
+      <div class="npc-row">
+        <div class="npc-portrait">👩</div>
+        <div class="npc-info">
+          <div class="npc-name">Lady Thornwood</div>
+          <div class="npc-quote">"My garden needs a companion — something green and lively."</div>
+        </div>
+      </div>
+      <div class="card-reqs">
+        <span class="req-tag">🌿 Grass</span>
+        <span class="req-tag req-met">😊 35% ✓</span>
+        <span class="req-tag">🎖 Common</span>
+      </div>
+      <div class="card-timer">
+        <div class="timer-bar-outer"><div class="timer-bar-fill timer-ok" style="width:75%"></div></div>
+        <span class="timer-text timer-ok-text">🕐 14h 08m</span>
+      </div>
+    </div>
+    <div class="card-action">
+      <button class="fulfill-btn">Fulfill Order</button>
+    </div>
+  </div>
+
+  <!-- Order 3: Frostwhisper — medium timer, can't fulfill -->
+  <div class="order-card ice-card">
+    <div class="urgency-strip urgency-soon"></div>
+    <div class="card-showcase ice-bg">
+      <div class="card-sprite sprite-ice">❄️</div>
+      <div class="card-rarity rarity-uncommon">Uncommon</div>
+      <div class="card-reward">✦ 480</div>
+    </div>
+    <div class="card-body">
+      <div class="card-creature-name">Frostwhisper</div>
+      <div class="npc-row">
+        <div class="npc-portrait">🎩</div>
+        <div class="npc-info">
+          <div class="npc-name">The Collector</div>
+          <div class="npc-quote">"I seek only the rarest — make sure it's in perfect spirits."</div>
+        </div>
+      </div>
+      <div class="card-reqs">
+        <span class="req-tag">❄️ Ice</span>
+        <span class="req-tag req-unmet">😊 60% ✗</span>
+        <span class="req-tag">🎖 Uncommon</span>
+      </div>
+      <div class="card-timer">
+        <div class="timer-bar-outer"><div class="timer-bar-fill timer-soon" style="width:38%"></div></div>
+        <span class="timer-text timer-soon-text">🕐 6h 45m</span>
+      </div>
+    </div>
+    <div class="card-action">
+      <button class="fulfill-btn disabled">Not Ready</button>
+    </div>
+  </div>
+
+  <!-- Order 4: Stoneback — good timer, don't own creature -->
+  <div class="order-card dirt-card">
+    <div class="urgency-strip urgency-ok"></div>
+    <div class="card-showcase dirt-bg">
+      <div class="card-sprite sprite-dirt">🪨</div>
+      <div class="card-rarity rarity-uncommon">Uncommon</div>
+      <div class="card-reward">✦ 440</div>
+    </div>
+    <div class="card-body">
+      <div class="card-creature-name">Stoneback</div>
+      <div class="npc-row">
+        <div class="npc-portrait">⛏️</div>
+        <div class="npc-info">
+          <div class="npc-name">Master Brix</div>
+          <div class="npc-quote">"Need a sturdy one for the mines — nothing too delicate!"</div>
+        </div>
+      </div>
+      <div class="card-reqs">
+        <span class="req-tag">🪨 Dirt</span>
+        <span class="req-tag">😊 50%</span>
+        <span class="req-tag req-unmet">🏪 Not owned</span>
+      </div>
+      <div class="card-timer">
+        <div class="timer-bar-outer"><div class="timer-bar-fill timer-ok" style="width:88%"></div></div>
+        <span class="timer-text timer-ok-text">🕐 20h 10m</span>
+      </div>
+    </div>
+    <div class="card-action">
+      <button class="fulfill-btn disabled">Not Ready</button>
+    </div>
+  </div>
+
+</div>
+</div><!-- /main-content -->
+
+<!-- ── RIGHT SIDEBAR ──── -->
+<div class="sidebar">
+  <div class="sidebar-btn" onclick="location='habitat-floor.html'">
+    <span class="sidebar-icon">🏠</span><span class="sidebar-label">Home</span>
+  </div>
+  <div class="sidebar-btn" onclick="location='shop.html'">
+    <span class="sidebar-icon">🛒</span><span class="sidebar-label">Shop</span>
+  </div>
+  <div class="sidebar-btn active" onclick="location='orders.html'">
+    <span class="sidebar-icon">📜</span><span class="sidebar-label">Orders</span>
+  </div>
+  <div class="sidebar-btn">
+    <span class="sidebar-icon">🧬</span><span class="sidebar-label">Breed</span>
+  </div>
+  <div class="sidebar-btn">
+    <span class="sidebar-icon">📖</span><span class="sidebar-label">Pedia</span>
+  </div>
+  <div class="sidebar-spacer"></div>
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-btn">
+    <span class="sidebar-icon">⚙</span><span class="sidebar-label">Settings</span>
+  </div>
+</div>
+
+</div><!-- /layout -->
+
+</body>
+</html>

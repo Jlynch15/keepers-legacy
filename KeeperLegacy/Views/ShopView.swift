@@ -191,9 +191,7 @@ struct CreatureShopCard: View {
                     .font(.system(size: 32))
                     .foregroundColor(.secondary.opacity(0.5))
             } else {
-                // TODO: Replace with actual SpriteKit creature sprite
-                Text(creatureEmoji)
-                    .font(.system(size: 48))
+                CreatureImageView(catalogID: creature.id, mutation: 0, size: 80)
             }
         }
     }
@@ -226,18 +224,6 @@ struct CreatureShopCard: View {
         }
     }
 
-    // Placeholder emoji per habitat type until real art arrives
-    private var creatureEmoji: String {
-        switch creature.habitatType {
-        case .water:    return "🌊"
-        case .dirt:     return "🪨"
-        case .grass:    return "🌿"
-        case .fire:     return "🔥"
-        case .ice:      return "❄️"
-        case .electric: return "⚡"
-        case .magical:  return "✨"
-        }
-    }
 }
 
 // MARK: - Rarity Badge
@@ -296,9 +282,8 @@ struct CreaturePurchaseSheet: View {
                             )
                             .frame(height: 200)
 
-                        VStack {
-                            Text(creatureEmoji)
-                                .font(.system(size: 80))
+                        VStack(spacing: 6) {
+                            CreatureImageView(catalogID: creature.id, mutation: selectedMutation, size: 120)
                             Text("Mutation \(selectedMutation + 1)")
                                 .font(.system(size: 12, weight: .medium, design: .rounded))
                                 .foregroundColor(.white.opacity(0.8))
@@ -393,17 +378,6 @@ struct CreaturePurchaseSheet: View {
         dismiss()
     }
 
-    private var creatureEmoji: String {
-        switch creature.habitatType {
-        case .water:    return "🌊"
-        case .dirt:     return "🪨"
-        case .grass:    return "🌿"
-        case .fire:     return "🔥"
-        case .ice:      return "❄️"
-        case .electric: return "⚡"
-        case .magical:  return "✨"
-        }
-    }
 }
 
 struct MutationChip: View {
