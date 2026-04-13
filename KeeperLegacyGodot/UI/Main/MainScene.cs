@@ -6,6 +6,7 @@
 using Godot;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using KeeperLegacy.Models;
 using KeeperLegacy.UI.Story;
 using KeeperLegacy.UI.Overlays;
 
@@ -363,6 +364,22 @@ public partial class MainScene : Control
         _sidebar.RefreshLockStates();
     }
 
+    private void DebugUnlockAllFeatures()
+    {
+        var pm = GetNodeOrNull<ProgressionManager>("/root/ProgressionManager");
+        if (pm?.Progression == null) return;
+
+        foreach (var feature in System.Enum.GetValues<KeeperLegacy.Models.GameFeature>())
+        {
+            if (!pm.IsFeatureUnlocked(feature))
+            {
+                pm.Progression.UnlockedFeatures.Add(feature.RawValue());
+            }
+        }
+        _sidebar.RefreshLockStates();
+        GD.Print("DEBUG: All features unlocked");
+    }
+
     // ── Debug helpers ─────────────────────────────────────────────────────────
 
     public override void _UnhandledInput(InputEvent @event)
@@ -376,6 +393,9 @@ public partial class MainScene : Control
                     break;
                 case Key.F2:
                     OnLeveledUp(5);
+                    break;
+                case Key.F3:
+                    DebugUnlockAllFeatures();
                     break;
             }
         }
