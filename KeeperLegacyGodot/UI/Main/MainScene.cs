@@ -405,7 +405,7 @@ public partial class MainScene : Control
         KeeperLegacy.UI.Habitat.PedestalNode.DebugScale = PedestalSizes[_pedestalSizeIndex];
         float scale = KeeperLegacy.UI.Habitat.PedestalNode.DebugScale;
         GD.Print($"DEBUG: Pedestal scale = {scale:F2} (base 55px -> {55f * scale:F0}px wide)");
-        RebuildPedestals();
+        ApplyDebugVisualsToAll();
     }
 
     private void DebugNudgeArtOffset(Vector2 delta)
@@ -413,24 +413,16 @@ public partial class MainScene : Control
         KeeperLegacy.UI.Habitat.PedestalNode.DebugArtOffset += delta;
         var offset = KeeperLegacy.UI.Habitat.PedestalNode.DebugArtOffset;
         GD.Print($"DEBUG: Art offset = ({offset.X:F0}, {offset.Y:F0})");
-        RebuildPedestals();
+        ApplyDebugVisualsToAll();
     }
 
-    private void RebuildPedestals()
+    private void ApplyDebugVisualsToAll()
     {
         if (_currentScreen == null) return;
         foreach (var child in _currentScreen.GetChildren())
         {
             if (child is KeeperLegacy.UI.Habitat.PedestalNode ped)
-            {
-                var center = ped.GetCenter();
-                ped.BuildChildren();
-                ped.RefreshDisplay();
-                float w = ped.GetPedestalWidth();
-                float h = ped.GetPedestalHeight();
-                ped.Size = new Vector2(w, h + 30);
-                ped.Position = center - new Vector2(w / 2f, 0);
-            }
+                ped.ApplyDebugVisuals();
         }
     }
 

@@ -72,6 +72,7 @@ public partial class PedestalNode : Control
     private Button    _hitButton;
     private Label     _nameLabel;
     private Label     _countLabel;
+    private TextureRect _texRect;
 
     // Blob drawing area
     private Control   _blobArea;
@@ -179,6 +180,18 @@ public partial class PedestalNode : Control
     public float GetPedestalWidth() => PedestalWidth;
     public float GetPedestalHeight() => PedestalHeight;
 
+    /// <summary>
+    /// Update art position and size without rebuilding. Used by debug tools.
+    /// </summary>
+    public void ApplyDebugVisuals()
+    {
+        if (_texRect != null)
+        {
+            _texRect.Position = DebugArtOffset;
+            _texRect.Size = new Vector2(PedestalWidth, PedestalHeight);
+        }
+    }
+
     // ── Child construction ────────────────────────────────────────────────────
 
     internal void BuildChildren()
@@ -196,14 +209,14 @@ public partial class PedestalNode : Control
             var tex = GD.Load<Texture2D>(texPath);
             if (tex != null)
             {
-                var texRect = new TextureRect();
-                texRect.Texture = tex;
-                texRect.Position = DebugArtOffset;
-                texRect.Size = new Vector2(PedestalWidth, PedestalHeight);
-                texRect.ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize;
-                texRect.StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered;
-                texRect.MouseFilter = MouseFilterEnum.Ignore;
-                AddChild(texRect);
+                _texRect = new TextureRect();
+                _texRect.Texture = tex;
+                _texRect.Position = DebugArtOffset;
+                _texRect.Size = new Vector2(PedestalWidth, PedestalHeight);
+                _texRect.ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize;
+                _texRect.StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered;
+                _texRect.MouseFilter = MouseFilterEnum.Ignore;
+                AddChild(_texRect);
             }
         }
 
