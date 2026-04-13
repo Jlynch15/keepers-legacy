@@ -33,6 +33,8 @@ public partial class PedestalNode : Control
 
     public static bool DebugDragEnabled { get; set; }
     public static float DebugScale { get; set; } = 1.0f;
+    // Offset of the art image relative to the node position (tunable)
+    public static Vector2 DebugArtOffset { get; set; } = Vector2.Zero;
     private bool _dragging;
     private Vector2 _dragOffset;
 
@@ -167,22 +169,6 @@ public partial class PedestalNode : Control
     /// Rebuild all pedestal children to reflect new scale.
     /// Called on any pedestal but rebuilds siblings too via tree walk.
     /// </summary>
-    private void RebuildAllPedestals()
-    {
-        var parent = GetParent();
-        if (parent == null) return;
-        foreach (var child in parent.GetChildren())
-        {
-            if (child is PedestalNode ped)
-            {
-                var center = ped.GetCenter();
-                ped.Size = new Vector2(ped.PedestalWidth, ped.PedestalHeight + 30);
-                ped.Position = center - new Vector2(ped.PedestalWidth / 2f, 0);
-                ped.BuildChildren();
-                ped.RefreshDisplay();
-            }
-        }
-    }
 
     /// <summary>
     /// Returns the center position of this pedestal (for coordinate export).
@@ -190,6 +176,8 @@ public partial class PedestalNode : Control
     public Vector2 GetCenter() => Position + Size / 2f;
 
     public HabitatType GetHabitatType() => _habitatType;
+    public float GetPedestalWidth() => PedestalWidth;
+    public float GetPedestalHeight() => PedestalHeight;
 
     // ── Child construction ────────────────────────────────────────────────────
 
@@ -210,7 +198,7 @@ public partial class PedestalNode : Control
             {
                 var texRect = new TextureRect();
                 texRect.Texture = tex;
-                texRect.Position = Vector2.Zero;
+                texRect.Position = DebugArtOffset;
                 texRect.Size = new Vector2(PedestalWidth, PedestalHeight);
                 texRect.ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize;
                 texRect.StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered;

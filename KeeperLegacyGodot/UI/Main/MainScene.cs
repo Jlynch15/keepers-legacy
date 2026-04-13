@@ -396,15 +396,28 @@ public partial class MainScene : Control
         }
     }
 
-    private void DebugResizePedestals(float delta)
+    private static readonly float[] PedestalSizes = { 0.5f, 0.65f, 0.8f, 1.0f, 1.2f, 1.5f };
+    private int _pedestalSizeIndex = 1; // Start at 0.65
+
+    private void DebugCyclePedestalSize()
     {
-        var pedType = typeof(KeeperLegacy.UI.Habitat.PedestalNode);
-        KeeperLegacy.UI.Habitat.PedestalNode.DebugScale = Mathf.Clamp(
-            KeeperLegacy.UI.Habitat.PedestalNode.DebugScale + delta, 0.2f, 3.0f);
-
+        _pedestalSizeIndex = (_pedestalSizeIndex + 1) % PedestalSizes.Length;
+        KeeperLegacy.UI.Habitat.PedestalNode.DebugScale = PedestalSizes[_pedestalSizeIndex];
         float scale = KeeperLegacy.UI.Habitat.PedestalNode.DebugScale;
-        GD.Print($"DEBUG: Pedestal scale = {scale:F2}");
+        GD.Print($"DEBUG: Pedestal scale = {scale:F2} (base 55px -> {55f * scale:F0}px wide)");
+        RebuildPedestals();
+    }
 
+    private void DebugNudgeArtOffset(Vector2 delta)
+    {
+        KeeperLegacy.UI.Habitat.PedestalNode.DebugArtOffset += delta;
+        var offset = KeeperLegacy.UI.Habitat.PedestalNode.DebugArtOffset;
+        GD.Print($"DEBUG: Art offset = ({offset.X:F0}, {offset.Y:F0})");
+        RebuildPedestals();
+    }
+
+    private void RebuildPedestals()
+    {
         if (_currentScreen == null) return;
         foreach (var child in _currentScreen.GetChildren())
         {
@@ -413,9 +426,8 @@ public partial class MainScene : Control
                 var center = ped.GetCenter();
                 ped.BuildChildren();
                 ped.RefreshDisplay();
-                // Re-size and re-center on same point
-                float w = 55f * scale;
-                float h = 48f * scale;
+                float w = ped.GetPedestalWidth();
+                float h = ped.GetPedestalHeight();
                 ped.Size = new Vector2(w, h + 30);
                 ped.Position = center - new Vector2(w / 2f, 0);
             }
@@ -431,7 +443,9 @@ public partial class MainScene : Control
         }
 
         float scale = KeeperLegacy.UI.Habitat.PedestalNode.DebugScale;
-        GD.Print($"── Pedestal scale: {scale:F2} (base width: 55 * {scale:F2} = {55f * scale:F0}px) ──");
+        var artOffset = KeeperLegacy.UI.Habitat.PedestalNode.DebugArtOffset;
+        GD.Print($"── Pedestal scale: {scale:F2} (base 55px -> {55f * scale:F0}px wide) ──");
+        GD.Print($"── Art offset: ({artOffset.X:F0}, {artOffset.Y:F0}) ──");
         GD.Print("── Pedestal positions (paste into PedestalDefs) ──");
 
         int found = 0;
@@ -475,13 +489,25 @@ public partial class MainScene : Control
                 case Key.P:
                     DebugTogglePedestalDrag();
                     break;
-                case Key.Equal: // = / + key = bigger pedestals
+                case Key.O: // Cycle pedestal sizes
                     if (KeeperLegacy.UI.Habitat.PedestalNode.DebugDragEnabled)
-                        DebugResizePedestals(0.05f);
+                        DebugCyclePedestalSize();
                     break;
-                case Key.Minus: // - key = smaller pedestals
+                case Key.Up: // Nudge art offset up
                     if (KeeperLegacy.UI.Habitat.PedestalNode.DebugDragEnabled)
-                        DebugResizePedestals(-0.05f);
+                        DebugNudgeArtOffset(new Vector2(0, -3));
+                    break;
+                case Key.Down: // Nudge art offset down
+                    if (KeeperLegacy.UI.Habitat.PedestalNode.DebugDragEnabled)
+                        DebugNudgeArtOffset(new Vector2(0, 3));
+                    break;
+                case Key.Left: // Nudge art offset left
+                    if (KeeperLegacy.UI.Habitat.PedestalNode.DebugDragEnabled)
+                        DebugNudgeArtOffset(new Vector2(-3, 0));
+                    break;
+                case Key.Right: // Nudge art offset right
+                    if (KeeperLegacy.UI.Habitat.PedestalNode.DebugDragEnabled)
+                        DebugNudgeArtOffset(new Vector2(3, 0));
                     break;
             }
         }
