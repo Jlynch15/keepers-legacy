@@ -155,21 +155,6 @@ public partial class PedestalNode : Control
                     _dragging = false;
                 }
             }
-            // Mouse wheel to resize all pedestals
-            else if (mb.ButtonIndex == MouseButton.WheelUp && mb.Pressed)
-            {
-                DebugScale = Mathf.Min(DebugScale + 0.05f, 3.0f);
-                GD.Print($"DEBUG: Pedestal scale = {DebugScale:F2}");
-                RebuildAllPedestals();
-                AcceptEvent();
-            }
-            else if (mb.ButtonIndex == MouseButton.WheelDown && mb.Pressed)
-            {
-                DebugScale = Mathf.Max(DebugScale - 0.05f, 0.2f);
-                GD.Print($"DEBUG: Pedestal scale = {DebugScale:F2}");
-                RebuildAllPedestals();
-                AcceptEvent();
-            }
         }
         else if (@event is InputEventMouseMotion mm && _dragging)
         {

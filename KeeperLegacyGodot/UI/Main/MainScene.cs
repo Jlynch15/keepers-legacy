@@ -396,16 +396,50 @@ public partial class MainScene : Control
         }
     }
 
+    private void DebugResizePedestals(float delta)
+    {
+        var pedType = typeof(KeeperLegacy.UI.Habitat.PedestalNode);
+        KeeperLegacy.UI.Habitat.PedestalNode.DebugScale = Mathf.Clamp(
+            KeeperLegacy.UI.Habitat.PedestalNode.DebugScale + delta, 0.2f, 3.0f);
+
+        float scale = KeeperLegacy.UI.Habitat.PedestalNode.DebugScale;
+        GD.Print($"DEBUG: Pedestal scale = {scale:F2}");
+
+        if (_currentScreen == null) return;
+        foreach (var child in _currentScreen.GetChildren())
+        {
+            if (child is KeeperLegacy.UI.Habitat.PedestalNode ped)
+            {
+                var center = ped.GetCenter();
+                ped.BuildChildren();
+                ped.RefreshDisplay();
+                // Re-size and re-center on same point
+                float w = 55f * scale;
+                float h = 48f * scale;
+                ped.Size = new Vector2(w, h + 30);
+                ped.Position = center - new Vector2(w / 2f, 0);
+            }
+        }
+    }
+
     private void DebugPrintPedestalPositions()
     {
-        if (_currentScreen == null) return;
+        if (_currentScreen == null)
+        {
+            GD.Print("DEBUG: No current screen found");
+            return;
+        }
 
-        GD.Print($"── Pedestal scale: {KeeperLegacy.UI.Habitat.PedestalNode.DebugScale:F2} ──");
+        float scale = KeeperLegacy.UI.Habitat.PedestalNode.DebugScale;
+        GD.Print($"── Pedestal scale: {scale:F2} (base width: 55 * {scale:F2} = {55f * scale:F0}px) ──");
         GD.Print("── Pedestal positions (paste into PedestalDefs) ──");
+
+        int found = 0;
         foreach (var child in _currentScreen.GetChildren())
         {
             if (child is KeeperLegacy.UI.Habitat.PedestalNode pedestal)
             {
+                found++;
                 var center = pedestal.GetCenter();
                 float scaleX = 1364f / (_currentScreen.Size.X > 0 ? _currentScreen.Size.X : 1364f);
                 float scaleY = 768f / (_currentScreen.Size.Y > 0 ? _currentScreen.Size.Y : 768f);
@@ -413,6 +447,10 @@ public partial class MainScene : Control
                 GD.Print($"  (HabitatType.{pedestal.GetHabitatType(),-10} new Vector2({artPos.X,7:F0}, {artPos.Y,5:F0})),");
             }
         }
+
+        if (found == 0)
+            GD.Print("  (no pedestals found in current screen children)");
+
         GD.Print("── end ──");
     }
 
@@ -434,8 +472,16 @@ public partial class MainScene : Control
                     DebugUnlockAllFeatures();
                     break;
                 case Key.F4:
-                case Key.P: // Backup — press P to toggle pedestal drag mode
+                case Key.P:
                     DebugTogglePedestalDrag();
+                    break;
+                case Key.Equal: // = / + key = bigger pedestals
+                    if (KeeperLegacy.UI.Habitat.PedestalNode.DebugDragEnabled)
+                        DebugResizePedestals(0.05f);
+                    break;
+                case Key.Minus: // - key = smaller pedestals
+                    if (KeeperLegacy.UI.Habitat.PedestalNode.DebugDragEnabled)
+                        DebugResizePedestals(-0.05f);
                     break;
             }
         }
