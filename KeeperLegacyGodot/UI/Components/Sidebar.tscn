@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://sidebar001"]
+
+[ext_resource type="Script" path="res://UI/Components/Sidebar.cs" id="1"]
+
+[node name="Sidebar" type="PanelContainer"]
+custom_minimum_size = Vector2(70, 0)
+size_flags_vertical = 3
+script = ExtResource("1")
