@@ -474,6 +474,7 @@ public partial class MainScene : Control
     {
         if (@event is InputEventKey keyEvent && keyEvent.Pressed && !keyEvent.Echo)
         {
+            bool handled = true;
             switch (keyEvent.Keycode)
             {
                 case Key.F1:
@@ -489,27 +490,37 @@ public partial class MainScene : Control
                 case Key.P:
                     DebugTogglePedestalDrag();
                     break;
-                case Key.O: // Cycle pedestal sizes
+                case Key.O:
                     if (KeeperLegacy.UI.Habitat.PedestalNode.DebugDragEnabled)
                         DebugCyclePedestalSize();
+                    else handled = false;
                     break;
-                case Key.Up: // Nudge art offset up
+                case Key.Up:
                     if (KeeperLegacy.UI.Habitat.PedestalNode.DebugDragEnabled)
                         DebugNudgeArtOffset(new Vector2(0, -3));
+                    else handled = false;
                     break;
-                case Key.Down: // Nudge art offset down
+                case Key.Down:
                     if (KeeperLegacy.UI.Habitat.PedestalNode.DebugDragEnabled)
                         DebugNudgeArtOffset(new Vector2(0, 3));
+                    else handled = false;
                     break;
-                case Key.Left: // Nudge art offset left
+                case Key.Left:
                     if (KeeperLegacy.UI.Habitat.PedestalNode.DebugDragEnabled)
                         DebugNudgeArtOffset(new Vector2(-3, 0));
+                    else handled = false;
                     break;
-                case Key.Right: // Nudge art offset right
+                case Key.Right:
                     if (KeeperLegacy.UI.Habitat.PedestalNode.DebugDragEnabled)
                         DebugNudgeArtOffset(new Vector2(3, 0));
+                    else handled = false;
+                    break;
+                default:
+                    handled = false;
                     break;
             }
+            if (handled)
+                GetViewport().SetInputAsHandled();
         }
     }
 }
