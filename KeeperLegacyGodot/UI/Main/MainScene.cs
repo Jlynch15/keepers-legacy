@@ -398,16 +398,15 @@ public partial class MainScene : Control
 
     private void DebugPrintPedestalPositions()
     {
-        // Find the habitat floor screen in the content container
         if (_currentScreen == null) return;
 
+        GD.Print($"── Pedestal scale: {KeeperLegacy.UI.Habitat.PedestalNode.DebugScale:F2} ──");
         GD.Print("── Pedestal positions (paste into PedestalDefs) ──");
         foreach (var child in _currentScreen.GetChildren())
         {
             if (child is KeeperLegacy.UI.Habitat.PedestalNode pedestal)
             {
                 var center = pedestal.GetCenter();
-                // Convert back from content-area coords to art-space (1364x768)
                 float scaleX = 1364f / (_currentScreen.Size.X > 0 ? _currentScreen.Size.X : 1364f);
                 float scaleY = 768f / (_currentScreen.Size.Y > 0 ? _currentScreen.Size.Y : 768f);
                 var artPos = new Vector2(center.X * scaleX, center.Y * scaleY);

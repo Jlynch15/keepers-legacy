@@ -32,6 +32,7 @@ public partial class PedestalNode : Control
     // ── Debug drag mode ─────────────────────────────────────────────────────
 
     public static bool DebugDragEnabled { get; set; }
+    public static float DebugScale { get; set; } = 1.0f;
     private bool _dragging;
     private Vector2 _dragOffset;
 
@@ -41,9 +42,12 @@ public partial class PedestalNode : Control
     private bool _locked;
     private List<(string name, HabitatType type)> _occupants = new();
 
-    // Pedestal art sizing (536x466 source, scaled down to fit room)
-    private const float PedestalWidth  = 65f;
-    private const float PedestalHeight = 57f; // 466/536 * 65
+    // Pedestal art base sizing (536x466 source, scaled down to fit room)
+    // Actual display size = base * DebugScale
+    private const float BasePedestalWidth  = 55f;
+    private const float BasePedestalHeight = 48f; // 466/536 * 55
+    private float PedestalWidth  => BasePedestalWidth * DebugScale;
+    private float PedestalHeight => BasePedestalHeight * DebugScale;
 
     private static readonly Dictionary<HabitatType, string> PedestalTexturePaths = new()
     {
@@ -151,11 +155,47 @@ public partial class PedestalNode : Control
                     _dragging = false;
                 }
             }
+            // Mouse wheel to resize all pedestals
+            else if (mb.ButtonIndex == MouseButton.WheelUp && mb.Pressed)
+            {
+                DebugScale = Mathf.Min(DebugScale + 0.05f, 3.0f);
+                GD.Print($"DEBUG: Pedestal scale = {DebugScale:F2}");
+                RebuildAllPedestals();
+                AcceptEvent();
+            }
+            else if (mb.ButtonIndex == MouseButton.WheelDown && mb.Pressed)
+            {
+                DebugScale = Mathf.Max(DebugScale - 0.05f, 0.2f);
+                GD.Print($"DEBUG: Pedestal scale = {DebugScale:F2}");
+                RebuildAllPedestals();
+                AcceptEvent();
+            }
         }
         else if (@event is InputEventMouseMotion mm && _dragging)
         {
             Position += mm.Relative;
             AcceptEvent();
+        }
+    }
+
+    /// <summary>
+    /// Rebuild all pedestal children to reflect new scale.
+    /// Called on any pedestal but rebuilds siblings too via tree walk.
+    /// </summary>
+    private void RebuildAllPedestals()
+    {
+        var parent = GetParent();
+        if (parent == null) return;
+        foreach (var child in parent.GetChildren())
+        {
+            if (child is PedestalNode ped)
+            {
+                var center = ped.GetCenter();
+                ped.Size = new Vector2(ped.PedestalWidth, ped.PedestalHeight + 30);
+                ped.Position = center - new Vector2(ped.PedestalWidth / 2f, 0);
+                ped.BuildChildren();
+                ped.RefreshDisplay();
+            }
         }
     }
 
@@ -168,7 +208,7 @@ public partial class PedestalNode : Control
 
     // ── Child construction ────────────────────────────────────────────────────
 
-    private void BuildChildren()
+    internal void BuildChildren()
     {
         // Remove any previous children
         foreach (Node child in GetChildren())
@@ -236,7 +276,7 @@ public partial class PedestalNode : Control
         AddChild(_countLabel);
     }
 
-    private void RefreshDisplay()
+    internal void RefreshDisplay()
     {
         if (_locked)
         {
