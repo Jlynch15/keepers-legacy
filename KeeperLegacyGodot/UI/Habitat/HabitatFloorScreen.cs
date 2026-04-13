@@ -126,26 +126,25 @@ public partial class HabitatFloorScreen : Control
     private static bool IsLocked(HabitatType type,
         HabitatManager? hm, ProgressionManager? pm)
     {
+        // Magical: locked until Story Act II unlocks MagicalHabitat feature
         if (type == HabitatType.Magical)
         {
             return pm == null || !pm.IsFeatureUnlocked(GameFeature.MagicalHabitat);
         }
 
-        // Unlocked if player owns at least one habitat of this type
-        // OR has reached sufficient level (so pedestals unlock with progression)
-        if (hm == null && pm == null) return true;
+        // Water, Grass, Dirt: always unlocked (base habitat types)
+        if (type is HabitatType.Water or HabitatType.Grass or HabitatType.Dirt)
+        {
+            return false;
+        }
 
+        // Fire, Ice, Electric: unlocked if player has a habitat of that type
+        // OR HabitatExpansion feature is unlocked (level 2+, also unlocked by F3)
         bool hasHabitat = hm?.Habitats.Any(h => h.Type == type) ?? false;
         if (hasHabitat) return false;
 
-        // Check level-based unlock: Water/Grass/Dirt always available,
-        // Fire/Ice/Electric unlock at higher levels
-        bool levelOk = type switch
-        {
-            HabitatType.Water or HabitatType.Grass or HabitatType.Dirt => true,
-            _ => pm != null && pm.CurrentLevel >= 5,
-        };
-        return !levelOk;
+        bool expansionUnlocked = pm?.IsFeatureUnlocked(GameFeature.HabitatExpansion) ?? false;
+        return !expansionUnlocked;
     }
 
     private static List<(string name, HabitatType type)> BuildOccupantList(
