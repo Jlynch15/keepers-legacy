@@ -19,16 +19,16 @@ public partial class HabitatFloorScreen : Control
     private const float ArtH = 768f;
 
     // Pedestal positions in art-space (center of each hotspot on 1364x768 bg)
-    // Positioned via F4 drag mode by Jesse — 2026-04-13
+    // Positioned via drag mode by Jesse — 2026-04-13 (scale 4.0x, offset -78,0)
     private static readonly (HabitatType type, Vector2 pos)[] PedestalDefs =
     {
-        (HabitatType.Water,    new Vector2( 556,  248)),
-        (HabitatType.Grass,    new Vector2( 730,  167)),
-        (HabitatType.Dirt,     new Vector2( 960,  276)),
-        (HabitatType.Fire,     new Vector2( 388,  541)),
-        (HabitatType.Ice,      new Vector2( 585,  642)),
-        (HabitatType.Electric, new Vector2(1199,  567)),
-        (HabitatType.Magical,  new Vector2( 791,  441)),
+        (HabitatType.Water,    new Vector2( 515,  197)),
+        (HabitatType.Grass,    new Vector2( 772,   91)),
+        (HabitatType.Dirt,     new Vector2( 970,  200)),
+        (HabitatType.Fire,     new Vector2( 502,  598)),
+        (HabitatType.Ice,      new Vector2( 972,  653)),
+        (HabitatType.Electric, new Vector2(1222,  542)),
+        (HabitatType.Magical,  new Vector2( 748,  393)),
     };
 
     // ── Colours ───────────────────────────────────────────────────────────────

@@ -33,8 +33,8 @@ public partial class PedestalNode : Control
 
     public static bool DebugDragEnabled { get; set; }
     public static float DebugScale { get; set; } = 1.0f;
-    // Offset of the art image relative to the node position (tunable)
-    public static Vector2 DebugArtOffset { get; set; } = Vector2.Zero;
+    // Offset of the art image relative to the node position
+    public static Vector2 DebugArtOffset { get; set; } = new Vector2(-78, 0);
     private bool _dragging;
     private Vector2 _dragOffset;
 
@@ -44,10 +44,9 @@ public partial class PedestalNode : Control
     private bool _locked;
     private List<(string name, HabitatType type)> _occupants = new();
 
-    // Pedestal art base sizing (536x466 source, scaled down to fit room)
-    // Actual display size = base * DebugScale
-    private const float BasePedestalWidth  = 55f;
-    private const float BasePedestalHeight = 48f; // 466/536 * 55
+    // Pedestal art base sizing — 4.0x scale confirmed by Jesse
+    private const float BasePedestalWidth  = 220f;  // 55 * 4.0
+    private const float BasePedestalHeight = 192f;  // 48 * 4.0
     private float PedestalWidth  => BasePedestalWidth * DebugScale;
     private float PedestalHeight => BasePedestalHeight * DebugScale;
 
