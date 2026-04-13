@@ -1,0 +1,449 @@
+// UI/Habitat/HabitatFloorScreen.cs
+// Main hub screen — pre-rendered room background with 7 clickable pedestal hotspots,
+// HUD with level/XP/coins, and a story badge when a story event is pending.
+
+using Godot;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using KeeperLegacy.Data;
+using KeeperLegacy.Models;
+
+namespace KeeperLegacy.UI.Habitat;
+
+public partial class HabitatFloorScreen : Control
+{
+    // ── Art-space reference dimensions ─────────────────────────────────────────
+
+    private const float ArtW = 1364f;
+    private const float ArtH = 768f;
+
+    // Pedestal positions in art-space (center of each hotspot)
+    private static readonly (HabitatType type, Vector2 pos)[] PedestalDefs =
+    {
+        (HabitatType.Water,    new Vector2( 320,  370)),
+        (HabitatType.Grass,    new Vector2( 670,  240)),
+        (HabitatType.Dirt,     new Vector2(1000,  350)),
+        (HabitatType.Fire,     new Vector2( 430,  500)),
+        (HabitatType.Ice,      new Vector2( 700,  420)),
+        (HabitatType.Electric, new Vector2(1000,  520)),
+        (HabitatType.Magical,  new Vector2( 670,  650)),
+    };
+
+    // ── Colours ───────────────────────────────────────────────────────────────
+
+    private static readonly Color ColourBgFallback   = new Color(0.165f, 0.118f, 0.063f, 1f);
+    private static readonly Color ColourSignBg       = new Color(30f/255, 22f/255, 8f/255, 0.9f);
+    private static readonly Color ColourSignBorder   = new Color("#E8B830");
+    private static readonly Color ColourSignTitle    = new Color("#E8B830");
+    private static readonly Color ColourSignSubtitle = new Color("#C09040");
+    private static readonly Color ColourHudBg        = new Color(20f/255, 14f/255, 6f/255, 0.88f);
+    private static readonly Color ColourHudBorder    = new Color("#E8B830");
+    private static readonly Color ColourGold         = new Color("#E8B830");
+    private static readonly Color ColourXpTrack      = new Color(60f/255, 44f/255, 20f/255, 1f);
+    private static readonly Color ColourXpFill       = new Color("#E8B830");
+    private static readonly Color ColourStoryBg      = new Color(50f/255, 20f/255, 80f/255, 0.92f);
+    private static readonly Color ColourStoryBorder  = new Color("#9860E0");
+    private static readonly Color ColourStoryText    = new Color("#D8B0FF");
+    private static readonly Color ColourMuted        = new Color("#B8A080");
+
+    // ── Static selection state (read by HabitatCategoryScreen) ───────────────
+
+    public static HabitatType? SelectedHabitatType { get; set; }
+
+    // ── Child references ──────────────────────────────────────────────────────
+
+    private readonly Dictionary<HabitatType, PedestalNode> _pedestals = new();
+    private Label     _levelLabel;
+    private ColorRect _xpFill;
+    private Label     _coinsLabel;
+    private Control   _storyBadge;
+    private Label     _storyLabel;
+
+    // ── Godot lifecycle ───────────────────────────────────────────────────────
+
+    public override void _Ready()
+    {
+        SetAnchorsAndOffsetsPreset(LayoutPreset.FullRect);
+
+        BuildBackground();
+        BuildPedestals();
+        BuildStoreSign();
+        BuildInfoStrip();
+        BuildStoryBadge();
+        WireSignals();
+        RefreshHud();
+    }
+
+    // ── Background ────────────────────────────────────────────────────────────
+
+    private void BuildBackground()
+    {
+        // Dark fallback always present beneath the image
+        var fallback = new ColorRect();
+        fallback.Color = ColourBgFallback;
+        fallback.SetAnchorsAndOffsetsPreset(LayoutPreset.FullRect);
+        fallback.MouseFilter = MouseFilterEnum.Ignore;
+        AddChild(fallback);
+
+        // Attempt to load the real background image
+        var tex = GD.Load<Texture2D>("res://Sprites/Backgrounds/habitat_floor_bg.png");
+        if (tex != null)
+        {
+            var bg = new TextureRect();
+            bg.Texture      = tex;
+            bg.StretchMode  = TextureRect.StretchModeEnum.KeepAspectCentered;
+            bg.SetAnchorsAndOffsetsPreset(LayoutPreset.FullRect);
+            bg.MouseFilter  = MouseFilterEnum.Ignore;
+            AddChild(bg);
+        }
+    }
+
+    // ── Pedestals ─────────────────────────────────────────────────────────────
+
+    private void BuildPedestals()
+    {
+        var hm = GetNodeOrNull<HabitatManager>("/root/HabitatManager");
+        var pm = GetNodeOrNull<ProgressionManager>("/root/ProgressionManager");
+
+        foreach (var (type, artPos) in PedestalDefs)
+        {
+            bool locked = IsLocked(type, hm, pm);
+            var occupants = BuildOccupantList(type, hm);
+
+            // Scale art-space position to actual content area
+            var scaledPos = ScalePosition(artPos);
+
+            var pedestal = new PedestalNode();
+            AddChild(pedestal);
+            pedestal.Setup(type, scaledPos, locked, occupants);
+            pedestal.PedestalClicked += OnPedestalClicked;
+
+            _pedestals[type] = pedestal;
+        }
+    }
+
+    private static bool IsLocked(HabitatType type,
+        HabitatManager? hm, ProgressionManager? pm)
+    {
+        if (type == HabitatType.Magical)
+        {
+            return pm == null || !pm.IsFeatureUnlocked(GameFeature.MagicalHabitat);
+        }
+
+        // Unlocked if player owns at least one habitat of this type
+        if (hm == null) return true;
+        return !hm.Habitats.Any(h => h.Type == type);
+    }
+
+    private static List<(string name, HabitatType type)> BuildOccupantList(
+        HabitatType type, HabitatManager? hm)
+    {
+        if (hm == null) return new();
+
+        var result = new List<(string, HabitatType)>();
+        foreach (var habitat in hm.Habitats.Where(h => h.Type == type))
+        {
+            if (habitat.OccupantId is { } occupantId)
+            {
+                var creature = hm.GetCreature(occupantId);
+                if (creature != null)
+                {
+                    string cname = CreatureRosterData.Find(creature.CatalogId)?.Name
+                                   ?? "?";
+                    result.Add((cname, type));
+                }
+            }
+        }
+        return result;
+    }
+
+    // ── Store Sign (top-left) ─────────────────────────────────────────────────
+
+    private void BuildStoreSign()
+    {
+        var panel = new PanelContainer();
+        panel.SetAnchorsAndOffsetsPreset(LayoutPreset.TopLeft);
+        panel.OffsetLeft   = 12;
+        panel.OffsetTop    = 12;
+        panel.OffsetRight  = 200;
+        panel.OffsetBottom = 72;
+
+        var style = new StyleBoxFlat();
+        style.BgColor     = ColourSignBg;
+        style.BorderColor = ColourSignBorder;
+        style.SetBorderWidthAll(1);
+        style.SetCornerRadiusAll(6);
+        style.ContentMarginLeft   = 12;
+        style.ContentMarginRight  = 12;
+        style.ContentMarginTop    = 8;
+        style.ContentMarginBottom = 8;
+        panel.AddThemeStyleboxOverride("panel", style);
+        AddChild(panel);
+
+        var vbox = new VBoxContainer();
+        vbox.AddThemeConstantOverride("separation", 2);
+        panel.AddChild(vbox);
+
+        var title = new Label();
+        title.Text = "KEEPER'S LEGACY";
+        title.HorizontalAlignment = HorizontalAlignment.Center;
+        title.AddThemeFontSizeOverride("font_size", 15);
+        title.AddThemeColorOverride("font_color", ColourSignTitle);
+        vbox.AddChild(title);
+
+        var subtitle = new Label();
+        subtitle.Text = "Creature Emporium";
+        subtitle.HorizontalAlignment = HorizontalAlignment.Center;
+        subtitle.AddThemeFontSizeOverride("font_size", 11);
+        subtitle.AddThemeColorOverride("font_color", ColourSignSubtitle);
+        vbox.AddChild(subtitle);
+    }
+
+    // ── Info Strip (top-right) ────────────────────────────────────────────────
+
+    private void BuildInfoStrip()
+    {
+        var panel = new PanelContainer();
+        panel.SetAnchorsAndOffsetsPreset(LayoutPreset.TopRight);
+        panel.OffsetLeft   = -240;
+        panel.OffsetTop    = 12;
+        panel.OffsetRight  = -12;
+        panel.OffsetBottom = 50;
+
+        var style = new StyleBoxFlat();
+        style.BgColor     = ColourHudBg;
+        style.BorderColor = ColourHudBorder;
+        style.SetBorderWidthAll(1);
+        style.SetCornerRadiusAll(20); // pill shape
+        style.ContentMarginLeft   = 12;
+        style.ContentMarginRight  = 12;
+        style.ContentMarginTop    = 6;
+        style.ContentMarginBottom = 6;
+        panel.AddThemeStyleboxOverride("panel", style);
+        AddChild(panel);
+
+        var hbox = new HBoxContainer();
+        hbox.AddThemeConstantOverride("separation", 10);
+        hbox.Alignment = BoxContainer.AlignmentMode.Center;
+        panel.AddChild(hbox);
+
+        // Level badge
+        _levelLabel = new Label();
+        _levelLabel.AddThemeFontSizeOverride("font_size", 13);
+        _levelLabel.AddThemeColorOverride("font_color", ColourGold);
+        _levelLabel.VerticalAlignment = VerticalAlignment.Center;
+        hbox.AddChild(_levelLabel);
+
+        // XP track
+        var xpTrack = new ColorRect();
+        xpTrack.Color = ColourXpTrack;
+        xpTrack.CustomMinimumSize = new Vector2(90, 8);
+        xpTrack.SizeFlagsVertical = SizeFlags.ShrinkCenter;
+        hbox.AddChild(xpTrack);
+
+        // XP fill — child of track, sized by fraction in RefreshHud
+        _xpFill = new ColorRect();
+        _xpFill.Color                = ColourXpFill;
+        _xpFill.SetAnchorsAndOffsetsPreset(LayoutPreset.LeftWide);
+        _xpFill.OffsetRight          = 0; // Set in RefreshHud
+        _xpFill.MouseFilter          = MouseFilterEnum.Ignore;
+        xpTrack.AddChild(_xpFill);
+
+        // Coin count
+        _coinsLabel = new Label();
+        _coinsLabel.AddThemeFontSizeOverride("font_size", 13);
+        _coinsLabel.AddThemeColorOverride("font_color", ColourGold);
+        _coinsLabel.VerticalAlignment = VerticalAlignment.Center;
+        hbox.AddChild(_coinsLabel);
+    }
+
+    // ── Story Badge (below info strip) ────────────────────────────────────────
+
+    private void BuildStoryBadge()
+    {
+        var panel = new PanelContainer();
+        panel.SetAnchorsAndOffsetsPreset(LayoutPreset.TopRight);
+        panel.OffsetLeft   = -240;
+        panel.OffsetTop    = 58;
+        panel.OffsetRight  = -12;
+        panel.OffsetBottom = 90;
+        panel.Visible      = false;
+
+        var style = new StyleBoxFlat();
+        style.BgColor     = ColourStoryBg;
+        style.BorderColor = ColourStoryBorder;
+        style.SetBorderWidthAll(1);
+        style.SetCornerRadiusAll(16);
+        style.ContentMarginLeft   = 10;
+        style.ContentMarginRight  = 10;
+        style.ContentMarginTop    = 4;
+        style.ContentMarginBottom = 4;
+        panel.AddThemeStyleboxOverride("panel", style);
+        AddChild(panel);
+
+        // Invisible button over the entire badge
+        var btn = new Button();
+        btn.SetAnchorsAndOffsetsPreset(LayoutPreset.FullRect);
+        btn.Flat = true;
+        btn.FocusMode = FocusModeEnum.None;
+        btn.AddThemeStyleboxOverride("normal",   new StyleBoxEmpty());
+        btn.AddThemeStyleboxOverride("hover",    new StyleBoxEmpty());
+        btn.AddThemeStyleboxOverride("pressed",  new StyleBoxEmpty());
+        btn.AddThemeStyleboxOverride("focus",    new StyleBoxEmpty());
+        btn.Pressed += OnStoryBadgePressed;
+        panel.AddChild(btn);
+
+        _storyLabel = new Label();
+        _storyLabel.HorizontalAlignment = HorizontalAlignment.Center;
+        _storyLabel.VerticalAlignment   = VerticalAlignment.Center;
+        _storyLabel.AddThemeFontSizeOverride("font_size", 11);
+        _storyLabel.AddThemeColorOverride("font_color", ColourStoryText);
+        _storyLabel.MouseFilter = MouseFilterEnum.Ignore;
+        _storyLabel.SetAnchorsAndOffsetsPreset(LayoutPreset.FullRect);
+        panel.AddChild(_storyLabel);
+
+        _storyBadge = panel;
+    }
+
+    // ── Signal wiring ─────────────────────────────────────────────────────────
+
+    private void WireSignals()
+    {
+        var pm = GetNodeOrNull<ProgressionManager>("/root/ProgressionManager");
+        if (pm != null)
+        {
+            pm.LeveledUp    += (_) => RefreshHud();
+            pm.XPChanged    += (_, _) => RefreshHud();
+            pm.CoinsChanged += (_) => RefreshHud();
+        }
+
+        var sm = GetNodeOrNull<StoryManager>("/root/StoryManager");
+        if (sm != null)
+        {
+            sm.StoryEventPending   += (_) => RefreshStoryBadge();
+            sm.StoryEventCompleted += (_) => RefreshStoryBadge();
+        }
+
+        var hm = GetNodeOrNull<HabitatManager>("/root/HabitatManager");
+        if (hm != null)
+        {
+            hm.CreaturesChanged += RefreshPedestals;
+            hm.HabitatsChanged  += RefreshPedestals;
+        }
+    }
+
+    // ── HUD refresh ───────────────────────────────────────────────────────────
+
+    private void RefreshHud()
+    {
+        var pm = GetNodeOrNull<ProgressionManager>("/root/ProgressionManager");
+        if (pm == null) return;
+
+        _levelLabel.Text  = $"Lv. {pm.CurrentLevel}";
+        _coinsLabel.Text  = $"\u2746 {pm.Coins}";
+
+        float fraction = pm.XPToNextLevel > 0
+            ? Mathf.Clamp((float)pm.CurrentXP / pm.XPToNextLevel, 0f, 1f)
+            : 1f;
+
+        // Size the fill bar. The parent track is 90px wide; we use OffsetRight to clip.
+        // Since _xpFill is anchored LeftWide (left=0, right=0 offsets relative to parent),
+        // setting OffsetRight to a negative value shrinks it from the right.
+        float trackWidth = 90f;
+        _xpFill.OffsetRight = -(trackWidth * (1f - fraction));
+
+        RefreshStoryBadge();
+    }
+
+    private void RefreshStoryBadge()
+    {
+        var sm = GetNodeOrNull<StoryManager>("/root/StoryManager");
+        if (sm == null || !sm.HasPendingEvent())
+        {
+            _storyBadge.Visible = false;
+            return;
+        }
+
+        var evt  = sm.GetPendingEvent();
+        string npcName = evt != null
+            ? NPC.MainCast.FirstOrDefault(n => n.Id == evt.NpcId)?.Name ?? "Someone"
+            : "Someone";
+
+        _storyLabel.Text    = $"\u2746 {npcName} awaits...";
+        _storyBadge.Visible = true;
+    }
+
+    private void RefreshPedestals()
+    {
+        var hm = GetNodeOrNull<HabitatManager>("/root/HabitatManager");
+        var pm = GetNodeOrNull<ProgressionManager>("/root/ProgressionManager");
+
+        foreach (var (type, pedestal) in _pedestals)
+        {
+            bool locked    = IsLocked(type, hm, pm);
+            var occupants  = BuildOccupantList(type, hm);
+            pedestal.Setup(type, pedestal.Position + pedestal.Size / 2f, locked, occupants);
+        }
+    }
+
+    // ── Navigation helpers ────────────────────────────────────────────────────
+
+    private void OnPedestalClicked(int habitatTypeInt)
+    {
+        SelectedHabitatType = (HabitatType)habitatTypeInt;
+
+        var node = (Node)this;
+        while (node != null)
+        {
+            if (node is MainScene ms)
+            {
+                ms.NavigateToSubScreen("HabitatCategory");
+                return;
+            }
+            node = node.GetParent();
+        }
+
+        GD.PushWarning("HabitatFloorScreen: could not find MainScene in tree.");
+    }
+
+    private void OnStoryBadgePressed()
+    {
+        var sm = GetNodeOrNull<StoryManager>("/root/StoryManager");
+        if (sm == null || !sm.HasPendingEvent()) return;
+
+        // Trigger the story event through MainScene (same mechanism as F1 debug)
+        var node = (Node)this;
+        while (node != null)
+        {
+            node = node.GetParent();
+        }
+        // Fall back: emit via StoryManager directly so MainScene picks it up
+        var evt = sm.GetPendingEvent();
+        if (evt != null)
+            sm.EmitSignal(StoryManager.SignalName.StoryEventPending, evt.Id);
+    }
+
+    // ── Coordinate scaling ────────────────────────────────────────────────────
+
+    /// Scale an art-space position into actual content area coordinates.
+    private Vector2 ScalePosition(Vector2 artPos)
+    {
+        // Content area excludes the 70px sidebar on the right (see MainScene)
+        Vector2 viewport = GetViewport()?.GetVisibleRect().Size ?? new Vector2(1364, 768);
+        float contentW   = viewport.X - 70f;
+        float contentH   = viewport.Y;
+
+        float scaleX = contentW / ArtW;
+        float scaleY = contentH / ArtH;
+        float scale  = Mathf.Min(scaleX, scaleY);
+
+        float offsetX = (contentW - ArtW * scale) / 2f;
+        float offsetY = (contentH - ArtH * scale) / 2f;
+
+        return new Vector2(
+            offsetX + artPos.X * scale,
+            offsetY + artPos.Y * scale
+        );
+    }
+}

@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://b4knp1u5qvyp4"]
+[gd_scene load_steps=2 format=3]
 
-[ext_resource type="Script" path="res://UI/Screens/PlaceholderScreen.cs" id="1"]
+[ext_resource type="Script" path="res://UI/Habitat/HabitatFloorScreen.cs" id="1"]
 
 [node name="HabitatFloorScreen" type="Control"]
 layout_mode = 3
@@ -10,5 +10,3 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1")
-ScreenTitle = "Habitat Floor"
-BackgroundColor = Color(0.165, 0.118, 0.063, 1)
