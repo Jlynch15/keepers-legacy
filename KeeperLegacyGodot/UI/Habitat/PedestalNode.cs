@@ -41,6 +41,21 @@ public partial class PedestalNode : Control
     private bool _locked;
     private List<(string name, HabitatType type)> _occupants = new();
 
+    // Pedestal art sizing (1104x960 source, scaled down)
+    private const float PedestalWidth  = 160f;
+    private const float PedestalHeight = 139f; // 960/1104 * 160
+
+    private static readonly Dictionary<HabitatType, string> PedestalTexturePaths = new()
+    {
+        [HabitatType.Water]    = "res://Sprites/Pedstals/pedestal_water.png",
+        [HabitatType.Grass]    = "res://Sprites/Pedstals/pedestal_grass.png",
+        [HabitatType.Dirt]     = "res://Sprites/Pedstals/pedestal_dirt.png",
+        [HabitatType.Fire]     = "res://Sprites/Pedstals/pedestal_fire.png",
+        [HabitatType.Ice]      = "res://Sprites/Pedstals/pedestal_ice.png",
+        [HabitatType.Electric] = "res://Sprites/Pedstals/pedestal_electric.png",
+        [HabitatType.Magical]  = "res://Sprites/Pedstals/pedestal_magical.png",
+    };
+
     // Animation
     private float _time;
     private readonly List<float> _phaseOffsets = new();
@@ -70,9 +85,10 @@ public partial class PedestalNode : Control
         foreach (var _ in _occupants)
             _phaseOffsets.Add((float)(rng.NextDouble() * Math.PI * 2.0));
 
-        // Position the hotspot
-        Size             = new Vector2(160, 80);
-        Position         = center - Size / 2f;
+        // Position the hotspot — sized to fit pedestal art + label below
+        // Art is 1104x960, scaled to PedestalWidth wide
+        Size             = new Vector2(PedestalWidth, PedestalHeight + 30); // +30 for label
+        Position         = center - new Vector2(Size.X / 2f, PedestalHeight * 0.6f); // Anchor near top-center of pedestal
         MouseFilter      = MouseFilterEnum.Stop; // Ensure we receive _GuiInput
 
         BuildChildren();
@@ -160,9 +176,26 @@ public partial class PedestalNode : Control
             child.QueueFree();
         }
 
-        // Invisible full-size button as the click target
+        // Pedestal art texture
+        if (PedestalTexturePaths.TryGetValue(_habitatType, out var texPath))
+        {
+            var tex = GD.Load<Texture2D>(texPath);
+            if (tex != null)
+            {
+                var texRect = new TextureRect();
+                texRect.Texture = tex;
+                texRect.Position = Vector2.Zero;
+                texRect.Size = new Vector2(PedestalWidth, PedestalHeight);
+                texRect.StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered;
+                texRect.MouseFilter = MouseFilterEnum.Ignore;
+                AddChild(texRect);
+            }
+        }
+
+        // Invisible full-size button as the click target (over the pedestal art)
         _hitButton = new Button();
-        _hitButton.SetAnchorsAndOffsetsPreset(LayoutPreset.FullRect);
+        _hitButton.Position = Vector2.Zero;
+        _hitButton.Size = new Vector2(PedestalWidth, PedestalHeight);
         _hitButton.Flat = true;
         _hitButton.FocusMode = FocusModeEnum.None;
         _hitButton.AddThemeStyleboxOverride("normal",   new StyleBoxEmpty());
@@ -172,18 +205,18 @@ public partial class PedestalNode : Control
         _hitButton.Pressed += OnButtonPressed;
         AddChild(_hitButton);
 
-        // Blob drawing area (custom draw) – sits in the upper-center of the hotspot
+        // Blob drawing area — sits on top of the pedestal art (upper third)
         _blobArea = new Control();
-        _blobArea.Position              = new Vector2(0, 0);
-        _blobArea.Size                  = new Vector2(160, 50);
+        _blobArea.Position              = new Vector2(0, PedestalHeight * 0.1f);
+        _blobArea.Size                  = new Vector2(PedestalWidth, PedestalHeight * 0.45f);
         _blobArea.MouseFilter           = MouseFilterEnum.Ignore;
         _blobArea.Draw                  += OnBlobAreaDraw;
         AddChild(_blobArea);
 
-        // Name label — centered below blobs
+        // Name label — below the pedestal art
         _nameLabel = new Label();
-        _nameLabel.Position              = new Vector2(0, 52);
-        _nameLabel.Size                  = new Vector2(160, 16);
+        _nameLabel.Position              = new Vector2(0, PedestalHeight + 2);
+        _nameLabel.Size                  = new Vector2(PedestalWidth, 16);
         _nameLabel.HorizontalAlignment   = HorizontalAlignment.Center;
         _nameLabel.AddThemeFontSizeOverride("font_size", 11);
         _nameLabel.AddThemeColorOverride("font_color", ColourLabelName);
@@ -192,8 +225,8 @@ public partial class PedestalNode : Control
 
         // Count / locked label — one row below name
         _countLabel = new Label();
-        _countLabel.Position              = new Vector2(0, 66);
-        _countLabel.Size                  = new Vector2(160, 14);
+        _countLabel.Position              = new Vector2(0, PedestalHeight + 16);
+        _countLabel.Size                  = new Vector2(PedestalWidth, 14);
         _countLabel.HorizontalAlignment   = HorizontalAlignment.Center;
         _countLabel.AddThemeFontSizeOverride("font_size", 9);
         _countLabel.AddThemeColorOverride("font_color", ColourLabelCount);
