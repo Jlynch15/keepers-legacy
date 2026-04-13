@@ -1,0 +1,383 @@
+// UI/Main/MainScene.cs
+// Central orchestrator scene — holds ContentContainer, Sidebar, transition overlays,
+// and the ImmersiveLayer. Manages all screen swapping, crossfade transitions,
+// fade-to-black for immersive screens, and signal wiring to autoload managers.
+
+using Godot;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using KeeperLegacy.UI.Story;
+using KeeperLegacy.UI.Overlays;
+
+public partial class MainScene : Control
+{
+    // ── Screen path dictionaries ───────────────────────────────────────────────
+
+    private static readonly Dictionary<string, string> ScreenPaths = new()
+    {
+        ["Home"]     = "res://UI/Habitat/HabitatFloorScreen.tscn",
+        ["Shop"]     = "res://UI/Shop/ShopScreen.tscn",
+        ["Orders"]   = "res://UI/Orders/OrdersScreen.tscn",
+        ["Breed"]    = "res://UI/Breeding/BreedingScreen.tscn",
+        ["Pedia"]    = "res://UI/Pedia/PediaScreen.tscn",
+        ["Settings"] = "res://UI/Settings/SettingsScreen.tscn",
+    };
+
+    private static readonly Dictionary<string, string> SubScreenPaths = new()
+    {
+        ["HabitatCategory"] = "res://UI/Habitat/HabitatCategoryScreen.tscn",
+        ["HabitatDetail"]   = "res://UI/Habitat/HabitatDetailScreen.tscn",
+    };
+
+    // ── Constants ─────────────────────────────────────────────────────────────
+
+    private const float CrossfadeDuration  = 0.3f;
+    private const float FadeToBlackDuration = 0.25f; // each direction; 0.5s total round-trip
+
+    // ── Runtime state ─────────────────────────────────────────────────────────
+
+    private Control      _contentContainer;
+    private Sidebar      _sidebar;          // NOTE: Sidebar is not namespaced
+    private ColorRect    _crossfadeOverlay;
+    private ColorRect    _blackOverlay;
+    private CanvasLayer  _immersiveLayer;
+    private Control      _immersiveContent;
+    private Control      _currentScreen;
+    private string       _currentScreenName = "";
+    private readonly Stack<string> _navStack = new();
+    private bool         _transitioning;
+
+    // ── Godot lifecycle ───────────────────────────────────────────────────────
+
+    public override void _Ready()
+    {
+        // 1. Self fills the full viewport.
+        SetAnchorsAndOffsetsPreset(LayoutPreset.FullRect);
+
+        // 2. ContentContainer — fills viewport but leaves 70px on the right for the sidebar.
+        _contentContainer = new Control();
+        _contentContainer.SetAnchorsAndOffsetsPreset(LayoutPreset.FullRect);
+        _contentContainer.OffsetRight = -70;
+        AddChild(_contentContainer);
+
+        // 3. Sidebar — instantiated from packed scene, anchored to right edge.
+        var sidebarScene = GD.Load<PackedScene>("res://UI/Components/Sidebar.tscn");
+        _sidebar = sidebarScene.Instantiate<Sidebar>();
+        _sidebar.SetAnchorsAndOffsetsPreset(LayoutPreset.RightWide);
+        _sidebar.OffsetLeft = -70;
+        AddChild(_sidebar);
+        _sidebar.NavigationRequested += OnNavigationRequested;
+
+        // 4. CrossfadeOverlay — same footprint as ContentContainer, starts transparent.
+        _crossfadeOverlay = new ColorRect();
+        _crossfadeOverlay.Color = new Color("#2A1E10");
+        _crossfadeOverlay.SetAnchorsAndOffsetsPreset(LayoutPreset.FullRect);
+        _crossfadeOverlay.OffsetRight = -70;
+        _crossfadeOverlay.Modulate = new Color(1, 1, 1, 0);
+        _crossfadeOverlay.MouseFilter = MouseFilterEnum.Ignore;
+        AddChild(_crossfadeOverlay);
+
+        // 5. BlackOverlay — covers the ENTIRE viewport, starts transparent.
+        _blackOverlay = new ColorRect();
+        _blackOverlay.Color = Colors.Black;
+        _blackOverlay.SetAnchorsAndOffsetsPreset(LayoutPreset.FullRect);
+        _blackOverlay.Modulate = new Color(1, 1, 1, 0);
+        _blackOverlay.MouseFilter = MouseFilterEnum.Ignore;
+        AddChild(_blackOverlay);
+
+        // 6. ImmersiveLayer — CanvasLayer above everything.
+        _immersiveLayer = new CanvasLayer();
+        _immersiveLayer.Layer = 10;
+        AddChild(_immersiveLayer);
+
+        _immersiveContent = new Control();
+        _immersiveContent.SetAnchorsAndOffsetsPreset(LayoutPreset.FullRect);
+        _immersiveContent.Visible = false;
+        _immersiveLayer.AddChild(_immersiveContent);
+
+        // 7. Wire manager signals.
+        WireManagerSignals();
+
+        // 8. Load initial screen without animation.
+        LoadScreen("Home", animate: false);
+    }
+
+    // ── Manager signal wiring ─────────────────────────────────────────────────
+
+    private void WireManagerSignals()
+    {
+        var progressionManager = GetNodeOrNull<ProgressionManager>("/root/ProgressionManager");
+        if (progressionManager != null)
+        {
+            progressionManager.LeveledUp       += OnLeveledUp;
+            progressionManager.FeatureUnlocked += OnFeatureUnlocked;
+        }
+
+        var storyManager = GetNodeOrNull<StoryManager>("/root/StoryManager");
+        if (storyManager != null)
+        {
+            storyManager.StoryEventPending += OnStoryEventPending;
+        }
+
+        // GameManager.GameLoaded is used by sub-systems; MainScene doesn't need it directly.
+    }
+
+    // ── Navigation — public API ───────────────────────────────────────────────
+
+    /// <summary>
+    /// Navigate to a top-level screen. Clears the sub-navigation stack.
+    /// </summary>
+    public void NavigateTo(string screenName)
+    {
+        OnNavigationRequested(screenName);
+    }
+
+    /// <summary>
+    /// Push current screen onto the stack and navigate to a sub-screen.
+    /// </summary>
+    public void NavigateToSubScreen(string subScreenName)
+    {
+        if (_transitioning) return;
+        _navStack.Push(_currentScreenName);
+        _ = LoadScreenAsync(subScreenName, animate: true);
+    }
+
+    /// <summary>
+    /// Pop the stack and navigate back to the previous screen.
+    /// </summary>
+    public void NavigateBack()
+    {
+        if (_transitioning || _navStack.Count == 0) return;
+        var previous = _navStack.Pop();
+        _ = LoadScreenAsync(previous, animate: true);
+    }
+
+    // ── Navigation — private implementation ──────────────────────────────────
+
+    private void OnNavigationRequested(string screenName)
+    {
+        if (_transitioning || screenName == _currentScreenName) return;
+        _navStack.Clear();
+        _ = LoadScreenAsync(screenName, animate: true);
+    }
+
+    /// <summary>
+    /// Synchronous wrapper — loads a screen immediately with no crossfade.
+    /// Used only for the initial "Home" load in _Ready.
+    /// </summary>
+    private void LoadScreen(string screenName, bool animate)
+    {
+        if (animate)
+        {
+            // Kick off async without awaiting — callers that need sync use animate=false only.
+            _ = LoadScreenAsync(screenName, animate: true);
+            return;
+        }
+
+        RemoveCurrentScreen();
+        InstantiateScreen(screenName);
+    }
+
+    private async Task LoadScreenAsync(string screenName, bool animate)
+    {
+        if (!ScreenPaths.ContainsKey(screenName) && !SubScreenPaths.ContainsKey(screenName))
+        {
+            GD.PushWarning($"MainScene: unknown screen name '{screenName}'");
+            return;
+        }
+
+        _transitioning = true;
+
+        if (animate && _currentScreen != null)
+        {
+            await CrossfadeOut();
+            RemoveCurrentScreen();
+            InstantiateScreen(screenName);
+            await CrossfadeIn();
+        }
+        else
+        {
+            RemoveCurrentScreen();
+            InstantiateScreen(screenName);
+        }
+
+        _transitioning = false;
+    }
+
+    private void InstantiateScreen(string screenName)
+    {
+        string path = ScreenPaths.TryGetValue(screenName, out var p)
+            ? p
+            : SubScreenPaths[screenName];
+
+        var packed = GD.Load<PackedScene>(path);
+        if (packed == null)
+        {
+            GD.PushError($"MainScene: could not load scene at '{path}'");
+            return;
+        }
+
+        var screen = packed.Instantiate<Control>();
+        screen.SetAnchorsAndOffsetsPreset(LayoutPreset.FullRect);
+        _contentContainer.AddChild(screen);
+
+        _currentScreen     = screen;
+        _currentScreenName = screenName;
+
+        // Keep sidebar highlight in sync (map sub-screen names back to a top-level key).
+        string sidebarKey = screenName switch
+        {
+            "HabitatCategory" or "HabitatDetail" => "Home",
+            _                                     => screenName,
+        };
+        _sidebar.SetActiveButton(sidebarKey);
+    }
+
+    private void RemoveCurrentScreen()
+    {
+        if (_currentScreen == null) return;
+        _currentScreen.GetParent()?.RemoveChild(_currentScreen);
+        _currentScreen.QueueFree();
+        _currentScreen = null;
+    }
+
+    // ── Crossfade transitions ─────────────────────────────────────────────────
+
+    private async Task CrossfadeOut()
+    {
+        _crossfadeOverlay.MouseFilter = MouseFilterEnum.Stop;
+        var tween = CreateTween();
+        tween.TweenProperty(_crossfadeOverlay, "modulate:a", 1.0f, CrossfadeDuration / 2.0f);
+        await ToSignal(tween, Tween.SignalName.Finished);
+    }
+
+    private async Task CrossfadeIn()
+    {
+        var tween = CreateTween();
+        tween.TweenProperty(_crossfadeOverlay, "modulate:a", 0.0f, CrossfadeDuration / 2.0f);
+        await ToSignal(tween, Tween.SignalName.Finished);
+        _crossfadeOverlay.MouseFilter = MouseFilterEnum.Ignore;
+    }
+
+    // ── Immersive screen transitions ──────────────────────────────────────────
+
+    private async Task ShowImmersiveScreen(Control screen)
+    {
+        _transitioning = true;
+
+        // Fade to black.
+        _blackOverlay.MouseFilter = MouseFilterEnum.Stop;
+        var tweenIn = CreateTween();
+        tweenIn.TweenProperty(_blackOverlay, "modulate:a", 1.0f, FadeToBlackDuration);
+        await ToSignal(tweenIn, Tween.SignalName.Finished);
+
+        // Swap in the immersive content behind the black.
+        _sidebar.Hide();
+        ClearImmersiveChildren();
+        screen.SetAnchorsAndOffsetsPreset(LayoutPreset.FullRect);
+        _immersiveContent.AddChild(screen);
+        _immersiveContent.Visible = true;
+
+        // Fade from black.
+        var tweenOut = CreateTween();
+        tweenOut.TweenProperty(_blackOverlay, "modulate:a", 0.0f, FadeToBlackDuration);
+        await ToSignal(tweenOut, Tween.SignalName.Finished);
+
+        _blackOverlay.MouseFilter = MouseFilterEnum.Ignore;
+        _transitioning = false;
+    }
+
+    private async Task DismissImmersiveScreen()
+    {
+        _transitioning = true;
+
+        // Fade to black.
+        _blackOverlay.MouseFilter = MouseFilterEnum.Stop;
+        var tweenIn = CreateTween();
+        tweenIn.TweenProperty(_blackOverlay, "modulate:a", 1.0f, FadeToBlackDuration);
+        await ToSignal(tweenIn, Tween.SignalName.Finished);
+
+        // Swap back to the regular view.
+        ClearImmersiveChildren();
+        _immersiveContent.Visible = false;
+        _sidebar.Show();
+
+        // Fade from black.
+        var tweenOut = CreateTween();
+        tweenOut.TweenProperty(_blackOverlay, "modulate:a", 0.0f, FadeToBlackDuration);
+        await ToSignal(tweenOut, Tween.SignalName.Finished);
+
+        _blackOverlay.MouseFilter = MouseFilterEnum.Ignore;
+        _transitioning = false;
+    }
+
+    private void ClearImmersiveChildren()
+    {
+        foreach (Node child in _immersiveContent.GetChildren())
+        {
+            _immersiveContent.RemoveChild(child);
+            child.QueueFree();
+        }
+    }
+
+    // ── Manager signal handlers ───────────────────────────────────────────────
+
+    private void OnStoryEventPending(string eventId)
+    {
+        var packed = GD.Load<PackedScene>("res://UI/Story/StoryEventScreen.tscn");
+        if (packed == null)
+        {
+            GD.PushError("MainScene: could not load StoryEventScreen.tscn");
+            return;
+        }
+
+        var screen = packed.Instantiate<StoryEventScreen>();
+        screen.Dismissed += () =>
+        {
+            var storyManager = GetNodeOrNull<StoryManager>("/root/StoryManager");
+            storyManager?.CompleteCurrentEvent();
+            _ = DismissImmersiveScreen();
+        };
+
+        _ = ShowImmersiveScreen(screen);
+    }
+
+    private void OnLeveledUp(int newLevel)
+    {
+        var packed = GD.Load<PackedScene>("res://UI/Overlays/LevelUpScreen.tscn");
+        if (packed == null)
+        {
+            GD.PushError("MainScene: could not load LevelUpScreen.tscn");
+            return;
+        }
+
+        var screen = packed.Instantiate<LevelUpScreen>();
+        screen.SetLevel(newLevel);
+        screen.Dismissed += () => _ = DismissImmersiveScreen();
+
+        _ = ShowImmersiveScreen(screen);
+    }
+
+    private void OnFeatureUnlocked(string featureRaw)
+    {
+        _sidebar.RefreshLockStates();
+    }
+
+    // ── Debug helpers ─────────────────────────────────────────────────────────
+
+    public override void _UnhandledInput(InputEvent @event)
+    {
+        if (@event is InputEventKey keyEvent && keyEvent.Pressed && !keyEvent.Echo)
+        {
+            switch (keyEvent.Keycode)
+            {
+                case Key.F1:
+                    OnStoryEventPending("test_event");
+                    break;
+                case Key.F2:
+                    OnLeveledUp(5);
+                    break;
+            }
+        }
+    }
+}
