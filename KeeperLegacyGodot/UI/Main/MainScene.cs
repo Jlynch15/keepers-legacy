@@ -381,6 +381,42 @@ public partial class MainScene : Control
         GD.Print("DEBUG: All features unlocked");
     }
 
+    private void DebugTogglePedestalDrag()
+    {
+        KeeperLegacy.UI.Habitat.PedestalNode.DebugDragEnabled =
+            !KeeperLegacy.UI.Habitat.PedestalNode.DebugDragEnabled;
+
+        bool enabled = KeeperLegacy.UI.Habitat.PedestalNode.DebugDragEnabled;
+        GD.Print($"DEBUG: Pedestal drag mode {(enabled ? "ON — drag pedestals, press F4 again to print positions and exit" : "OFF")}");
+
+        if (!enabled)
+        {
+            // Print final positions when turning off drag mode
+            DebugPrintPedestalPositions();
+        }
+    }
+
+    private void DebugPrintPedestalPositions()
+    {
+        // Find the habitat floor screen in the content container
+        if (_currentScreen == null) return;
+
+        GD.Print("── Pedestal positions (paste into PedestalDefs) ──");
+        foreach (var child in _currentScreen.GetChildren())
+        {
+            if (child is KeeperLegacy.UI.Habitat.PedestalNode pedestal)
+            {
+                var center = pedestal.GetCenter();
+                // Convert back from content-area coords to art-space (1364x768)
+                float scaleX = 1364f / (_currentScreen.Size.X > 0 ? _currentScreen.Size.X : 1364f);
+                float scaleY = 768f / (_currentScreen.Size.Y > 0 ? _currentScreen.Size.Y : 768f);
+                var artPos = new Vector2(center.X * scaleX, center.Y * scaleY);
+                GD.Print($"  (HabitatType.{pedestal.GetHabitatType(),-10} new Vector2({artPos.X,7:F0}, {artPos.Y,5:F0})),");
+            }
+        }
+        GD.Print("── end ──");
+    }
+
     // ── Debug helpers ─────────────────────────────────────────────────────────
 
     public override void _UnhandledInput(InputEvent @event)
@@ -397,6 +433,9 @@ public partial class MainScene : Control
                     break;
                 case Key.F3:
                     DebugUnlockAllFeatures();
+                    break;
+                case Key.F4:
+                    DebugTogglePedestalDrag();
                     break;
             }
         }

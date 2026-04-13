@@ -29,6 +29,12 @@ public partial class PedestalNode : Control
     private static readonly Color ColourLabelCount = new Color("#B8A080");
     private static readonly Color ColourLocked     = new Color("#606060");
 
+    // ── Debug drag mode ─────────────────────────────────────────────────────
+
+    public static bool DebugDragEnabled { get; set; }
+    private bool _dragging;
+    private Vector2 _dragOffset;
+
     // ── State ─────────────────────────────────────────────────────────────────
 
     private HabitatType _habitatType;
@@ -97,6 +103,42 @@ public partial class PedestalNode : Control
         _time += (float)delta;
         _blobArea?.QueueRedraw();
     }
+
+    // ── Debug drag handling ──────────────────────────────────────────────────
+
+    public override void _GuiInput(InputEvent @event)
+    {
+        if (!DebugDragEnabled) return;
+
+        if (@event is InputEventMouseButton mb)
+        {
+            if (mb.ButtonIndex == MouseButton.Left)
+            {
+                if (mb.Pressed)
+                {
+                    _dragging = true;
+                    _dragOffset = mb.Position;
+                    AcceptEvent();
+                }
+                else
+                {
+                    _dragging = false;
+                }
+            }
+        }
+        else if (@event is InputEventMouseMotion mm && _dragging)
+        {
+            Position += mm.Relative;
+            AcceptEvent();
+        }
+    }
+
+    /// <summary>
+    /// Returns the center position of this pedestal (for coordinate export).
+    /// </summary>
+    public Vector2 GetCenter() => Position + Size / 2f;
+
+    public HabitatType GetHabitatType() => _habitatType;
 
     // ── Child construction ────────────────────────────────────────────────────
 
