@@ -176,7 +176,7 @@ public partial class PedestalNode : Control
             child.QueueFree();
         }
 
-        // Pedestal art texture
+        // Pedestal art texture — scale 1104x960 source down to PedestalWidth
         if (PedestalTexturePaths.TryGetValue(_habitatType, out var texPath))
         {
             var tex = GD.Load<Texture2D>(texPath);
@@ -186,6 +186,7 @@ public partial class PedestalNode : Control
                 texRect.Texture = tex;
                 texRect.Position = Vector2.Zero;
                 texRect.Size = new Vector2(PedestalWidth, PedestalHeight);
+                texRect.ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize;
                 texRect.StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered;
                 texRect.MouseFilter = MouseFilterEnum.Ignore;
                 AddChild(texRect);
