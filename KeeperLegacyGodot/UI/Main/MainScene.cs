@@ -374,6 +374,7 @@ public partial class MainScene : Control
             if (!pm.IsFeatureUnlocked(feature))
             {
                 pm.Progression.UnlockedFeatures.Add(feature.RawValue());
+                pm.EmitSignal(ProgressionManager.SignalName.FeatureUnlocked, feature.RawValue());
             }
         }
         _sidebar.RefreshLockStates();
