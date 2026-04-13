@@ -61,8 +61,8 @@ public partial class StoryEventScreen : Control
         var vbox = new VBoxContainer();
         vbox.AddThemeConstantOverride("separation", 16);
         vbox.Alignment = BoxContainer.AlignmentMode.Center;
-        vbox.SizeFlagsHorizontal = (int)SizeFlags.ExpandFill;
-        vbox.SizeFlagsVertical   = (int)SizeFlags.ExpandFill;
+        vbox.SizeFlagsHorizontal = SizeFlags.ExpandFill;
+        vbox.SizeFlagsVertical   = SizeFlags.ExpandFill;
         card.AddChild(vbox);
 
         // Title label.
@@ -71,7 +71,7 @@ public partial class StoryEventScreen : Control
         titleLabel.HorizontalAlignment = HorizontalAlignment.Center;
         titleLabel.AddThemeFontSizeOverride("font_size", 24);
         titleLabel.AddThemeColorOverride("font_color", ColourTitle);
-        titleLabel.SizeFlagsHorizontal = (int)SizeFlags.ExpandFill;
+        titleLabel.SizeFlagsHorizontal = SizeFlags.ExpandFill;
         vbox.AddChild(titleLabel);
 
         // Body label.
@@ -81,14 +81,14 @@ public partial class StoryEventScreen : Control
         bodyLabel.AutowrapMode = TextServer.AutowrapMode.WordSmart;
         bodyLabel.AddThemeFontSizeOverride("font_size", 16);
         bodyLabel.AddThemeColorOverride("font_color", ColourBody);
-        bodyLabel.SizeFlagsHorizontal = (int)SizeFlags.ExpandFill;
+        bodyLabel.SizeFlagsHorizontal = SizeFlags.ExpandFill;
         vbox.AddChild(bodyLabel);
 
         // Continue button (inside card, centered horizontally).
         var continueBtn = new Button();
         continueBtn.Text = "Continue";
         continueBtn.CustomMinimumSize = new Vector2(150, 40);
-        continueBtn.SizeFlagsHorizontal = (int)SizeFlags.ShrinkCenter;
+        continueBtn.SizeFlagsHorizontal = SizeFlags.ShrinkCenter;
         continueBtn.Pressed += OnDismissed;
         vbox.AddChild(continueBtn);
 

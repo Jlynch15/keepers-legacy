@@ -29,7 +29,6 @@ public partial class PlaceholderScreen : Control
 		// Add main title Label
 		var titleLabel = new Label();
 		titleLabel.Text = ScreenTitle;
-		titleLabel.AddThemeStyleOverride("normal", new StyleBox());
 		var titleFont = GD.Load<FontFile>("res://Assets/Fonts/inter_semi_bold.ttf");
 		titleLabel.AddThemeFontOverride("font", titleFont);
 		titleLabel.AddThemeFontSizeOverride("font_size", 32);
@@ -52,7 +51,7 @@ public partial class PlaceholderScreen : Control
 		subtitleLabel.AddThemeColorOverride("font_color", new Color(0.604f, 0.502f, 0.439f, 1f)); // #9A8070
 
 		// Position subtitle below title (50px offset from center)
-		subtitleLabel.SetAnchorsAndOffsetsPreset(LayoutPreset.BottomCenter);
+		subtitleLabel.SetAnchorsAndOffsetsPreset(LayoutPreset.CenterBottom);
 		subtitleLabel.OffsetTop = -50;
 		subtitleLabel.CustomMinimumSize = new Vector2(400, 50);
 		subtitleLabel.HorizontalAlignment = HorizontalAlignment.Center;

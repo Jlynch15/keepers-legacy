@@ -34,8 +34,7 @@ public partial class SettingsScreen : Control
 		var container = new VBoxContainer();
 		container.SetAnchorsAndOffsetsPreset(LayoutPreset.Center);
 		container.CustomMinimumSize = new Vector2(400, 300);
-		container.Separation = 20;
-		container.HorizontalAlignment = HAlignment.Center;
+		container.AddThemeConstantOverride("separation", 20);
 		AddChild(container);
 
 		// Add "Settings" title label
@@ -46,7 +45,6 @@ public partial class SettingsScreen : Control
 		titleLabel.AddThemeFontSizeOverride("font_size", 28);
 		titleLabel.AddThemeColorOverride("font_color", new Color(0.941f, 0.910f, 0.847f, 1f)); // #F0E8D8
 		titleLabel.HorizontalAlignment = HorizontalAlignment.Center;
-		titleLabel.AddThemeStyleOverride("normal", new StyleBox());
 		container.AddChild(titleLabel);
 
 		// Add "Resolution" section label
@@ -56,7 +54,6 @@ public partial class SettingsScreen : Control
 		resolutionLabel.AddThemeFontOverride("font", sectionFont);
 		resolutionLabel.AddThemeFontSizeOverride("font_size", 16);
 		resolutionLabel.AddThemeColorOverride("font_color", new Color(0.722f, 0.627f, 0.502f, 1f)); // #B8A080
-		resolutionLabel.AddThemeStyleOverride("normal", new StyleBox());
 		container.AddChild(resolutionLabel);
 
 		// Add resolution dropdown

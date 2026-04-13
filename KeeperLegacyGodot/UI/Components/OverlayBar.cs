@@ -24,7 +24,10 @@ public partial class OverlayBar : PanelContainer
         // Set up the panel background style
         var styleBox = new StyleBoxFlat();
         styleBox.BgColor = new Color(0.047f, 0.035f, 0.027f, 0.8f);
-        styleBox.SetContentMarginIndividual(12, 8, 12, 8);
+        styleBox.ContentMarginLeft = 12;
+        styleBox.ContentMarginRight = 12;
+        styleBox.ContentMarginTop = 8;
+        styleBox.ContentMarginBottom = 8;
 
         var theme = new Theme();
         theme.SetStylebox("panel", "PanelContainer", styleBox);
@@ -40,7 +43,7 @@ public partial class OverlayBar : PanelContainer
         {
             var backButton = new Button();
             backButton.Text = "◀ Back";
-            backButton.FlatMode = true;
+            backButton.Flat = true;
             backButton.AddThemeColorOverride("font_color", Color.Color8(184, 160, 128));
             backButton.AddThemeColorOverride("font_hover_color", Color.Color8(232, 184, 48));
             backButton.AddThemeFontSizeOverride("font_size", 14);
@@ -75,7 +78,7 @@ public partial class OverlayBar : PanelContainer
             var pm = GetNodeOrNull<ProgressionManager>("/root/ProgressionManager");
             if (pm != null)
             {
-                pm.CoinsChanged += UpdateCoinDisplay;
+                pm.CoinsChanged += (_) => UpdateCoinDisplay();
             }
         }
     }

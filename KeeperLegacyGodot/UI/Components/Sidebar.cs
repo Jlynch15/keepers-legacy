@@ -84,13 +84,13 @@ public partial class Sidebar : PanelContainer
     {
         // Root VBoxContainer fills the panel.
         var root = new VBoxContainer();
-        root.SizeFlagsVertical = (int)Control.SizeFlags.ExpandFill;
+        root.SizeFlagsVertical = Control.SizeFlags.ExpandFill;
         root.AddThemeConstantOverride("separation", 0);
         AddChild(root);
 
         // Top section: main nav buttons.
         var topSection = new VBoxContainer();
-        topSection.SizeFlagsVertical = (int)Control.SizeFlags.ExpandFill;
+        topSection.SizeFlagsVertical = Control.SizeFlags.ExpandFill;
         topSection.AddThemeConstantOverride("separation", 0);
         root.AddChild(topSection);
 
@@ -103,7 +103,7 @@ public partial class Sidebar : PanelContainer
 
         // Spacer pushes Settings to the bottom.
         var spacer = new Control();
-        spacer.SizeFlagsVertical = (int)Control.SizeFlags.ExpandFill;
+        spacer.SizeFlagsVertical = Control.SizeFlags.ExpandFill;
         root.AddChild(spacer);
 
         // Thin separator above Settings.
@@ -126,7 +126,7 @@ public partial class Sidebar : PanelContainer
         // Each button is a Godot Button with its own VBox (icon label + text label).
         var btn = new Button();
         btn.CustomMinimumSize = new Vector2(70, 64);
-        btn.SizeFlagsHorizontal = (int)Control.SizeFlags.ExpandFill;
+        btn.SizeFlagsHorizontal = Control.SizeFlags.ExpandFill;
         btn.Flat = true;           // No default border/background — we draw our own.
         btn.FocusMode = Control.FocusModeEnum.None; // Keyboard focus handled elsewhere.
         btn.ClipText = false;

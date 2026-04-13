@@ -74,8 +74,8 @@ public partial class LevelUpScreen : Control
         var vbox = new VBoxContainer();
         vbox.AddThemeConstantOverride("separation", 16);
         vbox.Alignment = BoxContainer.AlignmentMode.Center;
-        vbox.SizeFlagsHorizontal = (int)SizeFlags.ExpandFill;
-        vbox.SizeFlagsVertical   = (int)SizeFlags.ExpandFill;
+        vbox.SizeFlagsHorizontal = SizeFlags.ExpandFill;
+        vbox.SizeFlagsVertical   = SizeFlags.ExpandFill;
         card.AddChild(vbox);
 
         // Header label.
@@ -84,7 +84,7 @@ public partial class LevelUpScreen : Control
         headerLabel.HorizontalAlignment = HorizontalAlignment.Center;
         headerLabel.AddThemeFontSizeOverride("font_size", 28);
         headerLabel.AddThemeColorOverride("font_color", ColourHeader);
-        headerLabel.SizeFlagsHorizontal = (int)SizeFlags.ExpandFill;
+        headerLabel.SizeFlagsHorizontal = SizeFlags.ExpandFill;
         vbox.AddChild(headerLabel);
 
         // Level number label.
@@ -93,7 +93,7 @@ public partial class LevelUpScreen : Control
         levelLabel.HorizontalAlignment = HorizontalAlignment.Center;
         levelLabel.AddThemeFontSizeOverride("font_size", 48);
         levelLabel.AddThemeColorOverride("font_color", ColourLevelNumber);
-        levelLabel.SizeFlagsHorizontal = (int)SizeFlags.ExpandFill;
+        levelLabel.SizeFlagsHorizontal = SizeFlags.ExpandFill;
         vbox.AddChild(levelLabel);
 
         // Rewards placeholder label.
@@ -102,14 +102,14 @@ public partial class LevelUpScreen : Control
         rewardsLabel.HorizontalAlignment = HorizontalAlignment.Center;
         rewardsLabel.AddThemeFontSizeOverride("font_size", 14);
         rewardsLabel.AddThemeColorOverride("font_color", ColourRewards);
-        rewardsLabel.SizeFlagsHorizontal = (int)SizeFlags.ExpandFill;
+        rewardsLabel.SizeFlagsHorizontal = SizeFlags.ExpandFill;
         vbox.AddChild(rewardsLabel);
 
         // Continue button (inside card, centered horizontally).
         var continueBtn = new Button();
         continueBtn.Text = "Continue";
         continueBtn.CustomMinimumSize = new Vector2(150, 40);
-        continueBtn.SizeFlagsHorizontal = (int)SizeFlags.ShrinkCenter;
+        continueBtn.SizeFlagsHorizontal = SizeFlags.ShrinkCenter;
         continueBtn.Pressed += OnDismissed;
         vbox.AddChild(continueBtn);
     }
