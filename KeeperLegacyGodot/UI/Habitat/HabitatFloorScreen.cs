@@ -19,16 +19,16 @@ public partial class HabitatFloorScreen : Control
     private const float ArtH = 768f;
 
     // Pedestal positions in art-space (center of each hotspot on 1364x768 bg)
-    // Mapped from Jesse's annotated screenshot 2026-04-13
+    // Mapped from Jesse's annotated screenshot — shifted to sit on floor area
     private static readonly (HabitatType type, Vector2 pos)[] PedestalDefs =
     {
-        (HabitatType.Water,    new Vector2( 340,  410)),  // left mid — blue annotation
-        (HabitatType.Grass,    new Vector2( 590,  270)),  // upper center — green annotation
-        (HabitatType.Dirt,     new Vector2( 870,  310)),  // upper right — brown annotation
-        (HabitatType.Fire,     new Vector2( 280,  560)),  // lower left — red annotation
-        (HabitatType.Ice,      new Vector2( 530,  620)),  // bottom center-left — white annotation
-        (HabitatType.Electric, new Vector2( 960,  490)),  // right — yellow annotation
-        (HabitatType.Magical,  new Vector2( 620,  450)),  // center of floor — purple circle
+        (HabitatType.Water,    new Vector2( 430,  440)),  // left mid — blue
+        (HabitatType.Grass,    new Vector2( 680,  330)),  // upper center — green
+        (HabitatType.Dirt,     new Vector2( 950,  370)),  // upper right — brown
+        (HabitatType.Fire,     new Vector2( 370,  590)),  // lower left — red
+        (HabitatType.Ice,      new Vector2( 620,  650)),  // bottom center-left — white
+        (HabitatType.Electric, new Vector2(1030,  530)),  // right — yellow
+        (HabitatType.Magical,  new Vector2( 710,  490)),  // center of floor — purple
     };
 
     // ── Colours ───────────────────────────────────────────────────────────────
