@@ -434,7 +434,7 @@ public partial class MainScene : Control
                     DebugUnlockAllFeatures();
                     break;
                 case Key.F4:
-                case Key.F9: // Backup key in case F4 is captured by editor
+                case Key.P: // Backup — press P to toggle pedestal drag mode
                     DebugTogglePedestalDrag();
                     break;
             }
