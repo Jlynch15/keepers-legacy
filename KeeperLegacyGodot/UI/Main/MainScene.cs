@@ -396,7 +396,7 @@ public partial class MainScene : Control
         }
     }
 
-    private static readonly float[] PedestalSizes = { 0.4f, 0.5f, 0.6f, 0.7f, 0.8f, 0.9f, 1.0f, 1.15f, 1.3f, 1.5f, 1.75f, 2.0f, 2.5f, 3.0f };
+    private static readonly float[] PedestalSizes = { 0.4f, 0.5f, 0.6f, 0.7f, 0.8f, 0.9f, 1.0f, 1.15f, 1.3f, 1.5f, 1.75f, 2.0f, 2.5f, 3.0f, 3.5f, 4.0f, 4.5f, 5.0f };
     private int _pedestalSizeIndex = 6; // Start at 1.0
 
     private void DebugCyclePedestalSize()
