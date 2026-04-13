@@ -73,6 +73,7 @@ public partial class PedestalNode : Control
         // Position the hotspot
         Size             = new Vector2(160, 80);
         Position         = center - Size / 2f;
+        MouseFilter      = MouseFilterEnum.Stop; // Ensure we receive _GuiInput
 
         BuildChildren();
         RefreshDisplay();
@@ -102,6 +103,14 @@ public partial class PedestalNode : Control
     {
         _time += (float)delta;
         _blobArea?.QueueRedraw();
+
+        // Toggle button passthrough when drag mode changes
+        if (_hitButton != null)
+        {
+            _hitButton.MouseFilter = DebugDragEnabled
+                ? MouseFilterEnum.Ignore
+                : MouseFilterEnum.Stop;
+        }
     }
 
     // ── Debug drag handling ──────────────────────────────────────────────────
