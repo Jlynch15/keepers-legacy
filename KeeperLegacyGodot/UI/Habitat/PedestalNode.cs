@@ -42,8 +42,8 @@ public partial class PedestalNode : Control
     private List<(string name, HabitatType type)> _occupants = new();
 
     // Pedestal art sizing (536x466 source, scaled down to fit room)
-    private const float PedestalWidth  = 90f;
-    private const float PedestalHeight = 78f; // 466/536 * 90
+    private const float PedestalWidth  = 65f;
+    private const float PedestalHeight = 57f; // 466/536 * 65
 
     private static readonly Dictionary<HabitatType, string> PedestalTexturePaths = new()
     {
@@ -88,7 +88,8 @@ public partial class PedestalNode : Control
         // Position the hotspot — sized to fit pedestal art + label below
         // Art is 1104x960, scaled to PedestalWidth wide
         Size             = new Vector2(PedestalWidth, PedestalHeight + 30); // +30 for label
-        Position         = center - new Vector2(PedestalWidth / 2f, PedestalHeight / 2f); // Center pedestal on the coordinate
+        // Anchor so the center of the pedestal top face aligns with the coordinate
+        Position         = center - new Vector2(PedestalWidth / 2f, 0);
         MouseFilter      = MouseFilterEnum.Stop; // Ensure we receive _GuiInput
 
         BuildChildren();
