@@ -132,8 +132,20 @@ public partial class HabitatFloorScreen : Control
         }
 
         // Unlocked if player owns at least one habitat of this type
-        if (hm == null) return true;
-        return !hm.Habitats.Any(h => h.Type == type);
+        // OR has reached sufficient level (so pedestals unlock with progression)
+        if (hm == null && pm == null) return true;
+
+        bool hasHabitat = hm?.Habitats.Any(h => h.Type == type) ?? false;
+        if (hasHabitat) return false;
+
+        // Check level-based unlock: Water/Grass/Dirt always available,
+        // Fire/Ice/Electric unlock at higher levels
+        bool levelOk = type switch
+        {
+            HabitatType.Water or HabitatType.Grass or HabitatType.Dirt => true,
+            _ => pm != null && pm.CurrentLevel >= 5,
+        };
+        return !levelOk;
     }
 
     private static List<(string name, HabitatType type)> BuildOccupantList(
@@ -162,41 +174,88 @@ public partial class HabitatFloorScreen : Control
 
     private void BuildStoreSign()
     {
-        var panel = new PanelContainer();
-        panel.SetAnchorsAndOffsetsPreset(LayoutPreset.TopLeft);
-        panel.OffsetLeft   = 12;
-        panel.OffsetTop    = 12;
-        panel.OffsetRight  = 200;
-        panel.OffsetBottom = 72;
+        // Hanging sign: chains from top of screen → wooden sign board
+        var signContainer = new Control();
+        signContainer.SetAnchorsAndOffsetsPreset(LayoutPreset.TopLeft);
+        signContainer.OffsetLeft = 30;
+        signContainer.OffsetTop = 0;
+        signContainer.OffsetRight = 220;
+        signContainer.OffsetBottom = 90;
+        signContainer.MouseFilter = MouseFilterEnum.Ignore;
+        AddChild(signContainer);
+
+        // Left chain
+        var chainLeft = new ColorRect();
+        chainLeft.Position = new Vector2(40, 0);
+        chainLeft.Size = new Vector2(2, 30);
+        chainLeft.Color = new Color(0.91f, 0.72f, 0.19f, 0.35f);
+        chainLeft.MouseFilter = MouseFilterEnum.Ignore;
+        signContainer.AddChild(chainLeft);
+
+        // Right chain
+        var chainRight = new ColorRect();
+        chainRight.Position = new Vector2(148, 0);
+        chainRight.Size = new Vector2(2, 30);
+        chainRight.Color = new Color(0.91f, 0.72f, 0.19f, 0.35f);
+        chainRight.MouseFilter = MouseFilterEnum.Ignore;
+        signContainer.AddChild(chainRight);
+
+        // Sign board
+        var signBoard = new PanelContainer();
+        signBoard.Position = new Vector2(0, 28);
+        signBoard.Size = new Vector2(190, 58);
 
         var style = new StyleBoxFlat();
-        style.BgColor     = ColourSignBg;
+        style.BgColor = new Color(0.14f, 0.10f, 0.04f, 0.92f); // Dark wood
         style.BorderColor = ColourSignBorder;
-        style.SetBorderWidthAll(1);
-        style.SetCornerRadiusAll(6);
-        style.ContentMarginLeft   = 12;
-        style.ContentMarginRight  = 12;
-        style.ContentMarginTop    = 8;
-        style.ContentMarginBottom = 8;
-        panel.AddThemeStyleboxOverride("panel", style);
-        AddChild(panel);
+        style.BorderWidthTop = 2;
+        style.BorderWidthBottom = 2;
+        style.BorderWidthLeft = 2;
+        style.BorderWidthRight = 2;
+        style.CornerRadiusTopLeft = 3;
+        style.CornerRadiusTopRight = 3;
+        style.CornerRadiusBottomLeft = 6;
+        style.CornerRadiusBottomRight = 6;
+        style.ContentMarginLeft = 12;
+        style.ContentMarginRight = 12;
+        style.ContentMarginTop = 6;
+        style.ContentMarginBottom = 6;
+        // Subtle shadow effect via border
+        style.ShadowColor = new Color(0, 0, 0, 0.4f);
+        style.ShadowSize = 4;
+        style.ShadowOffset = new Vector2(0, 3);
+        signBoard.AddThemeStyleboxOverride("panel", style);
+        signBoard.MouseFilter = MouseFilterEnum.Ignore;
+        signContainer.AddChild(signBoard);
 
         var vbox = new VBoxContainer();
-        vbox.AddThemeConstantOverride("separation", 2);
-        panel.AddChild(vbox);
+        vbox.AddThemeConstantOverride("separation", 1);
+        vbox.Alignment = BoxContainer.AlignmentMode.Center;
+        signBoard.AddChild(vbox);
+
+        // Decorative top accent
+        var accentLine = new Label();
+        accentLine.Text = "✦ ─── ✦";
+        accentLine.HorizontalAlignment = HorizontalAlignment.Center;
+        accentLine.AddThemeFontSizeOverride("font_size", 8);
+        accentLine.AddThemeColorOverride("font_color", new Color(0.91f, 0.72f, 0.19f, 0.4f));
+        accentLine.MouseFilter = MouseFilterEnum.Ignore;
+        vbox.AddChild(accentLine);
 
         var title = new Label();
         title.Text = "KEEPER'S LEGACY";
         title.HorizontalAlignment = HorizontalAlignment.Center;
-        title.AddThemeFontSizeOverride("font_size", 15);
+        title.AddThemeFontSizeOverride("font_size", 14);
         title.AddThemeColorOverride("font_color", ColourSignTitle);
+        title.MouseFilter = MouseFilterEnum.Ignore;
         vbox.AddChild(title);
 
         var subtitle = new Label();
-        subtitle.Text = "Creature Emporium";
+        subtitle.Text = "✦ Creature Emporium ✦";
         subtitle.HorizontalAlignment = HorizontalAlignment.Center;
-        subtitle.AddThemeFontSizeOverride("font_size", 11);
+        subtitle.AddThemeFontSizeOverride("font_size", 10);
         subtitle.AddThemeColorOverride("font_color", ColourSignSubtitle);
+        subtitle.MouseFilter = MouseFilterEnum.Ignore;
         vbox.AddChild(subtitle);
     }
 
@@ -313,9 +372,10 @@ public partial class HabitatFloorScreen : Control
         var pm = GetNodeOrNull<ProgressionManager>("/root/ProgressionManager");
         if (pm != null)
         {
-            pm.LeveledUp    += (_) => RefreshHud();
-            pm.XPChanged    += (_, _) => RefreshHud();
-            pm.CoinsChanged += (_) => RefreshHud();
+            pm.LeveledUp       += (_) => RefreshHud();
+            pm.XPChanged       += (_, _) => RefreshHud();
+            pm.CoinsChanged    += (_) => RefreshHud();
+            pm.FeatureUnlocked += (_) => RefreshPedestals();
         }
 
         var sm = GetNodeOrNull<StoryManager>("/root/StoryManager");
