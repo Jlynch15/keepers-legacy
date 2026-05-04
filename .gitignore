@@ -61,6 +61,9 @@ Desktop.ini
 # Claude Code local settings (machine-specific, not for repo)
 .claude/
 
+# Superpowers session/runtime state (brainstorm/plan transient files)
+.superpowers/
+
 # Secrets / credentials (never commit these)
 *.p12
 *.mobileprovision
