@@ -48,6 +48,11 @@ public partial class MainScene : Control
     private readonly Stack<string> _navStack = new();
     private bool         _transitioning;
 
+    // Debug overlay — appears top-left when any debug-tuning mode is active.
+    // Lives above content, below immersive overlays.
+    private PanelContainer _debugOverlay;
+    private Label          _debugOverlayLabel;
+
     // ── Godot lifecycle ───────────────────────────────────────────────────────
 
     public override void _Ready()
@@ -96,11 +101,70 @@ public partial class MainScene : Control
         _immersiveContent.Visible = false;
         _immersiveLayer.AddChild(_immersiveContent);
 
-        // 7. Wire manager signals.
+        // 7. Debug overlay (always present, hidden until a debug mode activates).
+        BuildDebugOverlay();
+
+        // 8. Wire manager signals.
         WireManagerSignals();
 
-        // 8. Load initial screen without animation.
+        // 9. Load initial screen without animation.
         LoadScreen("Home", animate: false);
+    }
+
+    private void BuildDebugOverlay()
+    {
+        _debugOverlay = new PanelContainer();
+        _debugOverlay.SetAnchorsAndOffsetsPreset(LayoutPreset.TopLeft);
+        _debugOverlay.OffsetLeft   = 12;
+        _debugOverlay.OffsetTop    = 100; // below the store sign
+        _debugOverlay.Visible      = false;
+        _debugOverlay.MouseFilter  = MouseFilterEnum.Ignore;
+
+        var style = new StyleBoxFlat();
+        style.BgColor     = new Color(0f, 0f, 0f, 0.78f);
+        style.BorderColor = new Color("#FF4040");
+        style.SetBorderWidthAll(2);
+        style.SetCornerRadiusAll(4);
+        style.ContentMarginLeft   = 10;
+        style.ContentMarginRight  = 10;
+        style.ContentMarginTop    = 6;
+        style.ContentMarginBottom = 6;
+        _debugOverlay.AddThemeStyleboxOverride("panel", style);
+
+        _debugOverlayLabel = new Label();
+        _debugOverlayLabel.AddThemeFontSizeOverride("font_size", 11);
+        _debugOverlayLabel.AddThemeColorOverride("font_color", new Color("#F0E8D8"));
+        _debugOverlayLabel.MouseFilter = MouseFilterEnum.Ignore;
+        _debugOverlay.AddChild(_debugOverlayLabel);
+
+        AddChild(_debugOverlay);
+    }
+
+    private void UpdateDebugOverlay()
+    {
+        if (_debugOverlay == null) return;
+
+        bool dragOn = KeeperLegacy.UI.Habitat.PedestalNode.DebugDragEnabled;
+        if (!dragOn)
+        {
+            _debugOverlay.Visible = false;
+            return;
+        }
+
+        float scale     = KeeperLegacy.UI.Habitat.PedestalNode.DebugScale;
+        var   artOffset = KeeperLegacy.UI.Habitat.PedestalNode.DebugArtOffset;
+
+        _debugOverlayLabel.Text =
+            "DEBUG — Pedestal Drag\n" +
+            $"  Scale:      {scale:F2}x  ({220f * scale:F0}px wide)\n" +
+            $"  Art offset: ({artOffset.X:F0}, {artOffset.Y:F0})\n" +
+            "  -----------------------------------\n" +
+            "  Drag        : reposition pedestals\n" +
+            "  O           : cycle scale\n" +
+            "  Arrow keys  : nudge art offset\n" +
+            "  Ctrl+S      : print bake values\n" +
+            "  F4 / P      : print + exit debug";
+        _debugOverlay.Visible = true;
     }
 
     // ── Manager signal wiring ─────────────────────────────────────────────────
@@ -387,13 +451,17 @@ public partial class MainScene : Control
             !KeeperLegacy.UI.Habitat.PedestalNode.DebugDragEnabled;
 
         bool enabled = KeeperLegacy.UI.Habitat.PedestalNode.DebugDragEnabled;
-        GD.Print($"DEBUG: Pedestal drag mode {(enabled ? "ON — drag pedestals, press F4 again to print positions and exit" : "OFF")}");
+        GD.Print(enabled
+            ? "DEBUG: Drag mode ON. Drag pedestals, press O to cycle scale, arrows to nudge offset, Ctrl+S to print bake values, F4/P to print + exit."
+            : "DEBUG: Drag mode OFF.");
 
         if (!enabled)
         {
             // Print final positions when turning off drag mode
             DebugPrintPedestalPositions();
         }
+
+        UpdateDebugOverlay();
     }
 
     private static readonly float[] PedestalSizes = { 0.4f, 0.5f, 0.6f, 0.7f, 0.8f, 0.9f, 1.0f, 1.15f, 1.3f, 1.5f, 1.75f, 2.0f, 2.5f, 3.0f, 3.5f, 4.0f, 4.5f, 5.0f };
@@ -404,8 +472,11 @@ public partial class MainScene : Control
         _pedestalSizeIndex = (_pedestalSizeIndex + 1) % PedestalSizes.Length;
         KeeperLegacy.UI.Habitat.PedestalNode.DebugScale = PedestalSizes[_pedestalSizeIndex];
         float scale = KeeperLegacy.UI.Habitat.PedestalNode.DebugScale;
-        GD.Print($"DEBUG: Pedestal scale = {scale:F2} (base 55px -> {55f * scale:F0}px wide)");
+        // ArtWidth is the baked (scale-1.0) display width — multiplier rides on top.
+        const float bakedArtWidth = 220f;
+        GD.Print($"DEBUG: Pedestal scale = {scale:F2}x  -> {bakedArtWidth * scale:F0}px wide");
         ApplyDebugVisualsToAll();
+        UpdateDebugOverlay();
     }
 
     private void DebugNudgeArtOffset(Vector2 delta)
@@ -414,6 +485,7 @@ public partial class MainScene : Control
         var offset = KeeperLegacy.UI.Habitat.PedestalNode.DebugArtOffset;
         GD.Print($"DEBUG: Art offset = ({offset.X:F0}, {offset.Y:F0})");
         ApplyDebugVisualsToAll();
+        UpdateDebugOverlay();
     }
 
     private void ApplyDebugVisualsToAll()
@@ -422,47 +494,33 @@ public partial class MainScene : Control
         foreach (var child in _currentScreen.GetChildren())
         {
             if (child is KeeperLegacy.UI.Habitat.PedestalNode ped)
-                ped.ApplyDebugVisuals();
+                ped.ApplyDebugLayout();
         }
     }
 
     private void DebugPrintPedestalPositions()
     {
-        if (_currentScreen == null)
+        // Delegate to the screen — only HabitatFloorScreen knows its own art-space
+        // mapping (sidebar offset, letterbox math). Calling its own print routine
+        // is the only way to produce paste-ready bake values that match the live
+        // visual exactly.
+        if (_currentScreen is KeeperLegacy.UI.Habitat.HabitatFloorScreen floor)
         {
-            GD.Print("DEBUG: No current screen found");
-            return;
+            floor.PrintBakeValues();
         }
-
-        float scale = KeeperLegacy.UI.Habitat.PedestalNode.DebugScale;
-        var artOffset = KeeperLegacy.UI.Habitat.PedestalNode.DebugArtOffset;
-        GD.Print($"── Pedestal scale: {scale:F2} (base 55px -> {55f * scale:F0}px wide) ──");
-        GD.Print($"── Art offset: ({artOffset.X:F0}, {artOffset.Y:F0}) ──");
-        GD.Print("── Pedestal positions (paste into PedestalDefs) ──");
-
-        int found = 0;
-        foreach (var child in _currentScreen.GetChildren())
+        else
         {
-            if (child is KeeperLegacy.UI.Habitat.PedestalNode pedestal)
-            {
-                found++;
-                var center = pedestal.GetCenter();
-                float scaleX = 1364f / (_currentScreen.Size.X > 0 ? _currentScreen.Size.X : 1364f);
-                float scaleY = 768f / (_currentScreen.Size.Y > 0 ? _currentScreen.Size.Y : 768f);
-                var artPos = new Vector2(center.X * scaleX, center.Y * scaleY);
-                GD.Print($"  (HabitatType.{pedestal.GetHabitatType(),-10} new Vector2({artPos.X,7:F0}, {artPos.Y,5:F0})),");
-            }
+            GD.Print("DEBUG: bake-print only supported on HabitatFloorScreen for now.");
         }
-
-        if (found == 0)
-            GD.Print("  (no pedestals found in current screen children)");
-
-        GD.Print("── end ──");
     }
 
     // ── Debug helpers ─────────────────────────────────────────────────────────
 
-    public override void _UnhandledInput(InputEvent @event)
+    // _Input rather than _UnhandledInput: letter keys (P, S) get consumed by
+    // focused Controls before _UnhandledInput fires, so the previous version of
+    // this handler caught F-keys but missed P / Ctrl+S. _Input fires for every
+    // input regardless of focus.
+    public override void _Input(InputEvent @event)
     {
         if (@event is InputEventKey keyEvent && keyEvent.Pressed && !keyEvent.Echo)
         {
@@ -505,6 +563,12 @@ public partial class MainScene : Control
                 case Key.Right:
                     if (KeeperLegacy.UI.Habitat.PedestalNode.DebugDragEnabled)
                         DebugNudgeArtOffset(new Vector2(3, 0));
+                    else handled = false;
+                    break;
+                case Key.S:
+                    // Ctrl+S in drag mode: print bake values WITHOUT exiting drag mode
+                    if (KeeperLegacy.UI.Habitat.PedestalNode.DebugDragEnabled && keyEvent.CtrlPressed)
+                        DebugPrintPedestalPositions();
                     else handled = false;
                     break;
                 default:

@@ -19,16 +19,16 @@ public partial class HabitatFloorScreen : Control
     private const float ArtH = 768f;
 
     // Pedestal positions in art-space (center of each hotspot on 1364x768 bg)
-    // Positioned via drag mode by Jesse — 2026-04-13 (scale 4.0x, offset -78,0)
+    // Re-positioned via drag mode by Jesse — 2026-05-04 (scale 1.0x at 220px wide)
     private static readonly (HabitatType type, Vector2 pos)[] PedestalDefs =
     {
-        (HabitatType.Water,    new Vector2( 515,  197)),
-        (HabitatType.Grass,    new Vector2( 772,   91)),
-        (HabitatType.Dirt,     new Vector2( 970,  200)),
-        (HabitatType.Fire,     new Vector2( 502,  598)),
-        (HabitatType.Ice,      new Vector2( 972,  653)),
-        (HabitatType.Electric, new Vector2(1222,  542)),
-        (HabitatType.Magical,  new Vector2( 748,  393)),
+        (HabitatType.Water,    new Vector2( 534,  127)),
+        (HabitatType.Grass,    new Vector2( 752,   23)),
+        (HabitatType.Dirt,     new Vector2( 981,  150)),
+        (HabitatType.Fire,     new Vector2( 540,  568)),
+        (HabitatType.Ice,      new Vector2(1085,  561)),
+        (HabitatType.Electric, new Vector2(1273,  450)),
+        (HabitatType.Magical,  new Vector2( 755,  364)),
     };
 
     // ── Colours ───────────────────────────────────────────────────────────────
@@ -443,7 +443,9 @@ public partial class HabitatFloorScreen : Control
         {
             bool locked    = IsLocked(type, hm, pm);
             var occupants  = BuildOccupantList(type, hm);
-            pedestal.Setup(type, pedestal.Position + pedestal.Size / 2f, locked, occupants);
+            // Use the stored anchor — geometric center includes labels and would
+            // drift the pedestal up/down on every refresh (this was a latent bug).
+            pedestal.Setup(type, pedestal.GetViewportAnchor(), locked, occupants);
         }
     }
 
@@ -486,10 +488,35 @@ public partial class HabitatFloorScreen : Control
 
     // ── Coordinate scaling ────────────────────────────────────────────────────
 
+    /// <summary>
     /// Scale an art-space position into actual content area coordinates.
+    /// Uses uniform aspect-preserving scale + letterbox centering inside the
+    /// content area (viewport minus the 70px sidebar on the right).
+    /// </summary>
     private Vector2 ScalePosition(Vector2 artPos)
     {
-        // Content area excludes the 70px sidebar on the right (see MainScene)
+        var (scale, offsetX, offsetY) = GetArtSpaceTransform();
+        return new Vector2(
+            offsetX + artPos.X * scale,
+            offsetY + artPos.Y * scale
+        );
+    }
+
+    /// <summary>
+    /// Inverse of ScalePosition — viewport coords back to art-space (1364x768).
+    /// </summary>
+    private Vector2 UnScalePosition(Vector2 viewportPos)
+    {
+        var (scale, offsetX, offsetY) = GetArtSpaceTransform();
+        if (scale <= 0f) return Vector2.Zero;
+        return new Vector2(
+            (viewportPos.X - offsetX) / scale,
+            (viewportPos.Y - offsetY) / scale
+        );
+    }
+
+    private (float scale, float offsetX, float offsetY) GetArtSpaceTransform()
+    {
         Vector2 viewport = GetViewport()?.GetVisibleRect().Size ?? new Vector2(1364, 768);
         float contentW   = viewport.X - 70f;
         float contentH   = viewport.Y;
@@ -500,10 +527,62 @@ public partial class HabitatFloorScreen : Control
 
         float offsetX = (contentW - ArtW * scale) / 2f;
         float offsetY = (contentH - ArtH * scale) / 2f;
+        return (scale, offsetX, offsetY);
+    }
 
-        return new Vector2(
-            offsetX + artPos.X * scale,
-            offsetY + artPos.Y * scale
-        );
+    // ── Debug bake-print ──────────────────────────────────────────────────────
+
+    /// <summary>
+    /// Emit paste-ready C# constants reflecting the current live debug state.
+    /// After the values from this print are pasted into PedestalNode.cs and
+    /// PedestalDefs[] here, DebugScale should reset to 1.0 and DebugArtOffset
+    /// to Zero — the visual at scale-1.0 will then exactly match the live
+    /// tuned visual. This is the contract that prevents bake-time visual drift.
+    /// </summary>
+    public void PrintBakeValues()
+    {
+        float scale     = PedestalNode.DebugScale;
+        Vector2 offset  = PedestalNode.DebugArtOffset;
+
+        // Read the live constants directly so we can never go out of sync.
+        float ArtWidthBaked   = PedestalNode.GetBakedArtWidth();
+        float ArtHeightBaked  = PedestalNode.GetBakedArtHeight();
+        float ArtOffsetXBaked = PedestalNode.GetBakedArtOffsetX();
+        float ArtOffsetYBaked = PedestalNode.GetBakedArtOffsetY();
+
+        // After-bake values: the multiplier is absorbed into the constants.
+        // ArtOffset has two contributions: the existing baked offset times scale
+        // (geometric), plus the screen-space DebugArtOffset nudge. Both end up in
+        // the new constant since post-bake DebugScale=1 and DebugArtOffset=Zero.
+        float newArtWidth   = ArtWidthBaked  * scale;
+        float newArtHeight  = ArtHeightBaked * scale;
+        float newArtOffsetX = ArtOffsetXBaked * scale + offset.X;
+        float newArtOffsetY = ArtOffsetYBaked * scale + offset.Y;
+
+        GD.Print("");
+        GD.Print("=== PEDESTAL BAKE VALUES ====================================");
+        GD.Print("// Paste into KeeperLegacyGodot/UI/Habitat/PedestalNode.cs:");
+        GD.Print($"    private const float ArtWidth   = {newArtWidth:F1}f;");
+        GD.Print($"    private const float ArtHeight  = {newArtHeight:F1}f;");
+        GD.Print($"    private const float ArtOffsetX = {newArtOffsetX:F1}f;");
+        GD.Print($"    private const float ArtOffsetY = {newArtOffsetY:F1}f;");
+        GD.Print("");
+        GD.Print("// Paste into KeeperLegacyGodot/UI/Habitat/HabitatFloorScreen.cs:");
+        GD.Print("    private static readonly (HabitatType type, Vector2 pos)[] PedestalDefs =");
+        GD.Print("    {");
+        foreach (var (type, _) in PedestalDefs)
+        {
+            if (!_pedestals.TryGetValue(type, out var pedestal)) continue;
+            Vector2 viewportAnchor = pedestal.GetViewportAnchor();
+            Vector2 artPos         = UnScalePosition(viewportAnchor);
+            string  enumPad        = $"HabitatType.{type},".PadRight(20);
+            GD.Print($"        ({enumPad} new Vector2({artPos.X,7:F0}, {artPos.Y,5:F0})),");
+        }
+        GD.Print("    };");
+        GD.Print("");
+        GD.Print("// After pasting, debug values reset to baseline automatically");
+        GD.Print("// (DebugScale=1.0, DebugArtOffset=Zero). Re-run; visuals will match.");
+        GD.Print("==============================================================");
+        GD.Print("");
     }
 }

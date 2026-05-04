@@ -29,14 +29,25 @@ public partial class PedestalNode : Control
     private static readonly Color ColourLabelCount = new Color("#B8A080");
     private static readonly Color ColourLocked     = new Color("#606060");
 
-    // ── Debug drag mode ─────────────────────────────────────────────────────
+    // ── Debug tuning state (global, applied live to all pedestals) ──────────
+    // Default 1.0 / Zero means "use baked constants as-is". When tuning, these
+    // multiply onto the baked constants. When happy, Ctrl+S prints paste-ready
+    // values; the baked constants are updated to absorb the multiplier and
+    // DebugScale resets to 1.0. This guarantees what-you-see is what-gets-baked.
 
     public static bool DebugDragEnabled { get; set; }
     public static float DebugScale { get; set; } = 1.0f;
-    // Offset of the art image relative to the node position
     public static Vector2 DebugArtOffset { get; set; } = Vector2.Zero;
     private bool _dragging;
     private Vector2 _dragOffset;
+
+    // Last applied debug values — used to detect changes in _Process and re-apply layout
+    private float _appliedScale = float.NaN;
+    private Vector2 _appliedOffset = new Vector2(float.NaN, float.NaN);
+
+    // The horizontal-center, top-edge anchor point of this pedestal in viewport coords.
+    // Drag updates this; scale changes recompute Position from it.
+    private Vector2 _viewportAnchor;
 
     // ── State ─────────────────────────────────────────────────────────────────
 
@@ -70,22 +81,27 @@ public partial class PedestalNode : Control
     private const float BobPeriod    = 2.5f;
 
     // Child references
-    private Button    _hitButton;
-    private Label     _nameLabel;
-    private Label     _countLabel;
-    private TextureRect _texRect;
+    private Button         _hitButton;
+    private Label          _nameLabel;
+    private Label          _countLabel;
+    private TextureRect    _texRect;
+    private PanelContainer _labelGroup;     // Pill background wrapping both labels
 
     // Blob drawing area
     private Control   _blobArea;
 
+    // Label pill styling
+    private static readonly Color ColourLabelPillBg = new Color(0.10f, 0.08f, 0.06f, 0.72f);
+
     // ── Public API ────────────────────────────────────────────────────────────
 
-    public void Setup(HabitatType type, Vector2 center, bool locked,
+    public void Setup(HabitatType type, Vector2 viewportCenter, bool locked,
                       List<(string creatureName, HabitatType creatureType)> occupants)
     {
         _habitatType = type;
         _locked      = locked;
         _occupants   = occupants ?? new List<(string, HabitatType)>();
+        _viewportAnchor = viewportCenter;
 
         // Rebuild phase offsets for each occupant slot
         _phaseOffsets.Clear();
@@ -93,15 +109,11 @@ public partial class PedestalNode : Control
         foreach (var _ in _occupants)
             _phaseOffsets.Add((float)(rng.NextDouble() * Math.PI * 2.0));
 
-        // The node is sized to contain the art + labels.
-        // The coordinate "center" marks where the top-center of the pedestal should appear.
-        // Art offset shifts the image left so the pedestal diamond aligns with that point.
-        Size     = new Vector2(ArtWidth, ArtHeight + 30);
-        Position = center - new Vector2(ArtWidth / 2f + ArtOffsetX, 0);
         MouseFilter = MouseFilterEnum.Stop;
 
         BuildChildren();
         RefreshDisplay();
+        ApplyDebugLayout();
     }
 
     public void UpdateCreatures(List<(string creatureName, HabitatType creatureType)> occupants)
@@ -114,6 +126,7 @@ public partial class PedestalNode : Control
             _phaseOffsets.Add((float)(rng.NextDouble() * Math.PI * 2.0));
 
         RefreshDisplay();
+        ApplyDebugLayout();   // text width changed — re-center the pill
         _blobArea?.QueueRedraw();
     }
 
@@ -135,6 +148,14 @@ public partial class PedestalNode : Control
             _hitButton.MouseFilter = DebugDragEnabled
                 ? MouseFilterEnum.Ignore
                 : MouseFilterEnum.Stop;
+        }
+
+        // React to global debug-tuning changes (DebugScale or DebugArtOffset edited
+        // by HabitatFloorScreen's input handler). Cheap equality check; only
+        // re-applies when something actually changed.
+        if (DebugScale != _appliedScale || DebugArtOffset != _appliedOffset)
+        {
+            ApplyDebugLayout();
         }
     }
 
@@ -162,35 +183,101 @@ public partial class PedestalNode : Control
         }
         else if (@event is InputEventMouseMotion mm && _dragging)
         {
+            // Move the node and its viewport anchor in lock-step so subsequent
+            // scale changes don't snap us back to the original position.
             Position += mm.Relative;
+            _viewportAnchor += mm.Relative;
             AcceptEvent();
         }
     }
 
     /// <summary>
-    /// Rebuild all pedestal children to reflect new scale.
-    /// Called on any pedestal but rebuilds siblings too via tree walk.
-    /// </summary>
-
-    /// <summary>
-    /// Returns the center position of this pedestal (for coordinate export).
+    /// Returns the geometric center of this pedestal node in viewport coords.
+    /// Note: this is NOT the same as the anchor — the node extends below the
+    /// art for the labels. Use GetViewportAnchor() to recover the original
+    /// "top-center of art" position used during Setup.
     /// </summary>
     public Vector2 GetCenter() => Position + Size / 2f;
+
+    /// <summary>
+    /// The anchor point the pedestal was placed against — top-center of the art
+    /// in viewport coords. Updated by drag. Read by HabitatFloorScreen when
+    /// printing bake-ready values.
+    /// </summary>
+    public Vector2 GetViewportAnchor() => _viewportAnchor;
 
     public HabitatType GetHabitatType() => _habitatType;
     public float GetPedestalWidth() => ArtWidth;
     public float GetPedestalHeight() => ArtHeight;
 
+    // Read-only accessors so the bake-print routine in HabitatFloorScreen
+    // doesn't have to duplicate (and risk de-syncing) these constants.
+    public static float GetBakedArtWidth()   => ArtWidth;
+    public static float GetBakedArtHeight()  => ArtHeight;
+    public static float GetBakedArtOffsetX() => ArtOffsetX;
+    public static float GetBakedArtOffsetY() => ArtOffsetY;
+
     /// <summary>
-    /// Update art position and size without rebuilding. Used by debug tools.
+    /// Compute and apply node Size, Position, and all child layouts based on
+    /// the current debug values (DebugScale, DebugArtOffset) and the stored
+    /// anchor. This is the single source of truth for pedestal layout — calling
+    /// it with DebugScale=1.0 and DebugArtOffset=Zero produces the visual that
+    /// matches the baked constants exactly.
     /// </summary>
-    public void ApplyDebugVisuals()
+    public void ApplyDebugLayout()
     {
+        float s = DebugScale;
+        float w = ArtWidth  * s;
+        float h = ArtHeight * s;
+
+        // Node footprint = art footprint. Labels float above the node's rect;
+        // Godot doesn't clip Control children so they render fine outside.
+        Size = new Vector2(w, h);
+
+        // Position the node so the art's horizontal center sits on _viewportAnchor.X
+        // and the art's top sits on _viewportAnchor.Y. ArtOffsetX scales with the art.
+        Position = _viewportAnchor - new Vector2(w / 2f + ArtOffsetX * s, 0f);
+
+        // Where the art's top-left lands inside the node, in node-local coords.
+        // Hit button, blobs, and labels all anchor to the art (not the node origin)
+        // so they track wherever the art is — including when DebugArtOffset nudges it.
+        Vector2 artOrigin = new Vector2(ArtOffsetX * s, ArtOffsetY * s) + DebugArtOffset;
+
         if (_texRect != null)
         {
-            _texRect.Position = new Vector2(ArtOffsetX, ArtOffsetY) + DebugArtOffset;
-            _texRect.Size = new Vector2(ArtWidth, ArtHeight);
+            _texRect.Position = artOrigin;
+            _texRect.Size     = new Vector2(w, h);
         }
+        if (_hitButton != null)
+        {
+            _hitButton.Position = artOrigin;
+            _hitButton.Size     = new Vector2(w, h);
+        }
+        if (_blobArea != null)
+        {
+            _blobArea.Position = artOrigin + new Vector2(0, h * 0.1f);
+            _blobArea.Size     = new Vector2(w, h * 0.45f);
+        }
+        // Label pill — sized to fit its text content, centered horizontally on the
+        // art, floating above the pedestal's top vertex. We force a layout pass so
+        // GetMinimumSize() reflects the current text widths (which can change when
+        // occupants update — "Empty" vs "3 creatures").
+        if (_labelGroup != null)
+        {
+            _labelGroup.Size = Vector2.Zero;            // let it shrink to min
+            _labelGroup.UpdateMinimumSize();
+            Vector2 pillSize = _labelGroup.GetCombinedMinimumSize();
+            _labelGroup.Size = pillSize;
+
+            const float gapAboveArt = 6f;
+            _labelGroup.Position = artOrigin + new Vector2(
+                (w - pillSize.X) / 2f,
+                -pillSize.Y - gapAboveArt * s
+            );
+        }
+
+        _appliedScale  = s;
+        _appliedOffset = DebugArtOffset;
     }
 
     // ── Child construction ────────────────────────────────────────────────────
@@ -242,25 +329,41 @@ public partial class PedestalNode : Control
         _blobArea.Draw                  += OnBlobAreaDraw;
         AddChild(_blobArea);
 
-        // Name label — below the pedestal art
+        // Label group — dark translucent pill behind name + status text, floating
+        // above the pedestal. PanelContainer auto-sizes to its child VBoxContainer,
+        // which auto-sizes to its labels' text — so the pill always wraps tightly.
+        _labelGroup = new PanelContainer();
+        _labelGroup.MouseFilter = MouseFilterEnum.Ignore;
+
+        var pillStyle = new StyleBoxFlat();
+        pillStyle.BgColor             = ColourLabelPillBg;
+        pillStyle.SetCornerRadiusAll(20);   // exceeds half-height -> fully pill
+        pillStyle.ContentMarginLeft   = 10;
+        pillStyle.ContentMarginRight  = 10;
+        pillStyle.ContentMarginTop    = 3;
+        pillStyle.ContentMarginBottom = 4;
+        _labelGroup.AddThemeStyleboxOverride("panel", pillStyle);
+
+        var labelBox = new VBoxContainer();
+        labelBox.MouseFilter = MouseFilterEnum.Ignore;
+        labelBox.AddThemeConstantOverride("separation", 0);
+        _labelGroup.AddChild(labelBox);
+
         _nameLabel = new Label();
-        _nameLabel.Position              = new Vector2(0, ArtHeight + 2);
-        _nameLabel.Size                  = new Vector2(ArtWidth, 16);
-        _nameLabel.HorizontalAlignment   = HorizontalAlignment.Center;
+        _nameLabel.HorizontalAlignment = HorizontalAlignment.Center;
         _nameLabel.AddThemeFontSizeOverride("font_size", 11);
         _nameLabel.AddThemeColorOverride("font_color", ColourLabelName);
-        _nameLabel.MouseFilter           = MouseFilterEnum.Ignore;
-        AddChild(_nameLabel);
+        _nameLabel.MouseFilter = MouseFilterEnum.Ignore;
+        labelBox.AddChild(_nameLabel);
 
-        // Count / locked label — one row below name
         _countLabel = new Label();
-        _countLabel.Position              = new Vector2(0, ArtHeight + 16);
-        _countLabel.Size                  = new Vector2(ArtWidth, 14);
-        _countLabel.HorizontalAlignment   = HorizontalAlignment.Center;
+        _countLabel.HorizontalAlignment = HorizontalAlignment.Center;
         _countLabel.AddThemeFontSizeOverride("font_size", 9);
         _countLabel.AddThemeColorOverride("font_color", ColourLabelCount);
-        _countLabel.MouseFilter           = MouseFilterEnum.Ignore;
-        AddChild(_countLabel);
+        _countLabel.MouseFilter = MouseFilterEnum.Ignore;
+        labelBox.AddChild(_countLabel);
+
+        AddChild(_labelGroup);
     }
 
     internal void RefreshDisplay()
