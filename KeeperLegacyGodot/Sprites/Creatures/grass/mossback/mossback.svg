@@ -1,0 +1,98 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- MOSSBACK — grass, common — wide slow, moss coat on back, tiny insects
+       Mutations: v1 Moss Green · v2 Dark Brown · v3 Grey · v4 Bright Green
+       Signature: WIDE LOW body with moss-tufted back hump + tiny bug specks
+  -->
+  <!-- PALETTE
+       v1: body-base=#6a8048 body-shadow=#384020 body-highlight=#90a868 body-stroke=#101808 accent-base=#487018 accent-shadow=#1a2808 accent-highlight=#688838
+       v2: body-base=#684830 body-shadow=#382010 body-highlight=#907058 body-stroke=#180800 accent-base=#3a2818 accent-shadow=#1a0a00 accent-highlight=#604030
+       v3: body-base=#888880 body-shadow=#48484a body-highlight=#b0b0a8 body-stroke=#1a1a1a accent-base=#606058 accent-shadow=#28282a accent-highlight=#909088
+       v4: body-base=#68b048 body-shadow=#385820 body-highlight=#90c878 body-stroke=#0a1808 accent-base=#388820 accent-shadow=#104010 accent-highlight=#58a838
+  -->
+  <style>
+    .body-base       { fill: #6a8048; }
+    .body-base       { stroke: #6a8048; }
+    .body-shadow     { fill: #384020; }
+    .body-shadow     { stroke: #384020; }
+    .body-highlight  { fill: #90a868; }
+    .body-highlight  { stroke: #90a868; }
+    .body-stroke     { fill: #101808; }
+    .body-stroke     { stroke: #101808; }
+    .accent-base     { fill: #487018; }
+    .accent-base     { stroke: #487018; }
+    .accent-shadow   { fill: #1a2808; }
+    .accent-shadow   { stroke: #1a2808; }
+    .accent-highlight{ fill: #688838; }
+    .accent-highlight{ stroke: #688838; }
+    .eye-iris        { fill: #3a7038; }
+    .eye-pupil       { fill: #0a2008; }
+    .eye-highlight   { fill: #ffffff; }
+    .eye-sclera      { fill: #f0f8e0; }
+    .mouth-interior  { fill: #2a0820; }
+  </style>
+
+  <!-- short legs -->
+  <ellipse cx="160" cy="416" rx="22" ry="11" class="body-shadow"/>
+  <ellipse cx="252" cy="420" rx="22" ry="11" class="body-shadow"/>
+  <ellipse cx="356" cy="416" rx="22" ry="11" class="body-shadow"/>
+  <ellipse cx="160" cy="412" rx="18" ry="8" class="body-base"/>
+  <ellipse cx="252" cy="416" rx="18" ry="8" class="body-base"/>
+  <ellipse cx="356" cy="412" rx="18" ry="8" class="body-base"/>
+
+  <!-- ═══════ WIDE LOW BODY (turtle-like) ═══════ -->
+  <ellipse cx="256" cy="328" rx="180" ry="92" class="body-shadow"/>
+  <ellipse cx="256" cy="324" rx="174" ry="86" class="body-base"/>
+  <!-- VARIED HIGHLIGHT — broad horizontal sweep -->
+  <path d="M148,288 Q220,278 260,284" class="body-highlight" fill="none" stroke-width="14" stroke-linecap="round" opacity="0.4"/>
+
+  <!-- ═══════ MOSS HUMP ON BACK (signature) ═══════ -->
+  <path d="M148,272 Q256,184 364,272 Q364,300 256,300 Q148,300 148,272 Z" class="accent-shadow"/>
+  <path d="M156,270 Q256,196 356,270 Q356,294 256,294 Q156,294 156,270 Z" class="accent-base"/>
+  <!-- moss tufts -->
+  <ellipse cx="180" cy="248" rx="14" ry="9" class="accent-highlight" opacity="0.85"/>
+  <ellipse cx="220" cy="226" rx="16" ry="10" class="accent-highlight" opacity="0.85"/>
+  <ellipse cx="256" cy="216" rx="18" ry="11" class="accent-highlight" opacity="0.85"/>
+  <ellipse cx="292" cy="226" rx="16" ry="10" class="accent-highlight" opacity="0.85"/>
+  <ellipse cx="332" cy="248" rx="14" ry="9" class="accent-highlight" opacity="0.85"/>
+
+  <!-- tiny insects on moss (signature: "small insects call home") -->
+  <circle cx="200" cy="240" r="2" fill="#000000"/>
+  <circle cx="290" cy="232" r="2" fill="#000000"/>
+  <circle cx="248" cy="208" r="2" fill="#000000"/>
+
+  <!-- ═══════ EYES (grass family — sleepy half-closed, slow/content) ═══════ -->
+  <ellipse cx="220" cy="324" rx="22" ry="20" class="eye-sclera" stroke="none"/>
+  <!-- droopy upper lid -->
+  <path d="M198,324 Q220,308 242,324 Q238,316 220,314 Q202,316 198,324 Z" class="body-shadow" stroke="none"/>
+  <ellipse cx="220" cy="324" rx="18" ry="16" fill="none" stroke="#101808" stroke-width="2.5"/>
+  <circle  cx="222" cy="330" r="11" class="eye-iris"/>
+  <circle  cx="222" cy="330" r="7"  class="eye-pupil"/>
+  <circle cx="226" cy="324" r="2" class="eye-highlight" stroke="none"/>
+  <ellipse cx="292" cy="324" rx="22" ry="20" class="eye-sclera" stroke="none"/>
+  <path d="M270,324 Q292,308 314,324 Q310,316 292,314 Q274,316 270,324 Z" class="body-shadow" stroke="none"/>
+  <ellipse cx="292" cy="324" rx="18" ry="16" fill="none" stroke="#101808" stroke-width="2.5"/>
+  <circle  cx="290" cy="330" r="11" class="eye-iris"/>
+  <circle  cx="290" cy="330" r="7"  class="eye-pupil"/>
+  <circle cx="286" cy="324" r="2" class="eye-highlight" stroke="none"/>
+
+  <!-- mouth: content closed smile -->
+  <path d="M236,366 Q256,378 276,366" class="body-stroke" fill="none" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- cheek blush -->
+  <ellipse cx="180" cy="358" rx="11" ry="7" fill="#80a040" opacity="0.45" stroke="none"/>
+  <ellipse cx="332" cy="358" rx="11" ry="7" fill="#80a040" opacity="0.45" stroke="none"/>
+
+  <!-- body specks -->
+  <circle cx="160" cy="378" r="2" class="body-highlight" opacity="0.55" stroke="none"/>
+  <circle cx="346" cy="378" r="2" class="body-highlight" opacity="0.55" stroke="none"/>
+
+  <!-- ambient leaf flakes -->
+  <ellipse cx="40"  cy="380" rx="5" ry="2" class="accent-base" opacity="0.55" transform="rotate(20 40 380)"/>
+  <ellipse cx="472" cy="380" rx="5" ry="2" class="accent-base" opacity="0.55" transform="rotate(-20 472 380)"/>
+
+  <!-- sparkles -->
+  <path d="M88,180 L90,186 L96,188 L90,190 L88,196 L86,190 L80,188 L86,186 Z"
+        fill="#ffffff" opacity="0.85"/>
+  <path d="M424,180 L426,186 L432,188 L426,190 L424,196 L422,190 L416,188 L422,186 Z"
+        fill="#ffffff" opacity="0.85"/>
+</svg>

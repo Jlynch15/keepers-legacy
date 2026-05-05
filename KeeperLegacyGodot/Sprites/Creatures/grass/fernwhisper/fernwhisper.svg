@@ -1,0 +1,103 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- FERNWHISPER — grass, uncommon — communicates by rustling ferns
+       Mutations: v1 Fern Green · v2 Light Olive · v3 Deep Teal · v4 Pale Yellow
+       Signature: TALL slender body surrounded by fern fronds it gestures with
+  -->
+  <!-- PALETTE
+       v1: body-base=#588838 body-shadow=#284018 body-highlight=#80a858 body-stroke=#001000 accent-base=#3a6020 accent-shadow=#102808 accent-highlight=#5a8830
+       v2: body-base=#a8a868 body-shadow=#586830 body-highlight=#c8c888 body-stroke=#1a2008 accent-base=#88a058 accent-shadow=#486018 accent-highlight=#a8c878
+       v3: body-base=#388080 body-shadow=#103838 body-highlight=#588a88 body-stroke=#000800 accent-base=#286060 accent-shadow=#082020 accent-highlight=#509090
+       v4: body-base=#e8d878 body-shadow=#a89030 body-highlight=#fff088 body-stroke=#403008 accent-base=#c8b850 accent-shadow=#806820 accent-highlight=#e8d068
+  -->
+  <style>
+    .body-base       { fill: #588838; }
+    .body-base       { stroke: #588838; }
+    .body-shadow     { fill: #284018; }
+    .body-shadow     { stroke: #284018; }
+    .body-highlight  { fill: #80a858; }
+    .body-highlight  { stroke: #80a858; }
+    .body-stroke     { fill: #001000; }
+    .body-stroke     { stroke: #001000; }
+    .accent-base     { fill: #3a6020; }
+    .accent-base     { stroke: #3a6020; }
+    .accent-shadow   { fill: #102808; }
+    .accent-shadow   { stroke: #102808; }
+    .accent-highlight{ fill: #5a8830; }
+    .accent-highlight{ stroke: #5a8830; }
+    .eye-iris        { fill: #3a7038; }
+    .eye-pupil       { fill: #0a2008; }
+    .eye-highlight   { fill: #ffffff; }
+    .eye-sclera      { fill: #f0f8e0; }
+    .mouth-interior  { fill: #2a0820; }
+  </style>
+
+  <!-- ═══════ FERN FRONDS (signature: surrounding fronds it gestures with) ═══════ -->
+  <!-- left frond -->
+  <path d="M148,300 Q60,280 50,200" class="accent-shadow" fill="none" stroke-width="6" stroke-linecap="round"/>
+  <path d="M148,300 Q60,280 50,200" class="accent-base" fill="none" stroke-width="4" stroke-linecap="round"/>
+  <ellipse cx="80"  cy="260" rx="14" ry="6" class="accent-shadow" transform="rotate(-30 80 260)"/>
+  <ellipse cx="78"  cy="258" rx="11" ry="4" class="accent-base"   transform="rotate(-30 78 258)"/>
+  <ellipse cx="70"  cy="232" rx="14" ry="6" class="accent-shadow" transform="rotate(-50 70 232)"/>
+  <ellipse cx="68"  cy="230" rx="11" ry="4" class="accent-base"   transform="rotate(-50 68 230)"/>
+  <ellipse cx="56"  cy="208" rx="14" ry="6" class="accent-shadow" transform="rotate(-70 56 208)"/>
+  <ellipse cx="54"  cy="206" rx="11" ry="4" class="accent-base"   transform="rotate(-70 54 206)"/>
+  <!-- right frond -->
+  <path d="M364,300 Q452,280 462,200" class="accent-shadow" fill="none" stroke-width="6" stroke-linecap="round"/>
+  <path d="M364,300 Q452,280 462,200" class="accent-base" fill="none" stroke-width="4" stroke-linecap="round"/>
+  <ellipse cx="432" cy="260" rx="14" ry="6" class="accent-shadow" transform="rotate(30 432 260)"/>
+  <ellipse cx="434" cy="258" rx="11" ry="4" class="accent-base"   transform="rotate(30 434 258)"/>
+  <ellipse cx="442" cy="232" rx="14" ry="6" class="accent-shadow" transform="rotate(50 442 232)"/>
+  <ellipse cx="444" cy="230" rx="11" ry="4" class="accent-base"   transform="rotate(50 444 230)"/>
+  <ellipse cx="456" cy="208" rx="14" ry="6" class="accent-shadow" transform="rotate(70 456 208)"/>
+  <ellipse cx="458" cy="206" rx="11" ry="4" class="accent-base"   transform="rotate(70 458 206)"/>
+
+  <!-- feet -->
+  <ellipse cx="234" cy="450" rx="22" ry="11" class="body-shadow"/>
+  <ellipse cx="278" cy="450" rx="22" ry="11" class="body-shadow"/>
+  <ellipse cx="234" cy="447" rx="18" ry="8" class="body-base"/>
+  <ellipse cx="278" cy="447" rx="18" ry="8" class="body-base"/>
+
+  <!-- arms -->
+  <ellipse cx="180" cy="298" rx="32" ry="14" class="body-shadow" transform="rotate(-15 180 298)"/>
+  <ellipse cx="184" cy="295" rx="26" ry="10" class="body-base"   transform="rotate(-15 184 295)"/>
+  <ellipse cx="332" cy="298" rx="32" ry="14" class="body-shadow" transform="rotate(15 332 298)"/>
+  <ellipse cx="328" cy="295" rx="26" ry="10" class="body-base"   transform="rotate(15 328 295)"/>
+
+  <!-- ═══════ TALL SLENDER BODY ═══════ -->
+  <ellipse cx="256" cy="296" rx="68" ry="158" class="body-shadow"/>
+  <ellipse cx="256" cy="292" rx="62" ry="152" class="body-base"/>
+  <!-- VARIED HIGHLIGHT — vertical curved leaf-stripe -->
+  <path d="M222,180 Q210,290 224,400" class="body-highlight" fill="none" stroke-width="10" stroke-linecap="round" opacity="0.4"/>
+
+  <!-- ═══════ EYES (grass family — ALMOND-shaped, slightly squinting/peaceful) ═══════ -->
+  <ellipse cx="220" cy="240" rx="22" ry="14" class="eye-sclera" stroke="none"/>
+  <ellipse cx="220" cy="240" rx="18" ry="10" fill="none" stroke="#001000" stroke-width="2"/>
+  <ellipse cx="222" cy="242" rx="9" ry="7" class="eye-iris"/>
+  <ellipse cx="222" cy="242" rx="6" ry="5" class="eye-pupil"/>
+  <circle cx="226" cy="238" r="2" class="eye-highlight" stroke="none"/>
+  <ellipse cx="292" cy="240" rx="22" ry="14" class="eye-sclera" stroke="none"/>
+  <ellipse cx="292" cy="240" rx="18" ry="10" fill="none" stroke="#001000" stroke-width="2"/>
+  <ellipse cx="290" cy="242" rx="9" ry="7" class="eye-iris"/>
+  <ellipse cx="290" cy="242" rx="6" ry="5" class="eye-pupil"/>
+  <circle cx="286" cy="238" r="2" class="eye-highlight" stroke="none"/>
+
+  <!-- mouth: thin lipline (gentle musician/conductor) -->
+  <path d="M236,280 Q256,288 276,280" class="body-stroke" fill="none" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- cheek blush -->
+  <ellipse cx="200" cy="270" rx="9" ry="6" fill="#80c038" opacity="0.42" stroke="none"/>
+  <ellipse cx="312" cy="270" rx="9" ry="6" fill="#80c038" opacity="0.42" stroke="none"/>
+
+  <!-- body specks -->
+  <circle cx="246" cy="200" r="2" class="body-highlight" opacity="0.7" stroke="none"/>
+  <circle cx="266" cy="320" r="2" class="body-highlight" opacity="0.6" stroke="none"/>
+  <circle cx="240" cy="400" r="2" class="body-highlight" opacity="0.55" stroke="none"/>
+
+  <!-- ambient leaf flakes -->
+  <ellipse cx="36"  cy="380" rx="5" ry="2" class="accent-base" opacity="0.55" transform="rotate(25 36 380)"/>
+  <ellipse cx="476" cy="380" rx="5" ry="2" class="accent-base" opacity="0.55" transform="rotate(-25 476 380)"/>
+
+  <!-- sparkles -->
+  <path d="M256,80 L258,86 L264,88 L258,90 L256,96 L254,90 L248,88 L254,86 Z"
+        class="accent-highlight" opacity="0.85"/>
+</svg>

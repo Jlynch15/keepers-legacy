@@ -1,0 +1,109 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- PHOTOSYNTHESE — grass, uncommon — converts sunlight to energy
+       Mutations: v1 Bright Green · v2 Yellow Green · v3 Deep Forest · v4 Lime
+       Signature: round body with LEAF-PANEL WINGS on back (solar collectors)
+  -->
+  <!-- PALETTE
+       v1: body-base=#58c038 body-shadow=#286818 body-highlight=#88e068 body-stroke=#0a2808 accent-base=#a8e068 accent-shadow=#588830 accent-highlight=#d0f098
+       v2: body-base=#a8c038 body-shadow=#587028 body-highlight=#d0e070 body-stroke=#1a2808 accent-base=#e0d850 accent-shadow=#807820 accent-highlight=#fff088
+       v3: body-base=#1a5028 body-shadow=#082810 body-highlight=#387048 body-stroke=#000800 accent-base=#386830 accent-shadow=#103818 accent-highlight=#588850
+       v4: body-base=#88e030 body-shadow=#487018 body-highlight=#b0f060 body-stroke=#102808 accent-base=#c8f050 accent-shadow=#789028 accent-highlight=#e8ff90
+  -->
+  <style>
+    .body-base       { fill: #58c038; }
+    .body-base       { stroke: #58c038; }
+    .body-shadow     { fill: #286818; }
+    .body-shadow     { stroke: #286818; }
+    .body-highlight  { fill: #88e068; }
+    .body-highlight  { stroke: #88e068; }
+    .body-stroke     { fill: #0a2808; }
+    .body-stroke     { stroke: #0a2808; }
+    .accent-base     { fill: #a8e068; }
+    .accent-base     { stroke: #a8e068; }
+    .accent-shadow   { fill: #588830; }
+    .accent-shadow   { stroke: #588830; }
+    .accent-highlight{ fill: #d0f098; }
+    .accent-highlight{ stroke: #d0f098; }
+    .eye-iris        { fill: #3a7038; }
+    .eye-pupil       { fill: #0a2008; }
+    .eye-highlight   { fill: #ffffff; }
+    .eye-sclera      { fill: #f0f8e0; }
+    .mouth-interior  { fill: #2a0820; }
+    .tongue          { fill: #ff8090; }
+  </style>
+
+  <!-- ═══════ LEAF-PANEL WINGS ON BACK (signature) ═══════ -->
+  <!-- left wing/leaf -->
+  <path d="M170,260 Q88,220 64,290 Q88,326 152,308 Z" class="accent-shadow"/>
+  <path d="M174,258 Q96,220 76,288 Q96,322 156,304 Z" class="accent-base"/>
+  <!-- leaf veins -->
+  <path d="M156,300 Q120,288 84,278" class="accent-shadow" fill="none" stroke-width="2" opacity="0.7"/>
+  <path d="M156,300 Q124,300 88,294" class="accent-shadow" fill="none" stroke-width="1.5" opacity="0.6"/>
+  <path d="M156,300 Q108,304 78,308" class="accent-shadow" fill="none" stroke-width="1.5" opacity="0.6"/>
+  <!-- right wing/leaf -->
+  <path d="M342,260 Q424,220 448,290 Q424,326 360,308 Z" class="accent-shadow"/>
+  <path d="M338,258 Q416,220 436,288 Q416,322 356,304 Z" class="accent-base"/>
+  <path d="M356,300 Q392,288 428,278" class="accent-shadow" fill="none" stroke-width="2" opacity="0.7"/>
+  <path d="M356,300 Q388,300 424,294" class="accent-shadow" fill="none" stroke-width="1.5" opacity="0.6"/>
+  <path d="M356,300 Q404,304 434,308" class="accent-shadow" fill="none" stroke-width="1.5" opacity="0.6"/>
+
+  <!-- feet -->
+  <ellipse cx="220" cy="436" rx="28" ry="14" class="body-shadow"/>
+  <ellipse cx="292" cy="436" rx="28" ry="14" class="body-shadow"/>
+  <ellipse cx="220" cy="432" rx="22" ry="10" class="body-base"/>
+  <ellipse cx="292" cy="432" rx="22" ry="10" class="body-base"/>
+
+  <!-- arms -->
+  <ellipse cx="148" cy="316" rx="34" ry="18" class="body-shadow" transform="rotate(-12 148 316)"/>
+  <ellipse cx="152" cy="312" rx="28" ry="13" class="body-base"   transform="rotate(-12 152 312)"/>
+  <ellipse cx="364" cy="316" rx="34" ry="18" class="body-shadow" transform="rotate(12 364 316)"/>
+  <ellipse cx="360" cy="312" rx="28" ry="13" class="body-base"   transform="rotate(12 360 312)"/>
+
+  <!-- body (front) -->
+  <circle cx="256" cy="304" r="118" class="body-shadow"/>
+  <circle cx="256" cy="298" r="110" class="body-base"/>
+  <!-- VARIED HIGHLIGHT — sun-ray triangles -->
+  <path d="M210,222 L218,216 L222,228 Z" class="body-highlight" opacity="0.6"/>
+  <path d="M236,216 L238,206 L246,218 Z" class="body-highlight" opacity="0.55"/>
+  <path d="M198,242 L188,238 L196,232 Z" class="body-highlight" opacity="0.5"/>
+
+  <!-- ═══════ EYES (grass family — wide bright sunny, SUN-RAY highlight) ═══════ -->
+  <ellipse cx="220" cy="288" rx="26" ry="28" class="eye-sclera" stroke="none"/>
+  <ellipse cx="220" cy="288" rx="22" ry="24" fill="none" stroke="#0a2808" stroke-width="2.5"/>
+  <circle  cx="222" cy="294" r="16" class="eye-iris"/>
+  <circle  cx="222" cy="294" r="10" class="eye-pupil"/>
+  <!-- sun-ray highlight (asterisk-like) -->
+  <path d="M226,278 L226,286 M228,282 L234,278 M230,288 L238,288 M228,294 L232,300" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+  <ellipse cx="292" cy="288" rx="26" ry="28" class="eye-sclera" stroke="none"/>
+  <ellipse cx="292" cy="288" rx="22" ry="24" fill="none" stroke="#0a2808" stroke-width="2.5"/>
+  <circle  cx="290" cy="294" r="16" class="eye-iris"/>
+  <circle  cx="290" cy="294" r="10" class="eye-pupil"/>
+  <path d="M286,278 L286,286 M284,282 L278,278 M282,288 L274,288 M284,294 L280,300" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- mouth: wide grin with tongue -->
+  <path d="M218,338 Q256,366 294,338 Q278,354 256,354 Q234,354 218,338 Z" class="mouth-interior"/>
+  <ellipse cx="256" cy="354" rx="14" ry="6" class="tongue" stroke="none"/>
+
+  <!-- cheek blush -->
+  <ellipse cx="178" cy="328" rx="12" ry="7" fill="#80a020" opacity="0.55" stroke="none"/>
+  <ellipse cx="334" cy="328" rx="12" ry="7" fill="#80a020" opacity="0.55" stroke="none"/>
+
+  <!-- body specks -->
+  <circle cx="248" cy="222" r="2" class="body-highlight" opacity="0.7" stroke="none"/>
+  <circle cx="200" cy="376" r="2" class="body-highlight" opacity="0.6" stroke="none"/>
+  <circle cx="316" cy="386" r="2" class="body-highlight" opacity="0.55" stroke="none"/>
+
+  <!-- ambient leaf flakes -->
+  <ellipse cx="40"  cy="180" rx="5" ry="2" class="accent-base" opacity="0.6" transform="rotate(20 40 180)"/>
+  <ellipse cx="80"  cy="380" rx="5" ry="2" class="accent-base" opacity="0.55" transform="rotate(-20 80 380)"/>
+  <ellipse cx="472" cy="180" rx="5" ry="2" class="accent-base" opacity="0.6" transform="rotate(-20 472 180)"/>
+  <ellipse cx="432" cy="380" rx="5" ry="2" class="accent-base" opacity="0.55" transform="rotate(20 432 380)"/>
+
+  <!-- sun sparkles -->
+  <path d="M256,68 L258,76 L266,78 L258,80 L256,88 L254,80 L246,78 L254,76 Z"
+        fill="#ffe040" opacity="0.95"/>
+  <path d="M88,116 L90,122 L96,124 L90,126 L88,132 L86,126 L80,124 L86,122 Z"
+        fill="#ffe040" opacity="0.85"/>
+  <path d="M424,116 L426,122 L432,124 L426,126 L424,132 L422,126 L416,124 L422,122 Z"
+        fill="#ffe040" opacity="0.85"/>
+</svg>

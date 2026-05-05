@@ -1,0 +1,101 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- THORNBACK — grass, uncommon — defensive thorns over gentlest face
+       Mutations: v1 Dark Green · v2 Brown Thorn · v3 Red Berry · v4 Mossy
+       Signature: large body with visible THORN SPIKES on back, gentle/shy face contrast
+  -->
+  <!-- PALETTE
+       v1: body-base=#385828 body-shadow=#102808 body-highlight=#588048 body-stroke=#000800 accent-base=#1a3010 accent-shadow=#000000 accent-highlight=#385828
+       v2: body-base=#704830 body-shadow=#3a2010 body-highlight=#a07050 body-stroke=#1a0800 accent-base=#3a2010 accent-shadow=#180800 accent-highlight=#604028
+       v3: body-base=#985838 body-shadow=#502818 body-highlight=#c08058 body-stroke=#280800 accent-base=#a01818 accent-shadow=#580808 accent-highlight=#d04848
+       v4: body-base=#588060 body-shadow=#284028 body-highlight=#80a880 body-stroke=#001800 accent-base=#3a6038 accent-shadow=#102008 accent-highlight=#608860
+  -->
+  <style>
+    .body-base       { fill: #385828; }
+    .body-base       { stroke: #385828; }
+    .body-shadow     { fill: #102808; }
+    .body-shadow     { stroke: #102808; }
+    .body-highlight  { fill: #588048; }
+    .body-highlight  { stroke: #588048; }
+    .body-stroke     { fill: #000800; }
+    .body-stroke     { stroke: #000800; }
+    .accent-base     { fill: #1a3010; }
+    .accent-base     { stroke: #1a3010; }
+    .accent-shadow   { fill: #000000; }
+    .accent-shadow   { stroke: #000000; }
+    .accent-highlight{ fill: #385828; }
+    .accent-highlight{ stroke: #385828; }
+    .eye-iris        { fill: #3a7038; }
+    .eye-pupil       { fill: #0a2008; }
+    .eye-highlight   { fill: #ffffff; }
+    .eye-sclera      { fill: #f0f8e0; }
+    .mouth-interior  { fill: #2a0820; }
+  </style>
+
+  <!-- feet -->
+  <ellipse cx="200" cy="432" rx="32" ry="14" class="body-shadow"/>
+  <ellipse cx="312" cy="432" rx="32" ry="14" class="body-shadow"/>
+  <ellipse cx="200" cy="428" rx="26" ry="11" class="body-base"/>
+  <ellipse cx="312" cy="428" rx="26" ry="11" class="body-base"/>
+
+  <!-- arms -->
+  <ellipse cx="128" cy="316" rx="38" ry="20" class="body-shadow" transform="rotate(-12 128 316)"/>
+  <ellipse cx="132" cy="312" rx="32" ry="15" class="body-base"   transform="rotate(-12 132 312)"/>
+  <ellipse cx="384" cy="316" rx="38" ry="20" class="body-shadow" transform="rotate(12 384 316)"/>
+  <ellipse cx="380" cy="312" rx="32" ry="15" class="body-base"   transform="rotate(12 380 312)"/>
+
+  <!-- body (broad chest) -->
+  <ellipse cx="256" cy="316" rx="138" ry="118" class="body-shadow"/>
+  <ellipse cx="256" cy="310" rx="130" ry="110" class="body-base"/>
+  <!-- VARIED HIGHLIGHT — broad horizontal sweep across upper chest -->
+  <path d="M180,260 Q220,234 280,238" class="body-highlight" fill="none" stroke-width="14" stroke-linecap="round" opacity="0.45"/>
+
+  <!-- ═══════ THORN SPIKES (signature: defensive thorns on back/top) ═══════ -->
+  <path d="M150,224 L142,178 L162,210 Z" class="accent-shadow"/>
+  <path d="M152,222 L146,184 L160,210 Z" class="accent-base"/>
+  <path d="M186,200 L178,152 L198,186 Z" class="accent-shadow"/>
+  <path d="M188,198 L182,158 L196,186 Z" class="accent-base"/>
+  <path d="M222,184 L216,134 L234,170 Z" class="accent-shadow"/>
+  <path d="M224,182 L220,140 L232,170 Z" class="accent-base"/>
+  <path d="M256,178 L256,128 L268,168 Z" class="accent-shadow"/>
+  <path d="M256,178 L260,134 L266,168 Z" class="accent-base"/>
+  <path d="M290,184 L296,134 L278,170 Z" class="accent-shadow"/>
+  <path d="M288,182 L292,140 L280,170 Z" class="accent-base"/>
+  <path d="M326,200 L334,152 L314,186 Z" class="accent-shadow"/>
+  <path d="M324,198 L330,158 L316,186 Z" class="accent-base"/>
+  <path d="M362,224 L370,178 L350,210 Z" class="accent-shadow"/>
+  <path d="M360,222 L366,184 L352,210 Z" class="accent-base"/>
+
+  <!-- ═══════ EYES (grass family — gentle round with small soft highlight, contrast to thorns) ═══════ -->
+  <ellipse cx="220" cy="296" rx="24" ry="26" class="eye-sclera" stroke="none"/>
+  <ellipse cx="220" cy="296" rx="20" ry="22" fill="none" stroke="#000800" stroke-width="2.5"/>
+  <circle  cx="222" cy="302" r="14" class="eye-iris"/>
+  <circle  cx="222" cy="302" r="9"  class="eye-pupil"/>
+  <ellipse cx="226" cy="290" rx="3" ry="4" class="eye-highlight" stroke="none"/>
+  <ellipse cx="292" cy="296" rx="24" ry="26" class="eye-sclera" stroke="none"/>
+  <ellipse cx="292" cy="296" rx="20" ry="22" fill="none" stroke="#000800" stroke-width="2.5"/>
+  <circle  cx="290" cy="302" r="14" class="eye-iris"/>
+  <circle  cx="290" cy="302" r="9"  class="eye-pupil"/>
+  <ellipse cx="286" cy="290" rx="3" ry="4" class="eye-highlight" stroke="none"/>
+
+  <!-- mouth: shy small smile -->
+  <path d="M242,344 Q256,354 270,344" class="body-stroke" fill="none" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- cheek blush -->
+  <ellipse cx="180" cy="332" rx="11" ry="7" fill="#80a060" opacity="0.55" stroke="none"/>
+  <ellipse cx="332" cy="332" rx="11" ry="7" fill="#80a060" opacity="0.55" stroke="none"/>
+
+  <!-- body specks -->
+  <circle cx="246" cy="232" r="2" class="body-highlight" opacity="0.6" stroke="none"/>
+  <circle cx="200" cy="380" r="2" class="body-highlight" opacity="0.55" stroke="none"/>
+  <circle cx="316" cy="386" r="2" class="body-highlight" opacity="0.55" stroke="none"/>
+
+  <!-- ambient leaf flakes -->
+  <ellipse cx="44"  cy="380" rx="5" ry="2" class="accent-base" opacity="0.55" transform="rotate(20 44 380)"/>
+  <ellipse cx="468" cy="380" rx="5" ry="2" class="accent-base" opacity="0.55" transform="rotate(-20 468 380)"/>
+
+  <!-- sparkles -->
+  <path d="M88,118 L90,124 L96,126 L90,128 L88,134 L86,128 L80,126 L86,124 Z"
+        fill="#ffffff" opacity="0.85"/>
+  <path d="M424,118 L426,124 L432,126 L426,128 L424,134 L422,128 L416,126 L422,124 Z"
+        fill="#ffffff" opacity="0.85"/>
+</svg>

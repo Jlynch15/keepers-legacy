@@ -1,0 +1,116 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- SPROUTLING — grass, rare — small head sprout that BLOOMS in happy state
+       Mutations: v1 Fresh Green · v2 Pink Bloom · v3 White Blossom · v4 Sunny Yellow
+       Signature: small round body with FULL FLOWER BLOOM bursting from head
+  -->
+  <!-- PALETTE
+       v1: body-base=#88e068 body-shadow=#487830 body-highlight=#b8f098 body-stroke=#0a2808 accent-base=#388830 accent-shadow=#104010 accent-highlight=#58a850
+       v2: body-base=#a8d878 body-shadow=#587838 body-highlight=#d0f0a8 body-stroke=#1a3008 accent-base=#ff80a8 accent-shadow=#a04068 accent-highlight=#ffb0c8
+       v3: body-base=#b8e090 body-shadow=#688048 body-highlight=#d8f0b8 body-stroke=#1a2808 accent-base=#ffffff accent-shadow=#b0b0b0 accent-highlight=#ffffff
+       v4: body-base=#a8d878 body-shadow=#587838 body-highlight=#d0f0a8 body-stroke=#1a3008 accent-base=#ffe048 accent-shadow=#988020 accent-highlight=#fff088
+  -->
+  <style>
+    .body-base       { fill: #88e068; }
+    .body-base       { stroke: #88e068; }
+    .body-shadow     { fill: #487830; }
+    .body-shadow     { stroke: #487830; }
+    .body-highlight  { fill: #b8f098; }
+    .body-highlight  { stroke: #b8f098; }
+    .body-stroke     { fill: #0a2808; }
+    .body-stroke     { stroke: #0a2808; }
+    .accent-base     { fill: #388830; }
+    .accent-base     { stroke: #388830; }
+    .accent-shadow   { fill: #104010; }
+    .accent-shadow   { stroke: #104010; }
+    .accent-highlight{ fill: #58a850; }
+    .accent-highlight{ stroke: #58a850; }
+    .eye-iris        { fill: #3a7038; }
+    .eye-pupil       { fill: #0a2008; }
+    .eye-highlight   { fill: #ffffff; }
+    .eye-sclera      { fill: #f0f8e0; }
+    .mouth-interior  { fill: #2a0820; }
+    .tongue          { fill: #ff8090; }
+  </style>
+
+  <!-- ═══════ FULL FLOWER BLOOM (signature on head) ═══════ -->
+  <!-- stem -->
+  <path d="M256,200 L256,140" class="accent-shadow" fill="none" stroke-width="6" stroke-linecap="round"/>
+  <path d="M256,200 L256,140" class="accent-base" fill="none" stroke-width="3" stroke-linecap="round"/>
+  <!-- 5 petals around center -->
+  <ellipse cx="222" cy="116" rx="20" ry="14" class="accent-shadow" transform="rotate(-30 222 116)"/>
+  <ellipse cx="224" cy="116" rx="16" ry="10" class="accent-base"   transform="rotate(-30 224 116)"/>
+  <ellipse cx="290" cy="116" rx="20" ry="14" class="accent-shadow" transform="rotate(30 290 116)"/>
+  <ellipse cx="288" cy="116" rx="16" ry="10" class="accent-base"   transform="rotate(30 288 116)"/>
+  <ellipse cx="200" cy="80" rx="20" ry="14" class="accent-shadow" transform="rotate(-60 200 80)"/>
+  <ellipse cx="202" cy="80" rx="16" ry="10" class="accent-base"   transform="rotate(-60 202 80)"/>
+  <ellipse cx="312" cy="80" rx="20" ry="14" class="accent-shadow" transform="rotate(60 312 80)"/>
+  <ellipse cx="310" cy="80" rx="16" ry="10" class="accent-base"   transform="rotate(60 310 80)"/>
+  <ellipse cx="256" cy="58" rx="22" ry="14" class="accent-shadow"/>
+  <ellipse cx="256" cy="58" rx="18" ry="10" class="accent-base"/>
+  <!-- center disc -->
+  <circle cx="256" cy="100" r="22" fill="#ffe060" stroke="#a08020" stroke-width="3"/>
+  <circle cx="252" cy="96" r="3" fill="#fff088"/>
+  <circle cx="262" cy="104" r="2" fill="#fff088"/>
+
+  <!-- feet (small) -->
+  <ellipse cx="220" cy="438" rx="22" ry="11" class="body-shadow"/>
+  <ellipse cx="292" cy="438" rx="22" ry="11" class="body-shadow"/>
+  <ellipse cx="220" cy="434" rx="18" ry="8" class="body-base"/>
+  <ellipse cx="292" cy="434" rx="18" ry="8" class="body-base"/>
+
+  <!-- arms (small stubs) -->
+  <ellipse cx="154" cy="320" rx="28" ry="14" class="body-shadow" transform="rotate(-15 154 320)"/>
+  <ellipse cx="158" cy="316" rx="22" ry="10" class="body-base"   transform="rotate(-15 158 316)"/>
+  <ellipse cx="358" cy="320" rx="28" ry="14" class="body-shadow" transform="rotate(15 358 320)"/>
+  <ellipse cx="354" cy="316" rx="22" ry="10" class="body-base"   transform="rotate(15 354 316)"/>
+
+  <!-- small youthful body -->
+  <circle cx="256" cy="316" r="100" class="body-shadow"/>
+  <circle cx="256" cy="310" r="92" class="body-base"/>
+  <!-- VARIED HIGHLIGHT — small bloom-blob (matches flower theme) -->
+  <circle cx="216" cy="256" r="14" class="body-highlight" opacity="0.5"/>
+  <circle cx="208" cy="276" r="9" class="body-highlight" opacity="0.4"/>
+
+  <!-- ═══════ EYES (grass family — HUGE happy young, lots of highlights) ═══════ -->
+  <ellipse cx="222" cy="306" rx="26" ry="30" class="eye-sclera" stroke="none"/>
+  <ellipse cx="222" cy="306" rx="22" ry="26" fill="none" stroke="#0a2808" stroke-width="3"/>
+  <circle  cx="224" cy="312" r="16" class="eye-iris"/>
+  <circle  cx="224" cy="312" r="11" class="eye-pupil"/>
+  <ellipse cx="230" cy="300" rx="5" ry="6" class="eye-highlight" stroke="none"/>
+  <circle cx="218" cy="322" r="2.5" class="eye-highlight" stroke="none"/>
+  <ellipse cx="290" cy="306" rx="26" ry="30" class="eye-sclera" stroke="none"/>
+  <ellipse cx="290" cy="306" rx="22" ry="26" fill="none" stroke="#0a2808" stroke-width="3"/>
+  <circle  cx="288" cy="312" r="16" class="eye-iris"/>
+  <circle  cx="288" cy="312" r="11" class="eye-pupil"/>
+  <ellipse cx="282" cy="300" rx="5" ry="6" class="eye-highlight" stroke="none"/>
+  <circle cx="294" cy="322" r="2.5" class="eye-highlight" stroke="none"/>
+
+  <!-- mouth: excited happy grin -->
+  <path d="M222,360 Q256,386 290,360 Q274,376 256,376 Q236,376 222,360 Z" class="mouth-interior"/>
+  <ellipse cx="256" cy="376" rx="14" ry="6" class="tongue" stroke="none"/>
+
+  <!-- cheek blush -->
+  <ellipse cx="184" cy="354" rx="11" ry="7" fill="#f08068" opacity="0.55" stroke="none"/>
+  <ellipse cx="328" cy="354" rx="11" ry="7" fill="#f08068" opacity="0.55" stroke="none"/>
+
+  <!-- body specks -->
+  <circle cx="248" cy="240" r="2" class="body-highlight" opacity="0.7" stroke="none"/>
+  <circle cx="296" cy="260" r="2" class="body-highlight" opacity="0.6" stroke="none"/>
+  <circle cx="200" cy="380" r="2" class="body-highlight" opacity="0.55" stroke="none"/>
+
+  <!-- ambient leaf + petal flakes -->
+  <ellipse cx="56"  cy="180" rx="5" ry="2" class="accent-base" opacity="0.6" transform="rotate(20 56 180)"/>
+  <ellipse cx="84"  cy="380" rx="4" ry="2" class="accent-base" opacity="0.55" transform="rotate(-25 84 380)"/>
+  <ellipse cx="456" cy="180" rx="5" ry="2" class="accent-base" opacity="0.6" transform="rotate(-20 456 180)"/>
+  <ellipse cx="428" cy="380" rx="4" ry="2" class="accent-base" opacity="0.55" transform="rotate(25 428 380)"/>
+
+  <!-- sparkles -->
+  <path d="M88,160 L90,166 L96,168 L90,170 L88,176 L86,170 L80,168 L86,166 Z"
+        fill="#fff088" opacity="0.95"/>
+  <path d="M424,160 L426,166 L432,168 L426,170 L424,176 L422,170 L416,168 L422,166 Z"
+        fill="#fff088" opacity="0.95"/>
+  <path d="M158,200 L160,206 L166,208 L160,210 L158,216 L156,210 L150,208 L156,206 Z"
+        fill="#ffffff" opacity="0.85"/>
+  <path d="M354,200 L356,206 L362,208 L356,210 L354,216 L352,210 L346,208 L352,206 Z"
+        fill="#ffffff" opacity="0.85"/>
+</svg>

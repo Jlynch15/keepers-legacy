@@ -1,0 +1,76 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- MEADOWPUFF — grass, common — perfectly round fluffy tumbleweed
+       Mutations: v1 Cream White · v2 Soft Green · v3 Butter Yellow · v4 Sky Blue
+       Signature: PURE SPHERE with fluffy ruffled outline, almost no visible limbs
+  -->
+  <!-- PALETTE
+       v1: body-base=#fff8e8 body-shadow=#b0a888 body-highlight=#ffffff body-stroke=#5a4828 accent-base=#e8d8a8 accent-shadow=#988868 accent-highlight=#fff8d8
+       v2: body-base=#b8d8a0 body-shadow=#688060 body-highlight=#d8f0c0 body-stroke=#1a3018 accent-base=#98b880 accent-shadow=#506838 accent-highlight=#c0e0a8
+       v3: body-base=#fae878 body-shadow=#a89028 body-highlight=#fff8a8 body-stroke=#403008 accent-base=#e0c850 accent-shadow=#988020 accent-highlight=#fff088
+       v4: body-base=#a8d8e8 body-shadow=#5888a0 body-highlight=#d0f0ff body-stroke=#1a3848 accent-base=#80b8d0 accent-shadow=#386878 accent-highlight=#b0d8f0
+  -->
+  <style>
+    .body-base       { fill: #fff8e8; }
+    .body-base       { stroke: #fff8e8; }
+    .body-shadow     { fill: #b0a888; }
+    .body-shadow     { stroke: #b0a888; }
+    .body-highlight  { fill: #ffffff; }
+    .body-highlight  { stroke: #ffffff; }
+    .body-stroke     { fill: #5a4828; }
+    .body-stroke     { stroke: #5a4828; }
+    .accent-base     { fill: #e8d8a8; }
+    .accent-base     { stroke: #e8d8a8; }
+    .accent-shadow   { fill: #988868; }
+    .accent-shadow   { stroke: #988868; }
+    .accent-highlight{ fill: #fff8d8; }
+    .accent-highlight{ stroke: #fff8d8; }
+    .eye-iris        { fill: #3a7038; }
+    .eye-pupil       { fill: #0a2008; }
+    .eye-highlight   { fill: #ffffff; }
+    .eye-sclera      { fill: #f0f8e0; }
+    .mouth-interior  { fill: #2a0820; }
+  </style>
+
+  <!-- ═══════ FLUFFY SPHERE BODY (signature: ruffled puffy outline, no limbs) ═══════ -->
+  <!-- ruffled outline — multiple bumps -->
+  <path d="M118,256 Q108,176 184,148 Q200,128 232,140 Q248,124 276,132 Q304,124 320,140 Q344,128 368,148 Q416,178 396,228 Q420,256 412,296 Q420,344 388,376 Q400,408 360,420 Q344,448 304,432 Q280,452 256,440 Q232,452 208,432 Q172,448 152,420 Q120,408 124,376 Q92,344 100,296 Q92,256 118,256 Z" class="body-shadow"/>
+  <path d="M126,260 Q116,182 188,154 Q204,138 232,148 Q252,134 276,142 Q304,134 320,148 Q344,138 364,156 Q408,184 388,228 Q412,256 404,294 Q412,338 384,368 Q394,396 358,408 Q342,432 304,420 Q280,438 256,428 Q232,438 208,420 Q172,432 154,408 Q124,396 130,368 Q102,338 110,294 Q102,256 126,260 Z" class="body-base"/>
+  <!-- VARIED HIGHLIGHT — fluffy blob cloud -->
+  <ellipse cx="200" cy="220" rx="36" ry="20" class="body-highlight" opacity="0.7"/>
+  <ellipse cx="178" cy="248" rx="22" ry="14" class="body-highlight" opacity="0.55"/>
+
+  <!-- tiny stub feet (barely visible) -->
+  <ellipse cx="218" cy="450" rx="14" ry="6" class="body-shadow"/>
+  <ellipse cx="294" cy="450" rx="14" ry="6" class="body-shadow"/>
+
+  <!-- ═══════ EYES (grass family — TINY DOT eyes, very simple/cute) ═══════ -->
+  <circle cx="216" cy="290" r="14" class="eye-sclera" stroke="none"/>
+  <circle cx="216" cy="290" r="11" fill="none" stroke="#5a4828" stroke-width="2"/>
+  <circle cx="218" cy="294" r="7" class="eye-pupil"/>
+  <circle cx="221" cy="288" r="2" class="eye-highlight" stroke="none"/>
+  <circle cx="296" cy="290" r="14" class="eye-sclera" stroke="none"/>
+  <circle cx="296" cy="290" r="11" fill="none" stroke="#5a4828" stroke-width="2"/>
+  <circle cx="294" cy="294" r="7" class="eye-pupil"/>
+  <circle cx="291" cy="288" r="2" class="eye-highlight" stroke="none"/>
+
+  <!-- mouth: tiny cute smile -->
+  <path d="M242,326 Q256,334 270,326" class="body-stroke" fill="none" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- cheek blush -->
+  <ellipse cx="180" cy="320" rx="9" ry="6" fill="#f08068" opacity="0.55" stroke="none"/>
+  <ellipse cx="332" cy="320" rx="9" ry="6" fill="#f08068" opacity="0.55" stroke="none"/>
+
+  <!-- ambient drifting fluff bits -->
+  <circle cx="60"  cy="180" r="4" class="body-base" opacity="0.6" stroke="none"/>
+  <circle cx="42"  cy="220" r="3" class="body-base" opacity="0.55" stroke="none"/>
+  <circle cx="86"  cy="148" r="3" class="body-base" opacity="0.55" stroke="none"/>
+  <circle cx="450" cy="180" r="4" class="body-base" opacity="0.6" stroke="none"/>
+  <circle cx="468" cy="220" r="3" class="body-base" opacity="0.55" stroke="none"/>
+  <circle cx="424" cy="148" r="3" class="body-base" opacity="0.55" stroke="none"/>
+
+  <!-- sparkles -->
+  <path d="M88,128 L90,134 L96,136 L90,138 L88,144 L86,138 L80,136 L86,134 Z"
+        class="accent-base" opacity="0.85"/>
+  <path d="M424,128 L426,134 L432,136 L426,138 L424,144 L422,138 L416,136 L422,134 Z"
+        class="accent-base" opacity="0.85"/>
+</svg>

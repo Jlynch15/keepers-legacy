@@ -1,0 +1,101 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- POLLENCLOUD — grass, uncommon — golden pollen trail, makes others cheerful
+       Mutations: v1 Golden Yellow · v2 Pale Orange · v3 Cream · v4 Honey
+       Signature: round fluffy creature with GOLDEN POLLEN CLOUD trailing around it
+  -->
+  <!-- PALETTE
+       v1: body-base=#f0d048 body-shadow=#a08818 body-highlight=#fff088 body-stroke=#403008 accent-base=#ffe060 accent-shadow=#a09020 accent-highlight=#fff8a8
+       v2: body-base=#f8b878 body-shadow=#a87038 body-highlight=#ffd098 body-stroke=#481808 accent-base=#ffc888 accent-shadow=#a87838 accent-highlight=#ffe0b0
+       v3: body-base=#f8e8c0 body-shadow=#a89878 body-highlight=#fff8e0 body-stroke=#5a4828 accent-base=#e8d0a0 accent-shadow=#988868 accent-highlight=#fff0d0
+       v4: body-base=#e8b850 body-shadow=#987828 body-highlight=#f0d088 body-stroke=#382808 accent-base=#d09838 accent-shadow=#806820 accent-highlight=#e8c068
+  -->
+  <style>
+    .body-base       { fill: #f0d048; }
+    .body-base       { stroke: #f0d048; }
+    .body-shadow     { fill: #a08818; }
+    .body-shadow     { stroke: #a08818; }
+    .body-highlight  { fill: #fff088; }
+    .body-highlight  { stroke: #fff088; }
+    .body-stroke     { fill: #403008; }
+    .body-stroke     { stroke: #403008; }
+    .accent-base     { fill: #ffe060; }
+    .accent-base     { stroke: #ffe060; }
+    .accent-shadow   { fill: #a09020; }
+    .accent-shadow   { stroke: #a09020; }
+    .accent-highlight{ fill: #fff8a8; }
+    .accent-highlight{ stroke: #fff8a8; }
+    .eye-iris        { fill: #3a7038; }
+    .eye-pupil       { fill: #0a2008; }
+    .eye-highlight   { fill: #ffffff; }
+    .eye-sclera      { fill: #fff8e0; }
+    .mouth-interior  { fill: #2a0820; }
+  </style>
+
+  <!-- ═══════ POLLEN CLOUD HALO (signature: dense golden cloud around creature) ═══════ -->
+  <circle cx="256" cy="296" r="200" class="accent-base" opacity="0.18"/>
+  <circle cx="256" cy="296" r="170" class="accent-base" opacity="0.22"/>
+
+  <!-- feet -->
+  <ellipse cx="216" cy="436" rx="26" ry="13" class="body-shadow"/>
+  <ellipse cx="296" cy="436" rx="26" ry="13" class="body-shadow"/>
+  <ellipse cx="216" cy="432" rx="22" ry="9" class="body-base"/>
+  <ellipse cx="296" cy="432" rx="22" ry="9" class="body-base"/>
+
+  <!-- arms -->
+  <ellipse cx="138" cy="306" rx="34" ry="18" class="body-shadow" transform="rotate(-15 138 306)"/>
+  <ellipse cx="142" cy="302" rx="28" ry="13" class="body-base"   transform="rotate(-15 142 302)"/>
+  <ellipse cx="374" cy="306" rx="34" ry="18" class="body-shadow" transform="rotate(15 374 306)"/>
+  <ellipse cx="370" cy="302" rx="28" ry="13" class="body-base"   transform="rotate(15 370 302)"/>
+
+  <!-- body -->
+  <circle cx="256" cy="296" r="124" class="body-shadow"/>
+  <circle cx="256" cy="290" r="116" class="body-base"/>
+  <!-- VARIED HIGHLIGHT — soft cloud-puff (multi-blob) -->
+  <ellipse cx="218" cy="244" rx="22" ry="12" class="body-highlight" opacity="0.55"/>
+  <ellipse cx="200" cy="262" rx="14" ry="9" class="body-highlight" opacity="0.45"/>
+
+  <!-- ═══════ EYES (grass family — round with HONEY-DROP highlight) ═══════ -->
+  <ellipse cx="220" cy="290" rx="24" ry="26" class="eye-sclera" stroke="none"/>
+  <ellipse cx="220" cy="290" rx="20" ry="22" fill="none" stroke="#403008" stroke-width="2.5"/>
+  <circle  cx="222" cy="296" r="14" class="eye-iris"/>
+  <circle  cx="222" cy="296" r="9"  class="eye-pupil"/>
+  <!-- honey-drop highlight (teardrop) -->
+  <path d="M226,282 Q232,290 226,300 Q220,290 226,282 Z" class="eye-highlight" stroke="none"/>
+  <ellipse cx="292" cy="290" rx="24" ry="26" class="eye-sclera" stroke="none"/>
+  <ellipse cx="292" cy="290" rx="20" ry="22" fill="none" stroke="#403008" stroke-width="2.5"/>
+  <circle  cx="290" cy="296" r="14" class="eye-iris"/>
+  <circle  cx="290" cy="296" r="9"  class="eye-pupil"/>
+  <path d="M286,282 Q280,290 286,300 Q292,290 286,282 Z" class="eye-highlight" stroke="none"/>
+
+  <!-- mouth: warm wide smile -->
+  <path d="M222,338 Q256,360 290,338" class="body-stroke" fill="none" stroke-width="3.5" stroke-linecap="round"/>
+
+  <!-- cheek blush -->
+  <ellipse cx="180" cy="328" rx="12" ry="7" fill="#f08038" opacity="0.55" stroke="none"/>
+  <ellipse cx="332" cy="328" rx="12" ry="7" fill="#f08038" opacity="0.55" stroke="none"/>
+
+  <!-- body specks -->
+  <circle cx="246" cy="220" r="2" class="body-highlight" opacity="0.7" stroke="none"/>
+  <circle cx="296" cy="244" r="2" class="body-highlight" opacity="0.6" stroke="none"/>
+  <circle cx="186" cy="380" r="2" class="body-highlight" opacity="0.55" stroke="none"/>
+
+  <!-- ═══════ POLLEN PARTICLES (small floating gold dots — signature) ═══════ -->
+  <circle cx="78"  cy="160" r="3" fill="#ffe060" opacity="0.85"/>
+  <circle cx="100" cy="200" r="2" fill="#ffe060" opacity="0.8"/>
+  <circle cx="50"  cy="240" r="2.5" fill="#ffe060" opacity="0.8"/>
+  <circle cx="120" cy="148" r="2" fill="#ffe060" opacity="0.75"/>
+  <circle cx="84"  cy="380" r="3" fill="#ffe060" opacity="0.85"/>
+  <circle cx="44"  cy="416" r="2" fill="#ffe060" opacity="0.75"/>
+  <circle cx="112" cy="430" r="2" fill="#ffe060" opacity="0.7"/>
+  <circle cx="434" cy="160" r="3" fill="#ffe060" opacity="0.85"/>
+  <circle cx="412" cy="200" r="2" fill="#ffe060" opacity="0.8"/>
+  <circle cx="462" cy="240" r="2.5" fill="#ffe060" opacity="0.8"/>
+  <circle cx="392" cy="148" r="2" fill="#ffe060" opacity="0.75"/>
+  <circle cx="428" cy="380" r="3" fill="#ffe060" opacity="0.85"/>
+  <circle cx="468" cy="416" r="2" fill="#ffe060" opacity="0.75"/>
+  <circle cx="400" cy="430" r="2" fill="#ffe060" opacity="0.7"/>
+
+  <!-- sparkles -->
+  <path d="M256,68 L258,76 L266,78 L258,80 L256,88 L254,80 L246,78 L254,76 Z"
+        fill="#fff088" opacity="0.95"/>
+</svg>

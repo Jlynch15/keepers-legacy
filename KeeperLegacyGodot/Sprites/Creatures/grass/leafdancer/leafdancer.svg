@@ -1,0 +1,101 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- LEAFDANCER — grass, uncommon — performs dances using fallen leaves as props
+       Mutations: v1 Autumn Orange · v2 Yellow · v3 Red · v4 Brown
+       Signature: dynamic dancing pose, holding twirling leaves like ribbons
+  -->
+  <!-- PALETTE
+       v1: body-base=#e87830 body-shadow=#a04018 body-highlight=#ffa868 body-stroke=#481000 accent-base=#c85020 accent-shadow=#702010 accent-highlight=#e88058
+       v2: body-base=#f0c838 body-shadow=#a08020 body-highlight=#ffe068 body-stroke=#403008 accent-base=#e8a830 accent-shadow=#988820 accent-highlight=#ffd068
+       v3: body-base=#c83828 body-shadow=#601010 body-highlight=#e87058 body-stroke=#280000 accent-base=#a02018 accent-shadow=#580808 accent-highlight=#c85048
+       v4: body-base=#783818 body-shadow=#3a1808 body-highlight=#a05828 body-stroke=#180800 accent-base=#502810 accent-shadow=#281008 accent-highlight=#684028
+  -->
+  <style>
+    .body-base       { fill: #e87830; }
+    .body-base       { stroke: #e87830; }
+    .body-shadow     { fill: #a04018; }
+    .body-shadow     { stroke: #a04018; }
+    .body-highlight  { fill: #ffa868; }
+    .body-highlight  { stroke: #ffa868; }
+    .body-stroke     { fill: #481000; }
+    .body-stroke     { stroke: #481000; }
+    .accent-base     { fill: #c85020; }
+    .accent-base     { stroke: #c85020; }
+    .accent-shadow   { fill: #702010; }
+    .accent-shadow   { stroke: #702010; }
+    .accent-highlight{ fill: #e88058; }
+    .accent-highlight{ stroke: #e88058; }
+    .eye-iris        { fill: #3a7038; }
+    .eye-pupil       { fill: #0a2008; }
+    .eye-highlight   { fill: #ffffff; }
+    .eye-sclera      { fill: #fff0e0; }
+    .mouth-interior  { fill: #2a0820; }
+    .tongue          { fill: #ff8090; }
+  </style>
+
+  <!-- ═══════ TWIRLING LEAVES (signature: leaves dancing around) ═══════ -->
+  <!-- left twirl -->
+  <ellipse cx="100" cy="200" rx="20" ry="8" class="accent-shadow" transform="rotate(-30 100 200)"/>
+  <ellipse cx="100" cy="198" rx="16" ry="6" class="accent-base"   transform="rotate(-30 100 198)"/>
+  <path d="M100,198 Q108,194 116,198" class="accent-shadow" fill="none" stroke-width="1.5" transform="rotate(-30 100 198)"/>
+  <ellipse cx="76" cy="160" rx="14" ry="6" class="accent-shadow" transform="rotate(40 76 160)"/>
+  <ellipse cx="76" cy="158" rx="11" ry="4" class="accent-base"   transform="rotate(40 76 158)"/>
+  <!-- right twirl -->
+  <ellipse cx="412" cy="200" rx="20" ry="8" class="accent-shadow" transform="rotate(30 412 200)"/>
+  <ellipse cx="412" cy="198" rx="16" ry="6" class="accent-base"   transform="rotate(30 412 198)"/>
+  <ellipse cx="436" cy="160" rx="14" ry="6" class="accent-shadow" transform="rotate(-40 436 160)"/>
+  <ellipse cx="436" cy="158" rx="11" ry="4" class="accent-base"   transform="rotate(-40 436 158)"/>
+
+  <!-- feet (one raised, dancing pose) -->
+  <ellipse cx="200" cy="442" rx="22" ry="11" class="body-shadow"/>
+  <ellipse cx="200" cy="438" rx="18" ry="8" class="body-base"/>
+  <ellipse cx="320" cy="380" rx="20" ry="9" class="body-shadow" transform="rotate(-25 320 380)"/>
+  <ellipse cx="320" cy="378" rx="16" ry="6" class="body-base"   transform="rotate(-25 320 378)"/>
+
+  <!-- arms (one raised, one extended sideways — dance pose) -->
+  <ellipse cx="156" cy="280" rx="38" ry="16" class="body-shadow" transform="rotate(-30 156 280)"/>
+  <ellipse cx="160" cy="278" rx="32" ry="11" class="body-base"   transform="rotate(-30 160 278)"/>
+  <ellipse cx="380" cy="240" rx="40" ry="16" class="body-shadow" transform="rotate(-50 380 240)"/>
+  <ellipse cx="378" cy="238" rx="34" ry="11" class="body-base"   transform="rotate(-50 378 238)"/>
+
+  <!-- ═══════ DYNAMIC TILTED BODY (mid-twirl) ═══════ -->
+  <ellipse cx="256" cy="320" rx="86" ry="120" class="body-shadow" transform="rotate(-12 256 320)"/>
+  <ellipse cx="256" cy="316" rx="80" ry="114" class="body-base"   transform="rotate(-12 256 316)"/>
+  <!-- VARIED HIGHLIGHT — swirl arc (matches twirl theme) -->
+  <path d="M210,250 Q200,300 220,348" class="body-highlight" fill="none" stroke-width="10" stroke-linecap="round" opacity="0.45"/>
+
+  <!-- ═══════ EYES (grass family — UPTURNED EXCITED, smile-eye shape) ═══════ -->
+  <path d="M196,288 Q220,272 244,288 Q220,302 196,288 Z" class="eye-sclera" stroke="none"/>
+  <path d="M196,288 Q220,272 244,288" fill="none" stroke="#481000" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="220" cy="290" r="9" class="eye-iris"/>
+  <circle cx="220" cy="292" r="6" class="eye-pupil"/>
+  <circle cx="224" cy="286" r="2" class="eye-highlight" stroke="none"/>
+  <path d="M268,288 Q292,272 316,288 Q292,302 268,288 Z" class="eye-sclera" stroke="none"/>
+  <path d="M268,288 Q292,272 316,288" fill="none" stroke="#481000" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="292" cy="290" r="9" class="eye-iris"/>
+  <circle cx="292" cy="292" r="6" class="eye-pupil"/>
+  <circle cx="288" cy="286" r="2" class="eye-highlight" stroke="none"/>
+
+  <!-- mouth: wide laughing -->
+  <path d="M220,330 Q256,360 290,330 Q274,348 256,348 Q236,348 220,330 Z" class="mouth-interior"/>
+  <ellipse cx="256" cy="348" rx="14" ry="6" class="tongue" stroke="none"/>
+
+  <!-- cheek blush -->
+  <ellipse cx="178" cy="324" rx="11" ry="7" fill="#f04828" opacity="0.55" stroke="none"/>
+  <ellipse cx="334" cy="324" rx="11" ry="7" fill="#f04828" opacity="0.55" stroke="none"/>
+
+  <!-- body specks -->
+  <circle cx="248" cy="232" r="2" class="body-highlight" opacity="0.7" stroke="none"/>
+  <circle cx="280" cy="380" r="2" class="body-highlight" opacity="0.55" stroke="none"/>
+
+  <!-- ambient leaf flakes (lots — dancing) -->
+  <ellipse cx="44"  cy="280" rx="5" ry="2" class="accent-base" opacity="0.6" transform="rotate(20 44 280)"/>
+  <ellipse cx="468" cy="280" rx="5" ry="2" class="accent-base" opacity="0.6" transform="rotate(-20 468 280)"/>
+  <ellipse cx="40"  cy="360" rx="4" ry="2" class="accent-base" opacity="0.55" transform="rotate(-15 40 360)"/>
+  <ellipse cx="472" cy="360" rx="4" ry="2" class="accent-base" opacity="0.55" transform="rotate(15 472 360)"/>
+  <ellipse cx="80"  cy="416" rx="4" ry="2" class="accent-base" opacity="0.5" transform="rotate(40 80 416)"/>
+  <ellipse cx="432" cy="416" rx="4" ry="2" class="accent-base" opacity="0.5" transform="rotate(-40 432 416)"/>
+
+  <!-- sparkles -->
+  <path d="M256,68 L258,76 L266,78 L258,80 L256,88 L254,80 L246,78 L254,76 Z"
+        class="accent-highlight" opacity="0.85"/>
+</svg>
