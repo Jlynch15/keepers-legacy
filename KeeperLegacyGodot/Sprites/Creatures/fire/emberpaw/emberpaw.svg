@@ -30,10 +30,10 @@
     .eye-sclera      { fill: #fff0d8; }
     .mouth-interior  { fill: #2a0808; }
   </style>
+  <!-- Custom glow: warm glow under each foot — paw print effect -->
+  <ellipse cx="200" cy="446" rx="48" ry="20" fill="#ffd060" opacity="0.32"/>
+  <ellipse cx="312" cy="446" rx="48" ry="20" fill="#ffd060" opacity="0.32"/>
 
-  <!-- WARM HALO -->
-  <circle cx="256" cy="296" r="200" class="accent-base" opacity="0.1"/>
-  <circle cx="256" cy="296" r="160" class="accent-base" opacity="0.15"/>
 
   <!-- ═══════ GLOWING PAW PADS (signature) ═══════ -->
   <!-- left foot (visible glowing paw) -->

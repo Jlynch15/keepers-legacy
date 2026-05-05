@@ -30,11 +30,19 @@
     .eye-sclera      { fill: #fff0d8; }
     .mouth-interior  { fill: #2a0000; }
   </style>
+  <!-- Custom glow: scattered cosmic star-points (constellation, not a halo) -->
+  <circle cx="60"  cy="120" r="2" fill="#ffffff" opacity="0.85"/>
+  <circle cx="120" cy="60"  r="2" fill="#ffffff" opacity="0.8"/>
+  <circle cx="450" cy="80"  r="2" fill="#ffffff" opacity="0.85"/>
+  <circle cx="490" cy="180" r="2" fill="#ffffff" opacity="0.8"/>
+  <circle cx="20"  cy="320" r="2" fill="#ffffff" opacity="0.8"/>
+  <circle cx="488" cy="380" r="2" fill="#ffffff" opacity="0.85"/>
+  <circle cx="40"  cy="448" r="2" fill="#ffffff" opacity="0.8"/>
+  <circle cx="180" cy="40"  r="2" fill="#ffffff" opacity="0.75"/>
+  <circle cx="380" cy="468" r="2" fill="#ffffff" opacity="0.8"/>
+  <!-- soft cosmic violet aura right behind body only -->
+  <ellipse cx="256" cy="306" rx="140" ry="160" fill="#ff4818" opacity="0.15"/>
 
-  <!-- COSMIC INTENSE HALO -->
-  <circle cx="256" cy="296" r="240" class="accent-base" opacity="0.15"/>
-  <circle cx="256" cy="296" r="200" class="accent-base" opacity="0.22"/>
-  <circle cx="256" cy="296" r="160" class="accent-base" opacity="0.28"/>
 
   <!-- METEOR TRAIL (signature: streak from upper-left) -->
   <path d="M68,80 Q140,140 180,200" class="accent-base" fill="none" stroke-width="6" stroke-linecap="round" opacity="0.7"/>

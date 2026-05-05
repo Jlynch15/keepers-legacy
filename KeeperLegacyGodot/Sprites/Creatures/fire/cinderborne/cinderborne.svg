@@ -30,11 +30,10 @@
     .eye-sclera      { fill: #fff0d8; }
     .mouth-interior  { fill: #2a0808; }
   </style>
+  <!-- Custom glow: flickering warmth concentrated around the crown -->
+  <ellipse cx="256" cy="186" rx="100" ry="50" fill="#ff8038" opacity="0.18"/>
+  <ellipse cx="256" cy="186" rx="68" ry="34" fill="#ffc080" opacity="0.25"/>
 
-  <!-- WARM HALO (signature: glow around fire creatures) -->
-  <circle cx="256" cy="296" r="220" class="accent-base" opacity="0.1"/>
-  <circle cx="256" cy="296" r="180" class="accent-base" opacity="0.15"/>
-  <circle cx="256" cy="296" r="146" class="accent-base" opacity="0.18"/>
 
   <!-- feet -->
   <ellipse cx="216" cy="436" rx="26" ry="13" class="body-shadow"/>

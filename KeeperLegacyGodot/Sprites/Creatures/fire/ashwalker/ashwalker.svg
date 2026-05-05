@@ -30,10 +30,9 @@
     .eye-sclera      { fill: #fff0d8; }
     .mouth-interior  { fill: #2a0808; }
   </style>
+  <!-- Custom glow: subtle warm glow at base only (calm ash drift) -->
+  <ellipse cx="256" cy="446" rx="160" ry="32" fill="#ff8038" opacity="0.18"/>
 
-  <!-- soft warm halo (calm) -->
-  <circle cx="256" cy="296" r="200" class="accent-base" opacity="0.08"/>
-  <circle cx="256" cy="296" r="160" class="accent-base" opacity="0.12"/>
 
   <!-- ═══════ TRAILING ASH WISPS (signature: ash drifting around feet) ═══════ -->
   <path d="M120,440 Q160,420 200,440 Q240,420 280,440 Q320,420 360,440 Q400,420 440,440 Q400,460 360,452 Q320,460 280,452 Q240,460 200,452 Q160,460 120,440 Z" class="body-shadow" opacity="0.55"/>

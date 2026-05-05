@@ -30,10 +30,11 @@
     .eye-sclera      { fill: #fff0d8; }
     .mouth-interior  { fill: #ff3008; }
   </style>
+  <!-- Custom glow: heat-shimmer rising from molten cracks -->
+  <ellipse cx="256" cy="266" rx="160" ry="22" fill="#ff5020" opacity="0.18"/>
+  <ellipse cx="256" cy="346" rx="100" ry="18" fill="#ff5020" opacity="0.18"/>
+  <ellipse cx="256" cy="394" rx="80" ry="16" fill="#ff5020" opacity="0.15"/>
 
-  <!-- INTENSE HALO -->
-  <circle cx="256" cy="296" r="220" class="accent-base" opacity="0.15"/>
-  <circle cx="256" cy="296" r="170" class="accent-base" opacity="0.2"/>
 
   <!-- feet (heavy stubs) -->
   <ellipse cx="200" cy="436" rx="34" ry="14" class="body-shadow"/>

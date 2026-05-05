@@ -31,11 +31,10 @@
     .mouth-interior  { fill: #2a0808; }
     .tongue          { fill: #ff8090; }
   </style>
+  <!-- Custom glow: bright radiance around the central body -->
+  <circle cx="256" cy="306" r="148" fill="#ffe888" opacity="0.18"/>
+  <circle cx="256" cy="306" r="124" fill="#fff088" opacity="0.22"/>
 
-  <!-- INTENSE BRIGHT HALO (rare-tier) -->
-  <circle cx="256" cy="296" r="240" class="accent-base" opacity="0.18"/>
-  <circle cx="256" cy="296" r="200" class="accent-base" opacity="0.25"/>
-  <circle cx="256" cy="296" r="160" class="accent-base" opacity="0.32"/>
 
   <!-- ═══════ SUN RAYS (signature: 12 rays radiating outward) ═══════ -->
   <g stroke="#ffe888" stroke-width="6" stroke-linecap="round">

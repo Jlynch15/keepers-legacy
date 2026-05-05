@@ -31,11 +31,16 @@
     .mouth-interior  { fill: #2a0808; }
     .tongue          { fill: #ff8090; }
   </style>
+  <!-- Custom glow: irregular bursting glow at each flame tip -->
+  <circle cx="256" cy="120" r="32" fill="#ff7848" opacity="0.25"/>
+  <circle cx="368" cy="180" r="28" fill="#ff7848" opacity="0.22"/>
+  <circle cx="400" cy="296" r="32" fill="#ff7848" opacity="0.25"/>
+  <circle cx="368" cy="412" r="28" fill="#ff7848" opacity="0.22"/>
+  <circle cx="256" cy="448" r="32" fill="#ff7848" opacity="0.22"/>
+  <circle cx="144" cy="412" r="28" fill="#ff7848" opacity="0.22"/>
+  <circle cx="112" cy="296" r="32" fill="#ff7848" opacity="0.25"/>
+  <circle cx="144" cy="180" r="28" fill="#ff7848" opacity="0.22"/>
 
-  <!-- INTENSE HALO -->
-  <circle cx="256" cy="296" r="240" class="accent-base" opacity="0.1"/>
-  <circle cx="256" cy="296" r="200" class="accent-base" opacity="0.15"/>
-  <circle cx="256" cy="296" r="160" class="accent-base" opacity="0.2"/>
 
   <!-- ═══════ EXPLODING FLAMES (signature: bursting in all directions) ═══════ -->
   <!-- 8 flame bursts -->

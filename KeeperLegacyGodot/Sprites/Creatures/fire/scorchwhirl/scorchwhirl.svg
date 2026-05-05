@@ -31,10 +31,9 @@
     .mouth-interior  { fill: #2a0808; }
     .tongue          { fill: #ff8090; }
   </style>
+  <!-- Custom glow: motion-blur trail along the spiral path -->
+  <path d="M256,156 Q396,200 380,340 Q344,440 224,432 Q116,408 124,294" stroke="#ff8020" stroke-width="40" fill="none" stroke-linecap="round" opacity="0.18"/>
 
-  <!-- WARM HALO -->
-  <circle cx="256" cy="296" r="216" class="accent-base" opacity="0.12"/>
-  <circle cx="256" cy="296" r="170" class="accent-base" opacity="0.18"/>
 
   <!-- ═══════ FLAME SPIRAL WHIRL (signature: surrounding spiral) ═══════ -->
   <path d="M256,156 Q396,200 380,340 Q344,440 224,432 Q116,408 124,294 Q156,200 248,196 Q330,212 332,294 Q324,360 256,360 Q204,348 208,302 Q212,270 252,266 Q282,272 280,304" class="accent-shadow" fill="none" stroke-width="22" stroke-linecap="round"/>

@@ -30,10 +30,10 @@
     .eye-sclera      { fill: #fff0d8; }
     .mouth-interior  { fill: #2a0808; }
   </style>
+  <!-- Custom glow: soft red glow behind each wing -->
+  <ellipse cx="100" cy="298" rx="100" ry="80" fill="#ff5848" opacity="0.18"/>
+  <ellipse cx="412" cy="298" rx="100" ry="80" fill="#ff5848" opacity="0.18"/>
 
-  <!-- WARM HALO -->
-  <circle cx="256" cy="296" r="220" class="accent-base" opacity="0.1"/>
-  <circle cx="256" cy="296" r="180" class="accent-base" opacity="0.15"/>
 
   <!-- ═══════ HUGE FLAME WINGS (signature: spreading flame wings) ═══════ -->
   <!-- left wing -->
