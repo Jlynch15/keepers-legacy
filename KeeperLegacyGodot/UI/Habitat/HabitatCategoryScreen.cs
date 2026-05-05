@@ -357,11 +357,10 @@ namespace KeeperLegacy.UI.Habitat
             {
                 case Key.F4:
                 case Key.P:
-                    HabitatEnvironmentView.DecorationNode.DebugDragEnabled = !HabitatEnvironmentView.DecorationNode.DebugDragEnabled;
-                    if (!HabitatEnvironmentView.DecorationNode.DebugDragEnabled)
-                    {
-                        PrintBakeValues();
-                    }
+                    bool newState = !HabitatEnvironmentView.DecorationNode.DebugDragEnabled;
+                    HabitatEnvironmentView.DecorationNode.DebugDragEnabled = newState;
+                    HabitatEnvironmentView.WanderZoneOverlay.DebugEnabled  = newState;
+                    if (!newState) PrintBakeValues();
                     UpdateScreenDebugOverlay();
                     GetViewport().SetInputAsHandled();
                     break;
@@ -475,7 +474,8 @@ namespace KeeperLegacy.UI.Habitat
             GD.Print($"    AmbientLights:         /* unchanged from current theme */ System.Array.Empty<LightShaft>(),");
             GD.Print($"    Floor:                 /* unchanged from current theme */ null,");
             GD.Print($"    Surface:               /* unchanged from current theme */ null,");
-            GD.Print($"    WanderZone:            new Rect2({theme.WanderZone.Position.X}, {theme.WanderZone.Position.Y}, {theme.WanderZone.Size.X}, {theme.WanderZone.Size.Y})");
+            var liveZone = _envView.GetCurrentWanderZone();
+            GD.Print($"    WanderZone:            new Rect2({liveZone.Position.X:F0}, {liveZone.Position.Y:F0}, {liveZone.Size.X:F0}, {liveZone.Size.Y:F0})");
             GD.Print($");");
             GD.Print($"==============================================================");
             GD.Print("");

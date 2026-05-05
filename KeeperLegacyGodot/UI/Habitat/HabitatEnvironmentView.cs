@@ -32,7 +32,7 @@ namespace KeeperLegacy.UI.Habitat
         private Control   _particleLayer;
         private Control   _decorationLayer;
         private ColorRect _surfaceLine;
-        private Control   _wanderZoneOverlay;     // debug only, populated in Task 14
+        private WanderZoneOverlay _wanderZoneOverlay;     // debug only, populated in Task 14
         private Control   _creatureLayer;
         private ColorRect _floorOverlay;
 
@@ -49,6 +49,8 @@ namespace KeeperLegacy.UI.Habitat
             _habitat = habitat;
             BuildCreatures();
         }
+
+        public Rect2 GetCurrentWanderZone() => _wanderZoneOverlay.Zone;
 
         private void BuildCreatures()
         {
@@ -98,8 +100,10 @@ namespace KeeperLegacy.UI.Habitat
             _surfaceLine.MouseFilter = MouseFilterEnum.Ignore;
             AddChild(_surfaceLine);
 
-            _wanderZoneOverlay = NewLayer();
-            _wanderZoneOverlay.Visible = false;
+            _wanderZoneOverlay = new WanderZoneOverlay();
+            _wanderZoneOverlay.SetAnchorsAndOffsetsPreset(LayoutPreset.FullRect);
+            _wanderZoneOverlay.MouseFilter = MouseFilterEnum.Pass;
+            AddChild(_wanderZoneOverlay);
 
             _creatureLayer = NewLayer();
             _floorOverlay = new ColorRect();
@@ -141,6 +145,7 @@ namespace KeeperLegacy.UI.Habitat
             BuildDecorations();
             BuildSurface();
             BuildFloor();
+            _wanderZoneOverlay.Zone = _theme.WanderZone;
             // Particles are spawned over time in _Process.
         }
 
@@ -242,6 +247,101 @@ namespace KeeperLegacy.UI.Habitat
             tween.TweenProperty(label, "position", label.Position + new Vector2(dx, dy), life);
             tween.TweenProperty(label, "modulate:a", 0f, life);
             tween.Chain().TweenCallback(Callable.From(() => label.QueueFree()));
+        }
+
+        // ── Wander zone overlay (debug) ───────────────────────────────────────
+
+        internal partial class WanderZoneOverlay : Control
+        {
+            public static bool DebugEnabled { get; set; }
+            public Rect2 Zone;
+
+            private const float HandleSize = 12f;
+            private int _dragHandle = -1;
+
+            public override void _Process(double delta)
+            {
+                Visible = DebugEnabled;
+                if (Visible) QueueRedraw();
+            }
+
+            public override void _Draw()
+            {
+                if (!Visible) return;
+                DrawRect(Zone, new Color(1, 0.5f, 0.2f, 0.10f), filled: true);
+                DrawRect(Zone, new Color(1, 0.5f, 0.2f, 0.65f), filled: false, width: 2f);
+
+                foreach (Vector2 h in HandlePositions())
+                {
+                    DrawRect(new Rect2(h - new Vector2(HandleSize/2f, HandleSize/2f), new Vector2(HandleSize, HandleSize)),
+                             new Color(1, 0.5f, 0.2f, 1f), filled: true);
+                }
+            }
+
+            public System.Collections.Generic.IEnumerable<Vector2> HandlePositions()
+            {
+                yield return Zone.Position;                                                         // TL
+                yield return Zone.Position + new Vector2(Zone.Size.X, 0);                           // TR
+                yield return Zone.Position + new Vector2(0, Zone.Size.Y);                           // BL
+                yield return Zone.End;                                                              // BR
+                yield return Zone.Position + new Vector2(Zone.Size.X / 2, 0);                       // T-mid
+                yield return Zone.Position + new Vector2(Zone.Size.X / 2, Zone.Size.Y);             // B-mid
+                yield return Zone.Position + new Vector2(0, Zone.Size.Y / 2);                       // L-mid
+                yield return Zone.Position + new Vector2(Zone.Size.X, Zone.Size.Y / 2);             // R-mid
+            }
+
+            public override void _GuiInput(InputEvent @event)
+            {
+                if (!DebugEnabled) return;
+
+                if (@event is InputEventMouseButton mb && mb.ButtonIndex == MouseButton.Left)
+                {
+                    if (mb.Pressed)
+                    {
+                        _dragHandle = HitTestHandle(mb.Position);
+                        if (_dragHandle >= 0) AcceptEvent();
+                    }
+                    else _dragHandle = -1;
+                }
+                else if (@event is InputEventMouseMotion mm && _dragHandle >= 0)
+                {
+                    ApplyDragToHandle(_dragHandle, mm.Position);
+                    AcceptEvent();
+                }
+            }
+
+            private int HitTestHandle(Vector2 p)
+            {
+                int i = 0;
+                foreach (Vector2 h in HandlePositions())
+                {
+                    if (Mathf.Abs(p.X - h.X) < HandleSize && Mathf.Abs(p.Y - h.Y) < HandleSize)
+                        return i;
+                    i++;
+                }
+                return -1;
+            }
+
+            private void ApplyDragToHandle(int handle, Vector2 p)
+            {
+                // 0=TL 1=TR 2=BL 3=BR 4=Tmid 5=Bmid 6=Lmid 7=Rmid
+                Vector2 tl = Zone.Position;
+                Vector2 br = Zone.End;
+                switch (handle)
+                {
+                    case 0: tl = p; break;
+                    case 1: tl.Y = p.Y; br.X = p.X; break;
+                    case 2: tl.X = p.X; br.Y = p.Y; break;
+                    case 3: br = p; break;
+                    case 4: tl.Y = p.Y; break;
+                    case 5: br.Y = p.Y; break;
+                    case 6: tl.X = p.X; break;
+                    case 7: br.X = p.X; break;
+                }
+                if (br.X < tl.X) (tl.X, br.X) = (br.X, tl.X);
+                if (br.Y < tl.Y) (tl.Y, br.Y) = (br.Y, tl.Y);
+                Zone = new Rect2(tl, br - tl);
+            }
         }
 
         // ── Decoration node (animated) ────────────────────────────────────────
