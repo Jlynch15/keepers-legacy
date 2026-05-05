@@ -112,31 +112,160 @@ namespace KeeperLegacy.Data
                 WanderZone: new Rect2(80, 100, 660, 280)
             ),
 
-            // Stub themes — minimal so all 7 biomes work even before art-direction.
-            // Full configurations land in Task 5.
-            [HabitatType.Grass]    = StubTheme(HabitatType.Grass,    "🌿", "Grass Habitats",    "Meadow · Forest · Garden",     new Color("#4AB84A")),
-            [HabitatType.Dirt]     = StubTheme(HabitatType.Dirt,     "🪨", "Dirt Habitats",     "Burrow · Cave · Earthen",       new Color("#C08840")),
-            [HabitatType.Fire]     = StubTheme(HabitatType.Fire,     "🔥", "Fire Habitats",     "Lava · Forge · Ember",          new Color("#E06030")),
-            [HabitatType.Ice]      = StubTheme(HabitatType.Ice,      "❄️", "Ice Habitats",      "Frost · Glacier · Tundra",      new Color("#60D0E0")),
-            [HabitatType.Electric] = StubTheme(HabitatType.Electric, "⚡", "Electric Habitats", "Storm · Conduit · Static",      new Color("#E8D020")),
-            [HabitatType.Magical]  = StubTheme(HabitatType.Magical,  "✨", "Magical Habitats",  "Etheric · Astral · Mystic",     new Color("#9860E0")),
-        };
+            [HabitatType.Grass] = new BiomeTheme(
+                Biome:                 HabitatType.Grass,
+                IconEmoji:             "🌿",
+                DisplayName:           "Grass Habitats",
+                FlavorSubtitle:        "Meadow · Forest · Garden",
+                AccentColor:           new Color("#4AB84A"),
+                BackgroundTopColor:    new Color("#1A2810"),
+                BackgroundBottomColor: new Color("#2A3818"),
+                Decorations: new[]
+                {
+                    new Decoration("🍄", new Vector2( 100, 400), 22f),
+                    new Decoration("🍄", new Vector2( 250, 408), 18f),
+                    new Decoration("🍄", new Vector2( 720, 410), 22f),
+                    new Decoration("🌱", new Vector2( 180, 380), 18f, DecorationAnimation.Sway),
+                    new Decoration("🌱", new Vector2( 400, 388), 18f, DecorationAnimation.Sway),
+                    new Decoration("🌱", new Vector2( 840, 384), 18f, DecorationAnimation.Sway),
+                    new Decoration("🦋", new Vector2( 320, 200), 16f, DecorationAnimation.Drift),
+                    new Decoration("🦋", new Vector2( 680, 240), 16f, DecorationAnimation.Drift),
+                },
+                Particles: new ParticleConfig("✦", 0.8f, new Vector2(0, -0.3f), 5f, 8f, 2f, 4f),
+                AmbientLights: System.Array.Empty<LightShaft>(),
+                Floor: new FloorOverlay(new Color(0.30f, 0.45f, 0.20f, 0.25f), new Color(0.20f, 0.32f, 0.12f, 0.55f), 55f),
+                Surface: null,
+                WanderZone: new Rect2(80, 100, 660, 280)
+            ),
 
-        private static BiomeTheme StubTheme(HabitatType biome, string icon, string name, string flavor, Color accent)
-            => new BiomeTheme(
-                Biome:                 biome,
-                IconEmoji:             icon,
-                DisplayName:           name,
-                FlavorSubtitle:        flavor,
-                AccentColor:           accent,
-                BackgroundTopColor:    accent.Darkened(0.85f),
-                BackgroundBottomColor: accent.Darkened(0.95f),
-                Decorations:           System.Array.Empty<Decoration>(),
-                Particles:             null,
-                AmbientLights:         System.Array.Empty<LightShaft>(),
-                Floor:                 null,
-                Surface:               null,
-                WanderZone:            new Rect2(80, 100, 660, 280));
+            [HabitatType.Dirt] = new BiomeTheme(
+                Biome:                 HabitatType.Dirt,
+                IconEmoji:             "🪨",
+                DisplayName:           "Dirt Habitats",
+                FlavorSubtitle:        "Burrow · Cave · Earthen",
+                AccentColor:           new Color("#C08840"),
+                BackgroundTopColor:    new Color("#1A0E06"),
+                BackgroundBottomColor: new Color("#2A1A0C"),
+                Decorations: new[]
+                {
+                    new Decoration("🪨", new Vector2(  60, 408), 26f),
+                    new Decoration("🪨", new Vector2( 220, 412), 22f),
+                    new Decoration("🪨", new Vector2( 980, 410), 28f),
+                    new Decoration("💎", new Vector2( 380, 395), 18f),
+                    new Decoration("💎", new Vector2( 720, 398), 16f),
+                    new Decoration("🌱", new Vector2( 140, 380), 16f, DecorationAnimation.Sway),
+                },
+                Particles: null,
+                AmbientLights: System.Array.Empty<LightShaft>(),
+                Floor: new FloorOverlay(new Color(0.55f, 0.35f, 0.18f, 0.30f), new Color(0.40f, 0.25f, 0.10f, 0.60f), 55f),
+                Surface: null,
+                WanderZone: new Rect2(80, 100, 660, 280)
+            ),
+
+            [HabitatType.Fire] = new BiomeTheme(
+                Biome:                 HabitatType.Fire,
+                IconEmoji:             "🔥",
+                DisplayName:           "Fire Habitats",
+                FlavorSubtitle:        "Lava · Forge · Ember",
+                AccentColor:           new Color("#E06030"),
+                BackgroundTopColor:    new Color("#28080A"),
+                BackgroundBottomColor: new Color("#3A1810"),
+                Decorations: new[]
+                {
+                    new Decoration("🔥", new Vector2(  80, 400), 24f, DecorationAnimation.Sway),
+                    new Decoration("🔥", new Vector2( 920, 405), 26f, DecorationAnimation.Sway),
+                    new Decoration("🪵", new Vector2( 200, 410), 20f),
+                    new Decoration("🪵", new Vector2( 720, 408), 22f),
+                    new Decoration("🪨", new Vector2( 480, 412), 20f),
+                },
+                Particles: new ParticleConfig("✦", 1.5f, new Vector2(0, -1), 3f, 5f, 2f, 6f),
+                AmbientLights: new[]
+                {
+                    new LightShaft(LeftPct: 0.20f, WidthPx: 80, SkewDeg: 5,  Opacity: 0.30f, PulseDurSec: 4f),
+                    new LightShaft(LeftPct: 0.70f, WidthPx: 80, SkewDeg: -5, Opacity: 0.30f, PulseDurSec: 4.5f),
+                },
+                Floor: new FloorOverlay(new Color(0.85f, 0.30f, 0.10f, 0.35f), new Color(0.45f, 0.10f, 0.05f, 0.65f), 55f),
+                Surface: null,
+                WanderZone: new Rect2(80, 100, 660, 280)
+            ),
+
+            [HabitatType.Ice] = new BiomeTheme(
+                Biome:                 HabitatType.Ice,
+                IconEmoji:             "❄️",
+                DisplayName:           "Ice Habitats",
+                FlavorSubtitle:        "Frost · Glacier · Tundra",
+                AccentColor:           new Color("#60D0E0"),
+                BackgroundTopColor:    new Color("#0A2030"),
+                BackgroundBottomColor: new Color("#1E3848"),
+                Decorations: new[]
+                {
+                    new Decoration("🧊", new Vector2( 100, 408), 28f),
+                    new Decoration("🧊", new Vector2( 880, 410), 26f),
+                    new Decoration("🧊", new Vector2( 480, 412), 22f),
+                    new Decoration("❄️", new Vector2( 200, 380), 18f),
+                    new Decoration("❄️", new Vector2( 700, 384), 18f),
+                },
+                Particles: new ParticleConfig("❄", 1.0f, new Vector2(0, 1), 6f, 9f, 3f, 5f),
+                AmbientLights: System.Array.Empty<LightShaft>(),
+                Floor: new FloorOverlay(new Color(0.70f, 0.85f, 0.95f, 0.30f), new Color(0.45f, 0.65f, 0.80f, 0.55f), 55f),
+                Surface: null,
+                WanderZone: new Rect2(80, 100, 660, 280)
+            ),
+
+            [HabitatType.Electric] = new BiomeTheme(
+                Biome:                 HabitatType.Electric,
+                IconEmoji:             "⚡",
+                DisplayName:           "Electric Habitats",
+                FlavorSubtitle:        "Storm · Conduit · Static",
+                AccentColor:           new Color("#E8D020"),
+                BackgroundTopColor:    new Color("#1A1A28"),
+                BackgroundBottomColor: new Color("#28283A"),
+                Decorations: new[]
+                {
+                    new Decoration("⚡", new Vector2( 200, 200), 22f, DecorationAnimation.Float),
+                    new Decoration("⚡", new Vector2( 600, 220), 22f, DecorationAnimation.Float),
+                    new Decoration("🔌", new Vector2( 100, 410), 22f),
+                    new Decoration("🔌", new Vector2( 920, 412), 22f),
+                    new Decoration("🪨", new Vector2( 480, 414), 18f),
+                },
+                Particles: new ParticleConfig("✦", 1.2f, new Vector2(0.3f, -0.3f), 2f, 4f, 2f, 5f),
+                AmbientLights: new[]
+                {
+                    new LightShaft(LeftPct: 0.40f, WidthPx: 30, SkewDeg: 15, Opacity: 0.50f, PulseDurSec: 1.5f),
+                },
+                Floor: new FloorOverlay(new Color(0.90f, 0.85f, 0.30f, 0.20f), new Color(0.50f, 0.45f, 0.15f, 0.50f), 55f),
+                Surface: null,
+                WanderZone: new Rect2(80, 100, 660, 280)
+            ),
+
+            [HabitatType.Magical] = new BiomeTheme(
+                Biome:                 HabitatType.Magical,
+                IconEmoji:             "✨",
+                DisplayName:           "Magical Habitats",
+                FlavorSubtitle:        "Etheric · Astral · Mystic",
+                AccentColor:           new Color("#9860E0"),
+                BackgroundTopColor:    new Color("#180828"),
+                BackgroundBottomColor: new Color("#2A1A40"),
+                Decorations: new[]
+                {
+                    new Decoration("🔮", new Vector2( 480, 380), 28f),
+                    new Decoration("✨", new Vector2( 200, 250), 18f, DecorationAnimation.Float),
+                    new Decoration("✨", new Vector2( 760, 260), 18f, DecorationAnimation.Float),
+                    new Decoration("✨", new Vector2( 400, 200), 14f, DecorationAnimation.Float),
+                    new Decoration("✨", new Vector2( 600, 210), 14f, DecorationAnimation.Float),
+                },
+                Particles: new ParticleConfig("✦", 1.0f, new Vector2(0, -0.5f), 5f, 8f, 2f, 5f),
+                AmbientLights: new[]
+                {
+                    new LightShaft(LeftPct: 0.15f, WidthPx: 60, SkewDeg: -10, Opacity: 0.45f, PulseDurSec: 8f),
+                    new LightShaft(LeftPct: 0.50f, WidthPx: 80, SkewDeg:   0, Opacity: 0.55f, PulseDurSec: 7f),
+                    new LightShaft(LeftPct: 0.85f, WidthPx: 60, SkewDeg:  10, Opacity: 0.45f, PulseDurSec: 9f),
+                },
+                Floor: new FloorOverlay(new Color(0.55f, 0.30f, 0.85f, 0.25f), new Color(0.30f, 0.15f, 0.55f, 0.55f), 55f),
+                Surface: null,
+                WanderZone: new Rect2(80, 100, 660, 280)
+            ),
+        };
 
         public static BiomeTheme? For(HabitatType biome)
             => _themes.TryGetValue(biome, out var t) ? t : null;
