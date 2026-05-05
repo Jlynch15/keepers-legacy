@@ -540,6 +540,8 @@ public partial class MainScene : Control
     {
         if (@event is InputEventKey keyEvent && keyEvent.Pressed && !keyEvent.Echo)
         {
+            // F1/F2/F3 are screen-agnostic — story event, level up, feature unlock —
+            // and stay handled at MainScene level always.
             bool handled = true;
             switch (keyEvent.Keycode)
             {
@@ -552,45 +554,63 @@ public partial class MainScene : Control
                 case Key.F3:
                     DebugUnlockAllFeatures();
                     break;
-                case Key.F4:
-                case Key.P:
-                    DebugTogglePedestalDrag();
-                    break;
-                case Key.O:
-                    if (KeeperLegacy.UI.Habitat.PedestalNode.DebugDragEnabled)
-                        DebugCyclePedestalSize();
-                    else handled = false;
-                    break;
-                case Key.Up:
-                    if (KeeperLegacy.UI.Habitat.PedestalNode.DebugDragEnabled)
-                        DebugNudgeArtOffset(new Vector2(0, -3));
-                    else handled = false;
-                    break;
-                case Key.Down:
-                    if (KeeperLegacy.UI.Habitat.PedestalNode.DebugDragEnabled)
-                        DebugNudgeArtOffset(new Vector2(0, 3));
-                    else handled = false;
-                    break;
-                case Key.Left:
-                    if (KeeperLegacy.UI.Habitat.PedestalNode.DebugDragEnabled)
-                        DebugNudgeArtOffset(new Vector2(-3, 0));
-                    else handled = false;
-                    break;
-                case Key.Right:
-                    if (KeeperLegacy.UI.Habitat.PedestalNode.DebugDragEnabled)
-                        DebugNudgeArtOffset(new Vector2(3, 0));
-                    else handled = false;
-                    break;
-                case Key.S:
-                    // Ctrl+S in drag mode: print bake values WITHOUT exiting drag mode
-                    if (KeeperLegacy.UI.Habitat.PedestalNode.DebugDragEnabled && keyEvent.CtrlPressed)
-                        DebugPrintPedestalPositions();
-                    else handled = false;
-                    break;
                 default:
                     handled = false;
                     break;
             }
+
+            // Pedestal-specific debug keys (F4/P/O/arrows/Ctrl+S) only fire when the
+            // floor screen is the active sub-screen. Other screens (e.g. Habitat
+            // Category) own their own debug input via their own _Input override.
+            // Without this guard, pressing F4 on the category screen would toggle
+            // PedestalNode.DebugDragEnabled in the background and corrupt the shared
+            // debug overlay state.
+            if (!handled && _currentScreen is KeeperLegacy.UI.Habitat.HabitatFloorScreen)
+            {
+                handled = true;
+                switch (keyEvent.Keycode)
+                {
+                    case Key.F4:
+                    case Key.P:
+                        DebugTogglePedestalDrag();
+                        break;
+                    case Key.O:
+                        if (KeeperLegacy.UI.Habitat.PedestalNode.DebugDragEnabled)
+                            DebugCyclePedestalSize();
+                        else handled = false;
+                        break;
+                    case Key.Up:
+                        if (KeeperLegacy.UI.Habitat.PedestalNode.DebugDragEnabled)
+                            DebugNudgeArtOffset(new Vector2(0, -3));
+                        else handled = false;
+                        break;
+                    case Key.Down:
+                        if (KeeperLegacy.UI.Habitat.PedestalNode.DebugDragEnabled)
+                            DebugNudgeArtOffset(new Vector2(0, 3));
+                        else handled = false;
+                        break;
+                    case Key.Left:
+                        if (KeeperLegacy.UI.Habitat.PedestalNode.DebugDragEnabled)
+                            DebugNudgeArtOffset(new Vector2(-3, 0));
+                        else handled = false;
+                        break;
+                    case Key.Right:
+                        if (KeeperLegacy.UI.Habitat.PedestalNode.DebugDragEnabled)
+                            DebugNudgeArtOffset(new Vector2(3, 0));
+                        else handled = false;
+                        break;
+                    case Key.S:
+                        // Ctrl+S in drag mode: print bake values WITHOUT exiting drag mode
+                        if (KeeperLegacy.UI.Habitat.PedestalNode.DebugDragEnabled && keyEvent.CtrlPressed)
+                            DebugPrintPedestalPositions();
+                        else handled = false;
+                        break;
+                    default:
+                        handled = false;
+                        break;
+                }
+            }
+
             if (handled)
                 GetViewport().SetInputAsHandled();
         }
