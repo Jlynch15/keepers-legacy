@@ -167,6 +167,22 @@ public partial class MainScene : Control
         _debugOverlay.Visible = true;
     }
 
+    /// <summary>
+    /// Public hook so screen-owned debug systems can drive the shared overlay
+    /// without duplicating the panel construction. Pass null/empty to hide.
+    /// </summary>
+    public void SetDebugOverlayText(string? text)
+    {
+        if (_debugOverlay == null || _debugOverlayLabel == null) return;
+        if (string.IsNullOrEmpty(text))
+        {
+            _debugOverlay.Visible = false;
+            return;
+        }
+        _debugOverlayLabel.Text = text;
+        _debugOverlay.Visible = true;
+    }
+
     // ── Manager signal wiring ─────────────────────────────────────────────────
 
     private void WireManagerSignals()

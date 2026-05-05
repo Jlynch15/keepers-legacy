@@ -246,11 +246,17 @@ namespace KeeperLegacy.UI.Habitat
 
         // ── Decoration node (animated) ────────────────────────────────────────
 
-        private partial class DecorationNode : Label
+        internal partial class DecorationNode : Label
         {
+            public static bool DebugDragEnabled { get; set; }
+            public static DecorationNode? FocusedNode { get; set; }
+
             public readonly Decoration Spec;
             public Vector2 BasePosition;
+            public float ScaleMultiplier = 1.0f;
+
             private float _time;
+            private bool _dragging;
 
             public DecorationNode(Decoration spec)
             {
@@ -258,25 +264,53 @@ namespace KeeperLegacy.UI.Habitat
                 BasePosition = spec.PositionArtSpace;
                 Text = spec.PlaceholderEmoji;
                 AddThemeFontSizeOverride("font_size", (int)spec.SizePx);
-                MouseFilter = MouseFilterEnum.Ignore;
+                MouseFilter = MouseFilterEnum.Stop;
             }
 
             public override void _Process(double delta)
             {
                 _time += (float)delta;
                 Position = BasePosition;
+                AddThemeFontSizeOverride("font_size", (int)(Spec.SizePx * ScaleMultiplier));
 
-                switch (Spec.Animation)
+                if (!_dragging)
                 {
-                    case DecorationAnimation.Sway:
-                        RotationDegrees = Mathf.Sin(_time * 2.2f) * 5.0f;
-                        break;
-                    case DecorationAnimation.Float:
-                        Position += new Vector2(0, Mathf.Sin(_time * 1.8f) * 4.0f);
-                        break;
-                    case DecorationAnimation.Drift:
-                        Position += new Vector2(Mathf.Sin(_time * 0.4f) * 30.0f, 0);
-                        break;
+                    switch (Spec.Animation)
+                    {
+                        case DecorationAnimation.Sway:
+                            RotationDegrees = Mathf.Sin(_time * 2.2f) * 5.0f;
+                            break;
+                        case DecorationAnimation.Float:
+                            Position += new Vector2(0, Mathf.Sin(_time * 1.8f) * 4.0f);
+                            break;
+                        case DecorationAnimation.Drift:
+                            Position += new Vector2(Mathf.Sin(_time * 0.4f) * 30.0f, 0);
+                            break;
+                    }
+                }
+
+                Modulate = (FocusedNode == this && DebugDragEnabled)
+                    ? new Color(1.2f, 1.2f, 1.2f, 1f)
+                    : new Color(1f, 1f, 1f, 1f);
+            }
+
+            public override void _GuiInput(InputEvent @event)
+            {
+                if (!DebugDragEnabled) return;
+                if (@event is InputEventMouseButton mb && mb.ButtonIndex == MouseButton.Left)
+                {
+                    if (mb.Pressed)
+                    {
+                        FocusedNode = this;
+                        _dragging = true;
+                        AcceptEvent();
+                    }
+                    else _dragging = false;
+                }
+                else if (@event is InputEventMouseMotion mm && _dragging)
+                {
+                    BasePosition += mm.Relative;
+                    AcceptEvent();
                 }
             }
         }

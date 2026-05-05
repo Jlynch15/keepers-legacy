@@ -343,5 +343,142 @@ namespace KeeperLegacy.UI.Habitat
             }
             return null;
         }
+
+        // ── Debug surface ─────────────────────────────────────────────────────
+
+        private static readonly float[] DecorationScales = { 0.5f, 0.7f, 1.0f, 1.5f, 2.0f, 3.0f };
+        private int _decoScaleIndex = 2; // 1.0x
+
+        public override void _Input(InputEvent @event)
+        {
+            if (@event is not InputEventKey key || !key.Pressed || key.Echo) return;
+
+            switch (key.Keycode)
+            {
+                case Key.F4:
+                case Key.P:
+                    HabitatEnvironmentView.DecorationNode.DebugDragEnabled = !HabitatEnvironmentView.DecorationNode.DebugDragEnabled;
+                    if (!HabitatEnvironmentView.DecorationNode.DebugDragEnabled)
+                    {
+                        PrintBakeValues();
+                    }
+                    UpdateScreenDebugOverlay();
+                    GetViewport().SetInputAsHandled();
+                    break;
+
+                case Key.O:
+                    if (!HabitatEnvironmentView.DecorationNode.DebugDragEnabled) return;
+                    var focused = HabitatEnvironmentView.DecorationNode.FocusedNode;
+                    if (focused == null) return;
+                    _decoScaleIndex = (_decoScaleIndex + 1) % DecorationScales.Length;
+                    focused.ScaleMultiplier = DecorationScales[_decoScaleIndex];
+                    UpdateScreenDebugOverlay();
+                    GetViewport().SetInputAsHandled();
+                    break;
+
+                case Key.Tab:
+                    if (!HabitatEnvironmentView.DecorationNode.DebugDragEnabled) return;
+                    AdvanceDecorationFocus();
+                    UpdateScreenDebugOverlay();
+                    GetViewport().SetInputAsHandled();
+                    break;
+
+                case Key.S when key.CtrlPressed:
+                    if (!HabitatEnvironmentView.DecorationNode.DebugDragEnabled) return;
+                    PrintBakeValues();
+                    GetViewport().SetInputAsHandled();
+                    break;
+            }
+        }
+
+        private void AdvanceDecorationFocus()
+        {
+            var nodes = new System.Collections.Generic.List<HabitatEnvironmentView.DecorationNode>();
+            CollectDecorationNodes(_envView, nodes);
+            if (nodes.Count == 0) return;
+            int idx = HabitatEnvironmentView.DecorationNode.FocusedNode == null
+                ? -1
+                : nodes.IndexOf(HabitatEnvironmentView.DecorationNode.FocusedNode);
+            HabitatEnvironmentView.DecorationNode.FocusedNode = nodes[(idx + 1) % nodes.Count];
+        }
+
+        private static void CollectDecorationNodes(Node parent, System.Collections.Generic.List<HabitatEnvironmentView.DecorationNode> outList)
+        {
+            foreach (Node child in parent.GetChildren())
+            {
+                if (child is HabitatEnvironmentView.DecorationNode d) outList.Add(d);
+                CollectDecorationNodes(child, outList);
+            }
+        }
+
+        private void UpdateScreenDebugOverlay()
+        {
+            var ms = FindMainScene();
+            if (ms == null) return;
+            if (!HabitatEnvironmentView.DecorationNode.DebugDragEnabled)
+            {
+                ms.SetDebugOverlayText(null);
+                return;
+            }
+
+            var nodes = new System.Collections.Generic.List<HabitatEnvironmentView.DecorationNode>();
+            CollectDecorationNodes(_envView, nodes);
+
+            string focused = HabitatEnvironmentView.DecorationNode.FocusedNode is { } f
+                ? $"{f.Spec.PlaceholderEmoji}  scale {f.ScaleMultiplier:F1}x"
+                : "(none)";
+
+            ms.SetDebugOverlayText(
+                $"DEBUG — Biome Theme Editor ({_biome})\n" +
+                $"  Mode:        Decoration drag\n" +
+                $"  Selected:    {focused}\n" +
+                $"  Decorations: {nodes.Count}\n" +
+                "  -----------------------------------\n" +
+                "  Drag        : reposition\n" +
+                "  O           : cycle scale (selected)\n" +
+                "  Tab         : next decoration\n" +
+                "  Ctrl+S      : print bake values\n" +
+                "  F4 / P      : print + exit");
+        }
+
+        public void PrintBakeValues()
+        {
+            var theme = BiomeThemes.For(_biome);
+            if (theme == null) return;
+
+            var nodes = new System.Collections.Generic.List<HabitatEnvironmentView.DecorationNode>();
+            CollectDecorationNodes(_envView, nodes);
+
+            GD.Print("");
+            GD.Print($"=== BIOME THEME — {_biome.ToString().ToUpper()} ====================================");
+            GD.Print($"// Paste into KeeperLegacyGodot/Data/BiomeTheme.cs:");
+            GD.Print($"[HabitatType.{_biome}] = new BiomeTheme(");
+            GD.Print($"    Biome:                 HabitatType.{_biome},");
+            GD.Print($"    IconEmoji:             \"{theme.IconEmoji}\",");
+            GD.Print($"    DisplayName:           \"{theme.DisplayName}\",");
+            GD.Print($"    FlavorSubtitle:        \"{theme.FlavorSubtitle}\",");
+            GD.Print($"    AccentColor:           new Color(\"{theme.AccentColor.ToHtml()}\"),");
+            GD.Print($"    BackgroundTopColor:    new Color(\"{theme.BackgroundTopColor.ToHtml()}\"),");
+            GD.Print($"    BackgroundBottomColor: new Color(\"{theme.BackgroundBottomColor.ToHtml()}\"),");
+            GD.Print($"    Decorations: new[]");
+            GD.Print($"    {{");
+            foreach (var n in nodes)
+            {
+                float size = n.Spec.SizePx * n.ScaleMultiplier;
+                string anim = n.Spec.Animation == DecorationAnimation.None
+                    ? ""
+                    : $", DecorationAnimation.{n.Spec.Animation}";
+                GD.Print($"        new Decoration(\"{n.Spec.PlaceholderEmoji}\", new Vector2({n.BasePosition.X,5:F0}, {n.BasePosition.Y,5:F0}), {size:F0}f{anim}),");
+            }
+            GD.Print($"    }},");
+            GD.Print($"    Particles:             /* unchanged from current theme */ null,");
+            GD.Print($"    AmbientLights:         /* unchanged from current theme */ System.Array.Empty<LightShaft>(),");
+            GD.Print($"    Floor:                 /* unchanged from current theme */ null,");
+            GD.Print($"    Surface:               /* unchanged from current theme */ null,");
+            GD.Print($"    WanderZone:            new Rect2({theme.WanderZone.Position.X}, {theme.WanderZone.Position.Y}, {theme.WanderZone.Size.X}, {theme.WanderZone.Size.Y})");
+            GD.Print($");");
+            GD.Print($"==============================================================");
+            GD.Print("");
+        }
     }
 }
