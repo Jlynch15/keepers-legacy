@@ -1,0 +1,127 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- BUBBLESNOUT — water, common — chubby, comically oversized round snout, bubbles always
+       Mutations: v1 Sky Blue · v2 Soft Pink · v3 Lime Green · v4 Pale Yellow
+       Signature: HUGE round snout dominates the face (signature feature), chubby round body
+       SELF-CHECK vs prior water creatures:
+         - Aquaburst (round 2-eyes "o" mouth) → DIFFERENT (snout dominates face, mouth on snout)
+         - Pearlescent (smooth pearl orb) → DIFFERENT (chubby with snout protrusion)
+         - All others have NO oversized snout → DIFFERENT
+         Eye treatment: SMALL DOT eyes (because snout dominates the face)
+         Mouth: visible on the snout — small puckered "o" releasing bubbles
+  -->
+  <!-- PALETTE
+       v1: body-base=#80b8e0 body-shadow=#4078a8 body-highlight=#c0d8f0 body-stroke=#1a3858 accent-base=#a8d0f0 accent-shadow=#5088b8 accent-highlight=#e0f0ff
+       v2: body-base=#f8b8c8 body-shadow=#c07088 body-highlight=#ffd8e0 body-stroke=#6a2840 accent-base=#ffc8d8 accent-shadow=#a86880 accent-highlight=#ffe8f0
+       v3: body-base=#a8d870 body-shadow=#608030 body-highlight=#d8f0a0 body-stroke=#284018 accent-base=#c0e890 accent-shadow=#789848 accent-highlight=#e8f8c0
+       v4: body-base=#f0e890 body-shadow=#a8a040 body-highlight=#fff8c0 body-stroke=#48400a accent-base=#fff0a8 accent-shadow=#b09850 accent-highlight=#fffce0
+  -->
+  <style>
+    .body-base       { fill: #80b8e0; }
+    .body-base       { stroke: #80b8e0; }
+    .body-shadow     { fill: #4078a8; }
+    .body-shadow     { stroke: #4078a8; }
+    .body-highlight  { fill: #c0d8f0; }
+    .body-highlight  { stroke: #c0d8f0; }
+    .body-stroke     { fill: #1a3858; }
+    .body-stroke     { stroke: #1a3858; }
+    .accent-base     { fill: #a8d0f0; }
+    .accent-base     { stroke: #a8d0f0; }
+    .accent-shadow   { fill: #5088b8; }
+    .accent-shadow   { stroke: #5088b8; }
+    .accent-highlight{ fill: #e0f0ff; }
+    .accent-highlight{ stroke: #e0f0ff; }
+    .eye-iris        { fill: #1a4868; }
+    .eye-pupil       { fill: #0a1828; }
+    .eye-highlight   { fill: #ffffff; }
+    .eye-sclera      { fill: #d8eef0; }
+    .mouth-interior  { fill: #2a0820; }
+  </style>
+
+  <!-- ═══════ COMPOSITION — chubby round body + oversized round snout ═══════ -->
+
+  <!-- ═══════ FEET (small chubby) ═══════ -->
+  <ellipse cx="200" cy="446" rx="28" ry="13" class="body-shadow"/>
+  <ellipse cx="312" cy="446" rx="28" ry="13" class="body-shadow"/>
+  <ellipse cx="200" cy="442" rx="22" ry="9" class="body-base"/>
+  <ellipse cx="312" cy="442" rx="22" ry="9" class="body-base"/>
+
+  <!-- ═══════ ARMS (small chubby stubs) ═══════ -->
+  <ellipse cx="124" cy="304" rx="36" ry="22" class="body-shadow" transform="rotate(-12 124 304)"/>
+  <ellipse cx="128" cy="300" rx="30" ry="17" class="body-base"   transform="rotate(-12 128 300)"/>
+  <ellipse cx="388" cy="304" rx="36" ry="22" class="body-shadow" transform="rotate(12 388 304)"/>
+  <ellipse cx="384" cy="300" rx="30" ry="17" class="body-base"   transform="rotate(12 384 300)"/>
+
+  <!-- ═══════ CHUBBY ROUND BODY ═══════ -->
+  <circle cx="256" cy="316" r="142" class="body-shadow"/>
+  <circle cx="256" cy="310" r="132" class="body-base"/>
+  <ellipse cx="220" cy="262" rx="74" ry="48" class="body-highlight" opacity="0.55"/>
+  <ellipse cx="256" cy="376" rx="68" ry="32" class="body-highlight" opacity="0.32"/>
+
+  <!-- ═══════ OVERSIZED ROUND SNOUT (signature — dominates face) ═══════ -->
+  <!-- snout shadow ring -->
+  <circle cx="256" cy="294" r="84" class="accent-shadow"/>
+  <!-- snout main fill -->
+  <circle cx="256" cy="290" r="78" class="accent-base"/>
+  <!-- snout highlight -->
+  <ellipse cx="232" cy="266" rx="40" ry="28" class="accent-highlight" opacity="0.7"/>
+
+  <!-- ═══════ NOSTRIL HOLES ON SNOUT ═══════ -->
+  <ellipse cx="232" cy="288" rx="6" ry="9" class="body-stroke" stroke="none"/>
+  <ellipse cx="280" cy="288" rx="6" ry="9" class="body-stroke" stroke="none"/>
+
+  <!-- ═══════ MOUTH ON SNOUT (small puckered "o" — bubble blower) ═══════ -->
+  <ellipse cx="256" cy="328" rx="14" ry="10" class="mouth-interior"/>
+  <ellipse cx="256" cy="328" rx="14" ry="10" fill="none" stroke="#1a3858" stroke-width="2.5"/>
+
+  <!-- ═══════ EYES (water family — SMALL DOT eyes above snout, since snout dominates) ═══════ -->
+  <!-- Eye whites -->
+  <circle cx="190" cy="216" r="18" class="eye-sclera" stroke="none"/>
+  <circle cx="322" cy="216" r="18" class="eye-sclera" stroke="none"/>
+  <!-- Outline -->
+  <circle cx="190" cy="216" r="14" fill="none" stroke="#ffffff" stroke-width="2.5"/>
+  <circle cx="322" cy="216" r="14" fill="none" stroke="#ffffff" stroke-width="2.5"/>
+  <!-- Big circular black pupils (filling most of eye — cute squinty look) -->
+  <circle cx="192" cy="220" r="9" class="eye-pupil"/>
+  <circle cx="320" cy="220" r="9" class="eye-pupil"/>
+  <!-- Single shimmer highlight -->
+  <circle cx="195" cy="216" r="3" class="eye-highlight" stroke="none"/>
+  <circle cx="325" cy="216" r="3" class="eye-highlight" stroke="none"/>
+
+  <!-- ═══════ CHEEK BLUSH (chubby blush below eyes, beside snout) ═══════ -->
+  <ellipse cx="156" cy="280" rx="18" ry="10" fill="#ff80a0" opacity="0.42" stroke="none"/>
+  <ellipse cx="356" cy="280" rx="18" ry="10" fill="#ff80a0" opacity="0.42" stroke="none"/>
+
+  <!-- ═══════ BODY SPECKS ═══════ -->
+  <circle cx="208" cy="230" r="2.5" class="body-highlight" opacity="0.7" stroke="none"/>
+  <circle cx="306" cy="240" r="2"   class="body-highlight" opacity="0.6" stroke="none"/>
+  <circle cx="170" cy="354" r="2.5" class="body-highlight" opacity="0.6" stroke="none"/>
+  <circle cx="346" cy="368" r="2"   class="body-highlight" opacity="0.6" stroke="none"/>
+  <circle cx="252" cy="416" r="2"   class="body-highlight" opacity="0.55" stroke="none"/>
+
+  <!-- ═══════ AMBIENT BUBBLES (signature: bubbles around it always — extra dense) ═══════ -->
+  <circle cx="170" cy="148" r="14" class="accent-shadow"/>
+  <circle cx="170" cy="148" r="11" class="accent-base"/>
+  <circle cx="166" cy="142" r="3.5" class="accent-highlight"/>
+  <circle cx="220" cy="92"  r="9"  class="accent-shadow"/>
+  <circle cx="220" cy="92"  r="7"  class="accent-base"/>
+  <circle cx="218" cy="88"  r="2.5" class="accent-highlight"/>
+  <circle cx="288" cy="68"  r="6"  class="accent-shadow"/>
+  <circle cx="288" cy="68"  r="4.5" class="accent-base"/>
+  <circle cx="342" cy="148" r="14" class="accent-shadow"/>
+  <circle cx="342" cy="148" r="11" class="accent-base"/>
+  <circle cx="338" cy="142" r="3.5" class="accent-highlight"/>
+  <circle cx="396" cy="100" r="9"  class="accent-shadow"/>
+  <circle cx="396" cy="100" r="7"  class="accent-base"/>
+  <circle cx="394" cy="96"  r="2.5" class="accent-highlight"/>
+  <!-- floating standalone bubbles -->
+  <circle cx="56"  cy="190" r="6" fill="none" stroke="#80c8e8" stroke-width="2" opacity="0.7"/>
+  <circle cx="86"  cy="232" r="3" fill="none" stroke="#80c8e8" stroke-width="1.5" opacity="0.6"/>
+  <circle cx="50"  cy="380" r="4" fill="none" stroke="#80c8e8" stroke-width="2" opacity="0.6"/>
+  <circle cx="464" cy="190" r="6" fill="none" stroke="#80c8e8" stroke-width="2" opacity="0.7"/>
+  <circle cx="436" cy="232" r="3" fill="none" stroke="#80c8e8" stroke-width="1.5" opacity="0.6"/>
+  <circle cx="468" cy="380" r="4" fill="none" stroke="#80c8e8" stroke-width="2" opacity="0.6"/>
+
+  <!-- ═══════ SPARKLE ACCENTS ═══════ -->
+  <path d="M256,30 L258,38 L266,40 L258,42 L256,50 L254,42 L246,40 L254,38 Z"
+        fill="#ffffff" opacity="0.85"/>
+</svg>
