@@ -1,0 +1,111 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- INFERNOKIN — fire, RARE — born from meteor showers, cosmic feel
+       Mutations: v1 Deep Crimson · v2 Obsidian Black · v3 Bright Orange · v4 Starfire Blue
+       Signature: cosmic dark body w/ STARFIRE PATTERNS + meteor flame trail
+  -->
+  <!-- PALETTE
+       v1: body-base=#581008 body-shadow=#180000 body-highlight=#80201a body-stroke=#000000 accent-base=#ff4818 accent-shadow=#a02008 accent-highlight=#ff8838
+       v2: body-base=#0a0a18 body-shadow=#000000 body-highlight=#1a1a30 body-stroke=#000000 accent-base=#ff5020 accent-shadow=#a02008 accent-highlight=#ffa050
+       v3: body-base=#e85020 body-shadow=#681810 body-highlight=#ff8848 body-stroke=#280000 accent-base=#ffc040 accent-shadow=#a07820 accent-highlight=#ffe888
+       v4: body-base=#1a3068 body-shadow=#001020 body-highlight=#3a5898 body-stroke=#000000 accent-base=#5098f0 accent-shadow=#1a4080 accent-highlight=#a0d8ff
+  -->
+  <style>
+    .body-base       { fill: #581008; }
+    .body-base       { stroke: #581008; }
+    .body-shadow     { fill: #180000; }
+    .body-shadow     { stroke: #180000; }
+    .body-highlight  { fill: #80201a; }
+    .body-highlight  { stroke: #80201a; }
+    .body-stroke     { fill: #000000; }
+    .body-stroke     { stroke: #000000; }
+    .accent-base     { fill: #ff4818; }
+    .accent-base     { stroke: #ff4818; }
+    .accent-shadow   { fill: #a02008; }
+    .accent-shadow   { stroke: #a02008; }
+    .accent-highlight{ fill: #ff8838; }
+    .accent-highlight{ stroke: #ff8838; }
+    .eye-iris        { fill: #ff5018; }
+    .eye-pupil       { fill: #1a0000; }
+    .eye-highlight   { fill: #ffe8a0; }
+    .eye-sclera      { fill: #fff0d8; }
+    .mouth-interior  { fill: #2a0000; }
+  </style>
+
+  <!-- COSMIC INTENSE HALO -->
+  <circle cx="256" cy="296" r="240" class="accent-base" opacity="0.15"/>
+  <circle cx="256" cy="296" r="200" class="accent-base" opacity="0.22"/>
+  <circle cx="256" cy="296" r="160" class="accent-base" opacity="0.28"/>
+
+  <!-- METEOR TRAIL (signature: streak from upper-left) -->
+  <path d="M68,80 Q140,140 180,200" class="accent-base" fill="none" stroke-width="6" stroke-linecap="round" opacity="0.7"/>
+  <path d="M68,80 Q140,140 180,200" class="accent-highlight" fill="none" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>
+  <circle cx="68" cy="80" r="8" class="accent-base" opacity="0.85"/>
+  <circle cx="68" cy="80" r="14" class="accent-base" opacity="0.3"/>
+
+  <!-- feet -->
+  <ellipse cx="216" cy="442" rx="28" ry="13" class="body-shadow"/>
+  <ellipse cx="296" cy="442" rx="28" ry="13" class="body-shadow"/>
+  <ellipse cx="216" cy="438" rx="22" ry="9" class="body-base"/>
+  <ellipse cx="296" cy="438" rx="22" ry="9" class="body-base"/>
+
+  <!-- arms -->
+  <ellipse cx="138" cy="316" rx="36" ry="20" class="body-shadow" transform="rotate(-15 138 316)"/>
+  <ellipse cx="142" cy="312" rx="30" ry="15" class="body-base"   transform="rotate(-15 142 312)"/>
+  <ellipse cx="374" cy="316" rx="36" ry="20" class="body-shadow" transform="rotate(15 374 316)"/>
+  <ellipse cx="370" cy="312" rx="30" ry="15" class="body-base"   transform="rotate(15 370 312)"/>
+
+  <!-- body (cosmic dark) -->
+  <ellipse cx="256" cy="306" rx="118" ry="138" class="body-shadow"/>
+  <ellipse cx="256" cy="300" rx="112" ry="132" class="body-base"/>
+  <!-- cosmic facet highlight -->
+  <path d="M210,220 L226,238 L218,256 L200,242 Z" class="body-highlight" opacity="0.5"/>
+
+  <!-- ═══════ STARFIRE PATTERN (signature: stars across body) ═══════ -->
+  <path d="M186,260 L188,268 L196,270 L188,272 L186,280 L184,272 L176,270 L184,268 Z"
+        class="accent-base" opacity="0.95"/>
+  <path d="M286,256 L290,268 L302,272 L290,276 L286,288 L282,276 L270,272 L282,268 Z"
+        class="accent-highlight" opacity="0.95"/>
+  <path d="M236,338 L238,346 L246,348 L238,350 L236,358 L234,350 L226,348 L234,346 Z"
+        class="accent-base" opacity="0.9"/>
+  <path d="M312,346 L314,352 L320,354 L314,356 L312,362 L310,356 L304,354 L310,352 Z"
+        class="accent-highlight" opacity="0.9"/>
+  <path d="M196,388 L198,394 L204,396 L198,398 L196,404 L194,398 L188,396 L194,394 Z"
+        class="accent-base" opacity="0.85"/>
+
+  <!-- flame crown on top -->
+  <path d="M220,200 Q216,160 232,150 Q230,180 240,196 Q244,170 256,160 Q258,184 256,196 Q260,176 268,164 Q272,182 280,200 Q288,170 296,166 Q294,196 304,206 Z" class="accent-shadow"/>
+  <path d="M226,200 Q220,168 234,160 Q232,178 240,192 Q244,176 254,164 Q256,184 256,196 Q260,180 266,170 Q272,184 280,196 Q288,176 296,176 Q294,196 300,204 Z" class="accent-base"/>
+  <path d="M230,196 Q230,180 234,168 Q240,184 244,192 Q252,180 256,170 Q260,184 268,194 Q276,180 282,170 Q286,184 290,194" fill="none" stroke="#ffe060" stroke-width="2" stroke-linecap="round" opacity="0.85"/>
+
+  <!-- ═══════ EYES (fire family — STAR-shaped highlight, cosmic) ═══════ -->
+  <ellipse cx="220" cy="280" rx="22" ry="24" class="eye-sclera" stroke="none"/>
+  <ellipse cx="220" cy="280" rx="18" ry="20" fill="none" stroke="#000000" stroke-width="2.5"/>
+  <circle cx="222" cy="286" r="13" class="accent-base"/>
+  <circle cx="222" cy="286" r="13" fill="none" stroke="#a02008" stroke-width="1.5"/>
+  <circle cx="222" cy="286" r="9" class="eye-iris"/>
+  <circle cx="222" cy="286" r="6" class="eye-pupil"/>
+  <!-- star-shaped highlight -->
+  <path d="M226,278 L228,284 L234,286 L228,288 L226,294 L224,288 L218,286 L224,284 Z"
+        fill="#ffffff" stroke="none"/>
+  <ellipse cx="292" cy="280" rx="22" ry="24" class="eye-sclera" stroke="none"/>
+  <ellipse cx="292" cy="280" rx="18" ry="20" fill="none" stroke="#000000" stroke-width="2.5"/>
+  <circle cx="290" cy="286" r="13" class="accent-base"/>
+  <circle cx="290" cy="286" r="13" fill="none" stroke="#a02008" stroke-width="1.5"/>
+  <circle cx="290" cy="286" r="9" class="eye-iris"/>
+  <circle cx="290" cy="286" r="6" class="eye-pupil"/>
+  <path d="M286,278 L284,284 L278,286 L284,288 L286,294 L288,288 L294,286 L288,284 Z"
+        fill="#ffffff" stroke="none"/>
+
+  <!-- mouth: regal small smile -->
+  <path d="M236,346 Q256,358 276,346" class="body-stroke" fill="none" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- ambient cosmic embers -->
+  <circle cx="60"  cy="240" r="4" fill="#ff4818" opacity="0.85"/>
+  <circle cx="60"  cy="240" r="9" fill="#ff4818" opacity="0.25"/>
+  <circle cx="450" cy="160" r="4" fill="#ff4818" opacity="0.85"/>
+  <circle cx="450" cy="160" r="9" fill="#ff4818" opacity="0.25"/>
+  <path d="M460,260 L462,266 L468,268 L462,270 L460,276 L458,270 L452,268 L458,266 Z"
+        fill="#ffffff" opacity="0.9"/>
+  <path d="M84,400 L86,406 L92,408 L86,410 L84,416 L82,410 L76,408 L82,406 Z"
+        fill="#ffffff" opacity="0.9"/>
+</svg>

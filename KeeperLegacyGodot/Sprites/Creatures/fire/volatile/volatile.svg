@@ -1,0 +1,90 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- VOLATILE — fire, uncommon — joy creates fireworks
+       Mutations: v1 Explosive Red · v2 Bright Yellow · v3 Orange · v4 Purple Flame
+       Signature: round body w/ EXPLODING FLAMES BURSTING outward in all directions
+  -->
+  <!-- PALETTE
+       v1: body-base=#e02018 body-shadow=#700808 body-highlight=#ff5040 body-stroke=#280000 accent-base=#ff7848 accent-shadow=#a83018 accent-highlight=#ffb088
+       v2: body-base=#ffd820 body-shadow=#a08010 body-highlight=#fff088 body-stroke=#403008 accent-base=#ffe060 accent-shadow=#a08820 accent-highlight=#fff8a8
+       v3: body-base=#ff7818 body-shadow=#a04008 body-highlight=#ffa860 body-stroke=#481000 accent-base=#ffc048 accent-shadow=#a06820 accent-highlight=#ffe890
+       v4: body-base=#9028d8 body-shadow=#480870 body-highlight=#c060f0 body-stroke=#1a0028 accent-base=#d068ff accent-shadow=#7028a0 accent-highlight=#f0a8ff
+  -->
+  <style>
+    .body-base       { fill: #e02018; }
+    .body-base       { stroke: #e02018; }
+    .body-shadow     { fill: #700808; }
+    .body-shadow     { stroke: #700808; }
+    .body-highlight  { fill: #ff5040; }
+    .body-highlight  { stroke: #ff5040; }
+    .body-stroke     { fill: #280000; }
+    .body-stroke     { stroke: #280000; }
+    .accent-base     { fill: #ff7848; }
+    .accent-base     { stroke: #ff7848; }
+    .accent-shadow   { fill: #a83018; }
+    .accent-shadow   { stroke: #a83018; }
+    .accent-highlight{ fill: #ffb088; }
+    .accent-highlight{ stroke: #ffb088; }
+    .eye-iris        { fill: #ffd040; }
+    .eye-pupil       { fill: #1a0800; }
+    .eye-highlight   { fill: #ffffff; }
+    .eye-sclera      { fill: #fff0d8; }
+    .mouth-interior  { fill: #2a0808; }
+    .tongue          { fill: #ff8090; }
+  </style>
+
+  <!-- INTENSE HALO -->
+  <circle cx="256" cy="296" r="240" class="accent-base" opacity="0.1"/>
+  <circle cx="256" cy="296" r="200" class="accent-base" opacity="0.15"/>
+  <circle cx="256" cy="296" r="160" class="accent-base" opacity="0.2"/>
+
+  <!-- ═══════ EXPLODING FLAMES (signature: bursting in all directions) ═══════ -->
+  <!-- 8 flame bursts -->
+  <path d="M256,90 L268,150 L256,160 L244,150 Z" class="accent-shadow"/>
+  <path d="M256,96 L266,150 L256,156 L246,150 Z" class="accent-base"/>
+  <path d="M396,156 L344,196 L334,182 L378,144 Z" class="accent-shadow"/>
+  <path d="M390,160 L344,194 L336,184 L376,148 Z" class="accent-base"/>
+  <path d="M428,290 L368,302 L368,290 L420,278 Z" class="accent-shadow"/>
+  <path d="M424,292 L368,300 L368,292 L416,282 Z" class="accent-base"/>
+  <path d="M396,420 L344,386 L356,376 L384,408 Z" class="accent-shadow"/>
+  <path d="M390,418 L348,388 L356,380 L382,406 Z" class="accent-base"/>
+  <path d="M256,484 L244,424 L256,418 L268,424 Z" class="accent-shadow"/>
+  <path d="M256,478 L246,424 L256,420 L266,424 Z" class="accent-base"/>
+  <path d="M116,420 L168,386 L156,376 L128,408 Z" class="accent-shadow"/>
+  <path d="M122,418 L164,388 L156,380 L130,406 Z" class="accent-base"/>
+  <path d="M84,290 L144,302 L144,290 L92,278 Z" class="accent-shadow"/>
+  <path d="M88,292 L144,300 L144,292 L96,282 Z" class="accent-base"/>
+  <path d="M116,156 L168,196 L178,182 L134,144 Z" class="accent-shadow"/>
+  <path d="M122,160 L168,194 L176,184 L136,148 Z" class="accent-base"/>
+
+  <!-- body -->
+  <circle cx="256" cy="296" r="106" class="body-shadow"/>
+  <circle cx="256" cy="290" r="98" class="body-base"/>
+  <!-- starburst-shape highlight -->
+  <path d="M218,242 L224,250 L226,238 L228,250 L234,242 L228,256 L240,254 L228,260 L240,266 L228,266 L234,278 L226,270 L222,278 L222,266 L210,272 L218,260 L208,260 L218,254 Z" class="body-highlight" opacity="0.5"/>
+
+  <!-- ═══════ EYES (fire family — STARBURST highlight, intense) ═══════ -->
+  <ellipse cx="220" cy="290" rx="22" ry="24" class="eye-sclera" stroke="none"/>
+  <ellipse cx="220" cy="290" rx="18" ry="20" fill="none" stroke="#280000" stroke-width="2.5"/>
+  <circle cx="222" cy="296" r="13" class="accent-base"/>
+  <circle cx="222" cy="296" r="13" fill="none" stroke="#a83018" stroke-width="1.5"/>
+  <circle cx="222" cy="296" r="9" class="eye-iris"/>
+  <circle cx="222" cy="296" r="6" class="eye-pupil"/>
+  <path d="M222,278 L222,286 M222,302 L222,310 M210,294 L218,294 M226,294 L234,294 M214,286 L218,290 M226,300 L230,304" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+  <ellipse cx="292" cy="290" rx="22" ry="24" class="eye-sclera" stroke="none"/>
+  <ellipse cx="292" cy="290" rx="18" ry="20" fill="none" stroke="#280000" stroke-width="2.5"/>
+  <circle cx="290" cy="296" r="13" class="accent-base"/>
+  <circle cx="290" cy="296" r="13" fill="none" stroke="#a83018" stroke-width="1.5"/>
+  <circle cx="290" cy="296" r="9" class="eye-iris"/>
+  <circle cx="290" cy="296" r="6" class="eye-pupil"/>
+  <path d="M290,278 L290,286 M290,302 L290,310 M278,294 L286,294 M294,294 L302,294 M286,286 L290,290 M294,300 L298,304" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- mouth: wide laughing -->
+  <path d="M218,332 Q256,360 294,332 Q278,348 256,348 Q234,348 218,332 Z" class="mouth-interior"/>
+  <ellipse cx="256" cy="348" rx="14" ry="6" class="tongue" stroke="none"/>
+
+  <!-- ambient embers -->
+  <circle cx="60"  cy="40"  r="2" fill="#ffc040" opacity="0.8"/>
+  <circle cx="466" cy="40"  r="2" fill="#ffc040" opacity="0.8"/>
+  <circle cx="40"  cy="478" r="2" fill="#ff7848" opacity="0.75"/>
+  <circle cx="466" cy="478" r="2" fill="#ff7848" opacity="0.75"/>
+</svg>

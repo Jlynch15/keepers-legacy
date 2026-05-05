@@ -1,0 +1,108 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- SPARKSNOUT — fire, common — crackling snout, sparks pop constantly
+       Mutations: v1 Electric Orange · v2 Yellow · v3 Red · v4 Gold
+       Signature: round body with OVERSIZED CRACKLING SNOUT, sparks popping
+  -->
+  <!-- PALETTE
+       v1: body-base=#ff8820 body-shadow=#a04008 body-highlight=#ffb868 body-stroke=#481000 accent-base=#ffd040 accent-shadow=#a07820 accent-highlight=#fff8a8
+       v2: body-base=#ffd820 body-shadow=#a08010 body-highlight=#fff088 body-stroke=#403008 accent-base=#ffe070 accent-shadow=#a08820 accent-highlight=#fff8b8
+       v3: body-base=#d83020 body-shadow=#680810 body-highlight=#ff5840 body-stroke=#280000 accent-base=#ff7048 accent-shadow=#a02018 accent-highlight=#ff9878
+       v4: body-base=#e0a830 body-shadow=#806818 body-highlight=#ffd070 body-stroke=#382808 accent-base=#ffe060 accent-shadow=#a08820 accent-highlight=#fff088
+  -->
+  <style>
+    .body-base       { fill: #ff8820; }
+    .body-base       { stroke: #ff8820; }
+    .body-shadow     { fill: #a04008; }
+    .body-shadow     { stroke: #a04008; }
+    .body-highlight  { fill: #ffb868; }
+    .body-highlight  { stroke: #ffb868; }
+    .body-stroke     { fill: #481000; }
+    .body-stroke     { stroke: #481000; }
+    .accent-base     { fill: #ffd040; }
+    .accent-base     { stroke: #ffd040; }
+    .accent-shadow   { fill: #a07820; }
+    .accent-shadow   { stroke: #a07820; }
+    .accent-highlight{ fill: #fff8a8; }
+    .accent-highlight{ stroke: #fff8a8; }
+    .eye-iris        { fill: #ff8030; }
+    .eye-pupil       { fill: #1a0800; }
+    .eye-highlight   { fill: #ffe8a0; }
+    .eye-sclera      { fill: #fff0d8; }
+    .mouth-interior  { fill: #2a0808; }
+  </style>
+
+  <!-- WARM HALO -->
+  <circle cx="256" cy="296" r="200" class="accent-base" opacity="0.1"/>
+  <circle cx="256" cy="296" r="160" class="accent-base" opacity="0.18"/>
+
+  <!-- feet -->
+  <ellipse cx="200" cy="442" rx="28" ry="13" class="body-shadow"/>
+  <ellipse cx="312" cy="442" rx="28" ry="13" class="body-shadow"/>
+  <ellipse cx="200" cy="438" rx="22" ry="9" class="body-base"/>
+  <ellipse cx="312" cy="438" rx="22" ry="9" class="body-base"/>
+
+  <!-- arms -->
+  <ellipse cx="124" cy="304" rx="36" ry="20" class="body-shadow" transform="rotate(-12 124 304)"/>
+  <ellipse cx="128" cy="300" rx="30" ry="15" class="body-base"   transform="rotate(-12 128 300)"/>
+  <ellipse cx="388" cy="304" rx="36" ry="20" class="body-shadow" transform="rotate(12 388 304)"/>
+  <ellipse cx="384" cy="300" rx="30" ry="15" class="body-base"   transform="rotate(12 384 300)"/>
+
+  <!-- body -->
+  <circle cx="256" cy="316" r="138" class="body-shadow"/>
+  <circle cx="256" cy="310" r="130" class="body-base"/>
+
+  <!-- ═══════ OVERSIZED CRACKLING SNOUT (signature) ═══════ -->
+  <!-- snout glow ring -->
+  <circle cx="256" cy="296" r="100" class="accent-base" opacity="0.45"/>
+  <circle cx="256" cy="294" r="86" class="accent-shadow"/>
+  <circle cx="256" cy="290" r="80" class="accent-base"/>
+  <ellipse cx="232" cy="266" rx="38" ry="26" class="accent-highlight" opacity="0.7"/>
+
+  <!-- nostril sparks coming out -->
+  <ellipse cx="232" cy="288" rx="6" ry="9" class="body-stroke"/>
+  <ellipse cx="280" cy="288" rx="6" ry="9" class="body-stroke"/>
+  <!-- spark crackles from nostrils -->
+  <path d="M232,278 L228,266 L234,272 L232,260 L238,272" stroke="#fff088" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M280,278 L284,266 L278,272 L280,260 L274,272" stroke="#fff088" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+  <!-- mouth on snout -->
+  <ellipse cx="256" cy="328" rx="14" ry="10" class="mouth-interior"/>
+  <ellipse cx="256" cy="328" rx="14" ry="10" fill="none" stroke="#481000" stroke-width="2.5"/>
+  <!-- spark coming from mouth -->
+  <path d="M256,348 L252,358 L260,358 L256,366" stroke="#fff088" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+  <!-- ═══════ EYES (fire family — small DOT eyes above snout, with crackle highlight) ═══════ -->
+  <circle cx="190" cy="216" r="18" class="eye-sclera" stroke="none"/>
+  <circle cx="190" cy="216" r="14" fill="none" stroke="#481000" stroke-width="2.5"/>
+  <circle cx="190" cy="216" r="11" class="accent-base"/>
+  <circle cx="190" cy="216" r="11" fill="none" stroke="#a04008" stroke-width="1.5"/>
+  <circle cx="190" cy="216" r="7" class="eye-iris"/>
+  <circle cx="192" cy="218" r="5" class="eye-pupil"/>
+  <!-- spark/crackle highlight (cross shape) -->
+  <path d="M194,210 L196,212 M194,222 L196,220 M186,212 L184,210 M186,220 L184,222" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"/>
+  <circle cx="322" cy="216" r="18" class="eye-sclera" stroke="none"/>
+  <circle cx="322" cy="216" r="14" fill="none" stroke="#481000" stroke-width="2.5"/>
+  <circle cx="322" cy="216" r="11" class="accent-base"/>
+  <circle cx="322" cy="216" r="11" fill="none" stroke="#a04008" stroke-width="1.5"/>
+  <circle cx="322" cy="216" r="7" class="eye-iris"/>
+  <circle cx="320" cy="218" r="5" class="eye-pupil"/>
+  <path d="M318,210 L316,212 M318,222 L316,220 M326,212 L328,210 M326,220 L328,222" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- cheek warmth -->
+  <ellipse cx="156" cy="280" rx="14" ry="8" fill="#ff5020" opacity="0.45" stroke="none"/>
+  <ellipse cx="356" cy="280" rx="14" ry="8" fill="#ff5020" opacity="0.45" stroke="none"/>
+
+  <!-- ambient sparks -->
+  <circle cx="60"  cy="160" r="3" fill="#fff088" opacity="0.85"/>
+  <circle cx="60"  cy="160" r="7" fill="#fff088" opacity="0.2"/>
+  <circle cx="86"  cy="200" r="2" fill="#ffc040" opacity="0.8"/>
+  <circle cx="50"  cy="380" r="3" fill="#fff088" opacity="0.85"/>
+  <circle cx="450" cy="160" r="3" fill="#fff088" opacity="0.85"/>
+  <circle cx="450" cy="160" r="7" fill="#fff088" opacity="0.2"/>
+  <circle cx="426" cy="200" r="2" fill="#ffc040" opacity="0.8"/>
+  <circle cx="462" cy="380" r="3" fill="#fff088" opacity="0.85"/>
+
+  <!-- sparkles -->
+  <path d="M256,68 L258,76 L266,78 L258,80 L256,88 L254,80 L246,78 L254,76 Z"
+        fill="#fff088" opacity="0.95"/>
+</svg>

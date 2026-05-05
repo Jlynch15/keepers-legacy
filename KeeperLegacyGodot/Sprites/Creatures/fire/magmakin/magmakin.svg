@@ -1,0 +1,99 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- MAGMAKIN — fire, uncommon — slow, lava surface, molten cracks
+       Mutations: v1 Magma Red · v2 Dark Orange · v3 Black Rock · v4 Glowing Red
+       Signature: heavy ROCK BODY with GLOWING MOLTEN CRACKS across surface
+  -->
+  <!-- PALETTE
+       v1: body-base=#481008 body-shadow=#180000 body-highlight=#681810 body-stroke=#000000 accent-base=#ff5020 accent-shadow=#a02008 accent-highlight=#ffa050
+       v2: body-base=#702010 body-shadow=#280800 body-highlight=#a03818 body-stroke=#000000 accent-base=#ff8038 accent-shadow=#a04018 accent-highlight=#ffb060
+       v3: body-base=#181818 body-shadow=#000000 body-highlight=#383838 body-stroke=#000000 accent-base=#ff4818 accent-shadow=#a02008 accent-highlight=#ff8838
+       v4: body-base=#580808 body-shadow=#180000 body-highlight=#801818 body-stroke=#000000 accent-base=#ff3008 accent-shadow=#a01000 accent-highlight=#ff7038
+  -->
+  <style>
+    .body-base       { fill: #481008; }
+    .body-base       { stroke: #481008; }
+    .body-shadow     { fill: #180000; }
+    .body-shadow     { stroke: #180000; }
+    .body-highlight  { fill: #681810; }
+    .body-highlight  { stroke: #681810; }
+    .body-stroke     { fill: #000000; }
+    .body-stroke     { stroke: #000000; }
+    .accent-base     { fill: #ff5020; }
+    .accent-base     { stroke: #ff5020; }
+    .accent-shadow   { fill: #a02008; }
+    .accent-shadow   { stroke: #a02008; }
+    .accent-highlight{ fill: #ffa050; }
+    .accent-highlight{ stroke: #ffa050; }
+    .eye-iris        { fill: #ff5020; }
+    .eye-pupil       { fill: #1a0800; }
+    .eye-highlight   { fill: #ffe8a0; }
+    .eye-sclera      { fill: #fff0d8; }
+    .mouth-interior  { fill: #ff3008; }
+  </style>
+
+  <!-- INTENSE HALO -->
+  <circle cx="256" cy="296" r="220" class="accent-base" opacity="0.15"/>
+  <circle cx="256" cy="296" r="170" class="accent-base" opacity="0.2"/>
+
+  <!-- feet (heavy stubs) -->
+  <ellipse cx="200" cy="436" rx="34" ry="14" class="body-shadow"/>
+  <ellipse cx="312" cy="436" rx="34" ry="14" class="body-shadow"/>
+  <ellipse cx="200" cy="432" rx="28" ry="11" class="body-base"/>
+  <ellipse cx="312" cy="432" rx="28" ry="11" class="body-base"/>
+  <!-- molten crack on feet -->
+  <path d="M186,432 L210,432" class="accent-base" fill="none" stroke-width="3" stroke-linecap="round"/>
+  <path d="M298,432 L322,432" class="accent-base" fill="none" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- arms (chunky) -->
+  <ellipse cx="138" cy="306" rx="40" ry="22" class="body-shadow" transform="rotate(-15 138 306)"/>
+  <ellipse cx="142" cy="302" rx="34" ry="17" class="body-base"   transform="rotate(-15 142 302)"/>
+  <ellipse cx="374" cy="306" rx="40" ry="22" class="body-shadow" transform="rotate(15 374 306)"/>
+  <ellipse cx="370" cy="302" rx="34" ry="17" class="body-base"   transform="rotate(15 370 302)"/>
+
+  <!-- ═══════ HEAVY BODY (large lumpy rock) ═══════ -->
+  <path d="M148,310 Q132,200 220,180 Q256,168 304,182 Q392,200 376,310 Q400,396 348,420 Q286,432 256,422 Q220,432 168,420 Q116,396 148,310 Z" class="body-shadow"/>
+  <path d="M156,310 Q140,210 224,194 Q256,184 300,194 Q380,212 368,310 Q392,392 344,412 Q286,422 256,414 Q224,422 174,412 Q124,392 156,310 Z" class="body-base"/>
+
+  <!-- ═══════ MOLTEN CRACKS (signature: glowing veins across body) ═══════ -->
+  <path d="M180,234 L200,240 L196,256 L218,262 L228,272 L244,266 L256,278 L272,272 L286,278 L300,264 L322,272 L334,256 L320,248 L340,238" class="accent-base" fill="none" stroke-width="4" stroke-linecap="round"/>
+  <path d="M180,234 L200,240 L196,256 L218,262 L228,272 L244,266 L256,278 L272,272 L286,278 L300,264 L322,272 L334,256" class="accent-highlight" fill="none" stroke-width="2" stroke-linecap="round" opacity="0.9"/>
+  <path d="M170,344 L186,338 L196,348 L210,346" class="accent-base" fill="none" stroke-width="3.5" stroke-linecap="round"/>
+  <path d="M312,346 L324,348 L342,338 L358,344" class="accent-base" fill="none" stroke-width="3.5" stroke-linecap="round"/>
+  <path d="M232,388 L246,396 L262,392 L276,398 L290,392" class="accent-base" fill="none" stroke-width="3.5" stroke-linecap="round"/>
+
+  <!-- glowing crack nodes -->
+  <circle cx="218" cy="262" r="3" class="accent-highlight"/>
+  <circle cx="256" cy="278" r="3" class="accent-highlight"/>
+  <circle cx="300" cy="264" r="3" class="accent-highlight"/>
+  <circle cx="262" cy="392" r="3" class="accent-highlight"/>
+
+  <!-- ═══════ EYES (fire family — heavy-lidded glowing) ═══════ -->
+  <ellipse cx="220" cy="226" rx="22" ry="14" class="eye-sclera" stroke="none"/>
+  <path d="M198,226 Q220,210 242,226 Q238,218 220,216 Q202,218 198,226 Z" class="body-shadow" stroke="none"/>
+  <ellipse cx="220" cy="226" rx="18" ry="10" fill="none" stroke="#000000" stroke-width="2"/>
+  <ellipse cx="222" cy="230" rx="9" ry="7" class="accent-base"/>
+  <ellipse cx="222" cy="230" rx="6" ry="5" class="eye-pupil"/>
+  <circle cx="226" cy="226" r="2" class="eye-highlight" stroke="none"/>
+  <ellipse cx="292" cy="226" rx="22" ry="14" class="eye-sclera" stroke="none"/>
+  <path d="M270,226 Q292,210 314,226 Q310,218 292,216 Q274,218 270,226 Z" class="body-shadow" stroke="none"/>
+  <ellipse cx="292" cy="226" rx="18" ry="10" fill="none" stroke="#000000" stroke-width="2"/>
+  <ellipse cx="290" cy="230" rx="9" ry="7" class="accent-base"/>
+  <ellipse cx="290" cy="230" rx="6" ry="5" class="eye-pupil"/>
+  <circle cx="286" cy="226" r="2" class="eye-highlight" stroke="none"/>
+
+  <!-- mouth: small glowing crack -->
+  <path d="M236,296 Q256,310 276,296" class="mouth-interior" fill="none" stroke-width="6" stroke-linecap="round"/>
+  <path d="M236,296 Q256,310 276,296" fill="none" stroke="#ffe060" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- ambient embers -->
+  <circle cx="60"  cy="180" r="4" fill="#ff5020" opacity="0.85"/>
+  <circle cx="60"  cy="180" r="9" fill="#ff5020" opacity="0.25"/>
+  <circle cx="86"  cy="148" r="3" fill="#ff8038" opacity="0.8"/>
+  <circle cx="450" cy="180" r="4" fill="#ff5020" opacity="0.85"/>
+  <circle cx="450" cy="180" r="9" fill="#ff5020" opacity="0.25"/>
+  <circle cx="426" cy="148" r="3" fill="#ff8038" opacity="0.8"/>
+
+  <!-- sparkles -->
+  <path d="M256,80 L258,86 L264,88 L258,90 L256,96 L254,90 L248,88 L254,86 Z"
+        fill="#ffe060" opacity="0.95"/>
+</svg>

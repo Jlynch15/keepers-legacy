@@ -1,0 +1,96 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- FLAMEWING — fire, uncommon — wings of living fire
+       Mutations: v1 Crimson · v2 Golden Flame · v3 Blue Fire · v4 White Hot
+       Signature: round body with HUGE FLAME WINGS spreading dramatically
+  -->
+  <!-- PALETTE
+       v1: body-base=#c01828 body-shadow=#580010 body-highlight=#e84048 body-stroke=#280000 accent-base=#ff5848 accent-shadow=#a02018 accent-highlight=#ff9080
+       v2: body-base=#e0a020 body-shadow=#806010 body-highlight=#ffd060 body-stroke=#382808 accent-base=#ffd040 accent-shadow=#a07820 accent-highlight=#fff088
+       v3: body-base=#3068c8 body-shadow=#102868 body-highlight=#5090e0 body-stroke=#000820 accent-base=#5098f0 accent-shadow=#1a4080 accent-highlight=#a0c8ff
+       v4: body-base=#f8f0e8 body-shadow=#a89888 body-highlight=#ffffff body-stroke=#5a3018 accent-base=#fff0a8 accent-shadow=#a08838 accent-highlight=#ffffff
+  -->
+  <style>
+    .body-base       { fill: #c01828; }
+    .body-base       { stroke: #c01828; }
+    .body-shadow     { fill: #580010; }
+    .body-shadow     { stroke: #580010; }
+    .body-highlight  { fill: #e84048; }
+    .body-highlight  { stroke: #e84048; }
+    .body-stroke     { fill: #280000; }
+    .body-stroke     { stroke: #280000; }
+    .accent-base     { fill: #ff5848; }
+    .accent-base     { stroke: #ff5848; }
+    .accent-shadow   { fill: #a02018; }
+    .accent-shadow   { stroke: #a02018; }
+    .accent-highlight{ fill: #ff9080; }
+    .accent-highlight{ stroke: #ff9080; }
+    .eye-iris        { fill: #ff7028; }
+    .eye-pupil       { fill: #1a0800; }
+    .eye-highlight   { fill: #ffe8a0; }
+    .eye-sclera      { fill: #fff0d8; }
+    .mouth-interior  { fill: #2a0808; }
+  </style>
+
+  <!-- WARM HALO -->
+  <circle cx="256" cy="296" r="220" class="accent-base" opacity="0.1"/>
+  <circle cx="256" cy="296" r="180" class="accent-base" opacity="0.15"/>
+
+  <!-- ═══════ HUGE FLAME WINGS (signature: spreading flame wings) ═══════ -->
+  <!-- left wing -->
+  <path d="M180,260 Q60,160 28,300 Q72,240 132,260 Q88,290 92,360 Q140,300 192,290 Z" class="accent-shadow"/>
+  <path d="M186,262 Q70,170 40,300 Q80,250 138,266 Q98,288 100,352 Q140,302 188,294 Z" class="accent-base"/>
+  <path d="M180,272 Q124,236 96,300 Q140,278 180,278 Z" class="accent-highlight" opacity="0.7"/>
+  <!-- left wing flame tips -->
+  <path d="M40,210 L52,180 L68,212 L62,228 L48,212 L46,224 Z" class="accent-base"/>
+  <path d="M50,256 L40,240 L62,252 L56,266 Z" class="accent-base"/>
+
+  <!-- right wing -->
+  <path d="M332,260 Q452,160 484,300 Q440,240 380,260 Q424,290 420,360 Q372,300 320,290 Z" class="accent-shadow"/>
+  <path d="M326,262 Q442,170 472,300 Q432,250 374,266 Q414,288 412,352 Q372,302 324,294 Z" class="accent-base"/>
+  <path d="M332,272 Q388,236 416,300 Q372,278 332,278 Z" class="accent-highlight" opacity="0.7"/>
+  <path d="M472,210 L460,180 L444,212 L450,228 L464,212 L466,224 Z" class="accent-base"/>
+  <path d="M462,256 L472,240 L450,252 L456,266 Z" class="accent-base"/>
+
+  <!-- feet -->
+  <ellipse cx="216" cy="436" rx="26" ry="13" class="body-shadow"/>
+  <ellipse cx="296" cy="436" rx="26" ry="13" class="body-shadow"/>
+  <ellipse cx="216" cy="432" rx="22" ry="9" class="body-base"/>
+  <ellipse cx="296" cy="432" rx="22" ry="9" class="body-base"/>
+
+  <!-- body -->
+  <ellipse cx="256" cy="306" rx="100" ry="118" class="body-shadow"/>
+  <ellipse cx="256" cy="300" rx="94" ry="112" class="body-base"/>
+  <!-- flame-tip highlight -->
+  <path d="M214,232 L226,212 L218,242 Z" class="body-highlight" opacity="0.6"/>
+
+  <!-- ═══════ EYES (fire family — sharp FLAME-shape highlight) ═══════ -->
+  <ellipse cx="220" cy="290" rx="24" ry="26" class="eye-sclera" stroke="none"/>
+  <ellipse cx="220" cy="290" rx="20" ry="22" fill="none" stroke="#280000" stroke-width="2.5"/>
+  <circle cx="222" cy="296" r="14" class="accent-base"/>
+  <circle cx="222" cy="296" r="14" fill="none" stroke="#a02018" stroke-width="1.5"/>
+  <circle cx="222" cy="296" r="9" class="eye-iris"/>
+  <circle cx="222" cy="296" r="6" class="eye-pupil"/>
+  <path d="M226,282 Q230,288 226,294 Q222,288 226,282 Z" class="eye-highlight" stroke="none"/>
+  <ellipse cx="292" cy="290" rx="24" ry="26" class="eye-sclera" stroke="none"/>
+  <ellipse cx="292" cy="290" rx="20" ry="22" fill="none" stroke="#280000" stroke-width="2.5"/>
+  <circle cx="290" cy="296" r="14" class="accent-base"/>
+  <circle cx="290" cy="296" r="14" fill="none" stroke="#a02018" stroke-width="1.5"/>
+  <circle cx="290" cy="296" r="9" class="eye-iris"/>
+  <circle cx="290" cy="296" r="6" class="eye-pupil"/>
+  <path d="M286,282 Q282,288 286,294 Q290,288 286,282 Z" class="eye-highlight" stroke="none"/>
+
+  <!-- mouth: confident smirk -->
+  <path d="M226,344 Q256,358 286,348" class="body-stroke" fill="none" stroke-width="3.5" stroke-linecap="round"/>
+
+  <!-- ambient embers -->
+  <circle cx="86"  cy="116" r="4" fill="#ff5848" opacity="0.85"/>
+  <circle cx="86"  cy="116" r="9" fill="#ff5848" opacity="0.2"/>
+  <circle cx="426" cy="116" r="4" fill="#ff5848" opacity="0.85"/>
+  <circle cx="426" cy="116" r="9" fill="#ff5848" opacity="0.2"/>
+  <circle cx="50"  cy="420" r="3" fill="#ffc040" opacity="0.8"/>
+  <circle cx="462" cy="420" r="3" fill="#ffc040" opacity="0.8"/>
+
+  <!-- sparkles -->
+  <path d="M256,72 L258,80 L266,82 L258,84 L256,92 L254,84 L246,82 L254,80 Z"
+        fill="#ffe060" opacity="0.95"/>
+</svg>
