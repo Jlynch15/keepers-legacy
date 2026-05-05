@@ -1,6 +1,7 @@
 // Managers/HabitatManager.cs
-// Autoload singleton — owns all habitats and owned creature instances.
-// Handles care actions (feed, play, clean), stat decay, placement, and selling.
+// Autoload singleton -- owns all habitats and player creature instances.
+// Pure-C# rule logic lives in HabitatRules; this class wraps it with signal
+// emission and autoload lookups (ProgressionManager, OrderManager).
 
 using Godot;
 using System;
@@ -11,26 +12,17 @@ using KeeperLegacy.Models;
 
 public partial class HabitatManager : Node
 {
-    // ── Signals ───────────────────────────────────────────────────────────────
+    // -- Signals ---------------------------------------------------------------
 
-    /// Emitted whenever the creature list changes (purchase, sell, breed result placed).
     [Signal] public delegate void CreaturesChangedEventHandler();
-
-    /// Emitted whenever habitat occupancy or decorations change.
     [Signal] public delegate void HabitatsChangedEventHandler();
-
-    /// Emitted after a care action completes. xpSourceRaw is XPSource enum name.
     [Signal] public delegate void CareActionPerformedEventHandler(string creatureId, string xpSourceRaw);
-
-    /// Emitted when a creature is sold. Carries the coin reward for the sale.
     [Signal] public delegate void CreatureSoldEventHandler(int coinReward);
 
-    // ── State ─────────────────────────────────────────────────────────────────
+    // -- State -----------------------------------------------------------------
 
     public List<Habitat>          Habitats  { get; private set; } = new();
     public List<CreatureInstance> Creatures { get; private set; } = new();
-
-    // ── Initialization ────────────────────────────────────────────────────────
 
     public void Initialize(List<Habitat> habitats, List<CreatureInstance> creatures)
     {
@@ -38,16 +30,15 @@ public partial class HabitatManager : Node
         Creatures = creatures;
     }
 
-    // ── Care Actions ──────────────────────────────────────────────────────────
+    // -- Care Actions ----------------------------------------------------------
+    // (Unchanged -- Feed/Play/Clean still operate on a single creature by id.)
 
     public bool Feed(Guid creatureId, string foodId)
     {
         var creature = GetCreature(creatureId);
         if (creature == null) return false;
-
         var food = PricingTable.Food.Catalog.FirstOrDefault(f => f.Id == foodId);
         if (food == null) return false;
-
         creature.Feed(food.HungerRestored);
         EmitSignal(SignalName.CareActionPerformed, creatureId.ToString(), XPSource.Feed.ToString());
         return true;
@@ -57,7 +48,6 @@ public partial class HabitatManager : Node
     {
         var creature = GetCreature(creatureId);
         if (creature == null) return false;
-
         creature.Play(toyName, isFavoriteToy);
         EmitSignal(SignalName.CareActionPerformed, creatureId.ToString(), XPSource.Play.ToString());
         return true;
@@ -67,66 +57,90 @@ public partial class HabitatManager : Node
     {
         var creature = GetCreature(creatureId);
         if (creature == null) return false;
-
         creature.Clean();
         EmitSignal(SignalName.CareActionPerformed, creatureId.ToString(), XPSource.Clean.ToString());
         return true;
     }
 
-    // ── Selling ───────────────────────────────────────────────────────────────
+    // -- Selling ---------------------------------------------------------------
 
-    /// Remove a creature and return its sell value. Returns 0 if not found.
     public int SellCreature(Guid creatureId)
     {
         var creature = GetCreature(creatureId);
         if (creature == null) return 0;
 
-        // Determine sell value
-        var entry    = CreatureRosterData.Find(creature.CatalogId);
-        var rarity   = entry?.Rarity ?? Rarity.Common;
+        var entry     = CreatureRosterData.Find(creature.CatalogId);
+        var rarity    = entry?.Rarity ?? Rarity.Common;
         int sellValue = PricingTable.SellValue(rarity, creature.SellMultiplier);
 
-        // Remove from any habitat
-        var habitat = FindHabitatFor(creatureId);
-        habitat?.RemoveCreature();
-
+        FindHabitatFor(creatureId)?.RemoveCreature(creatureId);
         Creatures.Remove(creature);
+
         EmitSignal(SignalName.CreatureSold, sellValue);
         EmitSignal(SignalName.CreaturesChanged);
         return sellValue;
     }
 
-    // ── Placement ─────────────────────────────────────────────────────────────
+    // -- Placement (multi-occupant) --------------------------------------------
 
-    /// Place a creature into a habitat. Removes it from its previous habitat first.
-    public bool PlaceInHabitat(Guid creatureId, Guid habitatId)
+    /// Place a creature into a specific habitat slot. Returns false if the
+    /// habitat is full, the creature is already housed there, or the biome
+    /// types don't match.
+    public bool TryPlaceCreatureInSlot(Guid habitatId, Guid creatureId)
     {
-        var creature = GetCreature(creatureId);
+        if (!HabitatRules.TryPlaceCreatureInSlot(Habitats, Creatures, habitatId, creatureId))
+            return false;
+        EmitSignal(SignalName.HabitatsChanged);
+        return true;
+    }
+
+    /// Release a creature back to the wild -- removes from its habitat AND
+    /// the creature ledger. Returns false when not found OR when an active
+    /// customer order has reserved this creature (caller should toast).
+    public bool ReleaseCreature(Guid habitatId, Guid creatureId)
+    {
         var habitat  = GetHabitat(habitatId);
-        if (creature == null || habitat == null) return false;
+        var creature = GetCreature(creatureId);
+        if (habitat == null || creature == null) return false;
 
-        // Validate habitat type matches
-        var entry = CreatureRosterData.Find(creature.CatalogId);
-        if (entry != null && entry.HabitatType != habitat.Type) return false;
+        // Ensure the creature is actually in this habitat -- otherwise we'd
+        // orphan it (remove from Creatures while leaving its Guid in another
+        // habitat's OccupantIds).
+        if (!habitat.OccupantIds.Contains(creatureId)) return false;
 
-        // Evict from current habitat if any
-        FindHabitatFor(creatureId)?.RemoveCreature();
+        var orderManager = GetNodeOrNull<OrderManager>("/root/OrderManager");
+        if (orderManager?.IsCreatureReserved(creatureId) == true) return false;
 
-        habitat.PlaceCreature(creatureId);
+        habitat.RemoveCreature(creatureId);
+        Creatures.Remove(creature);
+
         EmitSignal(SignalName.HabitatsChanged);
+        EmitSignal(SignalName.CreaturesChanged);
         return true;
     }
 
-    public bool RemoveFromHabitat(Guid creatureId)
+    // -- Habitat creation ------------------------------------------------------
+
+    /// Try to add a new habitat for the given biome. Charges coins via
+    /// ProgressionManager. Outputs the coins charged on success.
+    public bool TryAddHabitat(HabitatType biome, out int coinsCharged)
     {
-        var habitat = FindHabitatFor(creatureId);
-        if (habitat == null) return false;
-        habitat.RemoveCreature();
+        coinsCharged = 0;
+        int owned = HabitatsOfType(biome).Count;
+        int slot  = owned + 1;
+        if (slot > HabitatCapacity.MaxHabitatsForBiome(biome)) return false;
+
+        int cost = HabitatCapacity.CoinsForHabitat(biome, slot);
+        var pm = GetNodeOrNull<ProgressionManager>("/root/ProgressionManager");
+        if (cost > 0 && (pm == null || !pm.SpendCoins(cost))) return false;
+
+        Habitats.Add(new Habitat(biome, pm?.CurrentLevel ?? 1));
+        coinsCharged = cost;
         EmitSignal(SignalName.HabitatsChanged);
         return true;
     }
 
-    // ── Adding Creatures (from shop/breeding) ─────────────────────────────────
+    // -- Adding Creatures (from shop/breeding) ---------------------------------
 
     public void AddCreature(CreatureInstance creature)
     {
@@ -134,22 +148,16 @@ public partial class HabitatManager : Node
         EmitSignal(SignalName.CreaturesChanged);
     }
 
-    // ── Stat Decay ────────────────────────────────────────────────────────────
+    // -- Stat Decay & Lifecycle (unchanged) ------------------------------------
 
-    /// Called by DecayTimer every 30 in-game minutes.
     public void ApplyDecay(double hoursPassed)
     {
         foreach (var c in Creatures)
             c.ApplyDecay(hoursPassed);
-
-        // Only emit if there are creatures to avoid unnecessary UI redraws
         if (Creatures.Count > 0)
             EmitSignal(SignalName.CreaturesChanged);
     }
 
-    // ── Lifecycle Advancement ─────────────────────────────────────────────────
-
-    /// Advance any creatures whose lifecycle timer has elapsed.
     public void TickLifecycles()
     {
         bool anyChanged = false;
@@ -159,7 +167,7 @@ public partial class HabitatManager : Node
             double hoursElapsed = (DateTime.UtcNow - c.LifecycleStartDate).TotalHours;
             if (hoursElapsed >= c.Lifecycle.DurationHours())
             {
-                c.Lifecycle          = c.Lifecycle + 1;   // Advance one stage
+                c.Lifecycle          = c.Lifecycle + 1;
                 c.LifecycleStartDate = DateTime.UtcNow;
                 anyChanged = true;
             }
@@ -167,23 +175,7 @@ public partial class HabitatManager : Node
         if (anyChanged) EmitSignal(SignalName.CreaturesChanged);
     }
 
-    // ── Habitat Expansion ─────────────────────────────────────────────────────
-
-    /// Unlock the next habitat slot. Returns the new Habitat or null if not enough coins.
-    public Habitat? ExpandHabitats(HabitatType type, int playerLevel,
-                                    Func<int, bool> spendCoins)
-    {
-        int slot    = Habitats.Count + 1;
-        int cost    = HabitatExpansionCost.Cost(slot);
-        if (!spendCoins(cost)) return null;
-
-        var newHabitat = new Habitat(type, playerLevel);
-        Habitats.Add(newHabitat);
-        EmitSignal(SignalName.HabitatsChanged);
-        return newHabitat;
-    }
-
-    // ── Queries ───────────────────────────────────────────────────────────────
+    // -- Queries ---------------------------------------------------------------
 
     public CreatureInstance? GetCreature(Guid id) =>
         Creatures.FirstOrDefault(c => c.Id == id);
@@ -191,14 +183,32 @@ public partial class HabitatManager : Node
     public Habitat? GetHabitat(Guid id) =>
         Habitats.FirstOrDefault(h => h.Id == id);
 
+    /// Find which habitat (if any) houses the given creature.
     public Habitat? FindHabitatFor(Guid creatureId) =>
-        Habitats.FirstOrDefault(h => h.OccupantId == creatureId);
+        Habitats.FirstOrDefault(h => h.OccupantIds.Contains(creatureId));
+
+    public IReadOnlyList<Habitat> HabitatsOfType(HabitatType biome) =>
+        HabitatRules.HabitatsOfType(Habitats, biome);
 
     public List<CreatureInstance> CreaturesInHabitat(Guid habitatId)
     {
         var habitat = GetHabitat(habitatId);
-        if (habitat?.OccupantId == null) return new List<CreatureInstance>();
-        var c = GetCreature(habitat.OccupantId.Value);
-        return c != null ? new List<CreatureInstance> { c } : new List<CreatureInstance>();
+        if (habitat == null) return new List<CreatureInstance>();
+        return habitat.OccupantIds
+                      .Select(GetCreature)
+                      .Where(c => c != null)!
+                      .ToList()!;
+    }
+
+    // -- Unlock state ----------------------------------------------------------
+
+    /// Returns the unlock state for the Nth habitat of a biome (1-indexed).
+    public UnlockReason GetUnlockReason(HabitatType biome, int oneIndexedSlot)
+    {
+        var pm = GetNodeOrNull<ProgressionManager>("/root/ProgressionManager");
+        bool magicalUnlocked   = pm?.IsFeatureUnlocked(GameFeature.MagicalHabitat) ?? false;
+        bool expansionUnlocked = pm?.IsFeatureUnlocked(GameFeature.HabitatExpansion) ?? false;
+        return HabitatRules.GetUnlockReason(
+            Habitats, biome, oneIndexedSlot, magicalUnlocked, expansionUnlocked);
     }
 }

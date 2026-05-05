@@ -109,7 +109,15 @@ namespace KeeperLegacy.Data
     {
         [JsonPropertyName("id")]              public string Id { get; set; } = "";
         [JsonPropertyName("type")]            public string Type { get; set; } = "Water";
+
+        /// Legacy single-occupant field. Older saves wrote this; newer saves
+        /// write OccupantIds instead. SaveManager backfills OccupantIds from
+        /// this when present.
         [JsonPropertyName("occupantId")]      public string? OccupantId { get; set; } = null;
+
+        /// Multi-occupant list (current format).
+        [JsonPropertyName("occupantIds")]     public List<string> OccupantIds { get; set; } = new();
+
         [JsonPropertyName("decorations")]     public List<string> DecorationIds { get; set; } = new();
         [JsonPropertyName("unlockedAtLevel")] public int UnlockedAtLevel { get; set; } = 1;
     }

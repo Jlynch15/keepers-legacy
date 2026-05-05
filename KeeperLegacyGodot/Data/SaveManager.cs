@@ -198,9 +198,19 @@ namespace KeeperLegacy.Data
             {
                 if (!Guid.TryParse(h.Id, out var guid)) continue;
                 var type = HabitatTypeExtensions.FromRawValue(h.Type) ?? HabitatType.Water;
-                Guid? occupantId = (h.OccupantId != null && Guid.TryParse(h.OccupantId, out var og))
-                    ? og : null;
-                habitats.Add(new Habitat(guid, type, occupantId,
+
+                // Hydrate occupant list. Prefer the new OccupantIds; fall back
+                // to the legacy single OccupantId field for older saves.
+                var occupantIds = new List<Guid>();
+                foreach (var oidStr in h.OccupantIds)
+                    if (Guid.TryParse(oidStr, out var og)) occupantIds.Add(og);
+                if (occupantIds.Count == 0 && h.OccupantId != null
+                    && Guid.TryParse(h.OccupantId, out var legacyOg))
+                {
+                    occupantIds.Add(legacyOg);
+                }
+
+                habitats.Add(new Habitat(guid, type, occupantIds,
                     new List<string>(h.DecorationIds), h.UnlockedAtLevel));
             }
 
@@ -293,7 +303,8 @@ namespace KeeperLegacy.Data
                 {
                     Id             = h.Id.ToString(),
                     Type           = h.Type.RawValue(),
-                    OccupantId     = h.OccupantId?.ToString(),
+                    OccupantId     = null,  // Legacy field -- no longer written.
+                    OccupantIds    = h.OccupantIds.ConvertAll(g => g.ToString()),
                     DecorationIds  = new List<string>(h.DecorationIds),
                     UnlockedAtLevel = h.UnlockedAtLevel,
                 });
@@ -342,10 +353,11 @@ namespace KeeperLegacy.Data
             // Starting habitat (Water, unlocked at level 1)
             save.Habitats.Add(new HabitatSave
             {
-                Id             = Guid.NewGuid().ToString(),
-                Type           = "Water",
-                OccupantId     = null,
-                DecorationIds  = new List<string>(),
+                Id              = Guid.NewGuid().ToString(),
+                Type            = "Water",
+                OccupantIds     = new List<string>(),
+                OccupantId      = null,
+                DecorationIds   = new List<string>(),
                 UnlockedAtLevel = 1,
             });
 
