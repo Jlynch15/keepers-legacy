@@ -474,13 +474,7 @@ public partial class HabitatFloorScreen : Control
         var sm = GetNodeOrNull<StoryManager>("/root/StoryManager");
         if (sm == null || !sm.HasPendingEvent()) return;
 
-        // Trigger the story event through MainScene (same mechanism as F1 debug)
-        var node = (Node)this;
-        while (node != null)
-        {
-            node = node.GetParent();
-        }
-        // Fall back: emit via StoryManager directly so MainScene picks it up
+        // Emit via StoryManager directly so MainScene picks it up
         var evt = sm.GetPendingEvent();
         if (evt != null)
             sm.EmitSignal(StoryManager.SignalName.StoryEventPending, evt.Id);

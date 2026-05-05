@@ -83,6 +83,54 @@ namespace KeeperLegacy.Tests
         }
 
         [Test]
+        public void GetUnlockReason_EarthTierSlot1_AlwaysOwned()
+        {
+            // Earth-tier biomes (Water/Grass/Dirt) start with slot 1 unlocked at game start.
+            // After CreateNewGame seeds the first habitat, slot 1 is Owned regardless of feature flags.
+            _habitats.Add(new Habitat(HabitatType.Water, 1));
+
+            var reason = HabitatRules.GetUnlockReason(
+                _habitats, HabitatType.Water, 1,
+                magicalUnlocked: false, expansionUnlocked: false);
+
+            Assert.That(reason.Kind, Is.EqualTo(UnlockReasonKind.Owned));
+        }
+
+        [Test]
+        public void GetUnlockReason_MidTierSlot1_StoryGatedWhenLocked()
+        {
+            var reason = HabitatRules.GetUnlockReason(
+                _habitats, HabitatType.Fire, 1,
+                magicalUnlocked: false, expansionUnlocked: false);
+
+            Assert.That(reason.Kind,     Is.EqualTo(UnlockReasonKind.StoryGated));
+            Assert.That(reason.StoryAct, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void GetUnlockReason_MagicalSlot1_StoryGatedWhenLocked()
+        {
+            var reason = HabitatRules.GetUnlockReason(
+                _habitats, HabitatType.Magical, 1,
+                magicalUnlocked: false, expansionUnlocked: false);
+
+            Assert.That(reason.Kind,     Is.EqualTo(UnlockReasonKind.StoryGated));
+            Assert.That(reason.StoryAct, Is.EqualTo(2));
+        }
+
+        [Test]
+        public void GetUnlockReason_MidTierSlot1_PurchasableOnceUnlocked()
+        {
+            // Once HabitatExpansion is unlocked but the player owns no Fire habitats yet,
+            // slot 1 should be Purchasable (player can buy their first Fire habitat).
+            var reason = HabitatRules.GetUnlockReason(
+                _habitats, HabitatType.Fire, 1,
+                magicalUnlocked: false, expansionUnlocked: true);
+
+            Assert.That(reason.Kind, Is.EqualTo(UnlockReasonKind.Purchasable));
+        }
+
+        [Test]
         public void HabitatsOfType_FiltersByBiome()
         {
             _habitats.Add(new Habitat(HabitatType.Water, 1));

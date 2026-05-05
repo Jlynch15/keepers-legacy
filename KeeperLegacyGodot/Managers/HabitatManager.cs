@@ -103,6 +103,11 @@ public partial class HabitatManager : Node
         var creature = GetCreature(creatureId);
         if (habitat == null || creature == null) return false;
 
+        // Ensure the creature is actually in this habitat -- otherwise we'd
+        // orphan it (remove from Creatures while leaving its Guid in another
+        // habitat's OccupantIds).
+        if (!habitat.OccupantIds.Contains(creatureId)) return false;
+
         var orderManager = GetNodeOrNull<OrderManager>("/root/OrderManager");
         if (orderManager?.IsCreatureReserved(creatureId) == true) return false;
 

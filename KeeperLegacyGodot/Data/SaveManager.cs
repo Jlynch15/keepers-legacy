@@ -353,10 +353,11 @@ namespace KeeperLegacy.Data
             // Starting habitat (Water, unlocked at level 1)
             save.Habitats.Add(new HabitatSave
             {
-                Id             = Guid.NewGuid().ToString(),
-                Type           = "Water",
-                OccupantId     = null,
-                DecorationIds  = new List<string>(),
+                Id              = Guid.NewGuid().ToString(),
+                Type            = "Water",
+                OccupantIds     = new List<string>(),
+                OccupantId      = null,
+                DecorationIds   = new List<string>(),
                 UnlockedAtLevel = 1,
             });
 

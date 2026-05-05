@@ -77,7 +77,7 @@ namespace KeeperLegacy.Tests
         public void AvailableSlots_ReflectsOccupancy()
         {
             var h = new Habitat(HabitatType.Water, unlockedAtLevel: 1);
-            Assert.That(h.AvailableSlots, Is.EqualTo(4));
+            Assert.That(h.AvailableSlots, Is.EqualTo(HabitatCapacity.CreaturesPerHabitat));
 
             h.TryPlaceCreature(Guid.NewGuid());
             Assert.That(h.AvailableSlots, Is.EqualTo(3));

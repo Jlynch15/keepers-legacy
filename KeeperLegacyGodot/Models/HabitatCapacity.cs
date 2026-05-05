@@ -23,7 +23,15 @@ namespace KeeperLegacy.Models
         /// mid-tier and Magical have slot 1 story-gated (no coin path) so the
         /// returned 0 is also correct (the lock state, not the cost, is what
         /// gates them -- see HabitatManager.GetUnlockReason).
+        ///
+        /// The biome parameter is intentionally accepted but not yet read -- costs
+        /// are uniform across biomes today, but the signature is reserved so that
+        /// future per-biome cost differentiation (e.g. Magical habitats more expensive)
+        /// is a single-file change here, not a callsite-wide refactor.
         public static int CoinsForHabitat(HabitatType biome, int oneIndexedSlot)
-            => HabitatExpansionCost.Cost(oneIndexedSlot);
+        {
+            _ = biome; // silences "unused parameter" warnings; documents intent
+            return HabitatExpansionCost.Cost(oneIndexedSlot);
+        }
     }
 }
