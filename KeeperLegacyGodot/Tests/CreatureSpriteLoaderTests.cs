@@ -65,5 +65,16 @@ namespace KeeperLegacy.Tests
             Assert.That(CreatureSpriteLoader.FallbackPath,
                 Is.EqualTo("res://Sprites/Creatures/_fallback.png"));
         }
+
+        [Test]
+        public void ResolveIdlePath_CoversEveryCreatureMutation()
+        {
+            foreach (var c in CreatureRosterData.AllCreatures)
+                for (int i = 0; i < c.Mutations.Count; i++)
+                    Assert.That(
+                        CreatureSpriteLoader.ResolveIdlePath(c.Id, i),
+                        Does.StartWith("res://Sprites/Creatures/"),
+                        $"Failed for {c.Id} v{i + 1}");
+        }
     }
 }
