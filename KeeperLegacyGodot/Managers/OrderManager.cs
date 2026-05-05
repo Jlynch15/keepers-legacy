@@ -127,4 +127,10 @@ public partial class OrderManager : Node
 
     public PricingTable.CustomerOrder? GetOrder(Guid orderId) =>
         ActiveOrders.FirstOrDefault(o => o.Id == orderId);
+
+    /// Returns true if the given creature is reserved by an active customer
+    /// order. Used by HabitatManager.ReleaseCreature to prevent releasing a
+    /// promised creature. Implementation will be fleshed out when order
+    /// reservation lands; for now returns false (no reservations).
+    public bool IsCreatureReserved(System.Guid creatureId) => false;
 }

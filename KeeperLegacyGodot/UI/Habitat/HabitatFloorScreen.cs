@@ -156,7 +156,7 @@ public partial class HabitatFloorScreen : Control
         var result = new List<(string, HabitatType)>();
         foreach (var habitat in hm.Habitats.Where(h => h.Type == type))
         {
-            if (habitat.OccupantId is { } occupantId)
+            foreach (var occupantId in habitat.OccupantIds)
             {
                 var creature = hm.GetCreature(occupantId);
                 if (creature != null)
