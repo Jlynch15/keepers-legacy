@@ -117,24 +117,27 @@
     <circle cx="324" cy="368" r="5"  class="glow-base"/>
   </g>
 
-  <!-- ═══════ EYES (oversized with vertical slit pupils — fish/predator hybrid) ═══════ -->
-  <!-- Eye whites (large pale yellow-tinted for deep-sea creature feel) -->
-  <ellipse cx="266" cy="266" rx="42" ry="46" fill="#fff8d8" stroke="none"/>
-  <ellipse cx="354" cy="266" rx="36" ry="40" fill="#fff8d8" stroke="none"/>
-  <!-- White outline rings -->
+  <!-- ═══════ EYES (deep-sea fish style — big wet glossy round eyes) ═══════ -->
+  <!-- WATER BIOME EYE STYLE: large round, blue-tinted sclera, big round pupils, multi-highlight wet look -->
+  <!-- Eye whites with subtle blue/teal tint (underwater feel) -->
+  <ellipse cx="266" cy="266" rx="42" ry="46" fill="#d8eef0" stroke="none"/>
+  <ellipse cx="354" cy="266" rx="36" ry="40" fill="#d8eef0" stroke="none"/>
+  <!-- White outline rings (bright contrast against dark body) -->
   <ellipse cx="266" cy="266" rx="38" ry="42" fill="none" stroke="#ffffff" stroke-width="3"/>
   <ellipse cx="354" cy="266" rx="32" ry="36" fill="none" stroke="#ffffff" stroke-width="3"/>
-  <!-- Iris (amber/gold) -->
-  <circle cx="266" cy="270" r="22" fill="#c08020" stroke="none"/>
-  <circle cx="354" cy="270" r="18" fill="#c08020" stroke="none"/>
-  <!-- Vertical slit pupils (predator/fish look) -->
-  <ellipse cx="266" cy="270" rx="5" ry="22" class="eye-pupil" stroke="none"/>
-  <ellipse cx="354" cy="270" rx="4" ry="18" class="eye-pupil" stroke="none"/>
-  <!-- Highlight glints -->
-  <circle cx="276" cy="258" r="6"  class="eye-highlight" stroke="none"/>
-  <circle cx="260" cy="284" r="3"  class="eye-highlight" stroke="none"/>
-  <circle cx="362" cy="258" r="5"  class="eye-highlight" stroke="none"/>
-  <circle cx="350" cy="282" r="2"  class="eye-highlight" stroke="none"/>
+  <!-- Iris (deep teal-blue, like deep ocean) -->
+  <circle cx="266" cy="272" r="28" fill="#1a4868" stroke="none"/>
+  <circle cx="354" cy="272" r="24" fill="#1a4868" stroke="none"/>
+  <!-- Pupils (big round black — fish-like, NOT slit) -->
+  <circle cx="266" cy="272" r="18" class="eye-pupil" stroke="none"/>
+  <circle cx="354" cy="272" r="15" class="eye-pupil" stroke="none"/>
+  <!-- Multi-highlight wet/glossy look — large primary, secondary, small shimmer -->
+  <ellipse cx="276" cy="258" rx="8" ry="9" class="eye-highlight" stroke="none"/>
+  <circle  cx="258" cy="284" r="3.5" class="eye-highlight" stroke="none"/>
+  <circle  cx="280" cy="278" r="2"   class="eye-highlight" stroke="none" opacity="0.8"/>
+  <ellipse cx="361" cy="258" rx="6" ry="7" class="eye-highlight" stroke="none"/>
+  <circle  cx="346" cy="282" r="3" class="eye-highlight" stroke="none"/>
+  <circle  cx="364" cy="278" r="1.5" class="eye-highlight" stroke="none" opacity="0.8"/>
 
   <!-- ═══════ MOUTH (small open with tiny pointed teeth) ═══════ -->
   <path d="M286,338 Q316,360 346,338 Q330,348 316,348 Q302,348 286,338 Z"

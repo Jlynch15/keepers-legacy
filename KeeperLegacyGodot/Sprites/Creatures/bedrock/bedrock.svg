@@ -90,7 +90,8 @@
   <circle cx="332" cy="320" r="5" class="accent-shadow"/>
   <circle cx="332" cy="318" r="3" class="accent-base"/>
 
-  <!-- ═══════ EYES (heavy-lidded, stoic/patient — fits stone character) ═══════ -->
+  <!-- ═══════ EYES (heavy-lidded with mineral glint — stoic stone style) ═══════ -->
+  <!-- DIRT BIOME EYE STYLE: heavy-lidded or earthen, with small accent-color mineral glint -->
   <!-- Eye whites (visible only in lower half — upper portion covered by lid) -->
   <ellipse cx="216" cy="220" rx="26" ry="28" class="eye-white" stroke="none"/>
   <ellipse cx="296" cy="220" rx="26" ry="28" class="eye-white" stroke="none"/>
@@ -102,12 +103,18 @@
   <!-- Eye outlines (rounded rectangles, visible bottom curve) -->
   <path d="M190,222 Q216,250 242,222" class="body-stroke" fill="none" stroke-width="3" stroke-linecap="round"/>
   <path d="M270,222 Q296,250 322,222" class="body-stroke" fill="none" stroke-width="3" stroke-linecap="round"/>
+  <!-- Iris (subtle mineral-themed ring around pupil) -->
+  <circle cx="218" cy="232" r="11" class="accent-base" stroke="none" opacity="0.6"/>
+  <circle cx="294" cy="232" r="11" class="accent-base" stroke="none" opacity="0.6"/>
   <!-- Pupils — small, looking down (sleepy, content) -->
-  <ellipse cx="218" cy="232" rx="9" ry="10" class="eye-pupil" stroke="none"/>
-  <ellipse cx="294" cy="232" rx="9" ry="10" class="eye-pupil" stroke="none"/>
-  <!-- Tiny highlight glint -->
-  <circle cx="222" cy="228" r="2.5" class="eye-highlight" stroke="none"/>
-  <circle cx="298" cy="228" r="2.5" class="eye-highlight" stroke="none"/>
+  <ellipse cx="218" cy="232" rx="8" ry="9" class="eye-pupil" stroke="none"/>
+  <ellipse cx="294" cy="232" rx="8" ry="9" class="eye-pupil" stroke="none"/>
+  <!-- Tiny highlight glint (white) -->
+  <circle cx="222" cy="228" r="2" class="eye-highlight" stroke="none"/>
+  <circle cx="298" cy="228" r="2" class="eye-highlight" stroke="none"/>
+  <!-- Mineral accent glint (small accent-color sparkle in eye) -->
+  <circle cx="215" cy="234" r="1.5" class="accent-highlight" stroke="none" opacity="0.95"/>
+  <circle cx="291" cy="234" r="1.5" class="accent-highlight" stroke="none" opacity="0.95"/>
 
   <!-- ═══════ MOUTH (closed serene smile — just a curve, calm and sturdy) ═══════ -->
   <path d="M232,260 Q256,272 280,260" class="body-stroke" fill="none" stroke-width="4" stroke-linecap="round"/>
