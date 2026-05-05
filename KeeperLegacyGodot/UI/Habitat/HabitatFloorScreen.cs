@@ -366,23 +366,28 @@ public partial class HabitatFloorScreen : Control
     }
 
     // ── Signal wiring ─────────────────────────────────────────────────────────
+    //
+    // Named handlers (not lambdas) so _ExitTree can unsubscribe symmetrically
+    // when this screen gets swapped out for a sub-screen. Inline lambdas would
+    // be impossible to detach from the manager singletons after the screen is
+    // freed, leading to "object was freed" log spam from Godot.
 
     private void WireSignals()
     {
         var pm = GetNodeOrNull<ProgressionManager>("/root/ProgressionManager");
         if (pm != null)
         {
-            pm.LeveledUp       += (_) => RefreshHud();
-            pm.XPChanged       += (_, _) => RefreshHud();
-            pm.CoinsChanged    += (_) => RefreshHud();
-            pm.FeatureUnlocked += (_) => RefreshPedestals();
+            pm.LeveledUp       += OnPmLeveledUp;
+            pm.XPChanged       += OnPmXPChanged;
+            pm.CoinsChanged    += OnPmCoinsChanged;
+            pm.FeatureUnlocked += OnPmFeatureUnlocked;
         }
 
         var sm = GetNodeOrNull<StoryManager>("/root/StoryManager");
         if (sm != null)
         {
-            sm.StoryEventPending   += (_) => RefreshStoryBadge();
-            sm.StoryEventCompleted += (_) => RefreshStoryBadge();
+            sm.StoryEventPending   += OnSmStoryEventPending;
+            sm.StoryEventCompleted += OnSmStoryEventCompleted;
         }
 
         var hm = GetNodeOrNull<HabitatManager>("/root/HabitatManager");
@@ -392,6 +397,39 @@ public partial class HabitatFloorScreen : Control
             hm.HabitatsChanged  += RefreshPedestals;
         }
     }
+
+    public override void _ExitTree()
+    {
+        var pm = GetNodeOrNull<ProgressionManager>("/root/ProgressionManager");
+        if (pm != null)
+        {
+            pm.LeveledUp       -= OnPmLeveledUp;
+            pm.XPChanged       -= OnPmXPChanged;
+            pm.CoinsChanged    -= OnPmCoinsChanged;
+            pm.FeatureUnlocked -= OnPmFeatureUnlocked;
+        }
+
+        var sm = GetNodeOrNull<StoryManager>("/root/StoryManager");
+        if (sm != null)
+        {
+            sm.StoryEventPending   -= OnSmStoryEventPending;
+            sm.StoryEventCompleted -= OnSmStoryEventCompleted;
+        }
+
+        var hm = GetNodeOrNull<HabitatManager>("/root/HabitatManager");
+        if (hm != null)
+        {
+            hm.CreaturesChanged -= RefreshPedestals;
+            hm.HabitatsChanged  -= RefreshPedestals;
+        }
+    }
+
+    private void OnPmLeveledUp(int newLevel)              => RefreshHud();
+    private void OnPmXPChanged(int currentXP, int reqXP)  => RefreshHud();
+    private void OnPmCoinsChanged(int newAmount)          => RefreshHud();
+    private void OnPmFeatureUnlocked(string featureRaw)   => RefreshPedestals();
+    private void OnSmStoryEventPending(string eventId)    => RefreshStoryBadge();
+    private void OnSmStoryEventCompleted(string eventId)  => RefreshStoryBadge();
 
     // ── HUD refresh ───────────────────────────────────────────────────────────
 
