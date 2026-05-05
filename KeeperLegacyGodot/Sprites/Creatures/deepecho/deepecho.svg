@@ -117,18 +117,24 @@
     <circle cx="324" cy="368" r="5"  class="glow-base"/>
   </g>
 
-  <!-- ═══════ EYES (oversized, "haunting" — constant across mutations) ═══════ -->
-  <ellipse cx="266" cy="266" rx="42" ry="46" class="eye-white" stroke="none"/>
-  <ellipse cx="266" cy="266" rx="38" ry="42" class="body-stroke" fill="none" stroke-width="3"/>
-  <ellipse cx="270" cy="276" rx="22" ry="26" class="eye-pupil" stroke="none"/>
-  <circle  cx="278" cy="262" r="8"  class="eye-highlight" stroke="none"/>
-  <circle  cx="262" cy="284" r="4"  class="eye-highlight" stroke="none"/>
-
-  <ellipse cx="354" cy="266" rx="36" ry="40" class="eye-white" stroke="none"/>
-  <ellipse cx="354" cy="266" rx="32" ry="36" class="body-stroke" fill="none" stroke-width="3"/>
-  <ellipse cx="350" cy="276" rx="18" ry="22" class="eye-pupil" stroke="none"/>
-  <circle  cx="344" cy="262" r="6"  class="eye-highlight" stroke="none"/>
-  <circle  cx="356" cy="284" r="3"  class="eye-highlight" stroke="none"/>
+  <!-- ═══════ EYES (oversized with vertical slit pupils — fish/predator hybrid) ═══════ -->
+  <!-- Eye whites (large pale yellow-tinted for deep-sea creature feel) -->
+  <ellipse cx="266" cy="266" rx="42" ry="46" fill="#fff8d8" stroke="none"/>
+  <ellipse cx="354" cy="266" rx="36" ry="40" fill="#fff8d8" stroke="none"/>
+  <!-- White outline rings -->
+  <ellipse cx="266" cy="266" rx="38" ry="42" fill="none" stroke="#ffffff" stroke-width="3"/>
+  <ellipse cx="354" cy="266" rx="32" ry="36" fill="none" stroke="#ffffff" stroke-width="3"/>
+  <!-- Iris (amber/gold) -->
+  <circle cx="266" cy="270" r="22" fill="#c08020" stroke="none"/>
+  <circle cx="354" cy="270" r="18" fill="#c08020" stroke="none"/>
+  <!-- Vertical slit pupils (predator/fish look) -->
+  <ellipse cx="266" cy="270" rx="5" ry="22" class="eye-pupil" stroke="none"/>
+  <ellipse cx="354" cy="270" rx="4" ry="18" class="eye-pupil" stroke="none"/>
+  <!-- Highlight glints -->
+  <circle cx="276" cy="258" r="6"  class="eye-highlight" stroke="none"/>
+  <circle cx="260" cy="284" r="3"  class="eye-highlight" stroke="none"/>
+  <circle cx="362" cy="258" r="5"  class="eye-highlight" stroke="none"/>
+  <circle cx="350" cy="282" r="2"  class="eye-highlight" stroke="none"/>
 
   <!-- ═══════ MOUTH (small open with tiny pointed teeth) ═══════ -->
   <path d="M286,338 Q316,360 346,338 Q330,348 316,348 Q302,348 286,338 Z"

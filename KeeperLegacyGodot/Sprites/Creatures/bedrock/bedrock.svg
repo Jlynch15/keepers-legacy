@@ -90,22 +90,30 @@
   <circle cx="332" cy="320" r="5" class="accent-shadow"/>
   <circle cx="332" cy="318" r="3" class="accent-base"/>
 
-  <!-- ═══════ EYES (constant across mutations) ═══════ -->
-  <ellipse cx="216" cy="220" rx="28" ry="32" class="eye-white" stroke="none"/>
-  <ellipse cx="216" cy="220" rx="24" ry="28" class="body-stroke" fill="none" stroke-width="3"/>
-  <ellipse cx="220" cy="226" rx="12" ry="14" class="eye-pupil" stroke="none"/>
-  <circle  cx="225" cy="220" r="5" class="eye-highlight" stroke="none"/>
-  <circle  cx="214" cy="232" r="3" class="eye-highlight" stroke="none"/>
-  <ellipse cx="296" cy="220" rx="28" ry="32" class="eye-white" stroke="none"/>
-  <ellipse cx="296" cy="220" rx="24" ry="28" class="body-stroke" fill="none" stroke-width="3"/>
-  <ellipse cx="292" cy="226" rx="12" ry="14" class="eye-pupil" stroke="none"/>
-  <circle  cx="287" cy="220" r="5" class="eye-highlight" stroke="none"/>
-  <circle  cx="298" cy="232" r="3" class="eye-highlight" stroke="none"/>
+  <!-- ═══════ EYES (heavy-lidded, stoic/patient — fits stone character) ═══════ -->
+  <!-- Eye whites (visible only in lower half — upper portion covered by lid) -->
+  <ellipse cx="216" cy="220" rx="26" ry="28" class="eye-white" stroke="none"/>
+  <ellipse cx="296" cy="220" rx="26" ry="28" class="eye-white" stroke="none"/>
+  <!-- Heavy upper eyelids — drooping shapes covering top half -->
+  <path d="M188,220 Q216,196 244,220 Q244,212 216,206 Q188,212 188,220 Z"
+        class="body-shadow" stroke="none"/>
+  <path d="M268,220 Q296,196 324,220 Q324,212 296,206 Q268,212 268,220 Z"
+        class="body-shadow" stroke="none"/>
+  <!-- Eye outlines (rounded rectangles, visible bottom curve) -->
+  <path d="M190,222 Q216,250 242,222" class="body-stroke" fill="none" stroke-width="3" stroke-linecap="round"/>
+  <path d="M270,222 Q296,250 322,222" class="body-stroke" fill="none" stroke-width="3" stroke-linecap="round"/>
+  <!-- Pupils — small, looking down (sleepy, content) -->
+  <ellipse cx="218" cy="232" rx="9" ry="10" class="eye-pupil" stroke="none"/>
+  <ellipse cx="294" cy="232" rx="9" ry="10" class="eye-pupil" stroke="none"/>
+  <!-- Tiny highlight glint -->
+  <circle cx="222" cy="228" r="2.5" class="eye-highlight" stroke="none"/>
+  <circle cx="298" cy="228" r="2.5" class="eye-highlight" stroke="none"/>
 
-  <!-- ═══════ MOUTH (small contented smile — patient/sturdy character) ═══════ -->
-  <path d="M226,256 Q256,278 286,256 Q272,266 256,266 Q240,266 226,256 Z"
-        class="mouth-interior" stroke="#303030" stroke-width="3" stroke-linejoin="round"/>
-  <ellipse cx="256" cy="266" rx="14" ry="6" class="tongue" stroke="none"/>
+  <!-- ═══════ MOUTH (closed serene smile — just a curve, calm and sturdy) ═══════ -->
+  <path d="M232,260 Q256,272 280,260" class="body-stroke" fill="none" stroke-width="4" stroke-linecap="round"/>
+  <!-- subtle upturned mouth corners (small dimples) -->
+  <circle cx="232" cy="260" r="2" class="body-shadow" stroke="none"/>
+  <circle cx="280" cy="260" r="2" class="body-shadow" stroke="none"/>
 
   <!-- ═══════ EYEBROW RIDGE (sturdy/wise look) ═══════ -->
   <path d="M192,194 Q216,188 240,194" class="body-shadow" fill="none" stroke-width="5" stroke-linecap="round"/>
