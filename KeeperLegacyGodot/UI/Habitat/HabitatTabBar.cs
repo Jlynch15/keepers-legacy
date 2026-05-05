@@ -82,7 +82,10 @@ namespace KeeperLegacy.UI.Habitat
                     var habitat = owned[slot - 1];
                     bool active = habitat.Id == _activeHabitatId;
                     tab.Text = $"Habitat {slot}   {habitat.OccupantIds.Count}/{HabitatCapacity.CreaturesPerHabitat}";
-                    tab.AddThemeColorOverride("font_color", active ? _theme!.AccentColor : HabitatPalette.LabelMuted);
+                    // Active tab: light text on biome-tinted background. The fill +
+                    // bottom border already carry the biome accent cue; text needs
+                    // contrast against the tint, not to match it.
+                    tab.AddThemeColorOverride("font_color", active ? HabitatPalette.LabelName : HabitatPalette.LabelMuted);
 
                     var style = new StyleBoxFlat();
                     style.BgColor = active ? new Color(_theme!.AccentColor with { A = 0.08f }) : new Color(0,0,0,0);
