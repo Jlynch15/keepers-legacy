@@ -64,6 +64,9 @@ Desktop.ini
 # Superpowers session/runtime state (brainstorm/plan transient files)
 .superpowers/
 
+# Project-local git worktrees (per CLAUDE.md convention)
+.worktrees/
+
 # Secrets / credentials (never commit these)
 *.p12
 *.mobileprovision
