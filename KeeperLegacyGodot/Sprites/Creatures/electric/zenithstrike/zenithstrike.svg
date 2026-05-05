@@ -1,0 +1,76 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- ZENITHSTRIKE — electric, RARE — apex predator, single bolt mark down center
+       Mutations: v1 Pure White · v2 Gold Strike · v3 Electric Blue · v4 Neon Green
+       Signature: tall commanding silhouette w/ DRAMATIC LIGHTNING BOLT down center of body
+  -->
+  <!-- PALETTE
+       v1: body-base=#fafafa body-shadow=#a0a0a0 body-highlight=#ffffff body-stroke=#202020 accent-base=#fff088 accent-shadow=#a08820 accent-highlight=#ffffd8
+       v2: body-base=#ffd028 body-shadow=#a07810 body-highlight=#fff088 body-stroke=#403008 accent-base=#ffffd8 accent-shadow=#a09850 accent-highlight=#ffffff
+       v3: body-base=#3098e8 body-shadow=#1058a8 body-highlight=#5898e8 body-stroke=#082838 accent-base=#80d0ff accent-shadow=#3878 b8 accent-highlight=#c0e0ff
+       v4: body-base=#88e840 body-shadow=#487820 body-highlight=#b0ff80 body-stroke=#102808 accent-base=#c0ff80 accent-shadow=#80a838 accent-highlight=#e0ffb0
+  -->
+  <style>
+    .body-base       { fill: #fafafa; }
+    .body-base       { stroke: #fafafa; }
+    .body-shadow     { fill: #a0a0a0; }
+    .body-shadow     { stroke: #a0a0a0; }
+    .body-highlight  { fill: #ffffff; }
+    .body-highlight  { stroke: #ffffff; }
+    .body-stroke     { fill: #202020; }
+    .body-stroke     { stroke: #202020; }
+    .accent-base     { fill: #fff088; }
+    .accent-base     { stroke: #fff088; }
+    .accent-shadow   { fill: #a08820; }
+    .accent-shadow   { stroke: #a08820; }
+    .accent-highlight{ fill: #ffffd8; }
+    .accent-highlight{ stroke: #ffffd8; }
+    .eye-iris        { fill: #fff088; }
+    .eye-pupil       { fill: #1a1000; }
+    .eye-highlight   { fill: #ffffff; }
+    .eye-sclera      { fill: #fff8d8; }
+    .mouth-interior  { fill: #2a1808; }
+  </style>
+
+  <!-- Custom glow: massive lightning bolt mark down body (signature) -->
+  <path d="M256,140 L240,260 L260,260 L240,400" stroke="#fff088" stroke-width="36" fill="none" stroke-linecap="round" opacity="0.45"/>
+
+  <!-- feet -->
+  <ellipse cx="216" cy="446" rx="28" ry="13" class="body-shadow"/>
+  <ellipse cx="296" cy="446" rx="28" ry="13" class="body-shadow"/>
+  <ellipse cx="216" cy="442" rx="22" ry="9" class="body-base"/>
+  <ellipse cx="296" cy="442" rx="22" ry="9" class="body-base"/>
+
+  <!-- arms (commanding at sides) -->
+  <ellipse cx="128" cy="316" rx="40" ry="20" class="body-shadow"/>
+  <ellipse cx="132" cy="312" rx="34" ry="15" class="body-base"/>
+  <ellipse cx="384" cy="316" rx="40" ry="20" class="body-shadow"/>
+  <ellipse cx="380" cy="312" rx="34" ry="15" class="body-base"/>
+
+  <!-- ═══════ TALL COMMANDING BODY ═══════ -->
+  <ellipse cx="256" cy="306" rx="116" ry="160" class="body-shadow"/>
+  <ellipse cx="256" cy="300" rx="110" ry="154" class="body-base"/>
+  <ellipse cx="216" cy="220" rx="22" ry="14" class="body-highlight" opacity="0.55"/>
+
+  <!-- SIGNATURE BOLT MARK -->
+  <path d="M270,160 L240,266 L262,272 L228,400" class="accent-shadow" stroke-width="10" fill="none" stroke-linecap="round"/>
+  <path d="M270,160 L240,266 L262,272 L228,400" class="accent-base" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M270,160 L240,266 L262,272 L228,400" stroke="#ffffff" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+
+  <!-- ═══════ EYES (electric family — apex predator narrow intense) ═══════ -->
+  <ellipse cx="220" cy="240" rx="20" ry="14" class="eye-sclera" stroke="none"/>
+  <ellipse cx="220" cy="240" rx="16" ry="10" fill="none" stroke="#202020" stroke-width="2.5"/>
+  <ellipse cx="222" cy="242" rx="9" ry="7" class="accent-base"/>
+  <ellipse cx="222" cy="242" rx="6" ry="5" class="eye-pupil"/>
+  <path d="M222,236 L222,242 M218,240 L226,240" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- intense brow -->
+  <path d="M196,222 L246,218" stroke="#202020" stroke-width="3.5" stroke-linecap="round"/>
+  <ellipse cx="292" cy="240" rx="20" ry="14" class="eye-sclera" stroke="none"/>
+  <ellipse cx="292" cy="240" rx="16" ry="10" fill="none" stroke="#202020" stroke-width="2.5"/>
+  <ellipse cx="290" cy="242" rx="9" ry="7" class="accent-base"/>
+  <ellipse cx="290" cy="242" rx="6" ry="5" class="eye-pupil"/>
+  <path d="M290,236 L290,242 M286,240 L294,240" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M316,222 L266,218" stroke="#202020" stroke-width="3.5" stroke-linecap="round"/>
+
+  <!-- mouth: stoic line -->
+  <path d="M236,300 L276,300" class="body-stroke" fill="none" stroke-width="3.5" stroke-linecap="round"/>
+</svg>

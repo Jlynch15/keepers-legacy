@@ -1,0 +1,95 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- THUNDERPUP — electric, common — young puppy, mini thunder rings
+       Mutations: v1 Sky Blue · v2 Yellow · v3 White · v4 Storm Grey
+       Signature: puppy w/ TINY THUNDER RINGS popping from mouth (sound waves)
+  -->
+  <!-- PALETTE
+       v1: body-base=#88c0e8 body-shadow=#3878a8 body-highlight=#b0d8f0 body-stroke=#082838 accent-base=#fff088 accent-shadow=#a08820 accent-highlight=#ffffd8
+       v2: body-base=#ffd820 body-shadow=#a08010 body-highlight=#fff088 body-stroke=#403008 accent-base=#ffffd8 accent-shadow=#a09850 accent-highlight=#ffffff
+       v3: body-base=#f8fbff body-shadow=#a8b0b8 body-highlight=#ffffff body-stroke=#383848 accent-base=#fff088 accent-shadow=#a08820 accent-highlight=#ffffff
+       v4: body-base=#7888a0 body-shadow=#384858 body-highlight=#a0b0c8 body-stroke=#101820 accent-base=#fff088 accent-shadow=#a08820 accent-highlight=#ffffd8
+  -->
+  <style>
+    .body-base       { fill: #88c0e8; }
+    .body-base       { stroke: #88c0e8; }
+    .body-shadow     { fill: #3878a8; }
+    .body-shadow     { stroke: #3878a8; }
+    .body-highlight  { fill: #b0d8f0; }
+    .body-highlight  { stroke: #b0d8f0; }
+    .body-stroke     { fill: #082838; }
+    .body-stroke     { stroke: #082838; }
+    .accent-base     { fill: #fff088; }
+    .accent-base     { stroke: #fff088; }
+    .accent-shadow   { fill: #a08820; }
+    .accent-shadow   { stroke: #a08820; }
+    .accent-highlight{ fill: #ffffd8; }
+    .accent-highlight{ stroke: #ffffd8; }
+    .eye-iris        { fill: #fff088; }
+    .eye-pupil       { fill: #1a1000; }
+    .eye-highlight   { fill: #ffffff; }
+    .eye-sclera      { fill: #fff8d8; }
+    .mouth-interior  { fill: #2a1808; }
+  </style>
+
+  <!-- Custom glow: thunder rings popping from mouth (signature) -->
+  <g fill="none" stroke="#fff088" stroke-width="3" opacity="0.85">
+    <circle cx="380" cy="340" r="20"/>
+    <circle cx="420" cy="320" r="16" opacity="0.7"/>
+    <circle cx="448" cy="298" r="12" opacity="0.5"/>
+  </g>
+  <g fill="none" stroke="#ffffff" stroke-width="1.5" opacity="0.95">
+    <circle cx="380" cy="340" r="14"/>
+    <circle cx="420" cy="320" r="10"/>
+  </g>
+
+  <!-- feet -->
+  <ellipse cx="208" cy="436" rx="32" ry="14" class="body-shadow"/>
+  <ellipse cx="304" cy="436" rx="32" ry="14" class="body-shadow"/>
+  <ellipse cx="208" cy="432" rx="26" ry="11" class="body-base"/>
+  <ellipse cx="304" cy="432" rx="26" ry="11" class="body-base"/>
+
+  <!-- arms -->
+  <ellipse cx="138" cy="306" rx="34" ry="18" class="body-shadow" transform="rotate(-12 138 306)"/>
+  <ellipse cx="142" cy="302" rx="28" ry="13" class="body-base"   transform="rotate(-12 142 302)"/>
+  <ellipse cx="374" cy="306" rx="34" ry="18" class="body-shadow" transform="rotate(12 374 306)"/>
+  <ellipse cx="370" cy="302" rx="28" ry="13" class="body-base"   transform="rotate(12 370 302)"/>
+
+  <!-- body -->
+  <circle cx="256" cy="306" r="118" class="body-shadow"/>
+  <circle cx="256" cy="300" r="110" class="body-base"/>
+  <ellipse cx="220" cy="244" rx="22" ry="14" class="body-highlight" opacity="0.65"/>
+
+  <!-- ═══════ OVERSIZED PUPPY EARS ═══════ -->
+  <ellipse cx="170" cy="170" rx="28" ry="48" class="body-shadow" transform="rotate(-25 170 170)"/>
+  <ellipse cx="174" cy="168" rx="24" ry="44" class="body-base"   transform="rotate(-25 174 168)"/>
+  <ellipse cx="342" cy="170" rx="28" ry="48" class="body-shadow" transform="rotate(25 342 170)"/>
+  <ellipse cx="338" cy="168" rx="24" ry="44" class="body-base"   transform="rotate(25 338 168)"/>
+  <!-- spark on ears -->
+  <path d="M170,134 L160,116 L168,130 L156,108" stroke="#ffe838" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M342,134 L352,116 L344,130 L356,108" stroke="#ffe838" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+  <!-- ═══════ EYES (electric family — bright excited puppy) ═══════ -->
+  <ellipse cx="220" cy="290" rx="24" ry="26" class="eye-sclera" stroke="none"/>
+  <ellipse cx="220" cy="290" rx="20" ry="22" fill="none" stroke="#082838" stroke-width="2.5"/>
+  <circle cx="222" cy="296" r="14" class="accent-base"/>
+  <circle cx="222" cy="296" r="14" fill="none" stroke="#a08820" stroke-width="1.5"/>
+  <circle cx="222" cy="296" r="9" class="eye-pupil"/>
+  <path d="M222,286 L222,294 M216,290 L228,290" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+  <ellipse cx="292" cy="290" rx="24" ry="26" class="eye-sclera" stroke="none"/>
+  <ellipse cx="292" cy="290" rx="20" ry="22" fill="none" stroke="#082838" stroke-width="2.5"/>
+  <circle cx="290" cy="296" r="14" class="accent-base"/>
+  <circle cx="290" cy="296" r="14" fill="none" stroke="#a08820" stroke-width="1.5"/>
+  <circle cx="290" cy="296" r="9" class="eye-pupil"/>
+  <path d="M290,286 L290,294 M284,290 L296,290" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- nose -->
+  <ellipse cx="256" cy="328" rx="8" ry="5" fill="#082838"/>
+
+  <!-- mouth: open puppy bark -->
+  <path d="M232,346 Q256,366 280,346 Q272,358 256,358 Q240,358 232,346 Z" class="mouth-interior"/>
+  <path d="M256,360 Q260,366 264,360" stroke="#ff8090" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+  <!-- cheek -->
+  <ellipse cx="180" cy="332" rx="11" ry="7" fill="#ffd040" opacity="0.55" stroke="none"/>
+  <ellipse cx="332" cy="332" rx="11" ry="7" fill="#ffd040" opacity="0.55" stroke="none"/>
+</svg>

@@ -1,0 +1,82 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- THUNDERHEART — electric, RARE — heartbeat as concentric thunder rings
+       Mutations: v1 Deep Blue · v2 Gold · v3 Storm White · v4 Purple
+       Signature: body w/ PULSING CONCENTRIC RINGS from chest (heartbeat thunder)
+  -->
+  <!-- PALETTE
+       v1: body-base=#1a3878 body-shadow=#001028 body-highlight=#3858a0 body-stroke=#000000 accent-base=#80c0ff accent-shadow=#3870b0 accent-highlight=#c0e0ff
+       v2: body-base=#e8b830 body-shadow=#987820 body-highlight=#ffd068 body-stroke=#382808 accent-base=#fff088 accent-shadow=#a08820 accent-highlight=#ffffd8
+       v3: body-base=#e8e8f0 body-shadow=#a0a8b8 body-highlight=#ffffff body-stroke=#3a3a48 accent-base=#80c0ff accent-shadow=#3870b0 accent-highlight=#c0e0ff
+       v4: body-base=#702898 body-shadow=#380850 body-highlight=#a058c0 body-stroke=#100018 accent-base=#c060ff accent-shadow=#7028a0 accent-highlight=#e0a0ff
+  -->
+  <style>
+    .body-base       { fill: #1a3878; }
+    .body-base       { stroke: #1a3878; }
+    .body-shadow     { fill: #001028; }
+    .body-shadow     { stroke: #001028; }
+    .body-highlight  { fill: #3858a0; }
+    .body-highlight  { stroke: #3858a0; }
+    .body-stroke     { fill: #000000; }
+    .body-stroke     { stroke: #000000; }
+    .accent-base     { fill: #80c0ff; }
+    .accent-base     { stroke: #80c0ff; }
+    .accent-shadow   { fill: #3870b0; }
+    .accent-shadow   { stroke: #3870b0; }
+    .accent-highlight{ fill: #c0e0ff; }
+    .accent-highlight{ stroke: #c0e0ff; }
+    .eye-iris        { fill: #80d8ff; }
+    .eye-pupil       { fill: #000810; }
+    .eye-highlight   { fill: #ffffff; }
+    .eye-sclera      { fill: #e0eef8; }
+    .mouth-interior  { fill: #000810; }
+  </style>
+
+  <!-- Custom glow: pulsing concentric rings from chest (signature heartbeat) -->
+  <g fill="none" opacity="0.5">
+    <circle cx="256" cy="320" r="200" stroke="#80c0ff" stroke-width="3"/>
+    <circle cx="256" cy="320" r="170" stroke="#80c0ff" stroke-width="3" opacity="0.7"/>
+    <circle cx="256" cy="320" r="140" stroke="#80c0ff" stroke-width="3" opacity="0.85"/>
+  </g>
+
+  <!-- feet -->
+  <ellipse cx="216" cy="446" rx="28" ry="13" class="body-shadow"/>
+  <ellipse cx="296" cy="446" rx="28" ry="13" class="body-shadow"/>
+  <ellipse cx="216" cy="442" rx="22" ry="9" class="body-base"/>
+  <ellipse cx="296" cy="442" rx="22" ry="9" class="body-base"/>
+
+  <!-- arms -->
+  <ellipse cx="138" cy="316" rx="36" ry="20" class="body-shadow"/>
+  <ellipse cx="142" cy="312" rx="30" ry="15" class="body-base"/>
+  <ellipse cx="374" cy="316" rx="36" ry="20" class="body-shadow"/>
+  <ellipse cx="370" cy="312" rx="30" ry="15" class="body-base"/>
+
+  <!-- body -->
+  <ellipse cx="256" cy="306" rx="120" ry="138" class="body-shadow"/>
+  <ellipse cx="256" cy="300" rx="114" ry="132" class="body-base"/>
+
+  <!-- chest heart-window (signature: visible glowing heart) -->
+  <ellipse cx="256" cy="332" rx="48" ry="56" class="body-stroke"/>
+  <ellipse cx="256" cy="332" rx="42" ry="50" fill="#000810"/>
+  <!-- heartbeat lightning shape inside -->
+  <path d="M232,320 L246,330 L240,344 L252,338 L246,360 L264,338 L258,332 L272,320 L262,310 L252,316 L240,308 Z" class="accent-base"/>
+  <path d="M236,322 L246,328 L242,342 L250,340 L248,354 L260,338 L256,332 L266,322 L260,316 L252,318 L242,312 Z" class="accent-highlight"/>
+  <circle cx="246" cy="316" r="2" fill="#ffffff"/>
+  <circle cx="262" cy="340" r="2" fill="#ffffff"/>
+
+  <!-- ═══════ EYES (electric family — wise/calm) ═══════ -->
+  <ellipse cx="220" cy="240" rx="22" ry="22" class="eye-sclera" stroke="none"/>
+  <ellipse cx="220" cy="240" rx="18" ry="18" fill="none" stroke="#000000" stroke-width="2.5"/>
+  <circle cx="222" cy="244" r="13" class="accent-base"/>
+  <circle cx="222" cy="244" r="13" fill="none" stroke="#3870b0" stroke-width="1.5"/>
+  <circle cx="222" cy="244" r="9" class="eye-pupil"/>
+  <path d="M222,236 L222,242 M218,240 L226,240" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+  <ellipse cx="292" cy="240" rx="22" ry="22" class="eye-sclera" stroke="none"/>
+  <ellipse cx="292" cy="240" rx="18" ry="18" fill="none" stroke="#000000" stroke-width="2.5"/>
+  <circle cx="290" cy="244" r="13" class="accent-base"/>
+  <circle cx="290" cy="244" r="13" fill="none" stroke="#3870b0" stroke-width="1.5"/>
+  <circle cx="290" cy="244" r="9" class="eye-pupil"/>
+  <path d="M290,236 L290,242 M286,240 L294,240" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- mouth: small calm -->
+  <path d="M236,408 Q256,418 276,408" class="body-stroke" fill="none" stroke-width="3" stroke-linecap="round"/>
+</svg>

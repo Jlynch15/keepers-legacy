@@ -1,0 +1,78 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- STORMCALLER — electric, uncommon — brooding, storm cloud forms above
+       Mutations: v1 Storm Grey · v2 Dark Blue · v3 Electric Yellow · v4 Cloud White
+       Signature: body w/ STORM CLOUD floating above head + lightning arcs from cloud
+  -->
+  <!-- PALETTE
+       v1: body-base=#7888 a0 body-shadow=#384858 body-highlight=#a0b0c0 body-stroke=#10202a accent-base=#90a0b0 accent-shadow=#506070 accent-highlight=#b8c8d8
+       v2: body-base=#283068 body-shadow=#100828 body-highlight=#404868 body-stroke=#000010 accent-base=#384878 accent-shadow=#101830 accent-highlight=#608898
+       v3: body-base=#ffd820 body-shadow=#a08010 body-highlight=#fff088 body-stroke=#403008 accent-base=#ffe060 accent-shadow=#a08820 accent-highlight=#fff8a8
+       v4: body-base=#e8e8f0 body-shadow=#a0a8b8 body-highlight=#ffffff body-stroke=#3a3a48 accent-base=#d0d8e8 accent-shadow=#7888 a0 accent-highlight=#ffffff
+  -->
+  <style>
+    .body-base       { fill: #7888a0; }
+    .body-base       { stroke: #7888a0; }
+    .body-shadow     { fill: #384858; }
+    .body-shadow     { stroke: #384858; }
+    .body-highlight  { fill: #a0b0c0; }
+    .body-highlight  { stroke: #a0b0c0; }
+    .body-stroke     { fill: #10202a; }
+    .body-stroke     { stroke: #10202a; }
+    .accent-base     { fill: #90a0b0; }
+    .accent-base     { stroke: #90a0b0; }
+    .accent-shadow   { fill: #506070; }
+    .accent-shadow   { stroke: #506070; }
+    .accent-highlight{ fill: #b8c8d8; }
+    .accent-highlight{ stroke: #b8c8d8; }
+    .eye-iris        { fill: #fff088; }
+    .eye-pupil       { fill: #1a1000; }
+    .eye-highlight   { fill: #ffffff; }
+    .eye-sclera      { fill: #f0f8ff; }
+    .mouth-interior  { fill: #10202a; }
+  </style>
+
+  <!-- Custom glow: storm cloud above head (signature) -->
+  <path d="M132,140 Q116,90 180,80 Q200,50 240,70 Q272,40 304,68 Q344,50 372,80 Q420,90 396,140 Q412,170 376,180 Q340,190 256,180 Q172,190 136,180 Q104,170 132,140 Z" class="accent-shadow"/>
+  <path d="M138,138 Q122,96 184,86 Q204,58 240,76 Q272,48 304,74 Q340,58 366,86 Q414,96 390,138 Q406,166 372,176 Q340,184 256,174 Q172,184 140,176 Q108,166 138,138 Z" class="accent-base"/>
+  <ellipse cx="200" cy="120" rx="40" ry="14" class="accent-highlight" opacity="0.7"/>
+  <!-- lightning bolts from cloud -->
+  <path d="M200,180 L210,206 L196,210 L208,236" stroke="#fff088" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M200,180 L210,206 L196,210 L208,236" stroke="#ffffff" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <path d="M312,180 L302,206 L316,210 L304,236" stroke="#fff088" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M312,180 L302,206 L316,210 L304,236" stroke="#ffffff" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+
+  <!-- feet -->
+  <ellipse cx="216" cy="446" rx="26" ry="13" class="body-shadow"/>
+  <ellipse cx="296" cy="446" rx="26" ry="13" class="body-shadow"/>
+  <ellipse cx="216" cy="442" rx="22" ry="9" class="body-base"/>
+  <ellipse cx="296" cy="442" rx="22" ry="9" class="body-base"/>
+
+  <!-- arms -->
+  <ellipse cx="138" cy="346" rx="34" ry="18" class="body-shadow" transform="rotate(-15 138 346)"/>
+  <ellipse cx="142" cy="342" rx="28" ry="13" class="body-base"   transform="rotate(-15 142 342)"/>
+  <ellipse cx="374" cy="346" rx="34" ry="18" class="body-shadow" transform="rotate(15 374 346)"/>
+  <ellipse cx="370" cy="342" rx="28" ry="13" class="body-base"   transform="rotate(15 370 342)"/>
+
+  <!-- body -->
+  <circle cx="256" cy="336" r="118" class="body-shadow"/>
+  <circle cx="256" cy="330" r="110" class="body-base"/>
+  <ellipse cx="220" cy="278" rx="22" ry="14" class="body-highlight" opacity="0.55"/>
+
+  <!-- ═══════ EYES (electric family — brooding/intense) ═══════ -->
+  <ellipse cx="220" cy="318" rx="22" ry="20" class="eye-sclera" stroke="none"/>
+  <ellipse cx="220" cy="318" rx="18" ry="16" fill="none" stroke="#10202a" stroke-width="2.5"/>
+  <ellipse cx="222" cy="322" rx="11" ry="9" class="eye-iris"/>
+  <ellipse cx="222" cy="322" rx="7" ry="6" class="eye-pupil"/>
+  <path d="M222,316 L222,322 M218,320 L226,320" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- intense brow -->
+  <path d="M196,302 L246,298" stroke="#10202a" stroke-width="3" stroke-linecap="round"/>
+  <ellipse cx="292" cy="318" rx="22" ry="20" class="eye-sclera" stroke="none"/>
+  <ellipse cx="292" cy="318" rx="18" ry="16" fill="none" stroke="#10202a" stroke-width="2.5"/>
+  <ellipse cx="290" cy="322" rx="11" ry="9" class="eye-iris"/>
+  <ellipse cx="290" cy="322" rx="7" ry="6" class="eye-pupil"/>
+  <path d="M290,316 L290,322 M286,320 L294,320" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M316,302 L266,298" stroke="#10202a" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- mouth: serious thin -->
+  <path d="M236,360 L276,360" class="body-stroke" fill="none" stroke-width="3" stroke-linecap="round"/>
+</svg>

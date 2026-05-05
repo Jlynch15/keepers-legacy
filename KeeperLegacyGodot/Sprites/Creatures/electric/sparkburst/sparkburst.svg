@@ -1,0 +1,90 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- SPARKBURST — electric, common — releases involuntary sparks
+       Mutations: v1 Electric Yellow · v2 White · v3 Blue Arc · v4 Orange Spark
+       Signature: small body w/ SPARK BURST EXPLOSION around it (random sparks popping)
+  -->
+  <!-- PALETTE
+       v1: body-base=#ffe838 body-shadow=#a09020 body-highlight=#fff088 body-stroke=#403008 accent-base=#fff088 accent-shadow=#a08820 accent-highlight=#ffffd8
+       v2: body-base=#f8fbff body-shadow=#a8b0b8 body-highlight=#ffffff body-stroke=#383848 accent-base=#a0c0e8 accent-shadow=#5078a0 accent-highlight=#d0e8f8
+       v3: body-base=#3068e0 body-shadow=#102868 body-highlight=#5088e8 body-stroke=#000820 accent-base=#80b0f8 accent-shadow=#3068b0 accent-highlight=#c0d8ff
+       v4: body-base=#ff8830 body-shadow=#a04018 body-highlight=#ffb068 body-stroke=#481000 accent-base=#ffc060 accent-shadow=#a07020 accent-highlight=#ffe898
+  -->
+  <style>
+    .body-base       { fill: #ffe838; }
+    .body-base       { stroke: #ffe838; }
+    .body-shadow     { fill: #a09020; }
+    .body-shadow     { stroke: #a09020; }
+    .body-highlight  { fill: #fff088; }
+    .body-highlight  { stroke: #fff088; }
+    .body-stroke     { fill: #403008; }
+    .body-stroke     { stroke: #403008; }
+    .accent-base     { fill: #fff088; }
+    .accent-base     { stroke: #fff088; }
+    .accent-shadow   { fill: #a08820; }
+    .accent-shadow   { stroke: #a08820; }
+    .accent-highlight{ fill: #ffffd8; }
+    .accent-highlight{ stroke: #ffffd8; }
+    .eye-iris        { fill: #fff088; }
+    .eye-pupil       { fill: #1a1000; }
+    .eye-highlight   { fill: #ffffff; }
+    .eye-sclera      { fill: #fff8d8; }
+    .mouth-interior  { fill: #2a1808; }
+    .tongue          { fill: #ff8090; }
+  </style>
+
+  <!-- Custom glow: spark burst (jagged lightning bolts radiating outward) -->
+  <g stroke="#ffe838" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.9">
+    <path d="M256,140 L266,170 L252,180 L260,200"/>
+    <path d="M380,180 L356,200 L368,220 L348,240"/>
+    <path d="M400,300 L370,300 L380,318 L360,326"/>
+    <path d="M380,420 L360,400 L350,418 L334,408"/>
+    <path d="M132,180 L156,200 L144,220 L164,240"/>
+    <path d="M112,300 L142,300 L132,318 L152,326"/>
+    <path d="M132,420 L152,400 L162,418 L178,408"/>
+  </g>
+  <g stroke="#ffffff" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.95">
+    <path d="M256,140 L266,170 L252,180 L260,200"/>
+    <path d="M380,180 L356,200 L368,220"/>
+    <path d="M400,300 L370,300 L380,318"/>
+    <path d="M132,180 L156,200 L144,220"/>
+  </g>
+
+  <!-- feet -->
+  <ellipse cx="216" cy="436" rx="26" ry="13" class="body-shadow"/>
+  <ellipse cx="296" cy="436" rx="26" ry="13" class="body-shadow"/>
+  <ellipse cx="216" cy="432" rx="22" ry="9" class="body-base"/>
+  <ellipse cx="296" cy="432" rx="22" ry="9" class="body-base"/>
+
+  <!-- arms -->
+  <ellipse cx="148" cy="306" rx="32" ry="18" class="body-shadow" transform="rotate(-15 148 306)"/>
+  <ellipse cx="152" cy="302" rx="26" ry="13" class="body-base"   transform="rotate(-15 152 302)"/>
+  <ellipse cx="364" cy="306" rx="32" ry="18" class="body-shadow" transform="rotate(15 364 306)"/>
+  <ellipse cx="360" cy="302" rx="26" ry="13" class="body-base"   transform="rotate(15 360 302)"/>
+
+  <!-- body -->
+  <circle cx="256" cy="306" r="108" class="body-shadow"/>
+  <circle cx="256" cy="300" r="100" class="body-base"/>
+  <ellipse cx="220" cy="248" rx="20" ry="14" class="body-highlight" opacity="0.55"/>
+
+  <!-- ═══════ EYES (electric family — GLOWING bright iris, CROSS-shaped highlight) ═══════ -->
+  <ellipse cx="220" cy="290" rx="22" ry="24" class="eye-sclera" stroke="none"/>
+  <ellipse cx="220" cy="290" rx="18" ry="20" fill="none" stroke="#403008" stroke-width="2.5"/>
+  <circle cx="222" cy="296" r="13" class="accent-base"/>
+  <circle cx="222" cy="296" r="13" fill="none" stroke="#a08820" stroke-width="1.5"/>
+  <circle cx="222" cy="296" r="9" class="eye-pupil"/>
+  <path d="M222,288 L222,294 M218,290 L226,290" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+  <ellipse cx="292" cy="290" rx="22" ry="24" class="eye-sclera" stroke="none"/>
+  <ellipse cx="292" cy="290" rx="18" ry="20" fill="none" stroke="#403008" stroke-width="2.5"/>
+  <circle cx="290" cy="296" r="13" class="accent-base"/>
+  <circle cx="290" cy="296" r="13" fill="none" stroke="#a08820" stroke-width="1.5"/>
+  <circle cx="290" cy="296" r="9" class="eye-pupil"/>
+  <path d="M290,288 L290,294 M286,290 L294,290" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- mouth: surprised "o" -->
+  <ellipse cx="256" cy="344" rx="12" ry="10" class="mouth-interior"/>
+  <ellipse cx="256" cy="344" rx="12" ry="10" fill="none" stroke="#403008" stroke-width="2.5"/>
+
+  <!-- cheek -->
+  <ellipse cx="184" cy="332" rx="11" ry="7" fill="#ffd040" opacity="0.6" stroke="none"/>
+  <ellipse cx="328" cy="332" rx="11" ry="7" fill="#ffd040" opacity="0.6" stroke="none"/>
+</svg>

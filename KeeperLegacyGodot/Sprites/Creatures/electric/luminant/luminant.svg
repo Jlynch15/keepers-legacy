@@ -1,0 +1,77 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- LUMINANT — electric, common — steady glow, living nightlight
+       Mutations: v1 Warm Yellow · v2 Soft White · v3 Pale Blue · v4 Golden
+       Signature: round body w/ STEADY SOFT INNER GLOW (lantern-like, not flickering)
+  -->
+  <!-- PALETTE
+       v1: body-base=#fae878 body-shadow=#a89028 body-highlight=#fff8a8 body-stroke=#403008 accent-base=#ffe060 accent-shadow=#a08820 accent-highlight=#fff8a8
+       v2: body-base=#fafafa body-shadow=#a8a8a8 body-highlight=#ffffff body-stroke=#404040 accent-base=#f0f0f0 accent-shadow=#909090 accent-highlight=#ffffff
+       v3: body-base=#a8c8e8 body-shadow=#5078a0 body-highlight=#c0d8f0 body-stroke=#1a3858 accent-base=#c0d8f0 accent-shadow=#788 8a8 accent-highlight=#ffffff
+       v4: body-base=#e8b850 body-shadow=#988020 body-highlight=#ffd078 body-stroke=#403008 accent-base=#ffd060 accent-shadow=#a07820 accent-highlight=#ffe898
+  -->
+  <style>
+    .body-base       { fill: #fae878; }
+    .body-base       { stroke: #fae878; }
+    .body-shadow     { fill: #a89028; }
+    .body-shadow     { stroke: #a89028; }
+    .body-highlight  { fill: #fff8a8; }
+    .body-highlight  { stroke: #fff8a8; }
+    .body-stroke     { fill: #403008; }
+    .body-stroke     { stroke: #403008; }
+    .accent-base     { fill: #ffe060; }
+    .accent-base     { stroke: #ffe060; }
+    .accent-shadow   { fill: #a08820; }
+    .accent-shadow   { stroke: #a08820; }
+    .accent-highlight{ fill: #fff8a8; }
+    .accent-highlight{ stroke: #fff8a8; }
+    .eye-iris        { fill: #fff088; }
+    .eye-pupil       { fill: #1a1000; }
+    .eye-highlight   { fill: #ffffff; }
+    .eye-sclera      { fill: #fff8d8; }
+    .mouth-interior  { fill: #2a1808; }
+  </style>
+
+  <!-- Custom glow: steady inner-lantern light radiating from inside the body -->
+  <ellipse cx="256" cy="306" rx="100" ry="120" fill="#fff8a8" opacity="0.5"/>
+  <ellipse cx="256" cy="306" rx="76" ry="92" fill="#ffffff" opacity="0.45"/>
+
+  <!-- feet -->
+  <ellipse cx="216" cy="436" rx="26" ry="13" class="body-shadow"/>
+  <ellipse cx="296" cy="436" rx="26" ry="13" class="body-shadow"/>
+  <ellipse cx="216" cy="432" rx="22" ry="9" class="body-base"/>
+  <ellipse cx="296" cy="432" rx="22" ry="9" class="body-base"/>
+
+  <!-- arms -->
+  <ellipse cx="138" cy="306" rx="34" ry="18" class="body-shadow" transform="rotate(-15 138 306)"/>
+  <ellipse cx="142" cy="302" rx="28" ry="13" class="body-base"   transform="rotate(-15 142 302)"/>
+  <ellipse cx="374" cy="306" rx="34" ry="18" class="body-shadow" transform="rotate(15 374 306)"/>
+  <ellipse cx="370" cy="302" rx="28" ry="13" class="body-base"   transform="rotate(15 370 302)"/>
+
+  <!-- body -->
+  <circle cx="256" cy="306" r="118" class="body-shadow"/>
+  <circle cx="256" cy="300" r="110" class="body-base"/>
+  <!-- inner light core visible through body -->
+  <circle cx="256" cy="306" r="58" fill="#ffffff" opacity="0.55"/>
+  <circle cx="256" cy="306" r="40" fill="#ffffff" opacity="0.65"/>
+
+  <!-- ═══════ EYES (electric family — soft round, gentle warm) ═══════ -->
+  <ellipse cx="220" cy="282" rx="22" ry="24" class="eye-sclera" stroke="none"/>
+  <ellipse cx="220" cy="282" rx="18" ry="20" fill="none" stroke="#403008" stroke-width="2.5"/>
+  <circle cx="222" cy="288" r="13" class="accent-base"/>
+  <circle cx="222" cy="288" r="13" fill="none" stroke="#a08820" stroke-width="1.5"/>
+  <circle cx="222" cy="288" r="9" class="eye-pupil"/>
+  <path d="M222,280 L222,286 M218,284 L226,284" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"/>
+  <ellipse cx="292" cy="282" rx="22" ry="24" class="eye-sclera" stroke="none"/>
+  <ellipse cx="292" cy="282" rx="18" ry="20" fill="none" stroke="#403008" stroke-width="2.5"/>
+  <circle cx="290" cy="288" r="13" class="accent-base"/>
+  <circle cx="290" cy="288" r="13" fill="none" stroke="#a08820" stroke-width="1.5"/>
+  <circle cx="290" cy="288" r="9" class="eye-pupil"/>
+  <path d="M290,280 L290,286 M286,284 L294,284" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- mouth: peaceful smile -->
+  <path d="M236,326 Q256,338 276,326" class="body-stroke" fill="none" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- cheek warmth -->
+  <ellipse cx="180" cy="316" rx="11" ry="7" fill="#ffd040" opacity="0.55" stroke="none"/>
+  <ellipse cx="332" cy="316" rx="11" ry="7" fill="#ffd040" opacity="0.55" stroke="none"/>
+</svg>
