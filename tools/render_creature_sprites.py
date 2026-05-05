@@ -61,12 +61,12 @@ def parse_palette(svg_text: str) -> dict[int, dict[str, str]]:
 # ── Style rewriting ────────────────────────────────────────────────────────────
 
 CLASS_RULE_RE = re.compile(
-    r"(\.([a-z][a-z0-9-]*)\s*\{\s*fill:\s*)#[0-9a-fA-F]{3,6}(\s*;\s*\})"
+    r"(\.([a-z][a-z0-9-]*)\s*\{\s*(?:fill|stroke):\s*)#[0-9a-fA-F]{3,6}(\s*;\s*\})"
 )
 
 
 def apply_palette(svg_text: str, palette: dict[str, str]) -> str:
-    """Rewrite each `.class { fill: #...; }` rule in the <style> block with the palette's color."""
+    """Rewrite each `.class { fill|stroke: #...; }` rule in the <style> block with the palette's color."""
     def replace(match: re.Match) -> str:
         prefix, cls, suffix = match.group(1), match.group(2), match.group(3)
         color = palette.get(cls)
