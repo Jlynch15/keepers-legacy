@@ -66,17 +66,20 @@ namespace KeeperLegacy.UI.Habitat
             root.AddThemeConstantOverride("separation", 0);
             AddChild(root);
 
+            // Note: AddChild must come BEFORE Set* calls — Set* methods touch
+            // fields initialized in the child's _Ready, which only runs after
+            // the node enters the tree. Same convention as PedestalNode.Setup.
             _overlayBar = new HabitatOverlayBar();
+            root.AddChild(_overlayBar);
             _overlayBar.SetTheme(theme);
             _overlayBar.BackPressed += OnBackPressed;
-            root.AddChild(_overlayBar);
 
             _tabBar = new HabitatTabBar();
+            root.AddChild(_tabBar);
             _tabBar.SetBiome(_biome, theme);
             _tabBar.ActiveHabitatChanged += OnTabActiveHabitatChanged;
             _tabBar.BuyHabitatRequested  += OnBuyHabitatRequested;
             _tabBar.StoryGatedTapped     += OnStoryGatedTapped;
-            root.AddChild(_tabBar);
 
             // Content area — env view + roster panel
             var content = new HBoxContainer();
@@ -86,16 +89,16 @@ namespace KeeperLegacy.UI.Habitat
 
             _envView = new HabitatEnvironmentView();
             _envView.SizeFlagsHorizontal = SizeFlags.ExpandFill;
+            content.AddChild(_envView);
             _envView.SetTheme(theme);
             _envView.CreatureClicked += OnCreatureClicked;
-            content.AddChild(_envView);
 
             _rosterPanel = new HabitatRosterPanel();
             _rosterPanel.CustomMinimumSize = new Vector2(360, 0);
+            content.AddChild(_rosterPanel);
             _rosterPanel.CreatureClicked          += OnCreatureClicked;
             _rosterPanel.AddCreatureRequested     += OnAddCreatureRequested;
             _rosterPanel.ReleaseCreatureRequested += OnReleaseCreatureRequested;
-            content.AddChild(_rosterPanel);
 
             // Choice menu — added at root for top z-index
             _choiceMenu = new ChoiceMenu();
