@@ -1,0 +1,133 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- WAVECREST — water, common — athletic streamlined surfer-pose, wave-crest fin on head
+       Mutations: v1 Ocean Blue · v2 Foam White · v3 Sunset Orange · v4 Turquoise
+       Signature: confident upright stance with curling wave-fin atop head
+       SELF-CHECK vs prior water creatures:
+         - Aquaburst: round 2-eyes "o" mouth → DIFFERENT (athletic stance, not round)
+         - Shimmerstream: side 1-eye lip-smile → DIFFERENT (front-facing, two eyes)
+         - Seraphine: angel-wing halo → DIFFERENT (no wings, has wave-fin)
+         - Mistwalker: ghost half-closed eyes "u" mouth → DIFFERENT (alert eyes, confident grin)
+         - Coralsprite/Deepecho: already differentiated
+         Eye treatment: confident wide-open ovals with ARROW-shaped highlight (athletic look)
+         Mouth: confident asymmetric grin (one corner higher than the other)
+  -->
+  <!-- PALETTE
+       v1: body-base=#3070d8 body-shadow=#1a3878 body-highlight=#80b0e8 body-stroke=#0a1840 accent-base=#80c8f0 accent-shadow=#3070a8 accent-highlight=#c0e8ff
+       v2: body-base=#f0f4f8 body-shadow=#a8b0bc body-highlight=#ffffff body-stroke=#5a6068 accent-base=#c8d8e8 accent-shadow=#88a0b8 accent-highlight=#ffffff
+       v3: body-base=#f08850 body-shadow=#a04820 body-highlight=#ffb088 body-stroke=#502008 accent-base=#ffa870 accent-shadow=#b06030 accent-highlight=#ffd0a8
+       v4: body-base=#40b8b0 body-shadow=#1a6868 body-highlight=#80d8d0 body-stroke=#0a3030 accent-base=#80e0d8 accent-shadow=#308890 accent-highlight=#c0f0ec
+  -->
+  <style>
+    .body-base       { fill: #3070d8; }
+    .body-base       { stroke: #3070d8; }
+    .body-shadow     { fill: #1a3878; }
+    .body-shadow     { stroke: #1a3878; }
+    .body-highlight  { fill: #80b0e8; }
+    .body-highlight  { stroke: #80b0e8; }
+    .body-stroke     { fill: #0a1840; }
+    .body-stroke     { stroke: #0a1840; }
+    .accent-base     { fill: #80c8f0; }
+    .accent-base     { stroke: #80c8f0; }
+    .accent-shadow   { fill: #3070a8; }
+    .accent-shadow   { stroke: #3070a8; }
+    .accent-highlight{ fill: #c0e8ff; }
+    .accent-highlight{ stroke: #c0e8ff; }
+    .eye-iris        { fill: #1a4868; }
+    .eye-pupil       { fill: #0a1828; }
+    .eye-highlight   { fill: #ffffff; }
+    .eye-sclera      { fill: #d8eef0; }
+    .mouth-interior  { fill: #2a0820; }
+    .tongue          { fill: #ff8090; }
+  </style>
+
+  <!-- ═══════ COMPOSITION — athletic upright slim body, wave-fin atop ═══════ -->
+
+  <!-- ═══════ FEET (planted athletic stance) ═══════ -->
+  <ellipse cx="216" cy="442" rx="32" ry="14" class="body-shadow"/>
+  <ellipse cx="296" cy="442" rx="32" ry="14" class="body-shadow"/>
+  <ellipse cx="216" cy="438" rx="26" ry="10" class="body-base"/>
+  <ellipse cx="296" cy="438" rx="26" ry="10" class="body-base"/>
+
+  <!-- ═══════ ARMS (one raised athletic, one at side) ═══════ -->
+  <!-- left arm at side -->
+  <ellipse cx="138" cy="316" rx="40" ry="22" class="body-shadow" transform="rotate(-12 138 316)"/>
+  <ellipse cx="142" cy="312" rx="34" ry="17" class="body-base"   transform="rotate(-12 142 312)"/>
+  <!-- right arm raised -->
+  <ellipse cx="378" cy="248" rx="42" ry="22" class="body-shadow" transform="rotate(-32 378 248)"/>
+  <ellipse cx="374" cy="244" rx="36" ry="17" class="body-base"   transform="rotate(-32 374 244)"/>
+  <!-- hand fist at top -->
+  <circle cx="404" cy="200" r="16" class="body-shadow"/>
+  <circle cx="402" cy="198" r="13" class="body-base"/>
+
+  <!-- ═══════ STREAMLINED OVAL BODY (slim athletic) ═══════ -->
+  <ellipse cx="256" cy="320" rx="92" ry="118" class="body-shadow"/>
+  <ellipse cx="256" cy="316" rx="86" ry="112" class="body-base"/>
+  <ellipse cx="220" cy="252" rx="48" ry="56" class="body-highlight" opacity="0.55"/>
+  <ellipse cx="256" cy="396" rx="58" ry="22" class="body-highlight" opacity="0.32"/>
+
+  <!-- ═══════ WAVE-CREST FIN (signature: curling wave atop head) ═══════ -->
+  <!-- under-curl shadow -->
+  <path d="M186,196 Q210,150 256,142 Q310,140 348,170 Q358,196 332,200 Q302,180 268,178 Q236,184 222,202 Q210,218 198,212 Q186,206 186,196 Z"
+        class="accent-shadow"/>
+  <!-- main wave -->
+  <path d="M192,194 Q216,154 256,148 Q304,148 340,172 Q352,192 332,196 Q304,182 270,184 Q240,190 228,202 Q214,212 200,208 Q192,204 192,194 Z"
+        class="accent-base"/>
+  <!-- foam crest highlight -->
+  <path d="M226,166 Q254,154 290,158 Q316,162 332,176 Q314,168 290,168 Q258,168 234,178 Q224,170 226,166 Z"
+        class="accent-highlight" opacity="0.95"/>
+  <!-- wave foam tip droplets -->
+  <circle cx="350" cy="166" r="6"  class="accent-base"/>
+  <circle cx="348" cy="164" r="4"  class="accent-highlight"/>
+  <circle cx="362" cy="180" r="4"  class="accent-base"/>
+
+  <!-- ═══════ EYES (water family — confident wide-open, ARROW-shaped highlights) ═══════ -->
+  <ellipse cx="222" cy="298" rx="28" ry="32" class="eye-sclera" stroke="none"/>
+  <ellipse cx="222" cy="298" rx="24" ry="28" fill="none" stroke="#ffffff" stroke-width="3"/>
+  <circle  cx="226" cy="304" r="18" class="eye-iris"/>
+  <circle  cx="226" cy="304" r="11" class="eye-pupil"/>
+  <!-- Arrow/chevron-shaped highlight (athletic theme) -->
+  <path d="M232,288 L240,294 L232,300 L228,294 Z" class="eye-highlight" stroke="none"/>
+  <circle cx="220" cy="316" r="2.5" class="eye-highlight" stroke="none"/>
+
+  <ellipse cx="290" cy="298" rx="28" ry="32" class="eye-sclera" stroke="none"/>
+  <ellipse cx="290" cy="298" rx="24" ry="28" fill="none" stroke="#ffffff" stroke-width="3"/>
+  <circle  cx="286" cy="304" r="18" class="eye-iris"/>
+  <circle  cx="286" cy="304" r="11" class="eye-pupil"/>
+  <path d="M280,288 L272,294 L280,300 L284,294 Z" class="eye-highlight" stroke="none"/>
+  <circle cx="292" cy="316" r="2.5" class="eye-highlight" stroke="none"/>
+
+  <!-- ═══════ MOUTH (asymmetric confident smirk — one corner up) ═══════ -->
+  <path d="M226,360 Q256,378 290,364" class="body-stroke" fill="none" stroke-width="4" stroke-linecap="round"/>
+  <!-- visible tongue showing as small flick -->
+  <ellipse cx="278" cy="370" rx="4" ry="2.5" class="tongue" stroke="none"/>
+
+  <!-- ═══════ CHEEK BLUSH ═══════ -->
+  <ellipse cx="184" cy="346" rx="14" ry="9" class="accent-base" opacity="0.4" stroke="none"/>
+  <ellipse cx="328" cy="346" rx="14" ry="9" class="accent-base" opacity="0.4" stroke="none"/>
+
+  <!-- ═══════ BODY SPECKS ═══════ -->
+  <circle cx="218" cy="232" r="2.5" class="body-highlight" opacity="0.7" stroke="none"/>
+  <circle cx="296" cy="252" r="2"   class="body-highlight" opacity="0.6" stroke="none"/>
+  <circle cx="178" cy="376" r="2.5" class="body-highlight" opacity="0.6" stroke="none"/>
+  <circle cx="324" cy="396" r="2"   class="body-highlight" opacity="0.55" stroke="none"/>
+  <circle cx="246" cy="416" r="2"   class="body-highlight" opacity="0.5" stroke="none"/>
+  <circle cx="200" cy="220" r="2"   class="accent-base" opacity="0.55" stroke="none"/>
+  <circle cx="312" cy="232" r="2"   class="accent-base" opacity="0.55" stroke="none"/>
+
+  <!-- ═══════ AMBIENT BUBBLES ═══════ -->
+  <circle cx="60"  cy="120" r="6" fill="none" stroke="#80c8e8" stroke-width="2" opacity="0.7"/>
+  <circle cx="60"  cy="120" r="6" fill="#a0e0ff" opacity="0.18"/>
+  <circle cx="92"  cy="84"  r="3" fill="none" stroke="#80c8e8" stroke-width="1.5" opacity="0.55"/>
+  <circle cx="44"  cy="380" r="4" fill="none" stroke="#80c8e8" stroke-width="2" opacity="0.65"/>
+  <circle cx="74"  cy="416" r="3" fill="none" stroke="#80c8e8" stroke-width="1.5" opacity="0.55"/>
+  <circle cx="466" cy="320" r="4" fill="none" stroke="#80c8e8" stroke-width="2" opacity="0.6"/>
+  <circle cx="486" cy="380" r="3" fill="none" stroke="#80c8e8" stroke-width="1.5" opacity="0.55"/>
+
+  <!-- ═══════ SPARKLE ACCENTS (wave foam glints) ═══════ -->
+  <path d="M380,140 L382,148 L390,150 L382,152 L380,160 L378,152 L370,150 L378,148 Z"
+        fill="#ffffff" opacity="0.95"/>
+  <path d="M170,170 L172,176 L178,178 L172,180 L170,186 L168,180 L162,178 L168,176 Z"
+        fill="#ffffff" opacity="0.85"/>
+  <path d="M256,108 L258,116 L266,118 L258,120 L256,128 L254,120 L246,118 L254,116 Z"
+        fill="#ffffff" opacity="0.85"/>
+</svg>
