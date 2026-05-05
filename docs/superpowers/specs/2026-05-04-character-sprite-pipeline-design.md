@@ -92,7 +92,7 @@ These 12 PNGs are the locked baseline. User reviews, gives feedback, and iterate
 
 Once locked, the remaining 77 creatures are produced in habitat batches with a review pause between each. Habitat counts (from `CreatureRosterData.cs`):
 
-1. Finish water (13 remaining — 15 total minus Coralsprite & Deepecho pilots) → review
+1. Finish water (12 remaining — 15 total minus Coralsprite & Deepecho pilots minus Tidecaller which is covered by illustrated migration) → review
 2. Dirt (14 remaining — 15 total minus Bedrock pilot) → review
 3. Grass (15) → review
 4. Fire (10) → review
@@ -100,7 +100,9 @@ Once locked, the remaining 77 creatures are produced in habitat batches with a r
 6. Electric (10) → review
 7. Magical (5) → review
 
-Sum: 13 + 14 + 15 + 10 + 10 + 10 + 5 = 77 sweep creatures + 3 pilots = 80 total.
+Sum: 12 + 14 + 15 + 10 + 10 + 10 + 5 = 76 sweep SVGs + 3 pilot SVGs + 1 illustrated-only (Tidecaller) = 80 total creatures covered.
+
+Pilot SVGs for Coralsprite and Deepecho are authored for **style validation only**. They render to `Sprites/Creatures/<id>/_svg_pilot/` rather than overwriting the canonical illustrated PNGs. Bedrock has no illustrated migration, so its SVG renders directly to canonical paths.
 
 Each review is a quick "does this still match the locked style" check, not a re-debate of the baseline. If significant drift appears, work pauses to re-anchor before continuing.
 
