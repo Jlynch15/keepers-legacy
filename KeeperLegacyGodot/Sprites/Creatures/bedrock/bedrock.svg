@@ -1,0 +1,113 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- PALETTE
+       v1: body-base=#9a9a9a body-shadow=#606060 body-highlight=#c8c8c8 body-stroke=#303030 accent-base=#5080b8 accent-shadow=#1a3060 accent-highlight=#80a8d8
+       v2: body-base=#6a4a30 body-shadow=#3a2818 body-highlight=#9a7050 body-stroke=#1a1008 accent-base=#c0a060 accent-shadow=#503010 accent-highlight=#e0c080
+       v3: body-base=#3a3a3a body-shadow=#1a1a1a body-highlight=#5a5a5a body-stroke=#000000 accent-base=#806020 accent-shadow=#302000 accent-highlight=#b09040
+       v4: body-base=#d8c098 body-shadow=#9a7848 body-highlight=#f0e0c0 body-stroke=#503810 accent-base=#a8804a accent-shadow=#503000 accent-highlight=#c8a070
+  -->
+  <style>
+    .body-base       { fill: #9a9a9a; }
+    .body-base       { stroke: #9a9a9a; }
+    .body-shadow     { fill: #606060; }
+    .body-shadow     { stroke: #606060; }
+    .body-highlight  { fill: #c8c8c8; }
+    .body-highlight  { stroke: #c8c8c8; }
+    .body-stroke     { fill: #303030; }
+    .body-stroke     { stroke: #303030; }
+    .accent-base     { fill: #5080b8; }
+    .accent-base     { stroke: #5080b8; }
+    .accent-shadow   { fill: #1a3060; }
+    .accent-shadow   { stroke: #1a3060; }
+    .accent-highlight{ fill: #80a8d8; }
+    .accent-highlight{ stroke: #80a8d8; }
+    /* Constants */
+    .eye-white       { fill: #ffffff; }
+    .eye-pupil       { fill: #2a1500; }
+    .eye-highlight   { fill: #ffffff; }
+    .mouth-interior  { fill: #4a1010; }
+    .tongue          { fill: #ff8090; }
+  </style>
+
+  <!-- ═══════ COMPOSITION ═══════
+       Wide, low, blocky silhouette. Trapezoidal stacked-stone body.
+       Tiny stubby feet at base. Layered stone divisions. Mineral cracks in accent color.
+       Friendly face on top section. Center horizontally; body fills lower 2/3 of canvas.
+  -->
+
+  <!-- ═══════ FEET (tiny stubs at base) ═══════ -->
+  <ellipse cx="148" cy="446" rx="22" ry="11" class="body-shadow"/>
+  <ellipse cx="364" cy="446" rx="22" ry="11" class="body-shadow"/>
+  <ellipse cx="148" cy="442" rx="18" ry="8"  class="body-base"/>
+  <ellipse cx="364" cy="442" rx="18" ry="8"  class="body-base"/>
+
+  <!-- ═══════ BODY — stacked stone trapezoid ═══════ -->
+  <!-- Bottom layer (widest) -->
+  <path d="M88,442 L424,442 L408,360 L104,360 Z" class="body-shadow"/>
+  <path d="M96,438 L416,438 L402,362 L110,362 Z" class="body-base"/>
+  <!-- Middle layer -->
+  <path d="M104,360 L408,360 L388,272 L124,272 Z" class="body-shadow"/>
+  <path d="M110,358 L402,358 L384,274 L128,274 Z" class="body-base"/>
+  <ellipse cx="180" cy="318" rx="50" ry="14" class="body-highlight" opacity="0.42"/>
+  <!-- Top layer (creature head/body) -->
+  <path d="M124,272 L388,272 L368,168 L144,168 Z" class="body-shadow"/>
+  <path d="M128,270 L384,270 L364,170 L148,170 Z" class="body-base"/>
+  <!-- Highlight crescent on top layer -->
+  <ellipse cx="200" cy="210" rx="60" ry="22" class="body-highlight" opacity="0.55"/>
+
+  <!-- ═══════ LAYER DIVISION LINES (signature: layered stone) ═══════ -->
+  <path d="M104,362 L408,362" class="body-stroke" fill="none" stroke-width="4" stroke-linecap="round"/>
+  <path d="M124,272 L388,272" class="body-stroke" fill="none" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- ═══════ MINERAL CRACKS (signature: cracks of mineral color) ═══════ -->
+  <!-- Bottom layer cracks -->
+  <path d="M180,442 L188,402 L176,372 L184,366" class="accent-base"
+        fill="none" stroke-width="3" stroke-linecap="round"/>
+  <path d="M280,442 L268,400 L284,376 L276,365" class="accent-base"
+        fill="none" stroke-width="3" stroke-linecap="round"/>
+  <!-- Middle layer cracks -->
+  <path d="M150,360 L160,322 L150,288 L162,275" class="accent-base"
+        fill="none" stroke-width="3" stroke-linecap="round"/>
+  <path d="M340,360 L330,318 L344,290 L334,275" class="accent-base"
+        fill="none" stroke-width="3" stroke-linecap="round"/>
+  <path d="M256,358 L258,334 L246,308 L260,282" class="accent-base"
+        fill="none" stroke-width="3" stroke-linecap="round"/>
+  <!-- Top layer (head) crack -->
+  <path d="M340,270 L350,250 L342,228" class="accent-base"
+        fill="none" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Mineral nodules (small embedded gems) -->
+  <circle cx="184" cy="402" r="6" class="accent-shadow"/>
+  <circle cx="184" cy="400" r="4" class="accent-base"/>
+  <circle cx="183" cy="399" r="2" class="accent-highlight"/>
+
+  <circle cx="270" cy="400" r="6" class="accent-shadow"/>
+  <circle cx="270" cy="398" r="4" class="accent-base"/>
+  <circle cx="269" cy="397" r="2" class="accent-highlight"/>
+
+  <circle cx="160" cy="322" r="5" class="accent-shadow"/>
+  <circle cx="160" cy="320" r="3" class="accent-base"/>
+
+  <circle cx="332" cy="320" r="5" class="accent-shadow"/>
+  <circle cx="332" cy="318" r="3" class="accent-base"/>
+
+  <!-- ═══════ EYES (constant across mutations) ═══════ -->
+  <ellipse cx="216" cy="220" rx="28" ry="32" class="eye-white" stroke="none"/>
+  <ellipse cx="216" cy="220" rx="24" ry="28" class="body-stroke" fill="none" stroke-width="3"/>
+  <ellipse cx="220" cy="226" rx="12" ry="14" class="eye-pupil" stroke="none"/>
+  <circle  cx="225" cy="220" r="5" class="eye-highlight" stroke="none"/>
+  <circle  cx="214" cy="232" r="3" class="eye-highlight" stroke="none"/>
+  <ellipse cx="296" cy="220" rx="28" ry="32" class="eye-white" stroke="none"/>
+  <ellipse cx="296" cy="220" rx="24" ry="28" class="body-stroke" fill="none" stroke-width="3"/>
+  <ellipse cx="292" cy="226" rx="12" ry="14" class="eye-pupil" stroke="none"/>
+  <circle  cx="287" cy="220" r="5" class="eye-highlight" stroke="none"/>
+  <circle  cx="298" cy="232" r="3" class="eye-highlight" stroke="none"/>
+
+  <!-- ═══════ MOUTH (small contented smile — patient/sturdy character) ═══════ -->
+  <path d="M226,256 Q256,278 286,256 Q272,266 256,266 Q240,266 226,256 Z"
+        class="mouth-interior" stroke="#303030" stroke-width="3" stroke-linejoin="round"/>
+  <ellipse cx="256" cy="266" rx="14" ry="6" class="tongue" stroke="none"/>
+
+  <!-- ═══════ EYEBROW RIDGE (sturdy/wise look) ═══════ -->
+  <path d="M192,194 Q216,188 240,194" class="body-shadow" fill="none" stroke-width="5" stroke-linecap="round"/>
+  <path d="M272,194 Q296,188 320,194" class="body-shadow" fill="none" stroke-width="5" stroke-linecap="round"/>
+</svg>
