@@ -1,0 +1,97 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- TUNDRAFORM — ice, uncommon — sculptor with chisel appendages, makes ice shapes
+       Mutations: v1 Glacier Blue · v2 Snow White · v3 Deep Ice · v4 Pale Teal
+       Signature: body w/ CHISEL HANDS + small ICE SCULPTURES at its feet
+  -->
+  <!-- PALETTE
+       v1: body-base=#88b8d8 body-shadow=#406890 body-highlight=#b8d8f0 body-stroke=#102838 accent-base=#a0c8e0 accent-shadow=#587898 accent-highlight=#d0e8f8
+       v2: body-base=#f8fcff body-shadow=#a8b8c8 body-highlight=#ffffff body-stroke=#404858 accent-base=#d8e8f0 accent-shadow=#7888 98 accent-highlight=#ffffff
+       v3: body-base=#3868a0 body-shadow=#102848 body-highlight=#5888c0 body-stroke=#000820 accent-base=#5078a8 accent-shadow=#1a3858 accent-highlight=#80a0d0
+       v4: body-base=#a8d8d0 body-shadow=#5898 90 body-highlight=#c8f0e8 body-stroke=#102828 accent-base=#b0e0d8 accent-shadow=#608880 accent-highlight=#d8f8f0
+  -->
+  <style>
+    .body-base       { fill: #88b8d8; }
+    .body-base       { stroke: #88b8d8; }
+    .body-shadow     { fill: #406890; }
+    .body-shadow     { stroke: #406890; }
+    .body-highlight  { fill: #b8d8f0; }
+    .body-highlight  { stroke: #b8d8f0; }
+    .body-stroke     { fill: #102838; }
+    .body-stroke     { stroke: #102838; }
+    .accent-base     { fill: #a0c8e0; }
+    .accent-base     { stroke: #a0c8e0; }
+    .accent-shadow   { fill: #587898; }
+    .accent-shadow   { stroke: #587898; }
+    .accent-highlight{ fill: #d0e8f8; }
+    .accent-highlight{ stroke: #d0e8f8; }
+    .eye-iris        { fill: #5090c0; }
+    .eye-pupil       { fill: #001828; }
+    .eye-highlight   { fill: #ffffff; }
+    .eye-sclera      { fill: #f0f8ff; }
+    .mouth-interior  { fill: #102838; }
+  </style>
+
+  <!-- Custom glow: subtle pale halo around the ice sculptures it made (artistic glow) -->
+  <ellipse cx="100" cy="448" rx="42" ry="26" fill="#c0e8f8" opacity="0.35"/>
+  <ellipse cx="412" cy="448" rx="42" ry="26" fill="#c0e8f8" opacity="0.35"/>
+
+  <!-- ICE SCULPTURES at feet (signature) -->
+  <path d="M84,460 L100,418 L116,460 Z" class="accent-shadow"/>
+  <path d="M88,460 L100,424 L112,460 Z" class="accent-base"/>
+  <path d="M92,460 L100,434 L106,460 Z" class="accent-highlight"/>
+  <path d="M396,460 L412,420 L424,438 L436,460 Z" class="accent-shadow"/>
+  <path d="M400,460 L414,426 L424,440 L432,460 Z" class="accent-base"/>
+  <path d="M404,460 L414,432 L420,440 L426,460 Z" class="accent-highlight"/>
+
+  <!-- feet -->
+  <ellipse cx="220" cy="436" rx="26" ry="13" class="body-shadow"/>
+  <ellipse cx="292" cy="436" rx="26" ry="13" class="body-shadow"/>
+  <ellipse cx="220" cy="432" rx="22" ry="9" class="body-base"/>
+  <ellipse cx="292" cy="432" rx="22" ry="9" class="body-base"/>
+
+  <!-- ═══════ CHISEL ARMS (signature) ═══════ -->
+  <ellipse cx="148" cy="304" rx="34" ry="18" class="body-shadow" transform="rotate(-15 148 304)"/>
+  <ellipse cx="152" cy="300" rx="28" ry="13" class="body-base"   transform="rotate(-15 152 300)"/>
+  <!-- chisel hand -->
+  <path d="M104,316 L84,302 L84,332 Z" class="accent-shadow"/>
+  <path d="M104,316 L88,304 L88,330 Z" class="accent-base"/>
+  <path d="M104,316 L92,310 L96,318 Z" class="accent-highlight"/>
+  <ellipse cx="364" cy="304" rx="34" ry="18" class="body-shadow" transform="rotate(15 364 304)"/>
+  <ellipse cx="360" cy="300" rx="28" ry="13" class="body-base"   transform="rotate(15 360 300)"/>
+  <path d="M408,316 L428,302 L428,332 Z" class="accent-shadow"/>
+  <path d="M408,316 L424,304 L424,330 Z" class="accent-base"/>
+  <path d="M408,316 L420,310 L416,318 Z" class="accent-highlight"/>
+
+  <!-- body -->
+  <circle cx="256" cy="306" r="116" class="body-shadow"/>
+  <circle cx="256" cy="300" r="108" class="body-base"/>
+  <ellipse cx="216" cy="244" rx="20" ry="14" class="body-highlight" opacity="0.55"/>
+
+  <!-- ═══════ EYES (ice family — focused/sculptor's narrow eyes) ═══════ -->
+  <ellipse cx="220" cy="284" rx="22" ry="18" class="eye-sclera" stroke="none"/>
+  <ellipse cx="220" cy="284" rx="18" ry="14" fill="none" stroke="#102838" stroke-width="2.5"/>
+  <ellipse cx="222" cy="288" rx="11" ry="9" class="eye-iris"/>
+  <ellipse cx="222" cy="288" rx="7" ry="6" class="eye-pupil"/>
+  <path d="M226,280 L230,284 L226,288 L222,284 Z" class="eye-highlight"/>
+  <ellipse cx="292" cy="284" rx="22" ry="18" class="eye-sclera" stroke="none"/>
+  <ellipse cx="292" cy="284" rx="18" ry="14" fill="none" stroke="#102838" stroke-width="2.5"/>
+  <ellipse cx="290" cy="288" rx="11" ry="9" class="eye-iris"/>
+  <ellipse cx="290" cy="288" rx="7" ry="6" class="eye-pupil"/>
+  <path d="M286,280 L282,284 L286,288 L290,284 Z" class="eye-highlight"/>
+
+  <!-- mouth: focused tight -->
+  <path d="M236,330 L276,330" class="body-stroke" fill="none" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- frost shavings on body (mid-sculpting) -->
+  <circle cx="200" cy="350" r="2" fill="#ffffff" opacity="0.8"/>
+  <circle cx="318" cy="358" r="2" fill="#ffffff" opacity="0.8"/>
+  <circle cx="248" cy="372" r="2" fill="#ffffff" opacity="0.7"/>
+
+  <!-- ambient snowflakes -->
+  <g stroke="#ffffff" stroke-width="1" fill="none" opacity="0.85" stroke-linecap="round">
+    <line x1="60" y1="200" x2="68" y2="200"/>
+    <line x1="64" y1="196" x2="64" y2="204"/>
+    <line x1="450" y1="200" x2="458" y2="200"/>
+    <line x1="454" y1="196" x2="454" y2="204"/>
+  </g>
+</svg>

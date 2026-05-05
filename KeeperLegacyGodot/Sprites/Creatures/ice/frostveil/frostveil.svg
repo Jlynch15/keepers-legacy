@@ -1,0 +1,107 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- FROSTVEIL — ice, common — leaves trails of delicate frost patterns
+       Mutations: v1 Ice Blue · v2 Frost White · v3 Pale Silver · v4 Crystal Clear
+       Signature: round body w/ FROST TRAIL of crystalline patterns at its feet
+  -->
+  <!-- PALETTE
+       v1: body-base=#a8d0e8 body-shadow=#5088a8 body-highlight=#d8f0ff body-stroke=#1a4060 accent-base=#e0f0ff accent-shadow=#90b8d0 accent-highlight=#ffffff
+       v2: body-base=#f0f8ff body-shadow=#a0b0c0 body-highlight=#ffffff body-stroke=#404858 accent-base=#d8e8f0 accent-shadow=#788890 accent-highlight=#ffffff
+       v3: body-base=#c8d0d8 body-shadow=#6878 80 body-highlight=#e8f0f8 body-stroke=#202830 accent-base=#a0b0c0 accent-shadow=#586870 accent-highlight=#d8e0e8
+       v4: body-base=#d8e8f0 body-shadow=#80a0b0 body-highlight=#ffffff body-stroke=#3a5060 accent-base=#a8d0e8 accent-shadow=#608890 accent-highlight=#ffffff
+  -->
+  <style>
+    .body-base       { fill: #a8d0e8; }
+    .body-base       { stroke: #a8d0e8; }
+    .body-shadow     { fill: #5088a8; }
+    .body-shadow     { stroke: #5088a8; }
+    .body-highlight  { fill: #d8f0ff; }
+    .body-highlight  { stroke: #d8f0ff; }
+    .body-stroke     { fill: #1a4060; }
+    .body-stroke     { stroke: #1a4060; }
+    .accent-base     { fill: #e0f0ff; }
+    .accent-base     { stroke: #e0f0ff; }
+    .accent-shadow   { fill: #90b8d0; }
+    .accent-shadow   { stroke: #90b8d0; }
+    .accent-highlight{ fill: #ffffff; }
+    .accent-highlight{ stroke: #ffffff; }
+    .eye-iris        { fill: #5090c0; }
+    .eye-pupil       { fill: #001828; }
+    .eye-highlight   { fill: #ffffff; }
+    .eye-sclera      { fill: #f0f8ff; }
+    .mouth-interior  { fill: #1a3848; }
+  </style>
+
+  <!-- Custom glow: frost web pattern at the base (signature trail) -->
+  <g stroke="#a8d8f0" stroke-width="1.5" fill="none" opacity="0.7" stroke-linecap="round">
+    <line x1="76"  y1="464" x2="116" y2="464"/>
+    <line x1="96"  y1="444" x2="96"  y2="484"/>
+    <line x1="80"  y1="450" x2="112" y2="478"/>
+    <line x1="80"  y1="478" x2="112" y2="450"/>
+    <line x1="396" y1="464" x2="436" y2="464"/>
+    <line x1="416" y1="444" x2="416" y2="484"/>
+    <line x1="400" y1="450" x2="432" y2="478"/>
+    <line x1="400" y1="478" x2="432" y2="450"/>
+  </g>
+  <g stroke="#ffffff" stroke-width="1" fill="none" opacity="0.85" stroke-linecap="round">
+    <line x1="84"  y1="464" x2="108" y2="464"/>
+    <line x1="404" y1="464" x2="428" y2="464"/>
+  </g>
+
+  <!-- feet -->
+  <ellipse cx="216" cy="436" rx="26" ry="13" class="body-shadow"/>
+  <ellipse cx="296" cy="436" rx="26" ry="13" class="body-shadow"/>
+  <ellipse cx="216" cy="432" rx="22" ry="9" class="body-base"/>
+  <ellipse cx="296" cy="432" rx="22" ry="9" class="body-base"/>
+
+  <!-- arms -->
+  <ellipse cx="138" cy="306" rx="34" ry="18" class="body-shadow" transform="rotate(-15 138 306)"/>
+  <ellipse cx="142" cy="302" rx="28" ry="13" class="body-base"   transform="rotate(-15 142 302)"/>
+  <ellipse cx="374" cy="306" rx="34" ry="18" class="body-shadow" transform="rotate(15 374 306)"/>
+  <ellipse cx="370" cy="302" rx="28" ry="13" class="body-base"   transform="rotate(15 370 302)"/>
+
+  <!-- body -->
+  <circle cx="256" cy="306" r="118" class="body-shadow"/>
+  <circle cx="256" cy="300" r="110" class="body-base"/>
+  <ellipse cx="216" cy="244" rx="22" ry="14" class="body-highlight" opacity="0.55"/>
+
+  <!-- frost crystal accents on body -->
+  <g stroke="#ffffff" stroke-width="1.5" fill="none" opacity="0.85" stroke-linecap="round">
+    <line x1="220" y1="232" x2="232" y2="232"/>
+    <line x1="226" y1="226" x2="226" y2="238"/>
+    <line x1="296" y1="226" x2="306" y2="226"/>
+    <line x1="301" y1="221" x2="301" y2="231"/>
+    <line x1="200" y1="364" x2="210" y2="364"/>
+    <line x1="205" y1="359" x2="205" y2="369"/>
+  </g>
+
+  <!-- ═══════ EYES (ice family — pale blue iris, DIAMOND-shaped highlights) ═══════ -->
+  <ellipse cx="220" cy="296" rx="22" ry="24" class="eye-sclera" stroke="none"/>
+  <ellipse cx="220" cy="296" rx="18" ry="20" fill="none" stroke="#1a4060" stroke-width="2.5"/>
+  <circle cx="222" cy="302" r="13" class="eye-iris"/>
+  <circle cx="222" cy="302" r="8" class="eye-pupil"/>
+  <path d="M226,290 L230,294 L226,298 L222,294 Z" class="eye-highlight"/>
+  <ellipse cx="292" cy="296" rx="22" ry="24" class="eye-sclera" stroke="none"/>
+  <ellipse cx="292" cy="296" rx="18" ry="20" fill="none" stroke="#1a4060" stroke-width="2.5"/>
+  <circle cx="290" cy="302" r="13" class="eye-iris"/>
+  <circle cx="290" cy="302" r="8" class="eye-pupil"/>
+  <path d="M286,290 L282,294 L286,298 L290,294 Z" class="eye-highlight"/>
+
+  <!-- mouth: gentle smile -->
+  <path d="M236,344 Q256,354 276,344" class="body-stroke" fill="none" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- cheek -->
+  <ellipse cx="180" cy="332" rx="11" ry="7" fill="#5098c0" opacity="0.4" stroke="none"/>
+  <ellipse cx="332" cy="332" rx="11" ry="7" fill="#5098c0" opacity="0.4" stroke="none"/>
+
+  <!-- ambient snowflakes -->
+  <g stroke="#ffffff" stroke-width="1" fill="none" opacity="0.85" stroke-linecap="round">
+    <line x1="60" y1="180" x2="68" y2="180"/>
+    <line x1="64" y1="176" x2="64" y2="184"/>
+    <line x1="450" y1="180" x2="458" y2="180"/>
+    <line x1="454" y1="176" x2="454" y2="184"/>
+    <line x1="80" y1="120" x2="86" y2="120"/>
+    <line x1="83" y1="117" x2="83" y2="123"/>
+    <line x1="426" y1="120" x2="432" y2="120"/>
+    <line x1="429" y1="117" x2="429" y2="123"/>
+  </g>
+</svg>

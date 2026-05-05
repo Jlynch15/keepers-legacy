@@ -1,0 +1,110 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- CRYSTALMANE — ice, uncommon — lion-like with crystalline ice mane
+       Mutations: v1 Crystal Clear · v2 Ice Blue · v3 Pale Purple · v4 Silver
+       Signature: lion silhouette with CRYSTAL SPIKE MANE radiating around head
+  -->
+  <!-- PALETTE
+       v1: body-base=#d0e8f0 body-shadow=#7898a8 body-highlight=#f0f8ff body-stroke=#283848 accent-base=#a0d0e8 accent-shadow=#5080a0 accent-highlight=#d0e8ff
+       v2: body-base=#88c0e0 body-shadow=#3878 a0 body-highlight=#b0d8f0 body-stroke=#082838 accent-base=#a0d0f0 accent-shadow=#5088b8 accent-highlight=#d0e8ff
+       v3: body-base=#c0a8d8 body-shadow=#785890 body-highlight=#d8c0e8 body-stroke=#1a0838 accent-base=#a888c0 accent-shadow=#604878 accent-highlight=#c8a8d8
+       v4: body-base=#c8d0d8 body-shadow=#788088 body-highlight=#e8e8f0 body-stroke=#2a3038 accent-base=#a8b0b8 accent-shadow=#606870 accent-highlight=#d8e0e8
+  -->
+  <style>
+    .body-base       { fill: #d0e8f0; }
+    .body-base       { stroke: #d0e8f0; }
+    .body-shadow     { fill: #7898a8; }
+    .body-shadow     { stroke: #7898a8; }
+    .body-highlight  { fill: #f0f8ff; }
+    .body-highlight  { stroke: #f0f8ff; }
+    .body-stroke     { fill: #283848; }
+    .body-stroke     { stroke: #283848; }
+    .accent-base     { fill: #a0d0e8; }
+    .accent-base     { stroke: #a0d0e8; }
+    .accent-shadow   { fill: #5080a0; }
+    .accent-shadow   { stroke: #5080a0; }
+    .accent-highlight{ fill: #d0e8ff; }
+    .accent-highlight{ stroke: #d0e8ff; }
+    .eye-iris        { fill: #5090c0; }
+    .eye-pupil       { fill: #001828; }
+    .eye-highlight   { fill: #ffffff; }
+    .eye-sclera      { fill: #f0f8ff; }
+    .mouth-interior  { fill: #102838; }
+  </style>
+
+  <!-- Custom glow: rays through the crystal mane (light refraction) -->
+  <g stroke="#ffffff" stroke-width="3" fill="none" opacity="0.55" stroke-linecap="round">
+    <line x1="256" y1="68" x2="256" y2="124"/>
+    <line x1="120" y1="148" x2="156" y2="184"/>
+    <line x1="392" y1="148" x2="356" y2="184"/>
+    <line x1="80" y1="240" x2="124" y2="248"/>
+    <line x1="432" y1="240" x2="388" y2="248"/>
+  </g>
+
+  <!-- legs (4 cat-like) -->
+  <ellipse cx="180" cy="412" rx="24" ry="40" class="body-shadow"/>
+  <ellipse cx="182" cy="408" rx="20" ry="36" class="body-base"/>
+  <ellipse cx="244" cy="412" rx="22" ry="38" class="body-shadow"/>
+  <ellipse cx="246" cy="408" rx="18" ry="34" class="body-base"/>
+  <ellipse cx="290" cy="412" rx="22" ry="38" class="body-shadow"/>
+  <ellipse cx="292" cy="408" rx="18" ry="34" class="body-base"/>
+  <ellipse cx="356" cy="412" rx="24" ry="40" class="body-shadow"/>
+  <ellipse cx="358" cy="408" rx="20" ry="36" class="body-base"/>
+
+  <!-- tail (curling up) -->
+  <path d="M412,360 Q456,308 432,256" stroke="#7898a8" stroke-width="14" fill="none" stroke-linecap="round"/>
+  <path d="M412,360 Q456,308 432,256" stroke="#d0e8f0" stroke-width="9" fill="none" stroke-linecap="round"/>
+  <!-- crystal at tail tip -->
+  <path d="M428,250 L438,234 L444,256 L432,260 Z" class="accent-shadow"/>
+  <path d="M430,250 L438,238 L442,254 L432,258 Z" class="accent-base"/>
+  <path d="M432,242 L438,238 L440,250 Z" class="accent-highlight"/>
+
+  <!-- main body -->
+  <ellipse cx="256" cy="356" rx="124" ry="64" class="body-shadow"/>
+  <ellipse cx="256" cy="352" rx="118" ry="58" class="body-base"/>
+  <ellipse cx="220" cy="328" rx="36" ry="14" class="body-highlight" opacity="0.55"/>
+
+  <!-- ═══════ CRYSTAL SPIKE MANE (signature: radiating crystals around head) ═══════ -->
+  <g>
+    <!-- top crystals -->
+    <path d="M218,184 L226,124 L240,180 Z" class="accent-shadow"/>
+    <path d="M222,184 L226,134 L236,178 Z" class="accent-base"/>
+    <path d="M222,158 L226,134 L232,148 Z" class="accent-highlight"/>
+    <path d="M256,168 L256,108 L272,162 Z" class="accent-shadow"/>
+    <path d="M258,168 L258,118 L268,160 Z" class="accent-base"/>
+    <path d="M258,142 L258,118 L264,128 Z" class="accent-highlight"/>
+    <path d="M286,182 L294,124 L308,180 Z" class="accent-shadow"/>
+    <path d="M290,182 L294,134 L304,178 Z" class="accent-base"/>
+    <path d="M290,156 L294,134 L300,148 Z" class="accent-highlight"/>
+    <!-- side crystals -->
+    <path d="M168,220 L122,182 L172,238 Z" class="accent-shadow"/>
+    <path d="M170,222 L132,190 L168,232 Z" class="accent-base"/>
+    <path d="M338,238 L388,182 L342,220 Z" class="accent-shadow"/>
+    <path d="M340,232 L378,190 L342,222 Z" class="accent-base"/>
+    <!-- lower-side crystals -->
+    <path d="M158,260 L108,256 L172,278 Z" class="accent-shadow"/>
+    <path d="M160,260 L120,258 L168,272 Z" class="accent-base"/>
+    <path d="M340,278 L404,256 L354,260 Z" class="accent-shadow"/>
+    <path d="M344,272 L392,258 L352,260 Z" class="accent-base"/>
+  </g>
+
+  <!-- head (lion-like) -->
+  <ellipse cx="256" cy="256" rx="86" ry="80" class="body-shadow"/>
+  <ellipse cx="256" cy="252" rx="80" ry="74" class="body-base"/>
+
+  <!-- ═══════ EYES (ice family — regal narrow, diamond highlight) ═══════ -->
+  <ellipse cx="220" cy="246" rx="20" ry="16" class="eye-sclera" stroke="none"/>
+  <ellipse cx="220" cy="246" rx="16" ry="12" fill="none" stroke="#283848" stroke-width="2.5"/>
+  <ellipse cx="222" cy="250" rx="11" ry="9" class="eye-iris"/>
+  <ellipse cx="222" cy="250" rx="7" ry="6" class="eye-pupil"/>
+  <path d="M226,242 L230,246 L226,250 L222,246 Z" class="eye-highlight"/>
+  <ellipse cx="292" cy="246" rx="20" ry="16" class="eye-sclera" stroke="none"/>
+  <ellipse cx="292" cy="246" rx="16" ry="12" fill="none" stroke="#283848" stroke-width="2.5"/>
+  <ellipse cx="290" cy="250" rx="11" ry="9" class="eye-iris"/>
+  <ellipse cx="290" cy="250" rx="7" ry="6" class="eye-pupil"/>
+  <path d="M286,242 L282,246 L286,250 L290,246 Z" class="eye-highlight"/>
+
+  <!-- nose -->
+  <path d="M252,278 L256,284 L260,278 Z" fill="#283848"/>
+  <!-- mouth: small dignified -->
+  <path d="M250,290 Q256,296 262,290" class="body-stroke" fill="none" stroke-width="2.5" stroke-linecap="round"/>
+</svg>
