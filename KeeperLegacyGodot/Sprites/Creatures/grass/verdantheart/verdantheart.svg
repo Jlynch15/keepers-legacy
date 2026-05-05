@@ -1,0 +1,112 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- VERDANTHEART — grass, RARE — rarest grass creature, living seed-heart pulses with life
+       Mutations: v1 Emerald · v2 Deep Forest · v3 Jade · v4 Golden Green
+       Signature: regal stately body with VISIBLE GLOWING SEED-HEART in chest
+  -->
+  <!-- PALETTE
+       v1: body-base=#2a8060 body-shadow=#103838 body-highlight=#58a878 body-stroke=#001818 accent-base=#88f0a0 accent-shadow=#388858 accent-highlight=#c0ffc0
+       v2: body-base=#1a4828 body-shadow=#000800 body-highlight=#386838 body-stroke=#000000 accent-base=#58a868 accent-shadow=#205828 accent-highlight=#80c890
+       v3: body-base=#388880 body-shadow=#103838 body-highlight=#588a88 body-stroke=#000800 accent-base=#80e0c8 accent-shadow=#388880 accent-highlight=#c0ffe8
+       v4: body-base=#88a838 body-shadow=#487018 body-highlight=#b0c868 body-stroke=#1a2808 accent-base=#e8e078 accent-shadow=#988820 accent-highlight=#fff8a8
+  -->
+  <style>
+    .body-base       { fill: #2a8060; }
+    .body-base       { stroke: #2a8060; }
+    .body-shadow     { fill: #103838; }
+    .body-shadow     { stroke: #103838; }
+    .body-highlight  { fill: #58a878; }
+    .body-highlight  { stroke: #58a878; }
+    .body-stroke     { fill: #001818; }
+    .body-stroke     { stroke: #001818; }
+    .accent-base     { fill: #88f0a0; }
+    .accent-base     { stroke: #88f0a0; }
+    .accent-shadow   { fill: #388858; }
+    .accent-shadow   { stroke: #388858; }
+    .accent-highlight{ fill: #c0ffc0; }
+    .accent-highlight{ stroke: #c0ffc0; }
+    .eye-iris        { fill: #3a8060; }
+    .eye-pupil       { fill: #002010; }
+    .eye-highlight   { fill: #ffffff; }
+    .eye-sclera      { fill: #f0fff0; }
+    .mouth-interior  { fill: #001818; }
+  </style>
+
+  <!-- ═══════ AURA HALO (rare creature signature) ═══════ -->
+  <circle cx="256" cy="296" r="200" class="accent-base" opacity="0.12"/>
+  <circle cx="256" cy="296" r="170" class="accent-base" opacity="0.18"/>
+
+  <!-- feet -->
+  <ellipse cx="216" cy="446" rx="28" ry="13" class="body-shadow"/>
+  <ellipse cx="296" cy="446" rx="28" ry="13" class="body-shadow"/>
+  <ellipse cx="216" cy="442" rx="22" ry="9" class="body-base"/>
+  <ellipse cx="296" cy="442" rx="22" ry="9" class="body-base"/>
+
+  <!-- arms -->
+  <ellipse cx="138" cy="320" rx="36" ry="20" class="body-shadow"/>
+  <ellipse cx="142" cy="316" rx="30" ry="15" class="body-base"/>
+  <ellipse cx="374" cy="320" rx="36" ry="20" class="body-shadow"/>
+  <ellipse cx="370" cy="316" rx="30" ry="15" class="body-base"/>
+
+  <!-- ═══════ STATELY BODY ═══════ -->
+  <ellipse cx="256" cy="306" rx="120" ry="138" class="body-shadow"/>
+  <ellipse cx="256" cy="300" rx="114" ry="132" class="body-base"/>
+  <!-- VARIED HIGHLIGHT — vertical leaf-curve -->
+  <path d="M192,200 Q186,260 200,318" class="body-highlight" fill="none" stroke-width="12" stroke-linecap="round" opacity="0.4"/>
+
+  <!-- ═══════ SEED-HEART CHEST WINDOW (signature: living glowing heart) ═══════ -->
+  <!-- outer dark cavity -->
+  <ellipse cx="256" cy="320" rx="50" ry="56" class="body-stroke"/>
+  <ellipse cx="256" cy="320" rx="44" ry="50" fill="#001008"/>
+  <!-- glowing seed heart shape -->
+  <circle cx="256" cy="320" r="28" class="accent-shadow" opacity="0.8"/>
+  <path d="M236,308 C240,300 252,300 256,310 C260,300 272,300 276,308 C280,320 256,346 256,346 C256,346 232,320 236,308 Z" class="accent-base"/>
+  <path d="M242,308 C244,304 252,304 256,310 C260,304 268,304 270,308 C272,316 256,338 256,338 C256,338 240,316 242,308 Z" class="accent-highlight"/>
+  <!-- glittering inner sparkles -->
+  <circle cx="246" cy="312" r="2" fill="#ffffff" opacity="0.95"/>
+  <circle cx="266" cy="318" r="1.5" fill="#ffffff" opacity="0.9"/>
+  <circle cx="256" cy="328" r="1.5" fill="#ffffff" opacity="0.85"/>
+
+  <!-- ═══════ EYES (grass family — gem-cut multi-facet, regal) ═══════ -->
+  <ellipse cx="216" cy="240" rx="22" ry="24" class="eye-sclera" stroke="none"/>
+  <ellipse cx="216" cy="240" rx="18" ry="20" fill="none" stroke="#001818" stroke-width="2.5"/>
+  <circle  cx="218" cy="246" r="13" class="eye-iris"/>
+  <circle  cx="218" cy="246" r="8"  class="eye-pupil"/>
+  <!-- diamond highlight -->
+  <path d="M222,238 L226,242 L222,246 L218,242 Z" class="eye-highlight" stroke="none"/>
+  <circle cx="214" cy="252" r="2" class="eye-highlight" stroke="none" opacity="0.8"/>
+  <ellipse cx="296" cy="240" rx="22" ry="24" class="eye-sclera" stroke="none"/>
+  <ellipse cx="296" cy="240" rx="18" ry="20" fill="none" stroke="#001818" stroke-width="2.5"/>
+  <circle  cx="294" cy="246" r="13" class="eye-iris"/>
+  <circle  cx="294" cy="246" r="8"  class="eye-pupil"/>
+  <path d="M290,238 L286,242 L290,246 L294,242 Z" class="eye-highlight" stroke="none"/>
+  <circle cx="298" cy="252" r="2" class="eye-highlight" stroke="none" opacity="0.8"/>
+
+  <!-- mouth: regal closed thin smile -->
+  <path d="M236,400 Q256,408 276,400" class="body-stroke" fill="none" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- crown leaf accent on head -->
+  <ellipse cx="256" cy="158" rx="8" ry="20" class="accent-shadow"/>
+  <ellipse cx="256" cy="156" rx="6" ry="16" class="accent-base"/>
+  <ellipse cx="232" cy="170" rx="6" ry="14" class="accent-shadow" transform="rotate(-30 232 170)"/>
+  <ellipse cx="232" cy="168" rx="4" ry="11" class="accent-base"   transform="rotate(-30 232 168)"/>
+  <ellipse cx="280" cy="170" rx="6" ry="14" class="accent-shadow" transform="rotate(30 280 170)"/>
+  <ellipse cx="280" cy="168" rx="4" ry="11" class="accent-base"   transform="rotate(30 280 168)"/>
+
+  <!-- body specks -->
+  <circle cx="190" cy="280" r="2" class="body-highlight" opacity="0.7" stroke="none"/>
+  <circle cx="322" cy="280" r="2" class="body-highlight" opacity="0.7" stroke="none"/>
+  <circle cx="180" cy="380" r="2" class="body-highlight" opacity="0.6" stroke="none"/>
+  <circle cx="332" cy="380" r="2" class="body-highlight" opacity="0.6" stroke="none"/>
+
+  <!-- ambient leaf + sparkle stars (rare-tier) -->
+  <ellipse cx="44"  cy="280" rx="5" ry="2" class="accent-base" opacity="0.6" transform="rotate(20 44 280)"/>
+  <ellipse cx="468" cy="280" rx="5" ry="2" class="accent-base" opacity="0.6" transform="rotate(-20 468 280)"/>
+  <path d="M64,160 L66,168 L74,170 L66,172 L64,180 L62,172 L54,170 L62,168 Z"
+        class="accent-base" opacity="0.95"/>
+  <path d="M448,160 L450,168 L458,170 L450,172 L448,180 L446,172 L438,170 L446,168 Z"
+        class="accent-base" opacity="0.95"/>
+  <path d="M84,400 L86,406 L92,408 L86,410 L84,416 L82,410 L76,408 L82,406 Z"
+        class="accent-highlight" opacity="0.9"/>
+  <path d="M428,400 L430,406 L436,408 L430,410 L428,416 L426,410 L420,408 L426,406 Z"
+        class="accent-highlight" opacity="0.9"/>
+</svg>

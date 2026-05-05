@@ -1,0 +1,100 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- CLAYMOLD — dirt, uncommon — malleable body, reshapes itself
+       Mutations: v1 Red Clay · v2 Grey · v3 Terracotta · v4 Dark Brown
+       Signature: ASYMMETRIC LUMPY body (one side bigger than other), mismatched eyes
+  -->
+  <!-- PALETTE
+       v1: body-base=#c0583a body-shadow=#702010 body-highlight=#e88a68 body-stroke=#280800 accent-base=#a04020 accent-shadow=#581808 accent-highlight=#d06848
+       v2: body-base=#8a8a90 body-shadow=#48484c body-highlight=#b8b8c0 body-stroke=#1a1a1c accent-base=#686870 accent-shadow=#28282c accent-highlight=#a0a0a8
+       v3: body-base=#c08068 body-shadow=#704028 body-highlight=#e0a888 body-stroke=#281000 accent-base=#a05838 accent-shadow=#582818 accent-highlight=#c89078
+       v4: body-base=#5a3818 body-shadow=#281000 body-highlight=#80583a body-stroke=#000000 accent-base=#3a2008 accent-shadow=#180800 accent-highlight=#604028
+  -->
+  <style>
+    .body-base       { fill: #c0583a; }
+    .body-base       { stroke: #c0583a; }
+    .body-shadow     { fill: #702010; }
+    .body-shadow     { stroke: #702010; }
+    .body-highlight  { fill: #e88a68; }
+    .body-highlight  { stroke: #e88a68; }
+    .body-stroke     { fill: #280800; }
+    .body-stroke     { stroke: #280800; }
+    .accent-base     { fill: #a04020; }
+    .accent-base     { stroke: #a04020; }
+    .accent-shadow   { fill: #581808; }
+    .accent-shadow   { stroke: #581808; }
+    .accent-highlight{ fill: #d06848; }
+    .accent-highlight{ stroke: #d06848; }
+    .eye-iris        { fill: #6a3018; }
+    .eye-pupil       { fill: #1a0a00; }
+    .eye-highlight   { fill: #ffffff; }
+    .eye-sclera      { fill: #f8f0e0; }
+    .mouth-interior  { fill: #2a0808; }
+  </style>
+
+  <!-- mismatched feet (left smaller than right) -->
+  <ellipse cx="200" cy="438" rx="22" ry="11" class="body-shadow"/>
+  <ellipse cx="200" cy="434" rx="18" ry="8" class="body-base"/>
+  <ellipse cx="316" cy="442" rx="32" ry="14" class="body-shadow"/>
+  <ellipse cx="316" cy="438" rx="26" ry="11" class="body-base"/>
+
+  <!-- mismatched arms -->
+  <ellipse cx="124" cy="290" rx="32" ry="18" class="body-shadow" transform="rotate(-25 124 290)"/>
+  <ellipse cx="128" cy="287" rx="26" ry="13" class="body-base"   transform="rotate(-25 128 287)"/>
+  <ellipse cx="392" cy="316" rx="40" ry="22" class="body-shadow" transform="rotate(20 392 316)"/>
+  <ellipse cx="388" cy="312" rx="34" ry="17" class="body-base"   transform="rotate(20 388 312)"/>
+
+  <!-- ═══════ ASYMMETRIC LUMPY BODY (signature: malleable/uneven) ═══════ -->
+  <path d="M148,322 Q132,224 220,196 Q260,178 308,200 Q392,222 388,344 Q400,408 348,432 Q286,448 240,440 Q186,440 148,408 Q124,372 148,322 Z" class="body-shadow"/>
+  <path d="M156,322 Q140,232 224,206 Q260,188 304,210 Q380,232 380,344 Q392,402 344,422 Q286,438 244,432 Q190,432 156,402 Q132,368 156,322 Z" class="body-base"/>
+  <ellipse cx="208" cy="240" rx="36" ry="23" class="body-highlight" opacity="0.42"/>
+  <!-- lumpy bump on top -->
+  <circle cx="220" cy="206" r="22" class="body-shadow"/>
+  <circle cx="220" cy="200" r="18" class="body-base"/>
+  <ellipse cx="216" cy="194" rx="6" ry="3" class="body-highlight" opacity="0.42"/>
+  <!-- another lumpy bump -->
+  <circle cx="334" cy="248" r="14" class="body-shadow"/>
+  <circle cx="334" cy="244" r="10" class="body-base"/>
+
+  <!-- finger imprints on body (signature: hand-sculpted feel) -->
+  <ellipse cx="200" cy="320" rx="6" ry="3" class="body-shadow" opacity="0.5" transform="rotate(20 200 320)"/>
+  <ellipse cx="296" cy="340" rx="5" ry="3" class="body-shadow" opacity="0.5" transform="rotate(-15 296 340)"/>
+  <ellipse cx="240" cy="380" rx="5" ry="3" class="body-shadow" opacity="0.5" transform="rotate(45 240 380)"/>
+
+  <!-- ═══════ EYES (dirt family — MISMATCHED sizes — left bigger than right!) ═══════ -->
+  <!-- left eye larger -->
+  <ellipse cx="208" cy="282" rx="26" ry="28" class="eye-sclera" stroke="none"/>
+  <ellipse cx="208" cy="282" rx="22" ry="24" fill="none" stroke="#280800" stroke-width="2.5"/>
+  <circle  cx="210" cy="288" r="14" class="eye-iris"/>
+  <circle  cx="210" cy="288" r="9"  class="eye-pupil"/>
+  <circle cx="214" cy="280" r="3" class="eye-highlight" stroke="none"/>
+  <!-- right eye smaller -->
+  <ellipse cx="288" cy="290" rx="18" ry="20" class="eye-sclera" stroke="none"/>
+  <ellipse cx="288" cy="290" rx="14" ry="16" fill="none" stroke="#280800" stroke-width="2.5"/>
+  <circle  cx="288" cy="294" r="9" class="eye-iris"/>
+  <circle  cx="288" cy="294" r="6" class="eye-pupil"/>
+  <circle cx="291" cy="288" r="2" class="eye-highlight" stroke="none"/>
+
+  <!-- mouth: lopsided crooked (one corner higher) -->
+  <path d="M218,338 Q256,358 304,340" class="body-stroke" fill="none" stroke-width="3.5" stroke-linecap="round"/>
+
+  <!-- cheek blush (also asymmetric, one bigger) -->
+  <ellipse cx="166" cy="320" rx="14" ry="9" fill="#c04030" opacity="0.4" stroke="none"/>
+  <ellipse cx="346" cy="324" rx="11" ry="7" fill="#c04030" opacity="0.4" stroke="none"/>
+
+  <!-- body specks -->
+  <circle cx="246" cy="222" r="2" class="body-highlight" opacity="0.7" stroke="none"/>
+  <circle cx="200" cy="376" r="2" class="body-highlight" opacity="0.6" stroke="none"/>
+  <circle cx="320" cy="380" r="2" class="body-highlight" opacity="0.55" stroke="none"/>
+
+  <!-- ambient dust -->
+  <circle cx="40"  cy="440" r="2" class="body-base" opacity="0.5" stroke="none"/>
+  <circle cx="76"  cy="464" r="1.5" class="body-base" opacity="0.5" stroke="none"/>
+  <circle cx="436" cy="440" r="2" class="body-base" opacity="0.5" stroke="none"/>
+  <circle cx="468" cy="464" r="1.5" class="body-base" opacity="0.5" stroke="none"/>
+
+  <!-- sparkles -->
+  <path d="M84,180 L86,186 L92,188 L86,190 L84,196 L82,190 L76,188 L82,186 Z"
+        fill="#ffffff" opacity="0.85"/>
+  <path d="M428,180 L430,186 L436,188 L430,190 L428,196 L426,190 L420,188 L426,186 Z"
+        fill="#ffffff" opacity="0.85"/>
+</svg>

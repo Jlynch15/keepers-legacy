@@ -1,0 +1,69 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- SNOWPUFF — ice, common — perfectly spherical bouncy
+       Mutations: v1 Pure White · v2 Sky Blue · v3 Soft Grey · v4 Pale Pink
+       Signature: PERFECT SPHERE (no limbs visible), bouncy, fluffy edges
+  -->
+  <!-- PALETTE
+       v1: body-base=#ffffff body-shadow=#b0b8c0 body-highlight=#ffffff body-stroke=#404858 accent-base=#e0e8f0 accent-shadow=#90a0b0 accent-highlight=#ffffff
+       v2: body-base=#a8d0e8 body-shadow=#5088a8 body-highlight=#d8f0ff body-stroke=#1a4060 accent-base=#c0e0f0 accent-shadow=#7898 b8 accent-highlight=#e8f8ff
+       v3: body-base=#c0c8d0 body-shadow=#787888 body-highlight=#e0e8f0 body-stroke=#282838 accent-base=#a8b0b8 accent-shadow=#586068 accent-highlight=#d0d8e0
+       v4: body-base=#fad8e0 body-shadow=#a87888 body-highlight=#ffe8f0 body-stroke=#603040 accent-base=#f0c0d0 accent-shadow=#a06880 accent-highlight=#ffd8e0
+  -->
+  <style>
+    .body-base       { fill: #ffffff; }
+    .body-base       { stroke: #ffffff; }
+    .body-shadow     { fill: #b0b8c0; }
+    .body-shadow     { stroke: #b0b8c0; }
+    .body-highlight  { fill: #ffffff; }
+    .body-highlight  { stroke: #ffffff; }
+    .body-stroke     { fill: #404858; }
+    .body-stroke     { stroke: #404858; }
+    .accent-base     { fill: #e0e8f0; }
+    .accent-base     { stroke: #e0e8f0; }
+    .accent-shadow   { fill: #90a0b0; }
+    .accent-shadow   { stroke: #90a0b0; }
+    .accent-highlight{ fill: #ffffff; }
+    .accent-highlight{ stroke: #ffffff; }
+    .eye-iris        { fill: #5090c0; }
+    .eye-pupil       { fill: #001828; }
+    .eye-highlight   { fill: #ffffff; }
+    .eye-sclera      { fill: #f0f8ff; }
+    .mouth-interior  { fill: #102838; }
+  </style>
+
+  <!-- Custom glow: ground-level shadow puff (just where it sits) -->
+  <ellipse cx="256" cy="448" rx="160" ry="14" fill="#a8c8e0" opacity="0.3"/>
+
+  <!-- ═══════ PERFECT SPHERICAL FLUFF (signature: ruffled puff outline) ═══════ -->
+  <path d="M118,256 Q108,176 188,148 Q204,128 232,140 Q252,124 280,132 Q304,124 320,140 Q344,128 372,148 Q420,176 396,228 Q424,256 412,300 Q424,348 388,376 Q400,408 360,420 Q344,448 304,432 Q280,452 256,440 Q232,452 208,432 Q172,448 152,420 Q120,408 124,376 Q92,348 100,300 Q92,256 118,256 Z" class="body-shadow"/>
+  <path d="M126,260 Q116,182 192,154 Q208,138 232,148 Q252,134 276,142 Q304,134 320,148 Q344,138 364,156 Q412,184 388,228 Q416,256 404,294 Q416,342 384,368 Q394,396 358,408 Q342,432 304,420 Q280,438 256,428 Q232,438 208,420 Q172,432 154,408 Q124,396 130,368 Q102,342 110,294 Q102,260 126,260 Z" class="body-base"/>
+
+  <!-- ═══════ EYES (ice family — TINY DOTS, very simple/cute) ═══════ -->
+  <circle cx="216" cy="290" r="14" class="eye-sclera" stroke="none"/>
+  <circle cx="216" cy="290" r="11" fill="none" stroke="#404858" stroke-width="2"/>
+  <circle cx="218" cy="294" r="7" class="eye-pupil"/>
+  <circle cx="221" cy="288" r="2" class="eye-highlight"/>
+  <circle cx="296" cy="290" r="14" class="eye-sclera" stroke="none"/>
+  <circle cx="296" cy="290" r="11" fill="none" stroke="#404858" stroke-width="2"/>
+  <circle cx="294" cy="294" r="7" class="eye-pupil"/>
+  <circle cx="291" cy="288" r="2" class="eye-highlight"/>
+
+  <!-- mouth: tiny smile -->
+  <path d="M242,326 Q256,334 270,326" class="body-stroke" fill="none" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- cheek -->
+  <ellipse cx="180" cy="320" rx="9" ry="6" fill="#80b8d0" opacity="0.5" stroke="none"/>
+  <ellipse cx="332" cy="320" rx="9" ry="6" fill="#80b8d0" opacity="0.5" stroke="none"/>
+
+  <!-- ambient snowflakes -->
+  <g stroke="#ffffff" stroke-width="1" fill="none" opacity="0.85" stroke-linecap="round">
+    <line x1="60" y1="180" x2="68" y2="180"/>
+    <line x1="64" y1="176" x2="64" y2="184"/>
+    <line x1="450" y1="180" x2="458" y2="180"/>
+    <line x1="454" y1="176" x2="454" y2="184"/>
+    <line x1="40" y1="240" x2="48" y2="240"/>
+    <line x1="44" y1="236" x2="44" y2="244"/>
+    <line x1="466" y1="240" x2="474" y2="240"/>
+    <line x1="470" y1="236" x2="470" y2="244"/>
+  </g>
+</svg>

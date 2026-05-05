@@ -1,0 +1,91 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- AURORAKIN — ice, RARE — emits aurora light from fur, nocturnal
+       Mutations: v1 Aurora Green · v2 Purple · v3 Pink Aurora · v4 Blue Glow
+       Signature: body w/ AURORA CURTAIN RIBBONS streaming from back/fur
+  -->
+  <!-- PALETTE
+       v1: body-base=#283050 body-shadow=#101828 body-highlight=#404868 body-stroke=#000810 accent-base=#80f0a0 accent-shadow=#3898 50 accent-highlight=#c0ffd0
+       v2: body-base=#383058 body-shadow=#181028 body-highlight=#503870 body-stroke=#080010 accent-base=#c080f0 accent-shadow=#683898 accent-highlight=#e8c0ff
+       v3: body-base=#503040 body-shadow=#201018 body-highlight=#704858 body-stroke=#100008 accent-base=#ff80c8 accent-shadow=#a04080 accent-highlight=#ffc0e0
+       v4: body-base=#102848 body-shadow=#000818 body-highlight=#283858 body-stroke=#000000 accent-base=#80c0f8 accent-shadow=#3878 b8 accent-highlight=#c0e0ff
+  -->
+  <style>
+    .body-base       { fill: #283050; }
+    .body-base       { stroke: #283050; }
+    .body-shadow     { fill: #101828; }
+    .body-shadow     { stroke: #101828; }
+    .body-highlight  { fill: #404868; }
+    .body-highlight  { stroke: #404868; }
+    .body-stroke     { fill: #000810; }
+    .body-stroke     { stroke: #000810; }
+    .accent-base     { fill: #80f0a0; }
+    .accent-base     { stroke: #80f0a0; }
+    .accent-shadow   { fill: #389850; }
+    .accent-shadow   { stroke: #389850; }
+    .accent-highlight{ fill: #c0ffd0; }
+    .accent-highlight{ stroke: #c0ffd0; }
+    .eye-iris        { fill: #80f0a0; }
+    .eye-pupil       { fill: #001008; }
+    .eye-highlight   { fill: #ffffff; }
+    .eye-sclera      { fill: #e0ffe8; }
+    .mouth-interior  { fill: #001008; }
+  </style>
+
+  <!-- Custom glow: aurora curtain ribbons (signature) -->
+  <path d="M80,80 Q140,200 100,340 Q140,260 180,180 Q160,260 140,400" stroke="#80f0a0" stroke-width="22" fill="none" opacity="0.32" stroke-linecap="round"/>
+  <path d="M80,80 Q140,200 100,340 Q140,260 180,180 Q160,260 140,400" stroke="#c0ffd0" stroke-width="10" fill="none" opacity="0.4" stroke-linecap="round"/>
+  <path d="M432,80 Q372,200 412,340 Q372,260 332,180 Q352,260 372,400" stroke="#80f0a0" stroke-width="22" fill="none" opacity="0.32" stroke-linecap="round"/>
+  <path d="M432,80 Q372,200 412,340 Q372,260 332,180 Q352,260 372,400" stroke="#c0ffd0" stroke-width="10" fill="none" opacity="0.4" stroke-linecap="round"/>
+  <!-- additional ribbon over center -->
+  <path d="M180,60 Q256,160 332,60" stroke="#80f0a0" stroke-width="18" fill="none" opacity="0.28" stroke-linecap="round"/>
+  <path d="M180,60 Q256,160 332,60" stroke="#c0ffd0" stroke-width="8" fill="none" opacity="0.4" stroke-linecap="round"/>
+
+  <!-- feet -->
+  <ellipse cx="216" cy="436" rx="26" ry="13" class="body-shadow"/>
+  <ellipse cx="296" cy="436" rx="26" ry="13" class="body-shadow"/>
+  <ellipse cx="216" cy="432" rx="22" ry="9" class="body-base"/>
+  <ellipse cx="296" cy="432" rx="22" ry="9" class="body-base"/>
+
+  <!-- arms -->
+  <ellipse cx="138" cy="306" rx="34" ry="18" class="body-shadow" transform="rotate(-15 138 306)"/>
+  <ellipse cx="142" cy="302" rx="28" ry="13" class="body-base"   transform="rotate(-15 142 302)"/>
+  <ellipse cx="374" cy="306" rx="34" ry="18" class="body-shadow" transform="rotate(15 374 306)"/>
+  <ellipse cx="370" cy="302" rx="28" ry="13" class="body-base"   transform="rotate(15 370 302)"/>
+
+  <!-- body (dark fur) -->
+  <ellipse cx="256" cy="306" rx="120" ry="138" class="body-shadow"/>
+  <ellipse cx="256" cy="300" rx="114" ry="132" class="body-base"/>
+
+  <!-- aurora-glowing fur strands across body -->
+  <g stroke="#80f0a0" stroke-width="2" fill="none" opacity="0.85" stroke-linecap="round">
+    <path d="M180,260 Q200,290 180,340"/>
+    <path d="M210,250 Q230,290 210,350"/>
+    <path d="M240,242 Q256,290 240,360"/>
+    <path d="M272,242 Q256,290 272,360"/>
+    <path d="M302,250 Q282,290 302,350"/>
+    <path d="M332,260 Q312,290 332,340"/>
+  </g>
+
+  <!-- ═══════ EYES (ice family — GLOWING aurora-iris, mystical) ═══════ -->
+  <ellipse cx="220" cy="280" rx="24" ry="26" class="eye-sclera" stroke="none"/>
+  <ellipse cx="220" cy="280" rx="20" ry="22" fill="none" stroke="#000810" stroke-width="2.5"/>
+  <circle cx="222" cy="286" r="14" fill="#80f0a0"/>
+  <circle cx="222" cy="286" r="14" fill="none" stroke="#3898 50" stroke-width="1.5"/>
+  <circle cx="222" cy="286" r="9" class="eye-pupil"/>
+  <path d="M226,278 L230,282 L226,286 L222,282 Z" class="eye-highlight"/>
+  <ellipse cx="292" cy="280" rx="24" ry="26" class="eye-sclera" stroke="none"/>
+  <ellipse cx="292" cy="280" rx="20" ry="22" fill="none" stroke="#000810" stroke-width="2.5"/>
+  <circle cx="290" cy="286" r="14" fill="#80f0a0"/>
+  <circle cx="290" cy="286" r="14" fill="none" stroke="#389850" stroke-width="1.5"/>
+  <circle cx="290" cy="286" r="9" class="eye-pupil"/>
+  <path d="M286,278 L282,282 L286,286 L290,282 Z" class="eye-highlight"/>
+
+  <!-- mouth: small mystical -->
+  <path d="M236,338 Q256,348 276,338" class="body-stroke" fill="none" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- ambient sparkles -->
+  <circle cx="40"  cy="240" r="2" fill="#c0ffd0" opacity="0.85"/>
+  <circle cx="472" cy="240" r="2" fill="#c0ffd0" opacity="0.85"/>
+  <circle cx="60"  cy="430" r="2" fill="#c0ffd0" opacity="0.8"/>
+  <circle cx="452" cy="430" r="2" fill="#c0ffd0" opacity="0.8"/>
+</svg>

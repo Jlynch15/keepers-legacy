@@ -73,3 +73,8 @@ Desktop.ini
 AuthKey_*.p8
 .env
 secrets.yml
+
+# Python (build pipeline tools)
+__pycache__/
+*.pyc
+.pytest_cache/

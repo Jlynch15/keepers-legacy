@@ -1,0 +1,82 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- ELECTRA — electric, uncommon — original ancient dignified electric
+       Mutations: v1 Classic Yellow · v2 Silver · v3 Gold · v4 Blue White
+       Signature: round body with REGAL CROWN of small lightning bolts + dignified posture
+  -->
+  <!-- PALETTE
+       v1: body-base=#ffd028 body-shadow=#a08010 body-highlight=#fff088 body-stroke=#403008 accent-base=#fff088 accent-shadow=#a08820 accent-highlight=#ffffd8
+       v2: body-base=#d8dce0 body-shadow=#888c90 body-highlight=#f0f4f8 body-stroke=#3a3a3a accent-base=#e8ecf0 accent-shadow=#90989a accent-highlight=#ffffff
+       v3: body-base=#e8b830 body-shadow=#987820 body-highlight=#ffd068 body-stroke=#382808 accent-base=#ffd060 accent-shadow=#a07820 accent-highlight=#ffe888
+       v4: body-base=#a8c8e8 body-shadow=#5878a8 body-highlight=#c8e0f8 body-stroke=#1a3858 accent-base=#d0e0ff accent-shadow=#7898 c0 accent-highlight=#ffffff
+  -->
+  <style>
+    .body-base       { fill: #ffd028; }
+    .body-base       { stroke: #ffd028; }
+    .body-shadow     { fill: #a08010; }
+    .body-shadow     { stroke: #a08010; }
+    .body-highlight  { fill: #fff088; }
+    .body-highlight  { stroke: #fff088; }
+    .body-stroke     { fill: #403008; }
+    .body-stroke     { stroke: #403008; }
+    .accent-base     { fill: #fff088; }
+    .accent-base     { stroke: #fff088; }
+    .accent-shadow   { fill: #a08820; }
+    .accent-shadow   { stroke: #a08820; }
+    .accent-highlight{ fill: #ffffd8; }
+    .accent-highlight{ stroke: #ffffd8; }
+    .eye-iris        { fill: #fff088; }
+    .eye-pupil       { fill: #1a1000; }
+    .eye-highlight   { fill: #ffffff; }
+    .eye-sclera      { fill: #fff8d8; }
+    .mouth-interior  { fill: #2a1808; }
+  </style>
+
+  <!-- Custom glow: regal crown lightning bolts above head (signature) -->
+  <g stroke="#fff088" stroke-width="14" fill="none" stroke-linecap="round" opacity="0.5">
+    <path d="M256,180 L246,140 L262,150 L252,110"/>
+    <path d="M196,200 L186,170 L200,176 L194,150"/>
+    <path d="M316,200 L326,170 L312,176 L318,150"/>
+  </g>
+  <g stroke="#ffe838" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.95">
+    <path d="M256,180 L246,140 L262,150 L252,110"/>
+    <path d="M196,200 L186,170 L200,176 L194,150"/>
+    <path d="M316,200 L326,170 L312,176 L318,150"/>
+  </g>
+
+  <!-- feet -->
+  <ellipse cx="216" cy="446" rx="28" ry="13" class="body-shadow"/>
+  <ellipse cx="296" cy="446" rx="28" ry="13" class="body-shadow"/>
+  <ellipse cx="216" cy="442" rx="22" ry="9" class="body-base"/>
+  <ellipse cx="296" cy="442" rx="22" ry="9" class="body-base"/>
+
+  <!-- arms (regal at sides) -->
+  <ellipse cx="138" cy="316" rx="36" ry="20" class="body-shadow"/>
+  <ellipse cx="142" cy="312" rx="30" ry="15" class="body-base"/>
+  <ellipse cx="374" cy="316" rx="36" ry="20" class="body-shadow"/>
+  <ellipse cx="370" cy="312" rx="30" ry="15" class="body-base"/>
+
+  <!-- body -->
+  <circle cx="256" cy="306" r="120" class="body-shadow"/>
+  <circle cx="256" cy="300" r="112" class="body-base"/>
+  <ellipse cx="220" cy="252" rx="22" ry="14" class="body-highlight" opacity="0.55"/>
+
+  <!-- chest plate / regal collar -->
+  <path d="M212,310 Q256,300 300,310 Q298,344 256,348 Q214,344 212,310 Z" class="accent-shadow" fill="none" stroke-width="3"/>
+  <circle cx="256" cy="328" r="8" class="accent-base"/>
+  <circle cx="256" cy="328" r="4" class="accent-highlight"/>
+
+  <!-- ═══════ EYES (electric family — dignified narrow with starburst highlight) ═══════ -->
+  <ellipse cx="220" cy="280" rx="22" ry="20" class="eye-sclera" stroke="none"/>
+  <ellipse cx="220" cy="280" rx="18" ry="16" fill="none" stroke="#403008" stroke-width="2.5"/>
+  <ellipse cx="222" cy="284" rx="11" ry="9" class="accent-base"/>
+  <ellipse cx="222" cy="284" rx="7" ry="6" class="eye-pupil"/>
+  <path d="M222,278 L222,284 M218,282 L226,282 M220,280 L224,286 M220,286 L224,280" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"/>
+  <ellipse cx="292" cy="280" rx="22" ry="20" class="eye-sclera" stroke="none"/>
+  <ellipse cx="292" cy="280" rx="18" ry="16" fill="none" stroke="#403008" stroke-width="2.5"/>
+  <ellipse cx="290" cy="284" rx="11" ry="9" class="accent-base"/>
+  <ellipse cx="290" cy="284" rx="7" ry="6" class="eye-pupil"/>
+  <path d="M290,278 L290,284 M286,282 L294,282 M288,280 L292,286 M288,286 L292,280" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- mouth: dignified small smile -->
+  <path d="M236,296 Q256,304 276,296" class="body-stroke" fill="none" stroke-width="3" stroke-linecap="round"/>
+</svg>

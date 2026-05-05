@@ -1,0 +1,91 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- ASHWALKER — fire, common — calm, ash trails, monk-like
+       Mutations: v1 Silver Ash · v2 Pale Grey · v3 White Ash · v4 Soft Black
+       Signature: tall serene figure with TRAILING ASH WISPS, monk-like calm
+  -->
+  <!-- PALETTE
+       v1: body-base=#a8a8b0 body-shadow=#585858 body-highlight=#d0d0d8 body-stroke=#202028 accent-base=#ff8038 accent-shadow=#a04018 accent-highlight=#ffb060
+       v2: body-base=#c8c8c8 body-shadow=#787878 body-highlight=#e8e8e8 body-stroke=#303030 accent-base=#ff9050 accent-shadow=#a05828 accent-highlight=#ffc080
+       v3: body-base=#f0f0f0 body-shadow=#a0a0a0 body-highlight=#ffffff body-stroke=#404040 accent-base=#ffa860 accent-shadow=#a06030 accent-highlight=#ffd098
+       v4: body-base=#383838 body-shadow=#181818 body-highlight=#585858 body-stroke=#000000 accent-base=#ff5020 accent-shadow=#a02008 accent-highlight=#ff9050
+  -->
+  <style>
+    .body-base       { fill: #a8a8b0; }
+    .body-base       { stroke: #a8a8b0; }
+    .body-shadow     { fill: #585858; }
+    .body-shadow     { stroke: #585858; }
+    .body-highlight  { fill: #d0d0d8; }
+    .body-highlight  { stroke: #d0d0d8; }
+    .body-stroke     { fill: #202028; }
+    .body-stroke     { stroke: #202028; }
+    .accent-base     { fill: #ff8038; }
+    .accent-base     { stroke: #ff8038; }
+    .accent-shadow   { fill: #a04018; }
+    .accent-shadow   { stroke: #a04018; }
+    .accent-highlight{ fill: #ffb060; }
+    .accent-highlight{ stroke: #ffb060; }
+    .eye-iris        { fill: #ff8038; }
+    .eye-pupil       { fill: #1a0800; }
+    .eye-highlight   { fill: #ffe8a0; }
+    .eye-sclera      { fill: #fff0d8; }
+    .mouth-interior  { fill: #2a0808; }
+  </style>
+  <!-- Custom glow: subtle warm glow at base only (calm ash drift) -->
+  <ellipse cx="256" cy="446" rx="160" ry="32" fill="#ff8038" opacity="0.18"/>
+
+
+  <!-- ═══════ TRAILING ASH WISPS (signature: ash drifting around feet) ═══════ -->
+  <path d="M120,440 Q160,420 200,440 Q240,420 280,440 Q320,420 360,440 Q400,420 440,440 Q400,460 360,452 Q320,460 280,452 Q240,460 200,452 Q160,460 120,440 Z" class="body-shadow" opacity="0.55"/>
+  <path d="M140,432 Q180,418 220,432 Q260,418 300,432 Q340,418 380,432 Q360,448 320,442 Q280,448 240,442 Q200,448 160,442 Q140,440 140,432 Z" class="body-base" opacity="0.75"/>
+
+  <!-- feet -->
+  <ellipse cx="232" cy="448" rx="20" ry="9" class="body-shadow"/>
+  <ellipse cx="280" cy="448" rx="20" ry="9" class="body-shadow"/>
+
+  <!-- arms (peaceful clasped) -->
+  <ellipse cx="200" cy="320" rx="32" ry="14" class="body-shadow" transform="rotate(-25 200 320)"/>
+  <ellipse cx="204" cy="316" rx="26" ry="10" class="body-base"   transform="rotate(-25 204 316)"/>
+  <ellipse cx="312" cy="320" rx="32" ry="14" class="body-shadow" transform="rotate(25 312 320)"/>
+  <ellipse cx="308" cy="316" rx="26" ry="10" class="body-base"   transform="rotate(25 308 316)"/>
+  <!-- clasped hands -->
+  <ellipse cx="256" cy="338" rx="24" ry="14" class="body-shadow"/>
+  <ellipse cx="256" cy="334" rx="20" ry="11" class="body-base"/>
+
+  <!-- ═══════ TALL SERENE BODY ═══════ -->
+  <ellipse cx="256" cy="280" rx="80" ry="160" class="body-shadow"/>
+  <ellipse cx="256" cy="276" rx="74" ry="154" class="body-base"/>
+  <!-- soft wispy highlight -->
+  <path d="M212,180 Q200,260 212,340" class="body-highlight" fill="none" stroke-width="10" stroke-linecap="round" opacity="0.5"/>
+
+  <!-- calm head ash crown -->
+  <path d="M216,160 Q236,130 256,150 Q276,130 296,160 Q300,180 256,180 Q212,180 216,160 Z" class="body-shadow"/>
+  <path d="M222,158 Q238,138 256,154 Q274,138 290,158 Q294,176 256,176 Q218,176 222,158 Z" class="body-base"/>
+
+  <!-- ═══════ EYES (fire family — SERENE CLOSED-EYE smile, monk-like) ═══════ -->
+  <path d="M196,228 Q220,212 244,228" fill="none" stroke="#202028" stroke-width="3" stroke-linecap="round"/>
+  <path d="M268,228 Q292,212 316,228" fill="none" stroke="#202028" stroke-width="3" stroke-linecap="round"/>
+  <!-- subtle eye glow under closed lid -->
+  <ellipse cx="220" cy="232" rx="16" ry="3" class="accent-base" opacity="0.55"/>
+  <ellipse cx="292" cy="232" rx="16" ry="3" class="accent-base" opacity="0.55"/>
+
+  <!-- mouth: peaceful gentle smile -->
+  <path d="M236,260 Q256,272 276,260" class="body-stroke" fill="none" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- soft cheek -->
+  <ellipse cx="200" cy="252" rx="9" ry="5" fill="#ff8038" opacity="0.32" stroke="none"/>
+  <ellipse cx="312" cy="252" rx="9" ry="5" fill="#ff8038" opacity="0.32" stroke="none"/>
+
+  <!-- ambient ash particles -->
+  <circle cx="60"  cy="180" r="3" class="body-base" opacity="0.6" stroke="none"/>
+  <circle cx="80"  cy="220" r="2" class="body-base" opacity="0.55" stroke="none"/>
+  <circle cx="40"  cy="280" r="2" class="body-base" opacity="0.5" stroke="none"/>
+  <circle cx="450" cy="180" r="3" class="body-base" opacity="0.6" stroke="none"/>
+  <circle cx="430" cy="220" r="2" class="body-base" opacity="0.55" stroke="none"/>
+  <circle cx="470" cy="280" r="2" class="body-base" opacity="0.5" stroke="none"/>
+
+  <!-- soft sparkles -->
+  <path d="M88,140 L90,146 L96,148 L90,150 L88,156 L86,150 L80,148 L86,146 Z"
+        class="accent-base" opacity="0.7"/>
+  <path d="M424,140 L426,146 L432,148 L426,150 L424,156 L422,150 L416,148 L422,146 Z"
+        class="accent-base" opacity="0.7"/>
+</svg>

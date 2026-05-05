@@ -1,0 +1,93 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- CHLOROPHYLL — grass, common — smooth, shifts shade by mood
+       Mutations: v1 Lime Green · v2 Forest Green · v3 Sage · v4 Jade
+       Signature: smooth simple drop-shaped body, very few details, mood-driven shading
+  -->
+  <!-- PALETTE
+       v1: body-base=#88d038 body-shadow=#487018 body-highlight=#b0f060 body-stroke=#102808 accent-base=#a8e060 accent-shadow=#608820 accent-highlight=#d8f098
+       v2: body-base=#388830 body-shadow=#184010 body-highlight=#588850 body-stroke=#001000 accent-base=#286020 accent-shadow=#082008 accent-highlight=#588040
+       v3: body-base=#a8b888 body-shadow=#586838 body-highlight=#c8d8a8 body-stroke=#1a2810 accent-base=#88a868 accent-shadow=#486828 accent-highlight=#b8d098
+       v4: body-base=#3aa888 body-shadow=#1a5848 body-highlight=#80c8a8 body-stroke=#001818 accent-base=#28886a accent-shadow=#103838 accent-highlight=#68b888
+  -->
+  <style>
+    .body-base       { fill: #88d038; }
+    .body-base       { stroke: #88d038; }
+    .body-shadow     { fill: #487018; }
+    .body-shadow     { stroke: #487018; }
+    .body-highlight  { fill: #b0f060; }
+    .body-highlight  { stroke: #b0f060; }
+    .body-stroke     { fill: #102808; }
+    .body-stroke     { stroke: #102808; }
+    .accent-base     { fill: #a8e060; }
+    .accent-base     { stroke: #a8e060; }
+    .accent-shadow   { fill: #608820; }
+    .accent-shadow   { stroke: #608820; }
+    .accent-highlight{ fill: #d8f098; }
+    .accent-highlight{ stroke: #d8f098; }
+    .eye-iris        { fill: #3a7038; }
+    .eye-pupil       { fill: #0a2008; }
+    .eye-highlight   { fill: #ffffff; }
+    .eye-sclera      { fill: #f0f8e0; }
+    .mouth-interior  { fill: #2a0820; }
+  </style>
+
+  <!-- feet (small, peeking from drop body) -->
+  <ellipse cx="220" cy="436" rx="22" ry="11" class="body-shadow"/>
+  <ellipse cx="292" cy="436" rx="22" ry="11" class="body-shadow"/>
+  <ellipse cx="220" cy="432" rx="18" ry="8" class="body-base"/>
+  <ellipse cx="292" cy="432" rx="18" ry="8" class="body-base"/>
+
+  <!-- arms -->
+  <ellipse cx="148" cy="324" rx="28" ry="16" class="body-shadow" transform="rotate(-15 148 324)"/>
+  <ellipse cx="152" cy="320" rx="22" ry="11" class="body-base"   transform="rotate(-15 152 320)"/>
+  <ellipse cx="364" cy="324" rx="28" ry="16" class="body-shadow" transform="rotate(15 364 324)"/>
+  <ellipse cx="360" cy="320" rx="22" ry="11" class="body-base"   transform="rotate(15 360 320)"/>
+
+  <!-- ═══════ DROP-SHAPED BODY (signature: simple smooth blob, narrower top, wider bottom) ═══════ -->
+  <path d="M256,148 Q344,168 372,300 Q392,408 304,432 Q256,440 208,432 Q120,408 140,300 Q168,168 256,148 Z" class="body-shadow"/>
+  <path d="M256,154 Q336,174 364,302 Q384,402 302,424 Q256,432 210,424 Q128,402 148,302 Q176,174 256,154 Z" class="body-base"/>
+  <!-- VARIED HIGHLIGHT — long curved gradient stroke up the side -->
+  <path d="M196,200 Q176,278 184,360" class="body-highlight" fill="none" stroke-width="14" stroke-linecap="round" opacity="0.4"/>
+  <!-- secondary smaller highlight -->
+  <ellipse cx="220" cy="200" rx="14" ry="22" class="body-highlight" opacity="0.5"/>
+
+  <!-- ═══════ EYES (grass family — medium round with SWIRL iris detail) ═══════ -->
+  <ellipse cx="220" cy="282" rx="24" ry="26" class="eye-sclera" stroke="none"/>
+  <ellipse cx="220" cy="282" rx="20" ry="22" fill="none" stroke="#102808" stroke-width="2.5"/>
+  <circle  cx="222" cy="288" r="14" class="eye-iris"/>
+  <!-- swirl ring inside iris -->
+  <circle  cx="222" cy="288" r="10" fill="none" stroke="#88c068" stroke-width="2" opacity="0.7"/>
+  <circle  cx="222" cy="288" r="7"  class="eye-pupil"/>
+  <circle cx="226" cy="282" r="3" class="eye-highlight" stroke="none"/>
+  <ellipse cx="292" cy="282" rx="24" ry="26" class="eye-sclera" stroke="none"/>
+  <ellipse cx="292" cy="282" rx="20" ry="22" fill="none" stroke="#102808" stroke-width="2.5"/>
+  <circle  cx="290" cy="288" r="14" class="eye-iris"/>
+  <circle  cx="290" cy="288" r="10" fill="none" stroke="#88c068" stroke-width="2" opacity="0.7"/>
+  <circle  cx="290" cy="288" r="7"  class="eye-pupil"/>
+  <circle cx="286" cy="282" r="3" class="eye-highlight" stroke="none"/>
+
+  <!-- mouth: gentle smile -->
+  <path d="M236,326 Q256,338 276,326" class="body-stroke" fill="none" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- cheek blush -->
+  <ellipse cx="184" cy="316" rx="11" ry="7" fill="#a0c038" opacity="0.45" stroke="none"/>
+  <ellipse cx="328" cy="316" rx="11" ry="7" fill="#a0c038" opacity="0.45" stroke="none"/>
+
+  <!-- body specks -->
+  <circle cx="246" cy="200" r="2" class="body-highlight" opacity="0.7" stroke="none"/>
+  <circle cx="296" cy="220" r="2" class="body-highlight" opacity="0.6" stroke="none"/>
+  <circle cx="186" cy="380" r="2" class="body-highlight" opacity="0.55" stroke="none"/>
+  <circle cx="320" cy="380" r="2" class="body-highlight" opacity="0.55" stroke="none"/>
+
+  <!-- ambient leaf flakes -->
+  <ellipse cx="60"  cy="180" rx="4" ry="2" class="accent-base" opacity="0.55" transform="rotate(25 60 180)"/>
+  <ellipse cx="84"  cy="380" rx="4" ry="2" class="accent-base" opacity="0.5" transform="rotate(-25 84 380)"/>
+  <ellipse cx="452" cy="180" rx="4" ry="2" class="accent-base" opacity="0.55" transform="rotate(-25 452 180)"/>
+  <ellipse cx="428" cy="380" rx="4" ry="2" class="accent-base" opacity="0.5" transform="rotate(25 428 380)"/>
+
+  <!-- sparkles -->
+  <path d="M88,140 L90,146 L96,148 L90,150 L88,156 L86,150 L80,148 L86,146 Z"
+        fill="#fff088" opacity="0.85"/>
+  <path d="M424,140 L426,146 L432,148 L426,150 L424,156 L422,150 L416,148 L422,146 Z"
+        fill="#fff088" opacity="0.85"/>
+</svg>

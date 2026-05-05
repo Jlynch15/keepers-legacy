@@ -1,0 +1,143 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- LUMINARA — water, RARE — deep-sea creature, dramatic bioluminescence (more than deepecho)
+       Mutations: v1 Electric Blue · v2 Neon Green · v3 Vivid Pink · v4 Golden White
+       Signature: dark body with INTENSE radiating internal glow + visible glow halo aura
+       SELF-CHECK vs prior water:
+         - Deepecho (fish + lure + glow dots) → SIMILAR theme but DIFFERENT silhouette/intensity
+            Luminara is more orb/jelly-like, glow radiates out in concentric halos
+         - All non-glow water creatures → DIFFERENT (this is the rare glow creature)
+         Eye treatment: round with NEON GLOW iris (electric/biolume color)
+         Mouth: small slack open "wonder" expression
+  -->
+  <!-- PALETTE
+       v1: body-base=#0a1830 body-shadow=#000010 body-highlight=#1a3060 body-stroke=#000000 accent-base=#308de4 accent-shadow=#1a4878 accent-highlight=#80b8e8 glow-base=#80c8ff glow-halo=#3098e8
+       v2: body-base=#0a2018 body-shadow=#000008 body-highlight=#1a3828 body-stroke=#000000 accent-base=#30c870 accent-shadow=#0a5828 accent-highlight=#80f0a8 glow-base=#80ffa0 glow-halo=#30c878
+       v3: body-base=#1a0820 body-shadow=#000000 body-highlight=#3a1850 body-stroke=#000000 accent-base=#e040a0 accent-shadow=#801860 accent-highlight=#ff80c8 glow-base=#ff80d0 glow-halo=#e030a0
+       v4: body-base=#1a1810 body-shadow=#000000 body-highlight=#3a3828 body-stroke=#000000 accent-base=#f0d860 accent-shadow=#a08020 accent-highlight=#fff8c0 glow-base=#fff0a0 glow-halo=#f0c850
+  -->
+  <style>
+    .body-base       { fill: #0a1830; }
+    .body-base       { stroke: #0a1830; }
+    .body-shadow     { fill: #000010; }
+    .body-shadow     { stroke: #000010; }
+    .body-highlight  { fill: #1a3060; }
+    .body-highlight  { stroke: #1a3060; }
+    .body-stroke     { fill: #000000; }
+    .body-stroke     { stroke: #000000; }
+    .accent-base     { fill: #308de4; }
+    .accent-base     { stroke: #308de4; }
+    .accent-shadow   { fill: #1a4878; }
+    .accent-shadow   { stroke: #1a4878; }
+    .accent-highlight{ fill: #80b8e8; }
+    .accent-highlight{ stroke: #80b8e8; }
+    .glow-base       { fill: #80c8ff; }
+    .glow-base       { stroke: #80c8ff; }
+    .glow-halo       { fill: #3098e8; }
+    .glow-halo       { stroke: #3098e8; }
+    .eye-iris        { fill: #1a4868; }
+    .eye-pupil       { fill: #0a1828; }
+    .eye-highlight   { fill: #ffffff; }
+    .eye-sclera      { fill: #d8eef0; }
+    .mouth-interior  { fill: #2a0820; }
+  </style>
+
+  <!-- ═══════ COMPOSITION — jellyfish-like glowing orb body ═══════ -->
+
+  <!-- ═══════ DRAMATIC GLOW HALOS (signature: intense radiating light) ═══════ -->
+  <circle cx="256" cy="296" r="220" class="glow-halo" opacity="0.18"/>
+  <circle cx="256" cy="296" r="180" class="glow-halo" opacity="0.28"/>
+  <circle cx="256" cy="296" r="156" class="glow-halo" opacity="0.40"/>
+
+  <!-- ═══════ TENTACLE TENDRILS (jelly-like trailing) ═══════ -->
+  <path d="M188,400 Q180,440 196,470" class="body-base" fill="none" stroke-width="8" stroke-linecap="round"/>
+  <path d="M188,400 Q180,440 196,470" class="glow-halo" fill="none" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+  <path d="M232,420 Q228,460 240,490" class="body-base" fill="none" stroke-width="8" stroke-linecap="round"/>
+  <path d="M232,420 Q228,460 240,490" class="glow-halo" fill="none" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+  <path d="M280,420 Q284,460 272,490" class="body-base" fill="none" stroke-width="8" stroke-linecap="round"/>
+  <path d="M280,420 Q284,460 272,490" class="glow-halo" fill="none" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+  <path d="M324,400 Q332,440 316,470" class="body-base" fill="none" stroke-width="8" stroke-linecap="round"/>
+  <path d="M324,400 Q332,440 316,470" class="glow-halo" fill="none" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+
+  <!-- ═══════ MAIN ORB BODY (dome shape) ═══════ -->
+  <path d="M114,316 Q114,176 256,170 Q398,176 398,316 Q398,400 256,406 Q114,400 114,316 Z"
+        class="body-shadow"/>
+  <path d="M120,316 Q120,182 256,176 Q392,182 392,316 Q392,396 256,402 Q120,396 120,316 Z"
+        class="body-base"/>
+  <ellipse cx="220" cy="232" rx="52" ry="28" class="body-highlight" opacity="0.42"/>
+
+  <!-- ═══════ INNER GLOW CORE (signature: bright internal core radiating) ═══════ -->
+  <circle cx="256" cy="284" r="64" class="glow-halo" opacity="0.55"/>
+  <circle cx="256" cy="284" r="44" class="glow-base" opacity="0.7"/>
+  <circle cx="256" cy="284" r="24" fill="#ffffff" opacity="0.85"/>
+
+  <!-- ═══════ GLOW DOTS PATTERN (clustered around body) ═══════ -->
+  <g>
+    <circle cx="170" cy="260" r="10" class="glow-halo" opacity="0.4"/>
+    <circle cx="170" cy="260" r="6"  class="glow-base"/>
+    <circle cx="168" cy="258" r="2" fill="#ffffff" opacity="0.9"/>
+  </g>
+  <g>
+    <circle cx="146" cy="320" r="9" class="glow-halo" opacity="0.4"/>
+    <circle cx="146" cy="320" r="5" class="glow-base"/>
+    <circle cx="144" cy="318" r="2" fill="#ffffff" opacity="0.9"/>
+  </g>
+  <g>
+    <circle cx="170" cy="370" r="9" class="glow-halo" opacity="0.4"/>
+    <circle cx="170" cy="370" r="5" class="glow-base"/>
+  </g>
+  <g>
+    <circle cx="342" cy="260" r="10" class="glow-halo" opacity="0.4"/>
+    <circle cx="342" cy="260" r="6"  class="glow-base"/>
+    <circle cx="340" cy="258" r="2" fill="#ffffff" opacity="0.9"/>
+  </g>
+  <g>
+    <circle cx="366" cy="320" r="9" class="glow-halo" opacity="0.4"/>
+    <circle cx="366" cy="320" r="5" class="glow-base"/>
+    <circle cx="364" cy="318" r="2" fill="#ffffff" opacity="0.9"/>
+  </g>
+  <g>
+    <circle cx="342" cy="370" r="9" class="glow-halo" opacity="0.4"/>
+    <circle cx="342" cy="370" r="5" class="glow-base"/>
+  </g>
+
+  <!-- ═══════ EYES (water family — round with NEON GLOW iris matching biolume) ═══════ -->
+  <!-- Note: eye whites are smaller, pupil bigger (mysterious deep-sea) -->
+  <ellipse cx="218" cy="296" rx="22" ry="24" class="eye-sclera" stroke="none"/>
+  <ellipse cx="218" cy="296" rx="18" ry="20" fill="none" stroke="#ffffff" stroke-width="2.5"/>
+  <!-- Glowing iris ring -->
+  <circle  cx="220" cy="302" r="14" class="glow-halo" opacity="0.85"/>
+  <circle  cx="220" cy="302" r="11" class="glow-base"/>
+  <circle  cx="220" cy="302" r="6"  class="eye-pupil"/>
+  <circle cx="223" cy="296" r="2.5" fill="#ffffff" stroke="none"/>
+
+  <ellipse cx="294" cy="296" rx="22" ry="24" class="eye-sclera" stroke="none"/>
+  <ellipse cx="294" cy="296" rx="18" ry="20" fill="none" stroke="#ffffff" stroke-width="2.5"/>
+  <circle  cx="292" cy="302" r="14" class="glow-halo" opacity="0.85"/>
+  <circle  cx="292" cy="302" r="11" class="glow-base"/>
+  <circle  cx="292" cy="302" r="6"  class="eye-pupil"/>
+  <circle cx="289" cy="296" r="2.5" fill="#ffffff" stroke="none"/>
+
+  <!-- ═══════ MOUTH (small slack "wonder" — open soft oval) ═══════ -->
+  <ellipse cx="256" cy="346" rx="9" ry="8" class="mouth-interior"/>
+  <ellipse cx="256" cy="346" rx="9" ry="8" fill="none" stroke="#000000" stroke-width="2"/>
+
+  <!-- ═══════ AMBIENT BUBBLES + sparkle stars ═══════ -->
+  <circle cx="50"  cy="180" r="5" fill="none" stroke="#80c8e8" stroke-width="2" opacity="0.6"/>
+  <circle cx="78"  cy="148" r="3" fill="none" stroke="#80c8e8" stroke-width="1.5" opacity="0.55"/>
+  <circle cx="38"  cy="248" r="3" fill="none" stroke="#80c8e8" stroke-width="1.5" opacity="0.5"/>
+  <circle cx="462" cy="180" r="5" fill="none" stroke="#80c8e8" stroke-width="2" opacity="0.6"/>
+  <circle cx="434" cy="148" r="3" fill="none" stroke="#80c8e8" stroke-width="1.5" opacity="0.55"/>
+  <circle cx="474" cy="248" r="3" fill="none" stroke="#80c8e8" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- ═══════ SPARKLE STARS (rare-creature signature) ═══════ -->
+  <path d="M76,108 L78,116 L86,118 L78,120 L76,128 L74,120 L66,118 L74,116 Z"
+        class="glow-base" opacity="0.95"/>
+  <path d="M436,108 L438,116 L446,118 L438,120 L436,128 L434,120 L426,118 L434,116 Z"
+        class="glow-base" opacity="0.95"/>
+  <path d="M256,80 L258,90 L268,92 L258,94 L256,104 L254,94 L244,92 L254,90 Z"
+        class="glow-base" opacity="0.95"/>
+  <path d="M88,388 L90,394 L96,396 L90,398 L88,404 L86,398 L80,396 L86,394 Z"
+        class="glow-base" opacity="0.85"/>
+  <path d="M424,388 L426,394 L432,396 L426,398 L424,404 L422,398 L416,396 L422,394 Z"
+        class="glow-base" opacity="0.85"/>
+</svg>

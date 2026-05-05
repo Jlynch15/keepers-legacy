@@ -1,0 +1,105 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- CINDERBORNE — fire, common — born from dying embers, carries warmth
+       Mutations: v1 Ash Grey · v2 Orange Ember · v3 Red Flame · v4 Deep Black
+       Signature: round body w/ EMBER CROWN flickering on top, warm halo
+  -->
+  <!-- PALETTE
+       v1: body-base=#787068 body-shadow=#383028 body-highlight=#a89888 body-stroke=#1a1410 accent-base=#ff8038 accent-shadow=#a04018 accent-highlight=#ffc080
+       v2: body-base=#e87830 body-shadow=#a04018 body-highlight=#ffa868 body-stroke=#481000 accent-base=#ffc040 accent-shadow=#a07820 accent-highlight=#ffe890
+       v3: body-base=#c83020 body-shadow=#680810 body-highlight=#e85838 body-stroke=#280000 accent-base=#ff8030 accent-shadow=#a04018 accent-highlight=#ffc080
+       v4: body-base=#1a1010 body-shadow=#000000 body-highlight=#3a2820 body-stroke=#000000 accent-base=#ff5018 accent-shadow=#a02008 accent-highlight=#ff9050
+  -->
+  <style>
+    .body-base       { fill: #787068; }
+    .body-base       { stroke: #787068; }
+    .body-shadow     { fill: #383028; }
+    .body-shadow     { stroke: #383028; }
+    .body-highlight  { fill: #a89888; }
+    .body-highlight  { stroke: #a89888; }
+    .body-stroke     { fill: #1a1410; }
+    .body-stroke     { stroke: #1a1410; }
+    .accent-base     { fill: #ff8038; }
+    .accent-base     { stroke: #ff8038; }
+    .accent-shadow   { fill: #a04018; }
+    .accent-shadow   { stroke: #a04018; }
+    .accent-highlight{ fill: #ffc080; }
+    .accent-highlight{ stroke: #ffc080; }
+    .eye-iris        { fill: #ff7028; }
+    .eye-pupil       { fill: #1a0800; }
+    .eye-highlight   { fill: #ffe8a0; }
+    .eye-sclera      { fill: #fff0d8; }
+    .mouth-interior  { fill: #2a0808; }
+  </style>
+  <!-- Custom glow: flickering warmth concentrated around the crown -->
+  <ellipse cx="256" cy="186" rx="100" ry="50" fill="#ff8038" opacity="0.18"/>
+  <ellipse cx="256" cy="186" rx="68" ry="34" fill="#ffc080" opacity="0.25"/>
+
+
+  <!-- feet -->
+  <ellipse cx="216" cy="436" rx="26" ry="13" class="body-shadow"/>
+  <ellipse cx="296" cy="436" rx="26" ry="13" class="body-shadow"/>
+  <ellipse cx="216" cy="432" rx="22" ry="9" class="body-base"/>
+  <ellipse cx="296" cy="432" rx="22" ry="9" class="body-base"/>
+
+  <!-- arms -->
+  <ellipse cx="138" cy="306" rx="36" ry="20" class="body-shadow" transform="rotate(-15 138 306)"/>
+  <ellipse cx="142" cy="302" rx="30" ry="15" class="body-base"   transform="rotate(-15 142 302)"/>
+  <ellipse cx="374" cy="306" rx="36" ry="20" class="body-shadow" transform="rotate(15 374 306)"/>
+  <ellipse cx="370" cy="302" rx="30" ry="15" class="body-base"   transform="rotate(15 370 302)"/>
+
+  <!-- body -->
+  <circle cx="256" cy="306" r="118" class="body-shadow"/>
+  <circle cx="256" cy="300" r="110" class="body-base"/>
+  <!-- ember-puff highlight -->
+  <ellipse cx="216" cy="248" rx="20" ry="14" class="body-highlight" opacity="0.55"/>
+  <circle cx="246" cy="232" r="6" class="accent-highlight" opacity="0.7"/>
+
+  <!-- ═══════ EMBER CROWN (signature: flickering flames atop head) ═══════ -->
+  <path d="M212,220 Q204,160 220,140 Q220,180 232,200 Q236,170 248,150 Q252,200 256,210 Q260,180 272,160 Q278,200 286,220 Q298,170 308,160 Q300,210 304,224 Z" class="accent-shadow"/>
+  <path d="M216,220 Q210,168 222,150 Q224,184 234,202 Q238,178 248,160 Q252,200 256,206 Q260,184 270,164 Q278,196 284,218 Q294,176 304,170 Q298,210 300,222 Z" class="accent-base"/>
+  <path d="M222,220 Q220,180 226,166 Q230,196 238,210 Q244,196 254,178 Q258,206 256,200 Q260,196 268,180 Q276,202 282,218" class="accent-highlight" fill="none" stroke-width="3" opacity="0.8" stroke-linecap="round"/>
+
+  <!-- ═══════ EYES (fire family — GLOWING ember-iris, warm sclera) ═══════ -->
+  <ellipse cx="220" cy="296" rx="24" ry="26" class="eye-sclera" stroke="none"/>
+  <ellipse cx="220" cy="296" rx="20" ry="22" fill="none" stroke="#1a0800" stroke-width="2.5"/>
+  <circle cx="222" cy="302" r="14" class="accent-base"/>
+  <circle cx="222" cy="302" r="14" fill="none" stroke="#a04018" stroke-width="1.5"/>
+  <circle cx="222" cy="302" r="9" class="eye-iris"/>
+  <circle cx="222" cy="302" r="6" class="eye-pupil"/>
+  <ellipse cx="226" cy="296" rx="3" ry="4" class="eye-highlight" stroke="none"/>
+  <ellipse cx="292" cy="296" rx="24" ry="26" class="eye-sclera" stroke="none"/>
+  <ellipse cx="292" cy="296" rx="20" ry="22" fill="none" stroke="#1a0800" stroke-width="2.5"/>
+  <circle cx="290" cy="302" r="14" class="accent-base"/>
+  <circle cx="290" cy="302" r="14" fill="none" stroke="#a04018" stroke-width="1.5"/>
+  <circle cx="290" cy="302" r="9" class="eye-iris"/>
+  <circle cx="290" cy="302" r="6" class="eye-pupil"/>
+  <ellipse cx="286" cy="296" rx="3" ry="4" class="eye-highlight" stroke="none"/>
+
+  <!-- mouth -->
+  <path d="M236,344 Q256,358 276,344" class="body-stroke" fill="none" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- cheek warmth -->
+  <ellipse cx="180" cy="332" rx="12" ry="7" fill="#ff5020" opacity="0.45" stroke="none"/>
+  <ellipse cx="332" cy="332" rx="12" ry="7" fill="#ff5020" opacity="0.45" stroke="none"/>
+
+  <!-- body specks -->
+  <circle cx="256" cy="380" r="2" class="accent-highlight" opacity="0.6" stroke="none"/>
+  <circle cx="180" cy="380" r="2" class="accent-highlight" opacity="0.55" stroke="none"/>
+  <circle cx="332" cy="380" r="2" class="accent-highlight" opacity="0.55" stroke="none"/>
+
+  <!-- ambient embers (signature: floating sparks) -->
+  <circle cx="60"  cy="180" r="4" fill="#ff8030" opacity="0.85"/>
+  <circle cx="60"  cy="180" r="8" fill="#ff8030" opacity="0.2"/>
+  <circle cx="86"  cy="148" r="3" fill="#ffc040" opacity="0.8"/>
+  <circle cx="42"  cy="240" r="3" fill="#ffc040" opacity="0.75"/>
+  <circle cx="450" cy="180" r="4" fill="#ff8030" opacity="0.85"/>
+  <circle cx="450" cy="180" r="8" fill="#ff8030" opacity="0.2"/>
+  <circle cx="426" cy="148" r="3" fill="#ffc040" opacity="0.8"/>
+  <circle cx="470" cy="240" r="3" fill="#ffc040" opacity="0.75"/>
+  <circle cx="80"  cy="420" r="3" fill="#ff8030" opacity="0.7"/>
+  <circle cx="432" cy="420" r="3" fill="#ff8030" opacity="0.7"/>
+
+  <!-- sparkles -->
+  <path d="M256,80 L258,88 L266,90 L258,92 L256,100 L254,92 L246,90 L254,88 Z"
+        fill="#ffe060" opacity="0.95"/>
+</svg>

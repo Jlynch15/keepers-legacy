@@ -1,0 +1,209 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- PALETTE
+       v1: body-base=#0a0a18 body-shadow=#000000 body-highlight=#1a1a30 body-stroke=#000000 accent-base=#2a2a48 accent-shadow=#000000 accent-highlight=#3a3a60 glow-base=#a0e0ff glow-halo=#80c0e0
+       v2: body-base=#1a3050 body-shadow=#0a1828 body-highlight=#3050a0 body-stroke=#000820 accent-base=#3060c0 accent-shadow=#102060 accent-highlight=#5080d0 glow-base=#a0e0ff glow-halo=#80c0e0
+       v3: body-base=#2a1050 body-shadow=#1a0830 body-highlight=#5028a0 body-stroke=#080020 accent-base=#5028a0 accent-shadow=#200840 accent-highlight=#7050c0 glow-base=#e0a0ff glow-halo=#c080e0
+       v4: body-base=#0a3a28 body-shadow=#001810 body-highlight=#208050 body-stroke=#001008 accent-base=#208050 accent-shadow=#001810 accent-highlight=#40a070 glow-base=#a0ffa0 glow-halo=#80e080
+  -->
+  <style>
+    .body-base       { fill: #0a0a18; }
+    .body-base       { stroke: #0a0a18; }
+    .body-shadow     { fill: #000000; }
+    .body-shadow     { stroke: #000000; }
+    .body-highlight  { fill: #1a1a30; }
+    .body-highlight  { stroke: #1a1a30; }
+    .body-stroke     { fill: #000000; }
+    .body-stroke     { stroke: #000000; }
+    .accent-base     { fill: #2a2a48; }
+    .accent-base     { stroke: #2a2a48; }
+    .accent-shadow   { fill: #000000; }
+    .accent-shadow   { stroke: #000000; }
+    .accent-highlight{ fill: #3a3a60; }
+    .accent-highlight{ stroke: #3a3a60; }
+    /* Glow — bright bioluminescence, similar across mutations but tinted */
+    .glow-base       { fill: #a0e0ff; }
+    .glow-base       { stroke: #a0e0ff; }
+    .glow-halo       { fill: #80c0e0; }
+    .glow-halo       { stroke: #80c0e0; }
+    /* Constants */
+    .eye-white       { fill: #ffffff; }
+    .eye-pupil       { fill: #2a1500; }
+    .eye-highlight   { fill: #ffffff; }
+    .mouth-interior  { fill: #2a0808; }
+  </style>
+
+  <!-- ═══════ COMPOSITION ═══════
+       Fish-shaped, longer than tall. Wide body, tail fin on left, lure on stalk above head.
+       Bioluminescent dots along sides with soft halos. Wide haunting eyes.
+       Center bias (256, 280); body extends 100..420 horizontally.
+  -->
+
+  <!-- ═══════ TAIL FIN (left) ═══════ -->
+  <path d="M124,260 L60,200 L72,260 L60,320 Z" class="body-shadow"/>
+  <path d="M132,260 L78,212 L88,260 L78,308 Z" class="body-base"/>
+  <path d="M120,260 L86,238 L120,260 L86,282 Z" class="body-highlight" opacity="0.5"/>
+
+  <!-- ═══════ BACK SPINES (top fin spikes) ═══════ -->
+  <path d="M196,164 L188,128 L200,148 Z" class="body-shadow"/>
+  <path d="M196,164 L188,134 L200,150 Z" class="body-base"/>
+  <path d="M236,144 L226,108 L240,128 Z" class="body-shadow"/>
+  <path d="M236,144 L226,114 L240,130 Z" class="body-base"/>
+  <path d="M276,140 L268,102 L280,124 Z" class="body-shadow"/>
+  <path d="M276,140 L268,108 L280,126 Z" class="body-base"/>
+
+  <!-- ═══════ BOTTOM FINS (small) ═══════ -->
+  <path d="M180,400 L160,432 L196,422 Z" class="body-shadow"/>
+  <path d="M182,398 L166,428 L196,420 Z" class="body-base"/>
+  <path d="M300,400 L284,428 L316,420 Z" class="body-shadow"/>
+  <path d="M300,398 L290,424 L316,418 Z" class="body-base"/>
+
+  <!-- ═══════ MAIN BODY (oval, fish-shaped) ═══════ -->
+  <ellipse cx="260" cy="280" rx="160" ry="124" class="body-shadow"/>
+  <ellipse cx="260" cy="276" rx="152" ry="118" class="body-base"/>
+  <!-- highlight crescent (upper-left) -->
+  <ellipse cx="208" cy="226" rx="52" ry="31" class="body-highlight" opacity="0.6"/>
+  <!-- soft bottom belly highlight -->
+  <ellipse cx="260" cy="350" rx="59" ry="20" class="body-highlight" opacity="0.4"/>
+
+  <!-- ═══════ LURE STALK + ORB (signature: anglerfish lure) ═══════ -->
+  <!-- stalk -->
+  <path d="M328,170 Q336,120 360,90" class="body-base" fill="none" stroke-width="6" stroke-linecap="round"/>
+  <!-- glow halo around orb -->
+  <circle cx="362" cy="84" r="32" class="glow-halo" opacity="0.35"/>
+  <circle cx="362" cy="84" r="22" class="glow-halo" opacity="0.55"/>
+  <!-- orb -->
+  <circle cx="362" cy="84" r="14" class="glow-base"/>
+  <circle cx="358" cy="80" r="6"  fill="#ffffff" opacity="0.85"/>
+
+  <!-- ═══════ BIOLUMINESCENT SIDE DOTS (signature: glowing markings) ═══════ -->
+  <!-- top row -->
+  <g>
+    <circle cx="160" cy="240" r="14" class="glow-halo" opacity="0.35"/>
+    <circle cx="160" cy="240" r="10" class="glow-halo" opacity="0.55"/>
+    <circle cx="160" cy="240" r="6"  class="glow-base"/>
+    <circle cx="158" cy="238" r="2"  fill="#ffffff" opacity="0.9"/>
+  </g>
+  <g>
+    <circle cx="208" cy="216" r="14" class="glow-halo" opacity="0.35"/>
+    <circle cx="208" cy="216" r="10" class="glow-halo" opacity="0.55"/>
+    <circle cx="208" cy="216" r="6"  class="glow-base"/>
+    <circle cx="206" cy="214" r="2"  fill="#ffffff" opacity="0.9"/>
+  </g>
+  <!-- middle row -->
+  <g>
+    <circle cx="180" cy="290" r="12" class="glow-halo" opacity="0.32"/>
+    <circle cx="180" cy="290" r="8"  class="glow-halo" opacity="0.50"/>
+    <circle cx="180" cy="290" r="5"  class="glow-base"/>
+  </g>
+  <g>
+    <circle cx="148" cy="320" r="12" class="glow-halo" opacity="0.32"/>
+    <circle cx="148" cy="320" r="8"  class="glow-halo" opacity="0.50"/>
+    <circle cx="148" cy="320" r="5"  class="glow-base"/>
+  </g>
+  <!-- bottom row -->
+  <g>
+    <circle cx="200" cy="370" r="12" class="glow-halo" opacity="0.32"/>
+    <circle cx="200" cy="370" r="8"  class="glow-halo" opacity="0.50"/>
+    <circle cx="200" cy="370" r="5"  class="glow-base"/>
+  </g>
+  <g>
+    <circle cx="262" cy="380" r="12" class="glow-halo" opacity="0.32"/>
+    <circle cx="262" cy="380" r="8"  class="glow-halo" opacity="0.50"/>
+    <circle cx="262" cy="380" r="5"  class="glow-base"/>
+  </g>
+  <g>
+    <circle cx="324" cy="368" r="12" class="glow-halo" opacity="0.32"/>
+    <circle cx="324" cy="368" r="8"  class="glow-halo" opacity="0.50"/>
+    <circle cx="324" cy="368" r="5"  class="glow-base"/>
+  </g>
+
+  <!-- ═══════ EYES (deep-sea fish style — big wet glossy round eyes) ═══════ -->
+  <!-- WATER BIOME EYE STYLE: large round, blue-tinted sclera, big round pupils, multi-highlight wet look -->
+  <!-- Eye whites with subtle blue/teal tint (underwater feel) -->
+  <ellipse cx="266" cy="266" rx="42" ry="46" fill="#d8eef0" stroke="none"/>
+  <ellipse cx="354" cy="266" rx="36" ry="40" fill="#d8eef0" stroke="none"/>
+  <!-- White outline rings (bright contrast against dark body) -->
+  <ellipse cx="266" cy="266" rx="38" ry="42" fill="none" stroke="#ffffff" stroke-width="3"/>
+  <ellipse cx="354" cy="266" rx="32" ry="36" fill="none" stroke="#ffffff" stroke-width="3"/>
+  <!-- Iris (deep teal-blue, like deep ocean) -->
+  <circle cx="266" cy="272" r="28" fill="#1a4868" stroke="none"/>
+  <circle cx="354" cy="272" r="24" fill="#1a4868" stroke="none"/>
+  <!-- Pupils (big round black — fish-like, NOT slit) -->
+  <circle cx="266" cy="272" r="18" class="eye-pupil" stroke="none"/>
+  <circle cx="354" cy="272" r="15" class="eye-pupil" stroke="none"/>
+  <!-- Multi-highlight wet/glossy look — large primary, secondary, small shimmer -->
+  <ellipse cx="276" cy="258" rx="8" ry="9" class="eye-highlight" stroke="none"/>
+  <circle  cx="258" cy="284" r="3.5" class="eye-highlight" stroke="none"/>
+  <circle  cx="280" cy="278" r="2"   class="eye-highlight" stroke="none" opacity="0.8"/>
+  <ellipse cx="361" cy="258" rx="6" ry="7" class="eye-highlight" stroke="none"/>
+  <circle  cx="346" cy="282" r="3" class="eye-highlight" stroke="none"/>
+  <circle  cx="364" cy="278" r="1.5" class="eye-highlight" stroke="none" opacity="0.8"/>
+
+  <!-- ═══════ MOUTH (small open with tiny pointed teeth) ═══════ -->
+  <path d="M286,338 Q316,360 346,338 Q330,348 316,348 Q302,348 286,338 Z"
+        class="mouth-interior" stroke-width="2" stroke-linejoin="round"/>
+  <!-- tiny teeth (tiny white triangles) -->
+  <path d="M298,341 L302,348 L306,341 Z" fill="#ffffff" opacity="0.85"/>
+  <path d="M310,343 L314,350 L318,343 Z" fill="#ffffff" opacity="0.85"/>
+  <path d="M324,343 L328,350 L332,343 Z" fill="#ffffff" opacity="0.85"/>
+  <path d="M334,341 L338,348 L342,341 Z" fill="#ffffff" opacity="0.85"/>
+
+  <!-- ═══════ EXTRA GLOW DOTS (more bioluminescent freckles) ═══════ -->
+  <g>
+    <circle cx="240" cy="200" r="9" class="glow-halo" opacity="0.32"/>
+    <circle cx="240" cy="200" r="6" class="glow-halo" opacity="0.50"/>
+    <circle cx="240" cy="200" r="3" class="glow-base"/>
+  </g>
+  <g>
+    <circle cx="372" cy="216" r="9" class="glow-halo" opacity="0.32"/>
+    <circle cx="372" cy="216" r="6" class="glow-halo" opacity="0.50"/>
+    <circle cx="372" cy="216" r="3" class="glow-base"/>
+  </g>
+  <g>
+    <circle cx="404" cy="280" r="9" class="glow-halo" opacity="0.32"/>
+    <circle cx="404" cy="280" r="6" class="glow-halo" opacity="0.50"/>
+    <circle cx="404" cy="280" r="3" class="glow-base"/>
+  </g>
+  <g>
+    <circle cx="386" cy="346" r="9" class="glow-halo" opacity="0.32"/>
+    <circle cx="386" cy="346" r="6" class="glow-halo" opacity="0.50"/>
+    <circle cx="386" cy="346" r="3" class="glow-base"/>
+  </g>
+  <g>
+    <circle cx="220" cy="356" r="8" class="glow-halo" opacity="0.32"/>
+    <circle cx="220" cy="356" r="5" class="glow-halo" opacity="0.50"/>
+    <circle cx="220" cy="356" r="2.5" class="glow-base"/>
+  </g>
+  <g>
+    <circle cx="138" cy="276" r="8" class="glow-halo" opacity="0.32"/>
+    <circle cx="138" cy="276" r="5" class="glow-halo" opacity="0.50"/>
+    <circle cx="138" cy="276" r="2.5" class="glow-base"/>
+  </g>
+
+  <!-- ═══════ SCALE DOTS (subtle body texture — darker specks) ═══════ -->
+  <circle cx="232" cy="240" r="2"   class="body-shadow" opacity="0.6" stroke="none"/>
+  <circle cx="296" cy="206" r="2"   class="body-shadow" opacity="0.55" stroke="none"/>
+  <circle cx="340" cy="216" r="1.8" class="body-shadow" opacity="0.55" stroke="none"/>
+  <circle cx="184" cy="334" r="2"   class="body-shadow" opacity="0.55" stroke="none"/>
+  <circle cx="248" cy="320" r="1.8" class="body-shadow" opacity="0.55" stroke="none"/>
+  <circle cx="328" cy="316" r="2"   class="body-shadow" opacity="0.55" stroke="none"/>
+  <circle cx="376" cy="312" r="1.8" class="body-shadow" opacity="0.55" stroke="none"/>
+
+  <!-- ═══════ SPARKLE STAR PARTICLES (around lure + drifting) ═══════ -->
+  <path d="M396,60 L398,68 L406,70 L398,72 L396,80 L394,72 L386,70 L394,68 Z"
+        class="glow-base" opacity="0.85"/>
+  <path d="M340,46 L342,52 L348,53 L342,54 L340,60 L338,54 L332,53 L338,52 Z"
+        class="glow-base" opacity="0.75"/>
+  <path d="M422,118 L424,124 L430,125 L424,126 L422,132 L420,126 L414,125 L420,124 Z"
+        class="glow-base" opacity="0.75"/>
+
+  <!-- ═══════ AMBIENT BUBBLES (small floating circles around creature) ═══════ -->
+  <circle cx="56"  cy="120" r="5" fill="none" stroke="#80c0e0" stroke-width="1.5" opacity="0.6"/>
+  <circle cx="56"  cy="120" r="5" class="glow-halo" opacity="0.18"/>
+  <circle cx="84"  cy="92"  r="3" fill="none" stroke="#80c0e0" stroke-width="1.5" opacity="0.55"/>
+  <circle cx="44"  cy="170" r="3" fill="none" stroke="#80c0e0" stroke-width="1.5" opacity="0.5"/>
+  <circle cx="468" cy="380" r="4" fill="none" stroke="#80c0e0" stroke-width="1.5" opacity="0.55"/>
+  <circle cx="486" cy="346" r="2.5" fill="none" stroke="#80c0e0" stroke-width="1.5" opacity="0.5"/>
+  <circle cx="476" cy="412" r="3" fill="none" stroke="#80c0e0" stroke-width="1.5" opacity="0.5"/>
+  <circle cx="40"  cy="380" r="3" fill="none" stroke="#80c0e0" stroke-width="1.5" opacity="0.5"/>
+</svg>

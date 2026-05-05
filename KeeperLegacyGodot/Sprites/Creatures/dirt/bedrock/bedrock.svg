@@ -1,0 +1,182 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- PALETTE
+       v1: body-base=#9a9a9a body-shadow=#606060 body-highlight=#c8c8c8 body-stroke=#303030 accent-base=#5080b8 accent-shadow=#1a3060 accent-highlight=#80a8d8
+       v2: body-base=#6a4a30 body-shadow=#3a2818 body-highlight=#9a7050 body-stroke=#1a1008 accent-base=#c0a060 accent-shadow=#503010 accent-highlight=#e0c080
+       v3: body-base=#3a3a3a body-shadow=#1a1a1a body-highlight=#5a5a5a body-stroke=#000000 accent-base=#806020 accent-shadow=#302000 accent-highlight=#b09040
+       v4: body-base=#d8c098 body-shadow=#9a7848 body-highlight=#f0e0c0 body-stroke=#503810 accent-base=#a8804a accent-shadow=#503000 accent-highlight=#c8a070
+  -->
+  <style>
+    .body-base       { fill: #9a9a9a; }
+    .body-base       { stroke: #9a9a9a; }
+    .body-shadow     { fill: #606060; }
+    .body-shadow     { stroke: #606060; }
+    .body-highlight  { fill: #c8c8c8; }
+    .body-highlight  { stroke: #c8c8c8; }
+    .body-stroke     { fill: #303030; }
+    .body-stroke     { stroke: #303030; }
+    .accent-base     { fill: #5080b8; }
+    .accent-base     { stroke: #5080b8; }
+    .accent-shadow   { fill: #1a3060; }
+    .accent-shadow   { stroke: #1a3060; }
+    .accent-highlight{ fill: #80a8d8; }
+    .accent-highlight{ stroke: #80a8d8; }
+    /* Constants */
+    .eye-white       { fill: #ffffff; }
+    .eye-pupil       { fill: #2a1500; }
+    .eye-highlight   { fill: #ffffff; }
+    .mouth-interior  { fill: #4a1010; }
+    .tongue          { fill: #ff8090; }
+  </style>
+
+  <!-- ═══════ COMPOSITION ═══════
+       Wide, low, blocky silhouette. Trapezoidal stacked-stone body.
+       Tiny stubby feet at base. Layered stone divisions. Mineral cracks in accent color.
+       Friendly face on top section. Center horizontally; body fills lower 2/3 of canvas.
+  -->
+
+  <!-- ═══════ FEET (tiny stubs at base) ═══════ -->
+  <ellipse cx="148" cy="446" rx="22" ry="11" class="body-shadow"/>
+  <ellipse cx="364" cy="446" rx="22" ry="11" class="body-shadow"/>
+  <ellipse cx="148" cy="442" rx="18" ry="8"  class="body-base"/>
+  <ellipse cx="364" cy="442" rx="18" ry="8"  class="body-base"/>
+
+  <!-- ═══════ BODY — stacked stone trapezoid ═══════ -->
+  <!-- Bottom layer (widest) -->
+  <path d="M88,442 L424,442 L408,360 L104,360 Z" class="body-shadow"/>
+  <path d="M96,438 L416,438 L402,362 L110,362 Z" class="body-base"/>
+  <!-- Middle layer -->
+  <path d="M104,360 L408,360 L388,272 L124,272 Z" class="body-shadow"/>
+  <path d="M110,358 L402,358 L384,274 L128,274 Z" class="body-base"/>
+  <ellipse cx="180" cy="318" rx="32" ry="9" class="body-highlight" opacity="0.42"/>
+  <!-- Top layer (creature head/body) -->
+  <path d="M124,272 L388,272 L368,168 L144,168 Z" class="body-shadow"/>
+  <path d="M128,270 L384,270 L364,170 L148,170 Z" class="body-base"/>
+  <!-- Highlight crescent on top layer -->
+  <ellipse cx="200" cy="210" rx="39" ry="14" class="body-highlight" opacity="0.42"/>
+
+  <!-- ═══════ LAYER DIVISION LINES (signature: layered stone) ═══════ -->
+  <path d="M104,362 L408,362" class="body-stroke" fill="none" stroke-width="4" stroke-linecap="round"/>
+  <path d="M124,272 L388,272" class="body-stroke" fill="none" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- ═══════ MINERAL CRACKS (signature: cracks of mineral color) ═══════ -->
+  <!-- Bottom layer cracks -->
+  <path d="M180,442 L188,402 L176,372 L184,366" class="accent-base"
+        fill="none" stroke-width="3" stroke-linecap="round"/>
+  <path d="M280,442 L268,400 L284,376 L276,365" class="accent-base"
+        fill="none" stroke-width="3" stroke-linecap="round"/>
+  <!-- Middle layer cracks -->
+  <path d="M150,360 L160,322 L150,288 L162,275" class="accent-base"
+        fill="none" stroke-width="3" stroke-linecap="round"/>
+  <path d="M340,360 L330,318 L344,290 L334,275" class="accent-base"
+        fill="none" stroke-width="3" stroke-linecap="round"/>
+  <path d="M256,358 L258,334 L246,308 L260,282" class="accent-base"
+        fill="none" stroke-width="3" stroke-linecap="round"/>
+  <!-- Top layer (head) crack -->
+  <path d="M340,270 L350,250 L342,228" class="accent-base"
+        fill="none" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Mineral nodules (small embedded gems) -->
+  <circle cx="184" cy="402" r="6" class="accent-shadow"/>
+  <circle cx="184" cy="400" r="4" class="accent-base"/>
+  <circle cx="183" cy="399" r="2" class="accent-highlight"/>
+
+  <circle cx="270" cy="400" r="6" class="accent-shadow"/>
+  <circle cx="270" cy="398" r="4" class="accent-base"/>
+  <circle cx="269" cy="397" r="2" class="accent-highlight"/>
+
+  <circle cx="160" cy="322" r="5" class="accent-shadow"/>
+  <circle cx="160" cy="320" r="3" class="accent-base"/>
+
+  <circle cx="332" cy="320" r="5" class="accent-shadow"/>
+  <circle cx="332" cy="318" r="3" class="accent-base"/>
+
+  <!-- ═══════ EYES (heavy-lidded with mineral glint — stoic stone style) ═══════ -->
+  <!-- DIRT BIOME EYE STYLE: heavy-lidded or earthen, with small accent-color mineral glint -->
+  <!-- Eye whites (visible only in lower half — upper portion covered by lid) -->
+  <ellipse cx="216" cy="220" rx="26" ry="28" class="eye-white" stroke="none"/>
+  <ellipse cx="296" cy="220" rx="26" ry="28" class="eye-white" stroke="none"/>
+  <!-- Heavy upper eyelids — drooping shapes covering top half -->
+  <path d="M188,220 Q216,196 244,220 Q244,212 216,206 Q188,212 188,220 Z"
+        class="body-shadow" stroke="none"/>
+  <path d="M268,220 Q296,196 324,220 Q324,212 296,206 Q268,212 268,220 Z"
+        class="body-shadow" stroke="none"/>
+  <!-- Eye outlines (rounded rectangles, visible bottom curve) -->
+  <path d="M190,222 Q216,250 242,222" class="body-stroke" fill="none" stroke-width="3" stroke-linecap="round"/>
+  <path d="M270,222 Q296,250 322,222" class="body-stroke" fill="none" stroke-width="3" stroke-linecap="round"/>
+  <!-- Iris (subtle mineral-themed ring around pupil) -->
+  <circle cx="218" cy="232" r="11" class="accent-base" stroke="none" opacity="0.6"/>
+  <circle cx="294" cy="232" r="11" class="accent-base" stroke="none" opacity="0.6"/>
+  <!-- Pupils — small, looking down (sleepy, content) -->
+  <ellipse cx="218" cy="232" rx="8" ry="9" class="eye-pupil" stroke="none"/>
+  <ellipse cx="294" cy="232" rx="8" ry="9" class="eye-pupil" stroke="none"/>
+  <!-- Tiny highlight glint (white) -->
+  <circle cx="222" cy="228" r="2" class="eye-highlight" stroke="none"/>
+  <circle cx="298" cy="228" r="2" class="eye-highlight" stroke="none"/>
+  <!-- Mineral accent glint (small accent-color sparkle in eye) -->
+  <circle cx="215" cy="234" r="1.5" class="accent-highlight" stroke="none" opacity="0.95"/>
+  <circle cx="291" cy="234" r="1.5" class="accent-highlight" stroke="none" opacity="0.95"/>
+
+  <!-- ═══════ MOUTH (closed serene smile — just a curve, calm and sturdy) ═══════ -->
+  <path d="M232,260 Q256,272 280,260" class="body-stroke" fill="none" stroke-width="4" stroke-linecap="round"/>
+  <!-- subtle upturned mouth corners (small dimples) -->
+  <circle cx="232" cy="260" r="2" class="body-shadow" stroke="none"/>
+  <circle cx="280" cy="260" r="2" class="body-shadow" stroke="none"/>
+
+  <!-- ═══════ EYEBROW RIDGE (sturdy/wise look) ═══════ -->
+  <path d="M192,194 Q216,188 240,194" class="body-shadow" fill="none" stroke-width="5" stroke-linecap="round"/>
+  <path d="M272,194 Q296,188 320,194" class="body-shadow" fill="none" stroke-width="5" stroke-linecap="round"/>
+
+  <!-- ═══════ EXTRA MINERAL NODULES (more gems scattered) ═══════ -->
+  <circle cx="220" cy="406" r="4" class="accent-shadow" stroke="none"/>
+  <circle cx="220" cy="404" r="3" class="accent-base" stroke="none"/>
+  <circle cx="220" cy="403" r="1" class="accent-highlight" stroke="none"/>
+
+  <circle cx="320" cy="408" r="5" class="accent-shadow" stroke="none"/>
+  <circle cx="320" cy="406" r="3" class="accent-base" stroke="none"/>
+  <circle cx="319" cy="405" r="1" class="accent-highlight" stroke="none"/>
+
+  <circle cx="226" cy="324" r="4" class="accent-shadow" stroke="none"/>
+  <circle cx="226" cy="322" r="2" class="accent-base" stroke="none"/>
+
+  <circle cx="290" cy="316" r="3" class="accent-shadow" stroke="none"/>
+  <circle cx="290" cy="314" r="2" class="accent-base" stroke="none"/>
+
+  <circle cx="180" cy="248" r="3" class="accent-shadow" stroke="none"/>
+  <circle cx="180" cy="246" r="2" class="accent-base" stroke="none"/>
+
+  <circle cx="340" cy="244" r="3" class="accent-shadow" stroke="none"/>
+  <circle cx="340" cy="242" r="2" class="accent-base" stroke="none"/>
+
+  <!-- ═══════ SURFACE CHIPS (small angular notches on edges) ═══════ -->
+  <path d="M104,442 L96,438 L100,432 Z" class="body-shadow" stroke="none"/>
+  <path d="M408,442 L416,438 L412,432 Z" class="body-shadow" stroke="none"/>
+  <path d="M124,360 L116,356 L122,352 Z" class="body-shadow" stroke="none"/>
+  <path d="M388,360 L396,356 L390,352 Z" class="body-shadow" stroke="none"/>
+
+  <!-- ═══════ BODY TEXTURE SPECKS (small darker pits across stone) ═══════ -->
+  <circle cx="160" cy="408" r="2" class="body-shadow" opacity="0.6" stroke="none"/>
+  <circle cx="244" cy="416" r="1.8" class="body-shadow" opacity="0.6" stroke="none"/>
+  <circle cx="356" cy="412" r="2" class="body-shadow" opacity="0.6" stroke="none"/>
+  <circle cx="200" cy="334" r="1.8" class="body-shadow" opacity="0.6" stroke="none"/>
+  <circle cx="316" cy="338" r="1.8" class="body-shadow" opacity="0.6" stroke="none"/>
+  <circle cx="172" cy="252" r="1.5" class="body-shadow" opacity="0.6" stroke="none"/>
+  <circle cx="356" cy="252" r="1.5" class="body-shadow" opacity="0.6" stroke="none"/>
+  <circle cx="248" cy="190" r="1.5" class="body-shadow" opacity="0.55" stroke="none"/>
+
+  <!-- ═══════ HIGHLIGHT GLINTS (small light dots — catching light) ═══════ -->
+  <circle cx="138" cy="404" r="2" class="body-highlight" opacity="0.8" stroke="none"/>
+  <circle cx="378" cy="406" r="2" class="body-highlight" opacity="0.8" stroke="none"/>
+  <circle cx="160" cy="312" r="2" class="body-highlight" opacity="0.7" stroke="none"/>
+  <circle cx="356" cy="316" r="2" class="body-highlight" opacity="0.7" stroke="none"/>
+  <circle cx="160" cy="220" r="2" class="body-highlight" opacity="0.7" stroke="none"/>
+
+  <!-- ═══════ AMBIENT DUST PARTICLES (small specks floating around base) ═══════ -->
+  <circle cx="58"  cy="438" r="2.5" class="body-base" opacity="0.45" stroke="none"/>
+  <circle cx="84"  cy="464" r="1.8" class="body-base" opacity="0.5" stroke="none"/>
+  <circle cx="44"  cy="466" r="1.5" class="body-base" opacity="0.4" stroke="none"/>
+  <circle cx="454" cy="438" r="2.5" class="body-base" opacity="0.45" stroke="none"/>
+  <circle cx="428" cy="464" r="1.8" class="body-base" opacity="0.5" stroke="none"/>
+  <circle cx="468" cy="466" r="1.5" class="body-base" opacity="0.4" stroke="none"/>
+  <circle cx="244" cy="476" r="1.5" class="body-base" opacity="0.4" stroke="none"/>
+  <circle cx="280" cy="480" r="1.2" class="body-base" opacity="0.4" stroke="none"/>
+</svg>

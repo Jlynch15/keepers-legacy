@@ -1,0 +1,123 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- SERAPHINE — water, uncommon — graceful, flowing fins resemble angel wings
+       Mutations: v1 Celestial White · v2 Ocean Blue · v3 Lavender · v4 Gold
+       Signature: elongated graceful body with sweeping wing-like fins on both sides
+  -->
+  <!-- PALETTE
+       v1: body-base=#f0f4ff body-shadow=#a8b0c8 body-highlight=#ffffff body-stroke=#5a6080 accent-base=#80b0e0 accent-shadow=#4068a0 accent-highlight=#c0e0ff
+       v2: body-base=#3070c0 body-shadow=#1a3870 body-highlight=#80b0e8 body-stroke=#0a1840 accent-base=#80c8f0 accent-shadow=#3070a0 accent-highlight=#c8e8ff
+       v3: body-base=#b890d8 body-shadow=#6850a0 body-highlight=#e0c8f0 body-stroke=#2a1850 accent-base=#d8a8e8 accent-shadow=#8060b0 accent-highlight=#f0d8ff
+       v4: body-base=#e8c060 body-shadow=#a07820 body-highlight=#ffe090 body-stroke=#4a3008 accent-base=#ffd880 accent-shadow=#b08020 accent-highlight=#fff0c8
+  -->
+  <style>
+    .body-base       { fill: #f0f4ff; }
+    .body-base       { stroke: #f0f4ff; }
+    .body-shadow     { fill: #a8b0c8; }
+    .body-shadow     { stroke: #a8b0c8; }
+    .body-highlight  { fill: #ffffff; }
+    .body-highlight  { stroke: #ffffff; }
+    .body-stroke     { fill: #5a6080; }
+    .body-stroke     { stroke: #5a6080; }
+    .accent-base     { fill: #80b0e0; }
+    .accent-base     { stroke: #80b0e0; }
+    .accent-shadow   { fill: #4068a0; }
+    .accent-shadow   { stroke: #4068a0; }
+    .accent-highlight{ fill: #c0e0ff; }
+    .accent-highlight{ stroke: #c0e0ff; }
+    .eye-iris        { fill: #1a4868; }
+    .eye-pupil       { fill: #0a1828; }
+    .eye-highlight   { fill: #ffffff; }
+    .eye-sclera      { fill: #d8eef0; }
+    .mouth-interior  { fill: #2a0820; }
+  </style>
+
+  <!-- ═══════ COMPOSITION — elongated graceful body, large flowing wing-fins ═══════ -->
+
+  <!-- ═══════ FLOWING WING FINS (signature: angel-wing fins) ═══════ -->
+  <!-- left wing -->
+  <path d="M180,260 Q60,180 32,300 Q80,250 140,260 Q90,290 80,360 Q130,310 180,300 Z"
+        class="body-shadow"/>
+  <path d="M184,262 Q70,188 44,298 Q88,254 144,264 Q98,288 90,354 Q132,308 184,300 Z"
+        class="body-base"/>
+  <path d="M168,272 Q116,250 100,290 Q140,278 168,278 Z" class="body-highlight" opacity="0.55"/>
+  <!-- left wing accent feather lines -->
+  <path d="M84,256 Q120,260 156,266" class="accent-shadow" fill="none" stroke-width="2" opacity="0.6"/>
+  <path d="M64,288 Q104,288 144,290" class="accent-shadow" fill="none" stroke-width="2" opacity="0.6"/>
+  <path d="M84,328 Q120,316 156,300" class="accent-shadow" fill="none" stroke-width="2" opacity="0.6"/>
+
+  <!-- right wing -->
+  <path d="M332,260 Q452,180 480,300 Q432,250 372,260 Q422,290 432,360 Q382,310 332,300 Z"
+        class="body-shadow"/>
+  <path d="M328,262 Q442,188 468,298 Q424,254 368,264 Q414,288 422,354 Q380,308 328,300 Z"
+        class="body-base"/>
+  <path d="M344,272 Q396,250 412,290 Q372,278 344,278 Z" class="body-highlight" opacity="0.55"/>
+  <path d="M428,256 Q392,260 356,266" class="accent-shadow" fill="none" stroke-width="2" opacity="0.6"/>
+  <path d="M448,288 Q408,288 368,290" class="accent-shadow" fill="none" stroke-width="2" opacity="0.6"/>
+  <path d="M428,328 Q392,316 356,300" class="accent-shadow" fill="none" stroke-width="2" opacity="0.6"/>
+
+  <!-- ═══════ ELONGATED BODY (vertical oval, taller than wide) ═══════ -->
+  <ellipse cx="256" cy="296" rx="92" ry="148" class="body-shadow"/>
+  <ellipse cx="256" cy="292" rx="86" ry="142" class="body-base"/>
+  <ellipse cx="226" cy="240" rx="29" ry="40" class="body-highlight" opacity="0.42"/>
+  <ellipse cx="256" cy="380" rx="36" ry="27" class="body-highlight" opacity="0.32"/>
+
+  <!-- ═══════ FLOWING TAIL FIN (bottom — graceful) ═══════ -->
+  <path d="M214,432 Q256,490 298,432 Q280,460 256,470 Q232,460 214,432 Z" class="body-shadow"/>
+  <path d="M218,430 Q256,484 294,430 Q278,456 256,466 Q234,456 218,430 Z" class="body-base"/>
+
+  <!-- ═══════ HALO (above head — celestial signature) ═══════ -->
+  <ellipse cx="256" cy="148" rx="38" ry="10" fill="none" stroke="#ffd880" stroke-width="3" opacity="0.85"/>
+  <ellipse cx="256" cy="148" rx="34" ry="8"  fill="none" stroke="#ffffff" stroke-width="1.5" opacity="0.7"/>
+
+  <!-- ═══════ EYES (water style — gentle, slightly closed/peaceful) ═══════ -->
+  <ellipse cx="226" cy="270" rx="24" ry="26" class="eye-sclera" stroke="none"/>
+  <ellipse cx="226" cy="270" rx="20" ry="22" fill="none" stroke="#ffffff" stroke-width="2.5"/>
+  <circle  cx="228" cy="276" r="14" class="eye-iris"/>
+  <circle  cx="228" cy="276" r="9" class="eye-pupil"/>
+  <ellipse cx="232" cy="266" rx="4" ry="5" class="eye-highlight" stroke="none"/>
+  <circle  cx="224" cy="282" r="2" class="eye-highlight" stroke="none"/>
+  <!-- gentle eyelashes (graceful detail) -->
+  <path d="M210,260 L204,254" class="body-stroke" fill="none" stroke-width="2" stroke-linecap="round"/>
+  <path d="M218,256 L214,248" class="body-stroke" fill="none" stroke-width="2" stroke-linecap="round"/>
+
+  <ellipse cx="286" cy="270" rx="24" ry="26" class="eye-sclera" stroke="none"/>
+  <ellipse cx="286" cy="270" rx="20" ry="22" fill="none" stroke="#ffffff" stroke-width="2.5"/>
+  <circle  cx="284" cy="276" r="14" class="eye-iris"/>
+  <circle  cx="284" cy="276" r="9" class="eye-pupil"/>
+  <ellipse cx="288" cy="266" rx="4" ry="5" class="eye-highlight" stroke="none"/>
+  <circle  cx="280" cy="282" r="2" class="eye-highlight" stroke="none"/>
+  <path d="M302,260 L308,254" class="body-stroke" fill="none" stroke-width="2" stroke-linecap="round"/>
+  <path d="M294,256 L298,248" class="body-stroke" fill="none" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- ═══════ MOUTH (small gentle smile) ═══════ -->
+  <path d="M236,316 Q256,332 276,316" class="body-stroke" fill="none" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- ═══════ CHEEK BLUSH ═══════ -->
+  <ellipse cx="206" cy="304" rx="12" ry="8" class="accent-base" opacity="0.4" stroke="none"/>
+  <ellipse cx="306" cy="304" rx="12" ry="8" class="accent-base" opacity="0.4" stroke="none"/>
+
+  <!-- ═══════ BODY SPECKS ═══════ -->
+  <circle cx="232" cy="200" r="2.5" class="body-highlight" opacity="0.7" stroke="none"/>
+  <circle cx="280" cy="220" r="2"   class="body-highlight" opacity="0.6" stroke="none"/>
+  <circle cx="216" cy="356" r="2.5" class="body-highlight" opacity="0.6" stroke="none"/>
+  <circle cx="296" cy="372" r="2"   class="body-highlight" opacity="0.55" stroke="none"/>
+  <circle cx="244" cy="408" r="2"   class="body-highlight" opacity="0.5" stroke="none"/>
+  <circle cx="200" cy="180" r="2"   class="accent-base" opacity="0.55" stroke="none"/>
+  <circle cx="312" cy="180" r="2"   class="accent-base" opacity="0.55" stroke="none"/>
+
+  <!-- ═══════ AMBIENT BUBBLES ═══════ -->
+  <circle cx="40"  cy="60"  r="5" fill="none" stroke="#80c8e8" stroke-width="2" opacity="0.6"/>
+  <circle cx="468" cy="60"  r="5" fill="none" stroke="#80c8e8" stroke-width="2" opacity="0.6"/>
+  <circle cx="60"  cy="100" r="3" fill="none" stroke="#80c8e8" stroke-width="1.5" opacity="0.55"/>
+  <circle cx="450" cy="100" r="3" fill="none" stroke="#80c8e8" stroke-width="1.5" opacity="0.55"/>
+  <circle cx="22"  cy="380" r="3" fill="none" stroke="#80c8e8" stroke-width="1.5" opacity="0.5"/>
+  <circle cx="488" cy="380" r="3" fill="none" stroke="#80c8e8" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- ═══════ SPARKLE ACCENTS (celestial signature) ═══════ -->
+  <path d="M186,140 L188,148 L196,150 L188,152 L186,160 L184,152 L176,150 L184,148 Z"
+        fill="#ffd880" opacity="0.9"/>
+  <path d="M326,140 L328,148 L336,150 L328,152 L326,160 L324,152 L316,150 L324,148 Z"
+        fill="#ffd880" opacity="0.9"/>
+  <path d="M256,80 L258,88 L266,90 L258,92 L256,100 L254,92 L246,90 L254,88 Z"
+        fill="#ffffff" opacity="0.9"/>
+</svg>

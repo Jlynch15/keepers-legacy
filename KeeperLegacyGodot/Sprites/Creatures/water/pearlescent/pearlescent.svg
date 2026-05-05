@@ -1,0 +1,124 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- PEARLESCENT — water, rare — round glowing pearl-like surface, inner light
+       Mutations: v1 Pure White · v2 Blush Pink · v3 Champagne · v4 Iridescent
+       Signature: smooth pearl-orb body with inner glow rings + iridescent surface specks
+       SELF-CHECK vs prior water creatures:
+         - Aquaburst: round 2-eyes "o" mouth bubbles → DIFFERENT (pearl/glow not bubbles)
+         - Shimmerstream: side fish lip-smile → DIFFERENT (frontal pearl)
+         - Seraphine: winged halo → DIFFERENT (no wings, glow halo at center)
+         - Mistwalker: ghost half-closed → DIFFERENT (smooth orb, alert eyes)
+         - Wavecrest: athletic upright wave-fin → DIFFERENT (no fin, no athletic pose)
+         Eye treatment: gem-cut style with FACET HIGHLIGHTS (multi-angled like cut pearl)
+         Mouth: tiny content closed-lip smile (rare/composed creature)
+  -->
+  <!-- PALETTE
+       v1: body-base=#f4f4f4 body-shadow=#b0b0b8 body-highlight=#ffffff body-stroke=#6a6a78 accent-base=#d0d0e0 accent-shadow=#88889a accent-highlight=#ffffff
+       v2: body-base=#f8c8d0 body-shadow=#c08090 body-highlight=#ffe0e8 body-stroke=#7a3848 accent-base=#ffa0b8 accent-shadow=#a86880 accent-highlight=#ffffff
+       v3: body-base=#f0e0c0 body-shadow=#b09a70 body-highlight=#fff0d8 body-stroke=#705830 accent-base=#e0c890 accent-shadow=#a08858 accent-highlight=#ffffff
+       v4: body-base=#d8e0f0 body-shadow=#8898c0 body-highlight=#ffffff body-stroke=#404870 accent-base=#a0b0e8 accent-shadow=#5868a0 accent-highlight=#e0c8ff
+  -->
+  <style>
+    .body-base       { fill: #f4f4f4; }
+    .body-base       { stroke: #f4f4f4; }
+    .body-shadow     { fill: #b0b0b8; }
+    .body-shadow     { stroke: #b0b0b8; }
+    .body-highlight  { fill: #ffffff; }
+    .body-highlight  { stroke: #ffffff; }
+    .body-stroke     { fill: #6a6a78; }
+    .body-stroke     { stroke: #6a6a78; }
+    .accent-base     { fill: #d0d0e0; }
+    .accent-base     { stroke: #d0d0e0; }
+    .accent-shadow   { fill: #88889a; }
+    .accent-shadow   { stroke: #88889a; }
+    .accent-highlight{ fill: #ffffff; }
+    .accent-highlight{ stroke: #ffffff; }
+    .eye-iris        { fill: #1a4868; }
+    .eye-pupil       { fill: #0a1828; }
+    .eye-highlight   { fill: #ffffff; }
+    .eye-sclera      { fill: #d8eef0; }
+    .mouth-interior  { fill: #2a0820; }
+  </style>
+
+  <!-- ═══════ COMPOSITION — perfect pearl orb, slight glow halo ═══════ -->
+
+  <!-- ═══════ OUTER GLOW HALO (signature: inner light radiates outward) ═══════ -->
+  <circle cx="256" cy="284" r="190" fill="#ffffe0" opacity="0.18"/>
+  <circle cx="256" cy="284" r="170" fill="#fff8d0" opacity="0.22"/>
+
+  <!-- ═══════ FEET (tiny stubs) ═══════ -->
+  <ellipse cx="220" cy="430" rx="22" ry="10" class="body-shadow"/>
+  <ellipse cx="292" cy="430" rx="22" ry="10" class="body-shadow"/>
+  <ellipse cx="220" cy="427" rx="18" ry="7"  class="body-base"/>
+  <ellipse cx="292" cy="427" rx="18" ry="7"  class="body-base"/>
+
+  <!-- ═══════ TINY ARMS (small stubs at sides) ═══════ -->
+  <ellipse cx="124" cy="290" rx="22" ry="14" class="body-shadow"/>
+  <ellipse cx="126" cy="288" rx="18" ry="11" class="body-base"/>
+  <ellipse cx="388" cy="290" rx="22" ry="14" class="body-shadow"/>
+  <ellipse cx="386" cy="288" rx="18" ry="11" class="body-base"/>
+
+  <!-- ═══════ PEARL ORB BODY (perfect sphere) ═══════ -->
+  <circle cx="256" cy="284" r="148" class="body-shadow"/>
+  <circle cx="256" cy="280" r="138" class="body-base"/>
+  <!-- inner gradient layers — pearl iridescence -->
+  <ellipse cx="220" cy="226" rx="54" ry="44" class="body-highlight" opacity="0.65"/>
+  <ellipse cx="200" cy="200" rx="26" ry="20" class="body-highlight" opacity="0.85"/>
+  <!-- subtle bottom glow rings -->
+  <ellipse cx="256" cy="356" rx="78" ry="22" class="accent-highlight" opacity="0.4"/>
+  <ellipse cx="256" cy="380" rx="56" ry="14" class="accent-highlight" opacity="0.32"/>
+
+  <!-- ═══════ IRIDESCENT SURFACE SPECKS (signature: pearl shimmer) ═══════ -->
+  <circle cx="184" cy="288" r="3" fill="#c0e8ff" opacity="0.7" stroke="none"/>
+  <circle cx="216" cy="320" r="2" fill="#ffc0e0" opacity="0.7" stroke="none"/>
+  <circle cx="294" cy="332" r="3" fill="#c0ffe0" opacity="0.7" stroke="none"/>
+  <circle cx="324" cy="288" r="2" fill="#ffe0c0" opacity="0.7" stroke="none"/>
+  <circle cx="280" cy="368" r="2" fill="#e0c0ff" opacity="0.7" stroke="none"/>
+  <circle cx="240" cy="376" r="2" fill="#c0d8ff" opacity="0.7" stroke="none"/>
+  <circle cx="200" cy="260" r="2" fill="#fff0c0" opacity="0.7" stroke="none"/>
+  <circle cx="316" cy="244" r="2" fill="#c0ffd0" opacity="0.7" stroke="none"/>
+
+  <!-- ═══════ EYES (water family — gem-cut style with multi-facet highlights) ═══════ -->
+  <ellipse cx="218" cy="276" rx="26" ry="28" class="eye-sclera" stroke="none"/>
+  <ellipse cx="218" cy="276" rx="22" ry="24" fill="none" stroke="#ffffff" stroke-width="3"/>
+  <circle  cx="220" cy="282" r="16" class="eye-iris"/>
+  <circle  cx="220" cy="282" r="10" class="eye-pupil"/>
+  <!-- Multi-facet pearl-cut highlights (3 small ones in different positions) -->
+  <circle cx="226" cy="270" r="4"   class="eye-highlight" stroke="none"/>
+  <circle cx="212" cy="288" r="2.5" class="eye-highlight" stroke="none"/>
+  <circle cx="228" cy="288" r="1.8" class="eye-highlight" stroke="none" opacity="0.85"/>
+
+  <ellipse cx="294" cy="276" rx="26" ry="28" class="eye-sclera" stroke="none"/>
+  <ellipse cx="294" cy="276" rx="22" ry="24" fill="none" stroke="#ffffff" stroke-width="3"/>
+  <circle  cx="292" cy="282" r="16" class="eye-iris"/>
+  <circle  cx="292" cy="282" r="10" class="eye-pupil"/>
+  <circle cx="286" cy="270" r="4"   class="eye-highlight" stroke="none"/>
+  <circle cx="300" cy="288" r="2.5" class="eye-highlight" stroke="none"/>
+  <circle cx="284" cy="288" r="1.8" class="eye-highlight" stroke="none" opacity="0.85"/>
+
+  <!-- ═══════ MOUTH (tiny composed closed-lip smile) ═══════ -->
+  <path d="M242,332 Q256,342 270,332" class="body-stroke" fill="none" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- ═══════ CHEEK BLUSH ═══════ -->
+  <ellipse cx="184" cy="316" rx="13" ry="8" class="accent-base" opacity="0.45" stroke="none"/>
+  <ellipse cx="328" cy="316" rx="13" ry="8" class="accent-base" opacity="0.45" stroke="none"/>
+
+  <!-- ═══════ AMBIENT BUBBLES + SPARKLES ═══════ -->
+  <circle cx="56"  cy="180" r="5" fill="none" stroke="#80c8e8" stroke-width="2" opacity="0.6"/>
+  <circle cx="84"  cy="148" r="3" fill="none" stroke="#80c8e8" stroke-width="1.5" opacity="0.55"/>
+  <circle cx="42"  cy="248" r="3" fill="none" stroke="#80c8e8" stroke-width="1.5" opacity="0.5"/>
+  <circle cx="466" cy="180" r="5" fill="none" stroke="#80c8e8" stroke-width="2" opacity="0.6"/>
+  <circle cx="438" cy="148" r="3" fill="none" stroke="#80c8e8" stroke-width="1.5" opacity="0.55"/>
+  <circle cx="478" cy="248" r="3" fill="none" stroke="#80c8e8" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- ═══════ SPARKLE ACCENTS (light-emitting signature) ═══════ -->
+  <path d="M88,116 L90,124 L98,126 L90,128 L88,136 L86,128 L78,126 L86,124 Z"
+        fill="#ffffe0" opacity="0.95"/>
+  <path d="M424,116 L426,124 L434,126 L426,128 L424,136 L422,128 L414,126 L422,124 Z"
+        fill="#ffffe0" opacity="0.95"/>
+  <path d="M256,76 L258,84 L266,86 L258,88 L256,96 L254,88 L246,86 L254,84 Z"
+        fill="#ffffe0" opacity="0.95"/>
+  <path d="M76,420 L78,426 L84,428 L78,430 L76,436 L74,430 L68,428 L74,426 Z"
+        fill="#ffffe0" opacity="0.85"/>
+  <path d="M436,420 L438,426 L444,428 L438,430 L436,436 L434,430 L428,428 L434,426 Z"
+        fill="#ffffe0" opacity="0.85"/>
+</svg>

@@ -1,0 +1,97 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- SCORCHWHIRL — fire, common — spinning, scorched spiral marks
+       Mutations: v1 Bright Orange · v2 Red · v3 Yellow · v4 Charcoal
+       Signature: spinning conical body with FLAME SPIRAL WHIRL around it
+  -->
+  <!-- PALETTE
+       v1: body-base=#ff8020 body-shadow=#a04008 body-highlight=#ffb060 body-stroke=#481000 accent-base=#ffc040 accent-shadow=#a07020 accent-highlight=#ffea88
+       v2: body-base=#e02020 body-shadow=#700808 body-highlight=#ff5040 body-stroke=#280000 accent-base=#ff6040 accent-shadow=#a02018 accent-highlight=#ff9078
+       v3: body-base=#ffd838 body-shadow=#a08018 body-highlight=#fff088 body-stroke=#403008 accent-base=#ffec70 accent-shadow=#a08820 accent-highlight=#fff8b8
+       v4: body-base=#383838 body-shadow=#181818 body-highlight=#585858 body-stroke=#000000 accent-base=#ff5028 accent-shadow=#a02018 accent-highlight=#ff9060
+  -->
+  <style>
+    .body-base       { fill: #ff8020; }
+    .body-base       { stroke: #ff8020; }
+    .body-shadow     { fill: #a04008; }
+    .body-shadow     { stroke: #a04008; }
+    .body-highlight  { fill: #ffb060; }
+    .body-highlight  { stroke: #ffb060; }
+    .body-stroke     { fill: #481000; }
+    .body-stroke     { stroke: #481000; }
+    .accent-base     { fill: #ffc040; }
+    .accent-base     { stroke: #ffc040; }
+    .accent-shadow   { fill: #a07020; }
+    .accent-shadow   { stroke: #a07020; }
+    .accent-highlight{ fill: #ffea88; }
+    .accent-highlight{ stroke: #ffea88; }
+    .eye-iris        { fill: #ff7028; }
+    .eye-pupil       { fill: #1a0800; }
+    .eye-highlight   { fill: #ffe8a0; }
+    .eye-sclera      { fill: #fff0d8; }
+    .mouth-interior  { fill: #2a0808; }
+    .tongue          { fill: #ff8090; }
+  </style>
+  <!-- Custom glow: motion-blur trail along the spiral path -->
+  <path d="M256,156 Q396,200 380,340 Q344,440 224,432 Q116,408 124,294" stroke="#ff8020" stroke-width="40" fill="none" stroke-linecap="round" opacity="0.18"/>
+
+
+  <!-- ═══════ FLAME SPIRAL WHIRL (signature: surrounding spiral) ═══════ -->
+  <path d="M256,156 Q396,200 380,340 Q344,440 224,432 Q116,408 124,294 Q156,200 248,196 Q330,212 332,294 Q324,360 256,360 Q204,348 208,302 Q212,270 252,266 Q282,272 280,304" class="accent-shadow" fill="none" stroke-width="22" stroke-linecap="round"/>
+  <path d="M256,156 Q396,200 380,340 Q344,440 224,432 Q116,408 124,294 Q156,200 248,196 Q330,212 332,294 Q324,360 256,360 Q204,348 208,302 Q212,270 252,266 Q282,272 280,304" class="accent-base" fill="none" stroke-width="14" stroke-linecap="round" opacity="0.85"/>
+
+  <!-- feet (planted in spin) -->
+  <ellipse cx="220" cy="438" rx="22" ry="11" class="body-shadow"/>
+  <ellipse cx="292" cy="438" rx="22" ry="11" class="body-shadow"/>
+  <ellipse cx="220" cy="434" rx="18" ry="8" class="body-base"/>
+  <ellipse cx="292" cy="434" rx="18" ry="8" class="body-base"/>
+
+  <!-- arms (whirling outward) -->
+  <ellipse cx="148" cy="280" rx="34" ry="14" class="body-shadow" transform="rotate(-25 148 280)"/>
+  <ellipse cx="152" cy="277" rx="28" ry="10" class="body-base"   transform="rotate(-25 152 277)"/>
+  <ellipse cx="364" cy="280" rx="34" ry="14" class="body-shadow" transform="rotate(25 364 280)"/>
+  <ellipse cx="360" cy="277" rx="28" ry="10" class="body-base"   transform="rotate(25 360 277)"/>
+
+  <!-- ═══════ CONICAL SPINNING BODY (wider top) ═══════ -->
+  <path d="M186,400 L220,200 Q256,180 292,200 L326,400 Q256,418 186,400 Z" class="body-shadow"/>
+  <path d="M192,398 L224,206 Q256,188 288,206 L320,398 Q256,414 192,398 Z" class="body-base"/>
+  <!-- swirl-arc highlight (spin theme) -->
+  <path d="M210,240 Q230,220 260,224" class="body-highlight" fill="none" stroke-width="10" stroke-linecap="round" opacity="0.5"/>
+
+  <!-- ═══════ EYES (fire family — SPIRAL highlight, glowing) ═══════ -->
+  <ellipse cx="220" cy="280" rx="24" ry="26" class="eye-sclera" stroke="none"/>
+  <ellipse cx="220" cy="280" rx="20" ry="22" fill="none" stroke="#481000" stroke-width="2.5"/>
+  <circle cx="222" cy="286" r="14" class="accent-base"/>
+  <circle cx="222" cy="286" r="14" fill="none" stroke="#a04008" stroke-width="1.5"/>
+  <circle cx="222" cy="286" r="9" class="eye-iris"/>
+  <circle cx="222" cy="286" r="6" class="eye-pupil"/>
+  <path d="M226,272 Q231,278 228,284 Q224,282 226,272" fill="none" stroke="#fff088" stroke-width="2" stroke-linecap="round"/>
+  <ellipse cx="292" cy="280" rx="24" ry="26" class="eye-sclera" stroke="none"/>
+  <ellipse cx="292" cy="280" rx="20" ry="22" fill="none" stroke="#481000" stroke-width="2.5"/>
+  <circle cx="290" cy="286" r="14" class="accent-base"/>
+  <circle cx="290" cy="286" r="14" fill="none" stroke="#a04008" stroke-width="1.5"/>
+  <circle cx="290" cy="286" r="9" class="eye-iris"/>
+  <circle cx="290" cy="286" r="6" class="eye-pupil"/>
+  <path d="M286,272 Q281,278 284,284 Q288,282 286,272" fill="none" stroke="#fff088" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- mouth: wide grin with tongue -->
+  <path d="M218,332 Q256,360 294,332 Q278,348 256,348 Q234,348 218,332 Z" class="mouth-interior"/>
+  <ellipse cx="256" cy="348" rx="14" ry="6" class="tongue" stroke="none"/>
+
+  <!-- cheek warmth -->
+  <ellipse cx="180" cy="320" rx="12" ry="7" fill="#ff4020" opacity="0.55" stroke="none"/>
+  <ellipse cx="332" cy="320" rx="12" ry="7" fill="#ff4020" opacity="0.55" stroke="none"/>
+
+  <!-- ambient embers -->
+  <circle cx="58"  cy="200" r="4" fill="#ffc040" opacity="0.85"/>
+  <circle cx="58"  cy="200" r="9" fill="#ffc040" opacity="0.2"/>
+  <circle cx="42"  cy="380" r="3" fill="#ff8020" opacity="0.8"/>
+  <circle cx="84"  cy="100" r="3" fill="#ffe060" opacity="0.85"/>
+  <circle cx="450" cy="200" r="4" fill="#ffc040" opacity="0.85"/>
+  <circle cx="450" cy="200" r="9" fill="#ffc040" opacity="0.2"/>
+  <circle cx="468" cy="380" r="3" fill="#ff8020" opacity="0.8"/>
+  <circle cx="424" cy="100" r="3" fill="#ffe060" opacity="0.85"/>
+
+  <!-- sparkles -->
+  <path d="M256,68 L258,76 L266,78 L258,80 L256,88 L254,80 L246,78 L254,76 Z"
+        fill="#ffe060" opacity="0.95"/>
+</svg>

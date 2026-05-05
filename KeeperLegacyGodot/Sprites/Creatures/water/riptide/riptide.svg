@@ -1,0 +1,118 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- RIPTIDE — water, uncommon — fast sleek, powerful tail, forward-leaning even at idle
+       Mutations: v1 Electric Blue · v2 Navy · v3 Bright Teal · v4 Storm White
+       Signature: streamlined torpedo body angled forward, swept-back fins, motion lines
+       SELF-CHECK vs prior water creatures:
+         - Aquaburst/Pearlescent (round) → DIFFERENT (sleek torpedo)
+         - Shimmerstream (side fish horizontal) → DIFFERENT (forward-leaning diagonal)
+         - Seraphine (vertical winged) / Mistwalker (ghost) / Wavecrest (upright) → DIFFERENT
+         - Coralsprite (round antlers) / Deepecho (fish with lure) → DIFFERENT
+         Eye treatment: NARROW determined eyes (forward stare), pupils elongated horizontally
+         Mouth: FIRM straight line (focused, ready to strike)
+  -->
+  <!-- PALETTE
+       v1: body-base=#3098e8 body-shadow=#1858a0 body-highlight=#80c0f0 body-stroke=#0a2848 accent-base=#80d0f0 accent-shadow=#3080b8 accent-highlight=#c8eaff
+       v2: body-base=#1a3060 body-shadow=#0a1830 body-highlight=#3050a0 body-stroke=#000820 accent-base=#3060b0 accent-shadow=#102050 accent-highlight=#80a0d0
+       v3: body-base=#30b8c0 body-shadow=#1a6068 body-highlight=#80d8e0 body-stroke=#082830 accent-base=#80e0e8 accent-shadow=#308898 accent-highlight=#c0f0f8
+       v4: body-base=#d8e0e8 body-shadow=#90a0b0 body-highlight=#ffffff body-stroke=#404848 accent-base=#a0b8c8 accent-shadow=#586878 accent-highlight=#ffffff
+  -->
+  <style>
+    .body-base       { fill: #3098e8; }
+    .body-base       { stroke: #3098e8; }
+    .body-shadow     { fill: #1858a0; }
+    .body-shadow     { stroke: #1858a0; }
+    .body-highlight  { fill: #80c0f0; }
+    .body-highlight  { stroke: #80c0f0; }
+    .body-stroke     { fill: #0a2848; }
+    .body-stroke     { stroke: #0a2848; }
+    .accent-base     { fill: #80d0f0; }
+    .accent-base     { stroke: #80d0f0; }
+    .accent-shadow   { fill: #3080b8; }
+    .accent-shadow   { stroke: #3080b8; }
+    .accent-highlight{ fill: #c8eaff; }
+    .accent-highlight{ stroke: #c8eaff; }
+    .eye-iris        { fill: #1a4868; }
+    .eye-pupil       { fill: #0a1828; }
+    .eye-highlight   { fill: #ffffff; }
+    .eye-sclera      { fill: #d8eef0; }
+    .mouth-interior  { fill: #2a0820; }
+  </style>
+
+  <!-- ═══════ COMPOSITION — diagonal forward-leaning torpedo body ═══════ -->
+
+  <!-- ═══════ POWERFUL TAIL FIN (signature: angled tail at rear) ═══════ -->
+  <path d="M132,326 L40,260 L52,330 L40,400 Z" class="body-shadow"/>
+  <path d="M138,326 L52,272 L62,330 L52,388 Z" class="body-base"/>
+  <path d="M134,326 L66,300 L66,358 Z" class="body-highlight" opacity="0.55"/>
+
+  <!-- ═══════ TOP DORSAL FIN (swept back) ═══════ -->
+  <path d="M236,184 L160,170 L240,212 Z" class="body-shadow"/>
+  <path d="M240,184 L172,178 L240,210 Z" class="body-base"/>
+
+  <!-- ═══════ BOTTOM SIDE FIN ═══════ -->
+  <path d="M268,396 L210,440 L300,420 Z" class="body-shadow"/>
+  <path d="M270,394 L218,434 L296,418 Z" class="body-base"/>
+
+  <!-- ═══════ MAIN BODY (elongated torpedo, slight forward tilt — angled diagonal) ═══════ -->
+  <ellipse cx="270" cy="296" rx="170" ry="92" class="body-shadow" transform="rotate(-8 270 296)"/>
+  <ellipse cx="270" cy="292" rx="164" ry="86" class="body-base" transform="rotate(-8 270 292)"/>
+  <ellipse cx="226" cy="246" rx="52" ry="23" class="body-highlight" opacity="0.42" transform="rotate(-8 226 246)"/>
+  <ellipse cx="284" cy="328" rx="58" ry="13" class="body-highlight" opacity="0.32" transform="rotate(-8 284 328)"/>
+
+  <!-- ═══════ MOTION LINE STRIPES (signature: speed implied in posture) ═══════ -->
+  <path d="M170,234 Q220,232 268,234" class="accent-shadow" fill="none" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+  <path d="M180,256 Q230,254 278,256" class="accent-shadow" fill="none" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+  <path d="M184,300 Q234,298 282,300" class="accent-shadow" fill="none" stroke-width="3" stroke-linecap="round" opacity="0.65"/>
+  <path d="M180,344 Q230,342 278,344" class="accent-shadow" fill="none" stroke-width="3" stroke-linecap="round" opacity="0.65"/>
+  <path d="M192,372 Q230,370 268,372" class="accent-shadow" fill="none" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+
+  <!-- ═══════ NOSE/SNOUT POINT (front of torpedo) ═══════ -->
+  <path d="M408,272 Q444,290 410,316 Q418,300 408,272 Z" class="body-shadow"/>
+  <path d="M412,278 Q438,292 412,310 Q418,300 412,278 Z" class="body-base"/>
+
+  <!-- ═══════ EYES (water family — narrow determined forward-stare) ═══════ -->
+  <!-- Sclera narrow ovals (horizontal stretch — focused forward) -->
+  <ellipse cx="338" cy="280" rx="32" ry="20" class="eye-sclera" stroke="none"/>
+  <ellipse cx="338" cy="280" rx="28" ry="16" fill="none" stroke="#ffffff" stroke-width="2.5"/>
+  <!-- Iris and elongated horizontal pupil (focused stare) -->
+  <ellipse cx="346" cy="282" rx="14" ry="12" class="eye-iris"/>
+  <ellipse cx="348" cy="282" rx="10" ry="9" class="eye-pupil"/>
+  <!-- Sharp single highlight -->
+  <circle cx="352" cy="276" r="3" class="eye-highlight" stroke="none"/>
+  <circle cx="342" cy="288" r="1.5" class="eye-highlight" stroke="none" opacity="0.8"/>
+  <!-- Determined eyebrow (angled inward — focused) -->
+  <path d="M310,260 L364,254" class="body-stroke" fill="none" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- ═══════ MOUTH (firm horizontal line — focused, ready to strike) ═══════ -->
+  <path d="M376,322 L408,322" class="body-stroke" fill="none" stroke-width="4" stroke-linecap="round"/>
+  <!-- subtle visible upper-lower lip line dimples -->
+  <circle cx="378" cy="324" r="1.5" class="body-shadow" stroke="none"/>
+  <circle cx="406" cy="324" r="1.5" class="body-shadow" stroke="none"/>
+
+  <!-- ═══════ GILL LINES (clear of eye — placed near body midpoint) ═══════ -->
+  <path d="M250,288 Q260,302 250,316" class="body-stroke" fill="none" stroke-width="2"/>
+  <path d="M260,290 Q268,302 260,314" class="body-stroke" fill="none" stroke-width="2" opacity="0.7"/>
+
+  <!-- ═══════ BODY SPECKS ═══════ -->
+  <circle cx="240" cy="220" r="2.5" class="body-highlight" opacity="0.7" stroke="none"/>
+  <circle cx="320" cy="232" r="2"   class="body-highlight" opacity="0.6" stroke="none"/>
+  <circle cx="356" cy="232" r="2"   class="body-highlight" opacity="0.55" stroke="none"/>
+  <circle cx="270" cy="372" r="2.5" class="body-highlight" opacity="0.6" stroke="none"/>
+  <circle cx="190" cy="302" r="2"   class="body-highlight" opacity="0.5" stroke="none"/>
+
+  <!-- ═══════ AMBIENT BUBBLES (trailing behind — speed feel) ═══════ -->
+  <circle cx="20"  cy="200" r="6" fill="none" stroke="#80c8e8" stroke-width="2" opacity="0.7"/>
+  <circle cx="20"  cy="200" r="6" fill="#a0e0ff" opacity="0.18"/>
+  <circle cx="48"  cy="180" r="4" fill="none" stroke="#80c8e8" stroke-width="2" opacity="0.65"/>
+  <circle cx="32"  cy="430" r="5" fill="none" stroke="#80c8e8" stroke-width="2" opacity="0.6"/>
+  <circle cx="64"  cy="448" r="3" fill="none" stroke="#80c8e8" stroke-width="1.5" opacity="0.55"/>
+  <circle cx="450" cy="180" r="3" fill="none" stroke="#80c8e8" stroke-width="1.5" opacity="0.5"/>
+  <circle cx="480" cy="380" r="3" fill="none" stroke="#80c8e8" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- ═══════ SPEED-LINE SPARKLES (signature: speed implied) ═══════ -->
+  <path d="M88,256 L96,258 L88,260 Z" fill="#ffffff" opacity="0.7"/>
+  <path d="M68,290 L76,292 L68,294 Z" fill="#ffffff" opacity="0.7"/>
+  <path d="M88,332 L96,334 L88,336 Z" fill="#ffffff" opacity="0.7"/>
+  <path d="M450,280 L452,286 L458,288 L452,290 L450,296 L448,290 L442,288 L448,286 Z"
+        fill="#ffffff" opacity="0.85"/>
+</svg>

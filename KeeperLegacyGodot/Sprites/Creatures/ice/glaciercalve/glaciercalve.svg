@@ -1,0 +1,81 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- GLACIERCALVE — ice, uncommon — splits off smaller versions of itself
+       Mutations: v1 Glacier Blue · v2 White · v3 Pale Teal · v4 Ice Pink
+       Signature: main creature + SMALL CALVED COPY beside it (mini-me)
+  -->
+  <!-- PALETTE
+       v1: body-base=#88b8d8 body-shadow=#406890 body-highlight=#b8d8f0 body-stroke=#102838 accent-base=#a0c8e0 accent-shadow=#587898 accent-highlight=#d0e8f8
+       v2: body-base=#f8fbff body-shadow=#a8b0b8 body-highlight=#ffffff body-stroke=#383848 accent-base=#d8e0e8 accent-shadow=#788088 accent-highlight=#ffffff
+       v3: body-base=#a0d0c8 body-shadow=#508088 body-highlight=#c0e8e0 body-stroke=#102828 accent-base=#a8d8c8 accent-shadow=#588078 accent-highlight=#c8f0e0
+       v4: body-base=#f8c0d0 body-shadow=#a06880 body-highlight=#ffd8e8 body-stroke=#502838 accent-base=#f0a0b8 accent-shadow=#a05870 accent-highlight=#ffc8d8
+  -->
+  <style>
+    .body-base       { fill: #88b8d8; }
+    .body-base       { stroke: #88b8d8; }
+    .body-shadow     { fill: #406890; }
+    .body-shadow     { stroke: #406890; }
+    .body-highlight  { fill: #b8d8f0; }
+    .body-highlight  { stroke: #b8d8f0; }
+    .body-stroke     { fill: #102838; }
+    .body-stroke     { stroke: #102838; }
+    .accent-base     { fill: #a0c8e0; }
+    .accent-base     { stroke: #a0c8e0; }
+    .accent-shadow   { fill: #587898; }
+    .accent-shadow   { stroke: #587898; }
+    .accent-highlight{ fill: #d0e8f8; }
+    .accent-highlight{ stroke: #d0e8f8; }
+    .eye-iris        { fill: #5090c0; }
+    .eye-pupil       { fill: #001828; }
+    .eye-highlight   { fill: #ffffff; }
+    .eye-sclera      { fill: #f0f8ff; }
+    .mouth-interior  { fill: #102838; }
+  </style>
+
+  <!-- Custom glow: connection between main and calf (icy bridge) -->
+  <ellipse cx="200" cy="350" rx="180" ry="40" fill="#c0e0f0" opacity="0.32"/>
+
+  <!-- ═══════ CALVED MINI-ME (signature: small copy beside main) ═══════ -->
+  <ellipse cx="416" cy="396" rx="20" ry="10" class="body-shadow"/>
+  <circle cx="416" cy="376" r="36" class="body-shadow"/>
+  <circle cx="416" cy="372" r="32" class="body-base"/>
+  <ellipse cx="404" cy="356" rx="9" ry="6" class="body-highlight" opacity="0.55"/>
+  <!-- mini eyes -->
+  <circle cx="404" cy="372" r="5" class="eye-sclera"/>
+  <circle cx="405" cy="374" r="3" class="eye-pupil"/>
+  <circle cx="428" cy="372" r="5" class="eye-sclera"/>
+  <circle cx="427" cy="374" r="3" class="eye-pupil"/>
+  <!-- mini smile -->
+  <path d="M408,386 Q416,390 424,386" stroke="#102838" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+
+  <!-- feet (main) -->
+  <ellipse cx="180" cy="436" rx="26" ry="13" class="body-shadow"/>
+  <ellipse cx="252" cy="436" rx="26" ry="13" class="body-shadow"/>
+  <ellipse cx="180" cy="432" rx="22" ry="9" class="body-base"/>
+  <ellipse cx="252" cy="432" rx="22" ry="9" class="body-base"/>
+
+  <!-- arms (one waving toward calf) -->
+  <ellipse cx="106" cy="306" rx="32" ry="16" class="body-shadow" transform="rotate(-20 106 306)"/>
+  <ellipse cx="110" cy="302" rx="26" ry="11" class="body-base"   transform="rotate(-20 110 302)"/>
+  <ellipse cx="334" cy="316" rx="38" ry="16" class="body-shadow" transform="rotate(15 334 316)"/>
+  <ellipse cx="330" cy="312" rx="32" ry="11" class="body-base"   transform="rotate(15 330 312)"/>
+
+  <!-- main body (left side of canvas) -->
+  <circle cx="216" cy="306" r="118" class="body-shadow"/>
+  <circle cx="216" cy="300" r="110" class="body-base"/>
+  <ellipse cx="180" cy="244" rx="22" ry="14" class="body-highlight" opacity="0.55"/>
+
+  <!-- ═══════ EYES (ice family) ═══════ -->
+  <ellipse cx="186" cy="286" rx="22" ry="24" class="eye-sclera" stroke="none"/>
+  <ellipse cx="186" cy="286" rx="18" ry="20" fill="none" stroke="#102838" stroke-width="2.5"/>
+  <circle cx="188" cy="292" r="13" class="eye-iris"/>
+  <circle cx="188" cy="292" r="8" class="eye-pupil"/>
+  <path d="M192,280 L196,284 L192,288 L188,284 Z" class="eye-highlight"/>
+  <ellipse cx="248" cy="286" rx="22" ry="24" class="eye-sclera" stroke="none"/>
+  <ellipse cx="248" cy="286" rx="18" ry="20" fill="none" stroke="#102838" stroke-width="2.5"/>
+  <circle cx="246" cy="292" r="13" class="eye-iris"/>
+  <circle cx="246" cy="292" r="8" class="eye-pupil"/>
+  <path d="M242,280 L238,284 L242,288 L246,284 Z" class="eye-highlight"/>
+
+  <!-- mouth (proud parent smile) -->
+  <path d="M196,332 Q216,344 236,332" class="body-stroke" fill="none" stroke-width="3" stroke-linecap="round"/>
+</svg>

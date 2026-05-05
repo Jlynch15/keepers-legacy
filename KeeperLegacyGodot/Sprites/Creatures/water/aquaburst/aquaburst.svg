@@ -1,0 +1,137 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- AQUABURST — water, common — bubbly water sprite, leaves sparkling trails
+       Mutations: v1 Sapphire Blue · v2 Teal Green · v3 Pearl White · v4 Coral Pink
+       Signature: round bubbly body with bubble bursts erupting from top, sparkle trails
+  -->
+  <!-- PALETTE
+       v1: body-base=#3060c8 body-shadow=#1a3878 body-highlight=#80a0e8 body-stroke=#0a1a48 accent-base=#80c8f0 accent-shadow=#3068a0 accent-highlight=#c0e8ff
+       v2: body-base=#30a890 body-shadow=#1a5c4c body-highlight=#80d8c0 body-stroke=#0a3028 accent-base=#a0e0d0 accent-shadow=#308878 accent-highlight=#c8f0e8
+       v3: body-base=#e0e8f0 body-shadow=#9aa0b0 body-highlight=#ffffff body-stroke=#5a6070 accent-base=#c0d8f0 accent-shadow=#80a0c0 accent-highlight=#ffffff
+       v4: body-base=#f08aa8 body-shadow=#a8345a body-highlight=#ffb0c8 body-stroke=#5a1030 accent-base=#ff80a8 accent-shadow=#c04068 accent-highlight=#ffd0e0
+  -->
+  <style>
+    .body-base       { fill: #3060c8; }
+    .body-base       { stroke: #3060c8; }
+    .body-shadow     { fill: #1a3878; }
+    .body-shadow     { stroke: #1a3878; }
+    .body-highlight  { fill: #80a0e8; }
+    .body-highlight  { stroke: #80a0e8; }
+    .body-stroke     { fill: #0a1a48; }
+    .body-stroke     { stroke: #0a1a48; }
+    .accent-base     { fill: #80c8f0; }
+    .accent-base     { stroke: #80c8f0; }
+    .accent-shadow   { fill: #3068a0; }
+    .accent-shadow   { stroke: #3068a0; }
+    .accent-highlight{ fill: #c0e8ff; }
+    .accent-highlight{ stroke: #c0e8ff; }
+    .eye-iris        { fill: #1a4868; }
+    .eye-pupil       { fill: #0a1828; }
+    .eye-highlight   { fill: #ffffff; }
+    .eye-sclera      { fill: #d8eef0; }
+    .mouth-interior  { fill: #2a0820; }
+    .tongue          { fill: #ff8090; }
+  </style>
+
+  <!-- ═══════ COMPOSITION ═══════
+       Round bubbly creature, center (256, 300). Bubble cluster crown above head.
+       Stubby arms holding bubbles. Tiny feet. Trailing sparkles to sides.
+  -->
+
+  <!-- ═══════ FEET ═══════ -->
+  <ellipse cx="208" cy="436" rx="32" ry="16" class="body-shadow"/>
+  <ellipse cx="304" cy="436" rx="32" ry="16" class="body-shadow"/>
+  <ellipse cx="208" cy="432" rx="26" ry="12" class="body-base"/>
+  <ellipse cx="304" cy="432" rx="26" ry="12" class="body-base"/>
+
+  <!-- ═══════ ARMS ═══════ -->
+  <ellipse cx="128" cy="296" rx="44" ry="26" class="body-shadow" transform="rotate(-18 128 296)"/>
+  <ellipse cx="132" cy="292" rx="38" ry="20" class="body-base"   transform="rotate(-18 132 292)"/>
+  <ellipse cx="384" cy="296" rx="44" ry="26" class="body-shadow" transform="rotate(18 384 296)"/>
+  <ellipse cx="380" cy="292" rx="38" ry="20" class="body-base"   transform="rotate(18 380 292)"/>
+
+  <!-- ═══════ BODY (round, bubbly) ═══════ -->
+  <circle cx="256" cy="300" r="138" class="body-shadow"/>
+  <circle cx="256" cy="294" r="128" class="body-base"/>
+  <ellipse cx="218" cy="246" rx="48" ry="32" class="body-highlight" opacity="0.42"/>
+  <ellipse cx="256" cy="354" rx="41" ry="20" class="body-highlight" opacity="0.35"/>
+
+  <!-- ═══════ BUBBLE CROWN (signature: bubble burst from top of head) ═══════ -->
+  <!-- back row -->
+  <circle cx="200" cy="142" r="22" class="accent-shadow"/>
+  <circle cx="200" cy="140" r="19" class="accent-base"/>
+  <circle cx="194" cy="132" r="6"  class="accent-highlight"/>
+  <circle cx="312" cy="142" r="22" class="accent-shadow"/>
+  <circle cx="312" cy="140" r="19" class="accent-base"/>
+  <circle cx="306" cy="132" r="6"  class="accent-highlight"/>
+  <!-- front main bubble (largest) -->
+  <circle cx="256" cy="124" r="30" class="accent-shadow"/>
+  <circle cx="256" cy="122" r="26" class="accent-base"/>
+  <circle cx="246" cy="112" r="9"  class="accent-highlight"/>
+  <circle cx="266" cy="132" r="3"  class="accent-highlight" opacity="0.9"/>
+  <!-- small trailing bubbles -->
+  <circle cx="160" cy="92"  r="10" class="accent-shadow"/>
+  <circle cx="160" cy="90"  r="8"  class="accent-base"/>
+  <circle cx="158" cy="86"  r="2.5" class="accent-highlight"/>
+  <circle cx="352" cy="92"  r="10" class="accent-shadow"/>
+  <circle cx="352" cy="90"  r="8"  class="accent-base"/>
+  <circle cx="350" cy="86"  r="2.5" class="accent-highlight"/>
+  <circle cx="124" cy="56"  r="6"  class="accent-shadow"/>
+  <circle cx="124" cy="54"  r="4.5" class="accent-base"/>
+  <circle cx="388" cy="56"  r="6"  class="accent-shadow"/>
+  <circle cx="388" cy="54"  r="4.5" class="accent-base"/>
+
+  <!-- ═══════ EYES (water style — round wet glossy fish-eye) ═══════ -->
+  <ellipse cx="218" cy="290" rx="34" ry="38" class="eye-sclera" stroke="none"/>
+  <ellipse cx="218" cy="290" rx="30" ry="34" fill="none" stroke="#ffffff" stroke-width="3"/>
+  <circle  cx="220" cy="296" r="22" class="eye-iris"/>
+  <circle  cx="220" cy="296" r="14" class="eye-pupil"/>
+  <ellipse cx="226" cy="284" rx="6" ry="7" class="eye-highlight" stroke="none"/>
+  <circle  cx="214" cy="306" r="2.5" class="eye-highlight" stroke="none"/>
+  <circle  cx="228" cy="302" r="1.5" class="eye-highlight" stroke="none" opacity="0.8"/>
+
+  <ellipse cx="294" cy="290" rx="34" ry="38" class="eye-sclera" stroke="none"/>
+  <ellipse cx="294" cy="290" rx="30" ry="34" fill="none" stroke="#ffffff" stroke-width="3"/>
+  <circle  cx="292" cy="296" r="22" class="eye-iris"/>
+  <circle  cx="292" cy="296" r="14" class="eye-pupil"/>
+  <ellipse cx="298" cy="284" rx="6" ry="7" class="eye-highlight" stroke="none"/>
+  <circle  cx="288" cy="306" r="2.5" class="eye-highlight" stroke="none"/>
+  <circle  cx="300" cy="302" r="1.5" class="eye-highlight" stroke="none" opacity="0.8"/>
+
+  <!-- ═══════ MOUTH (small round excited "o" — bubbly burst expression) ═══════ -->
+  <circle cx="256" cy="358" r="14" class="mouth-interior"/>
+  <circle cx="256" cy="358" r="14" fill="none" stroke="#0a1a48" stroke-width="3"/>
+  <ellipse cx="256" cy="364" rx="9" ry="4" class="tongue" stroke="none"/>
+
+  <!-- ═══════ CHEEK BLUSH ═══════ -->
+  <ellipse cx="178" cy="338" rx="16" ry="9" class="accent-base" opacity="0.45" stroke="none"/>
+  <ellipse cx="334" cy="338" rx="16" ry="9" class="accent-base" opacity="0.45" stroke="none"/>
+
+  <!-- ═══════ BODY SPECKS ═══════ -->
+  <circle cx="218" cy="220" r="3" class="body-highlight" opacity="0.7" stroke="none"/>
+  <circle cx="172" cy="278" r="2" class="body-highlight" opacity="0.6" stroke="none"/>
+  <circle cx="158" cy="328" r="3" class="body-highlight" opacity="0.55" stroke="none"/>
+  <circle cx="232" cy="396" r="2" class="body-highlight" opacity="0.55" stroke="none"/>
+  <circle cx="298" cy="404" r="3" class="body-highlight" opacity="0.55" stroke="none"/>
+  <circle cx="346" cy="312" r="3" class="body-highlight" opacity="0.55" stroke="none"/>
+  <circle cx="362" cy="358" r="2" class="body-highlight" opacity="0.5" stroke="none"/>
+  <circle cx="190" cy="216" r="2" class="accent-base" opacity="0.55" stroke="none"/>
+  <circle cx="320" cy="232" r="2" class="accent-base" opacity="0.55" stroke="none"/>
+
+  <!-- ═══════ AMBIENT BUBBLES (water biome) ═══════ -->
+  <circle cx="46"  cy="200" r="6" fill="none" stroke="#80c8e8" stroke-width="2" opacity="0.7"/>
+  <circle cx="46"  cy="200" r="6" fill="#a0e0ff" opacity="0.18"/>
+  <circle cx="78"  cy="240" r="4" fill="none" stroke="#80c8e8" stroke-width="2" opacity="0.7"/>
+  <circle cx="466" cy="200" r="6" fill="none" stroke="#80c8e8" stroke-width="2" opacity="0.7"/>
+  <circle cx="466" cy="200" r="6" fill="#a0e0ff" opacity="0.18"/>
+  <circle cx="436" cy="240" r="4" fill="none" stroke="#80c8e8" stroke-width="2" opacity="0.7"/>
+  <circle cx="58"  cy="320" r="3" fill="none" stroke="#80c8e8" stroke-width="1.5" opacity="0.6"/>
+  <circle cx="450" cy="320" r="3" fill="none" stroke="#80c8e8" stroke-width="1.5" opacity="0.6"/>
+
+  <!-- ═══════ SPARKLE ACCENTS (signature: sparkling trails) ═══════ -->
+  <path d="M88,370 L90,378 L98,380 L90,382 L88,390 L86,382 L78,380 L86,378 Z"
+        fill="#ffffff" opacity="0.9"/>
+  <path d="M424,370 L426,378 L434,380 L426,382 L424,390 L422,382 L414,380 L422,378 Z"
+        fill="#ffffff" opacity="0.9"/>
+  <path d="M256,68 L258,76 L266,78 L258,80 L256,88 L254,80 L246,78 L254,76 Z"
+        fill="#ffffff" opacity="0.85"/>
+</svg>

@@ -106,6 +106,40 @@ Pilot SVGs for Coralsprite and Deepecho are authored for **style validation only
 
 Each review is a quick "does this still match the locked style" check, not a re-debate of the baseline. If significant drift appears, work pauses to re-anchor before continuing.
 
+## Locked baseline conventions (approved 2026-05-05)
+
+These conventions apply to every SVG in the sweep. Each creature follows the family rules for its biome but varies silhouette, signature feature, eye expression, and mouth shape so creatures within a biome don't feel templated.
+
+### Common (all biomes)
+
+- **Canvas:** 512×512, no root background.
+- **Anchor:** creature occupies ~80% of canvas, centered horizontally, slightly biased downward (room for happy-bounce headroom).
+- **Palette structure:** PALETTE comment defines `body-base`, `body-shadow`, `body-highlight`, `body-stroke`, `accent-base`, `accent-shadow`, `accent-highlight` for each of v1..v4. Optional biome-specific extras (e.g. `glow-base`/`glow-halo` for water-bioluminescent or fire-ember).
+- **`<style>` block:** one rule per palette class with both `fill:` and `stroke:` declarations of the same color (so the same class works for filled shapes and stroked paths).
+- **3-tone shading:** body-shadow ring beneath body-base + body-highlight crescent (upper-left bias) + soft belly highlight (lower).
+- **Eyes constant within mutations:** eye colors do NOT shift per mutation. Only the body/accent palette shifts. Eye design varies *across* creatures (within biome family) but not within one creature's 4 variants.
+- **Body specks:** 6-10 small `body-highlight` and `accent-base` dots scattered on body for texture, opacity 0.5–0.7.
+- **Ambient particles:** 4–10 biome-themed particles drifting around the creature (see per-biome rules).
+- **Sparkle accents:** 2–3 small 4-point stars near the signature feature, biome-themed color.
+- **Mouth/face:** vary across creatures so a creature's expression matches its description (playful = open grin, stoic = closed smile, predatory = teeth, etc.). Within one creature, mouth is constant across mutations.
+
+### Per-biome eye + ambient rules
+
+| Biome    | Eye style                                                                                  | Ambient particles                                          |
+|----------|--------------------------------------------------------------------------------------------|------------------------------------------------------------|
+| Water    | Big round, glossy/wet, blue-tinted or pearl-white sclera, deep teal iris, **round** pupils, 2–3 highlights | Bubbles — small circles, 1–2px stroke + low-opacity fill   |
+| Dirt     | Earth-toned, often heavy-lidded; small accent-color mineral iris ring + tiny gem sparkle   | Dust specks — small body-base circles low-opacity at base  |
+| Grass    | Round gentle, leaf-green iris ring, soft warm highlights                                   | Floating petals/leaf flakes — small tilted ovals or 4-petal shapes |
+| Fire     | Glowing warm pupils with ember-orange iris ring, 1 large + 1 small warm highlight          | Floating embers/sparks — small warm-color circles + halo   |
+| Ice      | Pale blue/white iris, **diamond-shaped** angular highlights (not round)                    | Snowflakes — tiny 6-point stars or X/+ marks               |
+| Electric | Bright glowing iris, **cross-shaped or starburst** highlights                              | Tiny lightning zigzags or arc sparks                       |
+| Magical  | Cosmic — multiple tiny highlights like a galaxy, optional star-shaped pupil                | Stardust — small 4-point stars in varied colors            |
+
+**Notes on flexibility:**
+- Eyes can be different sizes/expressions within a biome (e.g. Coralsprite happy-round vs. Deepecho wide-haunting are both water-style).
+- Mouths can be entirely different shapes between creatures of the same biome.
+- Signature features always come from the creature's description in `CreatureRosterData.cs`. The signature is the dominant visual element.
+
 ## Godot integration
 
 **Constraint:** another session is actively working on scene/UI development. To avoid conflicts, this work touches **zero existing files** in `KeeperLegacyGodot/`. It only adds new files.

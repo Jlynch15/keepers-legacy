@@ -1,0 +1,97 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- VINETWIST — grass, common — long affectionate vines from arms, latch onto things
+       Mutations: v1 Leafy Green · v2 Brown Vine · v3 Purple Flower · v4 Yellow Bud
+       Signature: round body with LONG TWISTING VINES extending from arms, curling
+  -->
+  <!-- PALETTE
+       v1: body-base=#68a058 body-shadow=#305828 body-highlight=#90c878 body-stroke=#0a1808 accent-base=#487830 accent-shadow=#204010 accent-highlight=#6a9848
+       v2: body-base=#7a5028 body-shadow=#3a2810 body-highlight=#a87850 body-stroke=#1a0a00 accent-base=#5a3818 accent-shadow=#281808 accent-highlight=#80583a
+       v3: body-base=#a878c8 body-shadow=#583878 body-highlight=#c8a8e0 body-stroke=#1a0838 accent-base=#e088c8 accent-shadow=#a04080 accent-highlight=#ffb0e0
+       v4: body-base=#e8d850 body-shadow=#a09020 body-highlight=#fff088 body-stroke=#403008 accent-base=#c8c038 accent-shadow=#807820 accent-highlight=#e0e878
+  -->
+  <style>
+    .body-base       { fill: #68a058; }
+    .body-base       { stroke: #68a058; }
+    .body-shadow     { fill: #305828; }
+    .body-shadow     { stroke: #305828; }
+    .body-highlight  { fill: #90c878; }
+    .body-highlight  { stroke: #90c878; }
+    .body-stroke     { fill: #0a1808; }
+    .body-stroke     { stroke: #0a1808; }
+    .accent-base     { fill: #487830; }
+    .accent-base     { stroke: #487830; }
+    .accent-shadow   { fill: #204010; }
+    .accent-shadow   { stroke: #204010; }
+    .accent-highlight{ fill: #6a9848; }
+    .accent-highlight{ stroke: #6a9848; }
+    .eye-iris        { fill: #3a7038; }
+    .eye-pupil       { fill: #0a2008; }
+    .eye-highlight   { fill: #ffffff; }
+    .eye-sclera      { fill: #f0f8e0; }
+    .mouth-interior  { fill: #2a0820; }
+  </style>
+
+  <!-- ═══════ TWISTING VINES (signature: long curling vines from arms) ═══════ -->
+  <!-- left vine -->
+  <path d="M120,304 Q60,270 56,200 Q70,148 116,160 Q92,196 100,232 Q116,266 152,280" class="accent-shadow" fill="none" stroke-width="14" stroke-linecap="round"/>
+  <path d="M120,304 Q60,270 56,200 Q70,148 116,160 Q92,196 100,232 Q116,266 152,280" class="accent-base" fill="none" stroke-width="9" stroke-linecap="round"/>
+  <!-- left vine leaves -->
+  <ellipse cx="68"  cy="232" rx="9" ry="14" class="body-base" transform="rotate(-30 68 232)"/>
+  <ellipse cx="92"  cy="172" rx="9" ry="14" class="body-base" transform="rotate(40 92 172)"/>
+  <!-- right vine -->
+  <path d="M392,304 Q452,270 456,200 Q442,148 396,160 Q420,196 412,232 Q396,266 360,280" class="accent-shadow" fill="none" stroke-width="14" stroke-linecap="round"/>
+  <path d="M392,304 Q452,270 456,200 Q442,148 396,160 Q420,196 412,232 Q396,266 360,280" class="accent-base" fill="none" stroke-width="9" stroke-linecap="round"/>
+  <ellipse cx="444" cy="232" rx="9" ry="14" class="body-base" transform="rotate(30 444 232)"/>
+  <ellipse cx="420" cy="172" rx="9" ry="14" class="body-base" transform="rotate(-40 420 172)"/>
+
+  <!-- feet -->
+  <ellipse cx="216" cy="436" rx="26" ry="13" class="body-shadow"/>
+  <ellipse cx="296" cy="436" rx="26" ry="13" class="body-shadow"/>
+  <ellipse cx="216" cy="432" rx="22" ry="9" class="body-base"/>
+  <ellipse cx="296" cy="432" rx="22" ry="9" class="body-base"/>
+
+  <!-- arms (small base for vines) -->
+  <ellipse cx="138" cy="306" rx="28" ry="16" class="body-shadow"/>
+  <ellipse cx="142" cy="302" rx="22" ry="11" class="body-base"/>
+  <ellipse cx="374" cy="306" rx="28" ry="16" class="body-shadow"/>
+  <ellipse cx="370" cy="302" rx="22" ry="11" class="body-base"/>
+
+  <!-- body -->
+  <circle cx="256" cy="306" r="118" class="body-shadow"/>
+  <circle cx="256" cy="300" r="110" class="body-base"/>
+  <!-- VARIED HIGHLIGHT — tiny vine spiral -->
+  <path d="M196,238 Q210,224 224,236 Q220,250 206,248 Q194,244 200,234" class="body-highlight" fill="none" stroke-width="6" stroke-linecap="round" opacity="0.5"/>
+
+  <!-- ═══════ EYES (grass family — round with VINE-CURL highlight) ═══════ -->
+  <ellipse cx="220" cy="298" rx="24" ry="26" class="eye-sclera" stroke="none"/>
+  <ellipse cx="220" cy="298" rx="20" ry="22" fill="none" stroke="#0a1808" stroke-width="2.5"/>
+  <circle  cx="222" cy="304" r="14" class="eye-iris"/>
+  <circle  cx="222" cy="304" r="9"  class="eye-pupil"/>
+  <!-- vine-curl highlight -->
+  <path d="M226,290 Q231,294 228,300 Q224,298 226,290" class="eye-highlight" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+  <ellipse cx="292" cy="298" rx="24" ry="26" class="eye-sclera" stroke="none"/>
+  <ellipse cx="292" cy="298" rx="20" ry="22" fill="none" stroke="#0a1808" stroke-width="2.5"/>
+  <circle  cx="290" cy="304" r="14" class="eye-iris"/>
+  <circle  cx="290" cy="304" r="9"  class="eye-pupil"/>
+  <path d="M286,290 Q281,294 284,300 Q288,298 286,290" class="eye-highlight" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- mouth: gentle "u" smile -->
+  <path d="M240,344 Q256,358 272,344" class="body-stroke" fill="none" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- cheek blush -->
+  <ellipse cx="184" cy="332" rx="11" ry="7" fill="#a04060" opacity="0.42" stroke="none"/>
+  <ellipse cx="328" cy="332" rx="11" ry="7" fill="#a04060" opacity="0.42" stroke="none"/>
+
+  <!-- body specks -->
+  <circle cx="246" cy="220" r="2" class="body-highlight" opacity="0.7" stroke="none"/>
+  <circle cx="298" cy="246" r="2" class="body-highlight" opacity="0.6" stroke="none"/>
+  <circle cx="186" cy="380" r="2" class="body-highlight" opacity="0.55" stroke="none"/>
+
+  <!-- ambient leaf flakes -->
+  <ellipse cx="44"  cy="380" rx="5" ry="2" class="accent-base" opacity="0.6" transform="rotate(20 44 380)"/>
+  <ellipse cx="468" cy="380" rx="5" ry="2" class="accent-base" opacity="0.6" transform="rotate(-20 468 380)"/>
+
+  <!-- sparkles -->
+  <path d="M256,80 L258,86 L264,88 L258,90 L256,96 L254,90 L248,88 L254,86 Z"
+        class="accent-highlight" opacity="0.85"/>
+</svg>

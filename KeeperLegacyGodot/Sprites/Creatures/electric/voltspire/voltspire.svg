@@ -1,0 +1,83 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- VOLTSPIRE — electric, uncommon — spire-shape, conducts energy
+       Mutations: v1 Bright Yellow · v2 Electric Blue · v3 White · v4 Purple Arc
+       Signature: TALL SPIRE-shape with arcing electric current ZIGZAGS between points
+  -->
+  <!-- PALETTE
+       v1: body-base=#ffd820 body-shadow=#a08010 body-highlight=#fff088 body-stroke=#403008 accent-base=#ffe060 accent-shadow=#a08820 accent-highlight=#fff8a8
+       v2: body-base=#3070e8 body-shadow=#102870 body-highlight=#5088f0 body-stroke=#000820 accent-base=#80c0ff accent-shadow=#3070b8 accent-highlight=#c0e0ff
+       v3: body-base=#f8fbff body-shadow=#a0a8b8 body-highlight=#ffffff body-stroke=#3a3a48 accent-base=#d0e0f0 accent-shadow=#7888 a0 accent-highlight=#ffffff
+       v4: body-base=#9028d8 body-shadow=#480870 body-highlight=#b860f0 body-stroke=#1a0028 accent-base=#c060ff accent-shadow=#7028a0 accent-highlight=#e0a0ff
+  -->
+  <style>
+    .body-base       { fill: #ffd820; }
+    .body-base       { stroke: #ffd820; }
+    .body-shadow     { fill: #a08010; }
+    .body-shadow     { stroke: #a08010; }
+    .body-highlight  { fill: #fff088; }
+    .body-highlight  { stroke: #fff088; }
+    .body-stroke     { fill: #403008; }
+    .body-stroke     { stroke: #403008; }
+    .accent-base     { fill: #ffe060; }
+    .accent-base     { stroke: #ffe060; }
+    .accent-shadow   { fill: #a08820; }
+    .accent-shadow   { stroke: #a08820; }
+    .accent-highlight{ fill: #fff8a8; }
+    .accent-highlight{ stroke: #fff8a8; }
+    .eye-iris        { fill: #fff088; }
+    .eye-pupil       { fill: #1a1000; }
+    .eye-highlight   { fill: #ffffff; }
+    .eye-sclera      { fill: #fff8d8; }
+    .mouth-interior  { fill: #2a1808; }
+  </style>
+
+  <!-- Custom glow: arcing zigzag between spire points (signature) -->
+  <path d="M256,80 L240,140 L272,180 L240,240 L272,300 L240,360" stroke="#fff088" stroke-width="14" fill="none" stroke-linecap="round" opacity="0.45"/>
+  <path d="M256,80 L240,140 L272,180 L240,240 L272,300 L240,360" stroke="#ffffff" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.85"/>
+
+  <!-- feet -->
+  <ellipse cx="232" cy="448" rx="22" ry="11" class="body-shadow"/>
+  <ellipse cx="280" cy="448" rx="22" ry="11" class="body-shadow"/>
+  <ellipse cx="232" cy="445" rx="18" ry="8" class="body-base"/>
+  <ellipse cx="280" cy="445" rx="18" ry="8" class="body-base"/>
+
+  <!-- arms (small, against body) -->
+  <ellipse cx="186" cy="316" rx="26" ry="14" class="body-shadow"/>
+  <ellipse cx="190" cy="313" rx="22" ry="10" class="body-base"/>
+  <ellipse cx="326" cy="316" rx="26" ry="14" class="body-shadow"/>
+  <ellipse cx="322" cy="313" rx="22" ry="10" class="body-base"/>
+
+  <!-- ═══════ TALL SPIRE BODY (signature) ═══════ -->
+  <path d="M212,440 L228,200 L256,150 L284,200 L300,440 Z" class="body-shadow"/>
+  <path d="M218,438 L232,206 L256,164 L280,206 L294,438 Z" class="body-base"/>
+  <!-- spire tip -->
+  <path d="M248,164 L256,90 L264,164 Z" class="body-shadow"/>
+  <path d="M250,160 L256,98 L262,160 Z" class="body-base"/>
+  <path d="M254,156 L256,108 L258,156 Z" class="body-highlight"/>
+
+  <!-- body highlight stripe -->
+  <path d="M236,232 Q230,300 234,400" class="body-highlight" fill="none" stroke-width="6" stroke-linecap="round" opacity="0.5"/>
+
+  <!-- electrical nodes along spire -->
+  <circle cx="256" cy="220" r="6" class="accent-base"/>
+  <circle cx="256" cy="220" r="3" class="accent-highlight"/>
+  <circle cx="256" cy="320" r="6" class="accent-base"/>
+  <circle cx="256" cy="320" r="3" class="accent-highlight"/>
+  <circle cx="256" cy="400" r="6" class="accent-base"/>
+  <circle cx="256" cy="400" r="3" class="accent-highlight"/>
+
+  <!-- ═══════ EYES (electric family — bright cross-highlight) ═══════ -->
+  <ellipse cx="232" cy="270" rx="14" ry="14" class="eye-sclera" stroke="none"/>
+  <ellipse cx="232" cy="270" rx="11" ry="11" fill="none" stroke="#403008" stroke-width="2"/>
+  <circle cx="232" cy="272" r="7" class="accent-base"/>
+  <circle cx="232" cy="272" r="5" class="eye-pupil"/>
+  <path d="M232,266 L232,270 M228,268 L236,268" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"/>
+  <ellipse cx="280" cy="270" rx="14" ry="14" class="eye-sclera" stroke="none"/>
+  <ellipse cx="280" cy="270" rx="11" ry="11" fill="none" stroke="#403008" stroke-width="2"/>
+  <circle cx="280" cy="272" r="7" class="accent-base"/>
+  <circle cx="280" cy="272" r="5" class="eye-pupil"/>
+  <path d="M280,266 L280,270 M276,268 L284,268" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- mouth -->
+  <path d="M244,294 Q256,302 268,294" class="body-stroke" fill="none" stroke-width="2.5" stroke-linecap="round"/>
+</svg>

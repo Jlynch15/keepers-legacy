@@ -1,0 +1,123 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- EMBERPAW — fire, common — glowing paw pads, leaves prints
+       Mutations: v1 Orange · v2 Red · v3 Yellow Glow · v4 Deep Ember
+       Signature: small cute creature with GLOWING PAW PADS prominent
+  -->
+  <!-- PALETTE
+       v1: body-base=#f08038 body-shadow=#a04018 body-highlight=#ffb068 body-stroke=#481000 accent-base=#ffd060 accent-shadow=#a07820 accent-highlight=#fff0a0
+       v2: body-base=#d02828 body-shadow=#600810 body-highlight=#f05848 body-stroke=#280000 accent-base=#ff8048 accent-shadow=#a04018 accent-highlight=#ffb088
+       v3: body-base=#ffd048 body-shadow=#a08018 body-highlight=#fff088 body-stroke=#403008 accent-base=#fff088 accent-shadow=#a08820 accent-highlight=#ffffc0
+       v4: body-base=#603020 body-shadow=#280808 body-highlight=#80483a body-stroke=#180000 accent-base=#ff5018 accent-shadow=#a02008 accent-highlight=#ff9050
+  -->
+  <style>
+    .body-base       { fill: #f08038; }
+    .body-base       { stroke: #f08038; }
+    .body-shadow     { fill: #a04018; }
+    .body-shadow     { stroke: #a04018; }
+    .body-highlight  { fill: #ffb068; }
+    .body-highlight  { stroke: #ffb068; }
+    .body-stroke     { fill: #481000; }
+    .body-stroke     { stroke: #481000; }
+    .accent-base     { fill: #ffd060; }
+    .accent-base     { stroke: #ffd060; }
+    .accent-shadow   { fill: #a07820; }
+    .accent-shadow   { stroke: #a07820; }
+    .accent-highlight{ fill: #fff0a0; }
+    .accent-highlight{ stroke: #fff0a0; }
+    .eye-iris        { fill: #ff8030; }
+    .eye-pupil       { fill: #1a0800; }
+    .eye-highlight   { fill: #ffe8a0; }
+    .eye-sclera      { fill: #fff0d8; }
+    .mouth-interior  { fill: #2a0808; }
+  </style>
+  <!-- Custom glow: warm glow under each foot — paw print effect -->
+  <ellipse cx="200" cy="446" rx="48" ry="20" fill="#ffd060" opacity="0.32"/>
+  <ellipse cx="312" cy="446" rx="48" ry="20" fill="#ffd060" opacity="0.32"/>
+
+
+  <!-- ═══════ GLOWING PAW PADS (signature) ═══════ -->
+  <!-- left foot (visible glowing paw) -->
+  <ellipse cx="200" cy="442" rx="36" ry="18" class="body-shadow"/>
+  <ellipse cx="200" cy="438" rx="30" ry="14" class="body-base"/>
+  <!-- glow circle around paw pads -->
+  <circle cx="200" cy="438" r="20" class="accent-base" opacity="0.55"/>
+  <!-- paw pads -->
+  <ellipse cx="200" cy="442" rx="9" ry="5" class="accent-shadow"/>
+  <ellipse cx="200" cy="441" rx="7" ry="4" class="accent-base"/>
+  <circle cx="186" cy="436" r="3" class="accent-base"/>
+  <circle cx="194" cy="432" r="3" class="accent-base"/>
+  <circle cx="206" cy="432" r="3" class="accent-base"/>
+  <circle cx="214" cy="436" r="3" class="accent-base"/>
+  <!-- right foot -->
+  <ellipse cx="312" cy="442" rx="36" ry="18" class="body-shadow"/>
+  <ellipse cx="312" cy="438" rx="30" ry="14" class="body-base"/>
+  <circle cx="312" cy="438" r="20" class="accent-base" opacity="0.55"/>
+  <ellipse cx="312" cy="442" rx="9" ry="5" class="accent-shadow"/>
+  <ellipse cx="312" cy="441" rx="7" ry="4" class="accent-base"/>
+  <circle cx="298" cy="436" r="3" class="accent-base"/>
+  <circle cx="306" cy="432" r="3" class="accent-base"/>
+  <circle cx="318" cy="432" r="3" class="accent-base"/>
+  <circle cx="326" cy="436" r="3" class="accent-base"/>
+
+  <!-- arms (extended showing paws) -->
+  <ellipse cx="138" cy="320" rx="34" ry="18" class="body-shadow" transform="rotate(-22 138 320)"/>
+  <ellipse cx="142" cy="316" rx="28" ry="13" class="body-base"   transform="rotate(-22 142 316)"/>
+  <circle cx="98" cy="320" r="20" class="accent-base" opacity="0.5"/>
+  <circle cx="98" cy="320" r="14" class="body-shadow"/>
+  <circle cx="98" cy="318" r="11" class="body-base"/>
+  <ellipse cx="98" cy="320" rx="6" ry="3" class="accent-base"/>
+
+  <ellipse cx="374" cy="320" rx="34" ry="18" class="body-shadow" transform="rotate(22 374 320)"/>
+  <ellipse cx="370" cy="316" rx="28" ry="13" class="body-base"   transform="rotate(22 370 316)"/>
+  <circle cx="414" cy="320" r="20" class="accent-base" opacity="0.5"/>
+  <circle cx="414" cy="320" r="14" class="body-shadow"/>
+  <circle cx="414" cy="318" r="11" class="body-base"/>
+  <ellipse cx="414" cy="320" rx="6" ry="3" class="accent-base"/>
+
+  <!-- body (small cute) -->
+  <circle cx="256" cy="306" r="106" class="body-shadow"/>
+  <circle cx="256" cy="300" r="98" class="body-base"/>
+  <!-- paw-print highlight -->
+  <ellipse cx="216" cy="244" rx="9" ry="6" class="body-highlight" opacity="0.55"/>
+  <circle cx="208" cy="234" r="3" class="body-highlight" opacity="0.55"/>
+  <circle cx="226" cy="234" r="3" class="body-highlight" opacity="0.5"/>
+
+  <!-- ═══════ EYES (fire family — warm round, soft glow) ═══════ -->
+  <ellipse cx="220" cy="290" rx="22" ry="24" class="eye-sclera" stroke="none"/>
+  <ellipse cx="220" cy="290" rx="18" ry="20" fill="none" stroke="#481000" stroke-width="2.5"/>
+  <circle cx="222" cy="296" r="13" class="accent-base"/>
+  <circle cx="222" cy="296" r="13" fill="none" stroke="#a04018" stroke-width="1.5"/>
+  <circle cx="222" cy="296" r="9" class="eye-iris"/>
+  <circle cx="222" cy="296" r="6" class="eye-pupil"/>
+  <circle cx="226" cy="290" r="3" class="eye-highlight" stroke="none"/>
+  <ellipse cx="292" cy="290" rx="22" ry="24" class="eye-sclera" stroke="none"/>
+  <ellipse cx="292" cy="290" rx="18" ry="20" fill="none" stroke="#481000" stroke-width="2.5"/>
+  <circle cx="290" cy="296" r="13" class="accent-base"/>
+  <circle cx="290" cy="296" r="13" fill="none" stroke="#a04018" stroke-width="1.5"/>
+  <circle cx="290" cy="296" r="9" class="eye-iris"/>
+  <circle cx="290" cy="296" r="6" class="eye-pupil"/>
+  <circle cx="288" cy="290" r="3" class="eye-highlight" stroke="none"/>
+
+  <!-- mouth: gentle smile -->
+  <path d="M236,338 Q256,348 276,338" class="body-stroke" fill="none" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- cheek warmth -->
+  <ellipse cx="180" cy="328" rx="11" ry="7" fill="#ff5020" opacity="0.55" stroke="none"/>
+  <ellipse cx="332" cy="328" rx="11" ry="7" fill="#ff5020" opacity="0.55" stroke="none"/>
+
+  <!-- ambient embers (paw-print trail) -->
+  <ellipse cx="50" cy="478" rx="9" ry="5" class="accent-base" opacity="0.55"/>
+  <circle cx="46" cy="473" r="2" class="accent-base" opacity="0.55"/>
+  <circle cx="54" cy="473" r="2" class="accent-base" opacity="0.55"/>
+  <ellipse cx="462" cy="478" rx="9" ry="5" class="accent-base" opacity="0.55"/>
+  <circle cx="458" cy="473" r="2" class="accent-base" opacity="0.55"/>
+  <circle cx="466" cy="473" r="2" class="accent-base" opacity="0.55"/>
+  <circle cx="80"  cy="180" r="3" fill="#ffc040" opacity="0.85"/>
+  <circle cx="80"  cy="180" r="7" fill="#ffc040" opacity="0.2"/>
+  <circle cx="432" cy="180" r="3" fill="#ffc040" opacity="0.85"/>
+  <circle cx="432" cy="180" r="7" fill="#ffc040" opacity="0.2"/>
+
+  <!-- sparkles -->
+  <path d="M256,80 L258,86 L264,88 L258,90 L256,96 L254,90 L248,88 L254,86 Z"
+        fill="#ffe060" opacity="0.95"/>
+</svg>

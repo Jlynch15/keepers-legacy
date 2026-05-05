@@ -1,0 +1,127 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- GRAVELGRIP — dirt, common — hands permanently coated in gravel armor
+       Mutations: v1 Gravel Grey · v2 Slate · v3 Brown · v4 Black Pebble
+       Signature: prominent gravel-coated FISTS held outward, body otherwise plain
+  -->
+  <!-- PALETTE
+       v1: body-base=#888880 body-shadow=#48484a body-highlight=#b0b0a8 body-stroke=#1a1a1a accent-base=#606058 accent-shadow=#28282a accent-highlight=#909088
+       v2: body-base=#5a6878 body-shadow=#2a3848 body-highlight=#88a0b0 body-stroke=#0a1820 accent-base=#384858 accent-shadow=#182028 accent-highlight=#688090
+       v3: body-base=#806038 body-shadow=#3a2818 body-highlight=#a8885a body-stroke=#1a0800 accent-base=#5a3818 accent-shadow=#2a1808 accent-highlight=#806848
+       v4: body-base=#383838 body-shadow=#1a1a1a body-highlight=#585858 body-stroke=#000000 accent-base=#202020 accent-shadow=#000000 accent-highlight=#484848
+  -->
+  <style>
+    .body-base       { fill: #888880; }
+    .body-base       { stroke: #888880; }
+    .body-shadow     { fill: #48484a; }
+    .body-shadow     { stroke: #48484a; }
+    .body-highlight  { fill: #b0b0a8; }
+    .body-highlight  { stroke: #b0b0a8; }
+    .body-stroke     { fill: #1a1a1a; }
+    .body-stroke     { stroke: #1a1a1a; }
+    .accent-base     { fill: #606058; }
+    .accent-base     { stroke: #606058; }
+    .accent-shadow   { fill: #28282a; }
+    .accent-shadow   { stroke: #28282a; }
+    .accent-highlight{ fill: #909088; }
+    .accent-highlight{ stroke: #909088; }
+    .eye-iris        { fill: #5a4830; }
+    .eye-pupil       { fill: #1a0a00; }
+    .eye-highlight   { fill: #ffffff; }
+    .eye-sclera      { fill: #f8f0e0; }
+    .mouth-interior  { fill: #2a1008; }
+  </style>
+
+  <!-- feet -->
+  <ellipse cx="220" cy="436" rx="28" ry="13" class="body-shadow"/>
+  <ellipse cx="292" cy="436" rx="28" ry="13" class="body-shadow"/>
+  <ellipse cx="220" cy="432" rx="22" ry="9" class="body-base"/>
+  <ellipse cx="292" cy="432" rx="22" ry="9" class="body-base"/>
+
+  <!-- arms (extended outward, displaying gravel hands) -->
+  <ellipse cx="148" cy="296" rx="36" ry="20" class="body-shadow"/>
+  <ellipse cx="152" cy="292" rx="30" ry="15" class="body-base"/>
+  <ellipse cx="364" cy="296" rx="36" ry="20" class="body-shadow"/>
+  <ellipse cx="360" cy="292" rx="30" ry="15" class="body-base"/>
+
+  <!-- ═══════ GRAVEL FIST CLUSTERS (signature: extended hands coated in gravel) ═══════ -->
+  <!-- left fist -->
+  <circle cx="100" cy="296" r="32" class="accent-shadow"/>
+  <circle cx="100" cy="294" r="28" class="accent-base"/>
+  <!-- gravel pebbles on left fist -->
+  <circle cx="84"  cy="280" r="6" class="body-stroke" stroke="none"/>
+  <circle cx="84"  cy="280" r="4" class="accent-base"/>
+  <circle cx="100" cy="276" r="5" class="body-stroke" stroke="none"/>
+  <circle cx="100" cy="276" r="3.5" class="accent-base"/>
+  <circle cx="116" cy="282" r="5" class="body-stroke" stroke="none"/>
+  <circle cx="116" cy="282" r="3.5" class="accent-base"/>
+  <circle cx="86"  cy="304" r="4" class="body-stroke" stroke="none"/>
+  <circle cx="86"  cy="304" r="2.5" class="accent-base"/>
+  <circle cx="118" cy="308" r="5" class="body-stroke" stroke="none"/>
+  <circle cx="118" cy="308" r="3" class="accent-base"/>
+  <circle cx="98"  cy="316" r="4" class="body-stroke" stroke="none"/>
+  <circle cx="98"  cy="316" r="2.5" class="accent-base"/>
+  <!-- highlights -->
+  <circle cx="98"  cy="274" r="1.5" class="accent-highlight"/>
+  <circle cx="115" cy="280" r="1.5" class="accent-highlight"/>
+
+  <!-- right fist -->
+  <circle cx="412" cy="296" r="32" class="accent-shadow"/>
+  <circle cx="412" cy="294" r="28" class="accent-base"/>
+  <circle cx="428" cy="280" r="6" class="body-stroke" stroke="none"/>
+  <circle cx="428" cy="280" r="4" class="accent-base"/>
+  <circle cx="412" cy="276" r="5" class="body-stroke" stroke="none"/>
+  <circle cx="412" cy="276" r="3.5" class="accent-base"/>
+  <circle cx="396" cy="282" r="5" class="body-stroke" stroke="none"/>
+  <circle cx="396" cy="282" r="3.5" class="accent-base"/>
+  <circle cx="426" cy="304" r="4" class="body-stroke" stroke="none"/>
+  <circle cx="426" cy="304" r="2.5" class="accent-base"/>
+  <circle cx="394" cy="308" r="5" class="body-stroke" stroke="none"/>
+  <circle cx="394" cy="308" r="3" class="accent-base"/>
+  <circle cx="414" cy="316" r="4" class="body-stroke" stroke="none"/>
+  <circle cx="414" cy="316" r="2.5" class="accent-base"/>
+  <circle cx="414" cy="274" r="1.5" class="accent-highlight"/>
+  <circle cx="397" cy="280" r="1.5" class="accent-highlight"/>
+
+  <!-- BODY (round, plain stone) -->
+  <circle cx="256" cy="296" r="120" class="body-shadow"/>
+  <circle cx="256" cy="290" r="112" class="body-base"/>
+  <ellipse cx="222" cy="246" rx="39" ry="26" class="body-highlight" opacity="0.42"/>
+
+  <!-- ═══════ EYES (dirt family — bold round, 2 highlights, confident) ═══════ -->
+  <ellipse cx="222" cy="280" rx="22" ry="24" class="eye-sclera" stroke="none"/>
+  <ellipse cx="222" cy="280" rx="18" ry="20" fill="none" stroke="#1a1a1a" stroke-width="2.5"/>
+  <circle  cx="224" cy="286" r="13" class="eye-iris"/>
+  <circle  cx="224" cy="286" r="8"  class="eye-pupil"/>
+  <circle cx="228" cy="280" r="3" class="eye-highlight" stroke="none"/>
+  <circle cx="218" cy="292" r="2" class="eye-highlight" stroke="none"/>
+  <ellipse cx="290" cy="280" rx="22" ry="24" class="eye-sclera" stroke="none"/>
+  <ellipse cx="290" cy="280" rx="18" ry="20" fill="none" stroke="#1a1a1a" stroke-width="2.5"/>
+  <circle  cx="288" cy="286" r="13" class="eye-iris"/>
+  <circle  cx="288" cy="286" r="8"  class="eye-pupil"/>
+  <circle cx="284" cy="280" r="3" class="eye-highlight" stroke="none"/>
+  <circle cx="294" cy="292" r="2" class="eye-highlight" stroke="none"/>
+
+  <!-- mouth: slight confident smirk (curve up on right side) -->
+  <path d="M226,328 Q256,344 286,332 Q280,338 256,338 Q236,338 226,328 Z" class="mouth-interior"/>
+
+  <!-- cheek blush -->
+  <ellipse cx="180" cy="320" rx="11" ry="7" fill="#a8806a" opacity="0.42" stroke="none"/>
+  <ellipse cx="332" cy="320" rx="11" ry="7" fill="#a8806a" opacity="0.42" stroke="none"/>
+
+  <!-- body specks -->
+  <circle cx="256" cy="220" r="2" class="body-highlight" opacity="0.7" stroke="none"/>
+  <circle cx="216" cy="368" r="2" class="body-highlight" opacity="0.6" stroke="none"/>
+  <circle cx="296" cy="368" r="2" class="body-highlight" opacity="0.55" stroke="none"/>
+
+  <!-- ambient dust + scattered pebbles at base -->
+  <circle cx="50" cy="450" r="3" class="accent-base" opacity="0.7" stroke="none"/>
+  <circle cx="70" cy="470" r="2" class="accent-base" opacity="0.65" stroke="none"/>
+  <circle cx="36" cy="476" r="2" class="accent-base" opacity="0.6" stroke="none"/>
+  <circle cx="462" cy="450" r="3" class="accent-base" opacity="0.7" stroke="none"/>
+  <circle cx="442" cy="470" r="2" class="accent-base" opacity="0.65" stroke="none"/>
+  <circle cx="476" cy="476" r="2" class="accent-base" opacity="0.6" stroke="none"/>
+
+  <!-- sparkles -->
+  <path d="M256,140 L258,146 L264,148 L258,150 L256,156 L254,150 L248,148 L254,146 Z"
+        fill="#ffffff" opacity="0.85"/>
+</svg>

@@ -1,0 +1,74 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- ARCDANCER — electric, uncommon — graceful dancer between arcs
+       Mutations: v1 Electric Blue · v2 Purple Arc · v3 White · v4 Neon Yellow
+       Signature: graceful arched body w/ ELECTRIC ARCS WEAVING through hands
+  -->
+  <!-- PALETTE
+       v1: body-base=#3098e8 body-shadow=#1058a8 body-highlight=#5898 e8 body-stroke=#082838 accent-base=#80c8ff accent-shadow=#3068a8 accent-highlight=#c0e0ff
+       v2: body-base=#9028d8 body-shadow=#480870 body-highlight=#b860f0 body-stroke=#1a0028 accent-base=#c060ff accent-shadow=#7028a0 accent-highlight=#e0a0ff
+       v3: body-base=#f8fbff body-shadow=#a0a8b8 body-highlight=#ffffff body-stroke=#3a3a48 accent-base=#d0e0f0 accent-shadow=#7888 a0 accent-highlight=#ffffff
+       v4: body-base=#c8e828 body-shadow=#809010 body-highlight=#e0f088 body-stroke=#283008 accent-base=#e8ff60 accent-shadow=#a8c020 accent-highlight=#f8ffa8
+  -->
+  <style>
+    .body-base       { fill: #3098e8; }
+    .body-base       { stroke: #3098e8; }
+    .body-shadow     { fill: #1058a8; }
+    .body-shadow     { stroke: #1058a8; }
+    .body-highlight  { fill: #5898e8; }
+    .body-highlight  { stroke: #5898e8; }
+    .body-stroke     { fill: #082838; }
+    .body-stroke     { stroke: #082838; }
+    .accent-base     { fill: #80c8ff; }
+    .accent-base     { stroke: #80c8ff; }
+    .accent-shadow   { fill: #3068a8; }
+    .accent-shadow   { stroke: #3068a8; }
+    .accent-highlight{ fill: #c0e0ff; }
+    .accent-highlight{ stroke: #c0e0ff; }
+    .eye-iris        { fill: #80d8ff; }
+    .eye-pupil       { fill: #001028; }
+    .eye-highlight   { fill: #ffffff; }
+    .eye-sclera      { fill: #f0f8ff; }
+    .mouth-interior  { fill: #102838; }
+  </style>
+
+  <!-- Custom glow: weaving arcs between hands (signature) -->
+  <path d="M100,260 Q140,140 256,180 Q372,140 412,260" stroke="#80c8ff" stroke-width="14" fill="none" stroke-linecap="round" opacity="0.4"/>
+  <path d="M100,260 Q140,140 256,180 Q372,140 412,260" stroke="#ffffff" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.85"/>
+
+  <!-- feet (one tiptoe) -->
+  <ellipse cx="216" cy="450" rx="20" ry="9" class="body-shadow"/>
+  <ellipse cx="296" cy="446" rx="20" ry="9" class="body-shadow"/>
+
+  <!-- arms raised in dance pose -->
+  <ellipse cx="120" cy="248" rx="38" ry="14" class="body-shadow" transform="rotate(-50 120 248)"/>
+  <ellipse cx="124" cy="245" rx="32" ry="10" class="body-base"   transform="rotate(-50 124 245)"/>
+  <circle cx="100" cy="260" r="14" class="body-shadow"/>
+  <circle cx="100" cy="258" r="11" class="body-base"/>
+  <ellipse cx="392" cy="248" rx="38" ry="14" class="body-shadow" transform="rotate(50 392 248)"/>
+  <ellipse cx="388" cy="245" rx="32" ry="10" class="body-base"   transform="rotate(50 388 245)"/>
+  <circle cx="412" cy="260" r="14" class="body-shadow"/>
+  <circle cx="412" cy="258" r="11" class="body-base"/>
+
+  <!-- ribbon-like body (graceful) -->
+  <path d="M256,440 Q220,400 232,330 Q256,300 280,330 Q292,400 256,440 Z" class="body-shadow"/>
+  <path d="M256,438 Q224,400 234,332 Q256,304 278,332 Q288,400 256,438 Z" class="body-base"/>
+  <!-- head -->
+  <circle cx="256" cy="280" r="60" class="body-shadow"/>
+  <circle cx="256" cy="276" r="56" class="body-base"/>
+  <ellipse cx="232" cy="252" rx="14" ry="9" class="body-highlight" opacity="0.55"/>
+
+  <!-- ═══════ EYES (electric family — graceful narrow) ═══════ -->
+  <ellipse cx="232" cy="278" rx="14" ry="14" class="eye-sclera" stroke="none"/>
+  <ellipse cx="232" cy="278" rx="11" ry="11" fill="none" stroke="#082838" stroke-width="2"/>
+  <circle cx="232" cy="280" r="7" class="accent-base"/>
+  <circle cx="232" cy="280" r="5" class="eye-pupil"/>
+  <path d="M232,274 L232,278 M228,276 L236,276" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"/>
+  <ellipse cx="280" cy="278" rx="14" ry="14" class="eye-sclera" stroke="none"/>
+  <ellipse cx="280" cy="278" rx="11" ry="11" fill="none" stroke="#082838" stroke-width="2"/>
+  <circle cx="280" cy="280" r="7" class="accent-base"/>
+  <circle cx="280" cy="280" r="5" class="eye-pupil"/>
+  <path d="M280,274 L280,278 M276,276 L284,276" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- mouth -->
+  <path d="M244,302 Q256,310 268,302" class="body-stroke" fill="none" stroke-width="2.5" stroke-linecap="round"/>
+</svg>

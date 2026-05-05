@@ -1,0 +1,122 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- MISTWALKER — water, uncommon — wispy semi-translucent, floats above ground, mist trail
+       Mutations: v1 Misty White · v2 Grey Blue · v3 Pale Green · v4 Silver
+       Signature: ghost-like silhouette with trailing wispy mist tail, soft blurred edges
+       SELF-CHECK vs prior water creatures:
+         - Aquaburst: round body 2-eyes "o" mouth → DIFFERENT shape (this is wispy/floaty)
+         - Shimmerstream: side fish 1-eye lip-smile → DIFFERENT (frontal)
+         - Seraphine: angel-wing elongated halo → DIFFERENT (no wings, ghost trail)
+         - Coralsprite: round antlers grin → DIFFERENT (no antlers)
+         - Deepecho: dark glow lure → DIFFERENT (light/translucent)
+         Eye/mouth: dreamy half-closed eyes + tiny "o" smile (peaceful floating)
+  -->
+  <!-- PALETTE
+       v1: body-base=#e8eef2 body-shadow=#a0a8b0 body-highlight=#ffffff body-stroke=#5a6068 accent-base=#c0d0e0 accent-shadow=#7888a0 accent-highlight=#ffffff
+       v2: body-base=#7890a8 body-shadow=#3848 5c body-highlight=#a8b8c8 body-stroke=#1a2030 accent-base=#5878a0 accent-shadow=#283050 accent-highlight=#c0d0e0
+       v3: body-base=#a8c8a0 body-shadow=#588060 body-highlight=#d0e8c8 body-stroke=#1a3018 accent-base=#80a878 accent-shadow=#306038 accent-highlight=#e8f0d8
+       v4: body-base=#c0c8d0 body-shadow=#80889a body-highlight=#e8eef0 body-stroke=#3a4048 accent-base=#9aa0b0 accent-shadow=#586068 accent-highlight=#f0f4f8
+  -->
+  <style>
+    .body-base       { fill: #e8eef2; }
+    .body-base       { stroke: #e8eef2; }
+    .body-shadow     { fill: #a0a8b0; }
+    .body-shadow     { stroke: #a0a8b0; }
+    .body-highlight  { fill: #ffffff; }
+    .body-highlight  { stroke: #ffffff; }
+    .body-stroke     { fill: #5a6068; }
+    .body-stroke     { stroke: #5a6068; }
+    .accent-base     { fill: #c0d0e0; }
+    .accent-base     { stroke: #c0d0e0; }
+    .accent-shadow   { fill: #7888a0; }
+    .accent-shadow   { stroke: #7888a0; }
+    .accent-highlight{ fill: #ffffff; }
+    .accent-highlight{ stroke: #ffffff; }
+    .eye-iris        { fill: #1a4868; }
+    .eye-pupil       { fill: #0a1828; }
+    .eye-highlight   { fill: #ffffff; }
+    .eye-sclera      { fill: #d8eef0; }
+    .mouth-interior  { fill: #2a0820; }
+  </style>
+
+  <!-- ═══════ COMPOSITION — ghost/wisp silhouette, floats above ground, no feet ═══════ -->
+
+  <!-- ═══════ MIST TRAIL (signature: trailing wispy mist tail at bottom) ═══════ -->
+  <path d="M180,440 Q160,420 140,440 Q150,460 170,460 Q180,470 196,460 Q212,470 226,460 Q240,470 256,460 Q272,470 286,460 Q300,470 316,460 Q332,470 342,460 Q362,460 372,440 Q352,420 332,440 Q312,460 256,464 Q200,460 180,440 Z"
+        class="body-shadow" opacity="0.55"/>
+  <path d="M196,448 Q180,432 166,448 Q176,460 196,458 Q216,460 236,458 Q256,460 276,458 Q296,460 316,458 Q336,460 346,448 Q332,432 316,448 Q294,460 256,460 Q218,460 196,448 Z"
+        class="body-base" opacity="0.7"/>
+
+  <!-- ═══════ MAIN GHOST BODY (rounded top, wavy bottom) ═══════ -->
+  <path d="M256,108 Q360,108 372,224 Q380,326 364,408 Q336,432 308,408 Q286,432 256,408 Q226,432 204,408 Q176,432 148,408 Q132,326 140,224 Q152,108 256,108 Z"
+        class="body-shadow"/>
+  <path d="M256,114 Q352,114 364,226 Q372,322 356,400 Q332,422 308,400 Q286,422 256,400 Q226,422 204,400 Q180,422 156,400 Q140,322 148,226 Q160,114 256,114 Z"
+        class="body-base"/>
+  <!-- highlight crescent -->
+  <path d="M200,158 Q248,148 290,168 Q280,200 230,210 Q198,200 200,158 Z"
+        class="body-highlight" opacity="0.62"/>
+  <!-- soft secondary highlight -->
+  <ellipse cx="256" cy="350" rx="49" ry="14" class="body-highlight" opacity="0.32"/>
+
+  <!-- ═══════ BODY EDGE WISP STREAKS (wispy/translucent feel) ═══════ -->
+  <path d="M150,260 Q140,290 154,320" class="body-shadow" fill="none" stroke-width="3" opacity="0.55"/>
+  <path d="M362,260 Q372,290 358,320" class="body-shadow" fill="none" stroke-width="3" opacity="0.55"/>
+  <path d="M148,200 Q138,230 152,256" class="body-highlight" fill="none" stroke-width="2.5" opacity="0.7"/>
+  <path d="M364,200 Q374,230 360,256" class="body-highlight" fill="none" stroke-width="2.5" opacity="0.7"/>
+
+  <!-- ═══════ EYES (water family — half-closed dreamy/sleepy, smaller than aquaburst) ═══════ -->
+  <!-- Eye whites — small ovals -->
+  <ellipse cx="218" cy="262" rx="24" ry="22" class="eye-sclera" stroke="none"/>
+  <ellipse cx="294" cy="262" rx="24" ry="22" class="eye-sclera" stroke="none"/>
+  <!-- Half-closed upper eyelid (dreamy sleepy look — drooping curve) -->
+  <path d="M196,262 Q218,248 240,262 Q236,256 218,254 Q200,256 196,262 Z"
+        class="body-shadow" stroke="none" opacity="0.85"/>
+  <path d="M272,262 Q294,248 316,262 Q312,256 294,254 Q276,256 272,262 Z"
+        class="body-shadow" stroke="none" opacity="0.85"/>
+  <!-- Eye outline (visible bottom curve) -->
+  <path d="M196,262 Q218,282 240,262" class="body-stroke" fill="none" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M272,262 Q294,282 316,262" class="body-stroke" fill="none" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Iris and pupils (small, looking down dreamily) -->
+  <circle cx="218" cy="270" r="11" class="eye-iris"/>
+  <circle cx="218" cy="270" r="7"  class="eye-pupil"/>
+  <circle cx="294" cy="270" r="11" class="eye-iris"/>
+  <circle cx="294" cy="270" r="7"  class="eye-pupil"/>
+  <!-- Single highlight glint -->
+  <circle cx="222" cy="266" r="2.5" class="eye-highlight" stroke="none"/>
+  <circle cx="298" cy="266" r="2.5" class="eye-highlight" stroke="none"/>
+
+  <!-- ═══════ MOUTH (tiny serene "u" — peaceful floating spirit) ═══════ -->
+  <path d="M244,308 Q256,318 268,308" class="body-stroke" fill="none" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- ═══════ CHEEK BLUSH ═══════ -->
+  <ellipse cx="186" cy="290" rx="14" ry="8" class="accent-base" opacity="0.42" stroke="none"/>
+  <ellipse cx="326" cy="290" rx="14" ry="8" class="accent-base" opacity="0.42" stroke="none"/>
+
+  <!-- ═══════ BODY SPECKS ═══════ -->
+  <circle cx="216" cy="180" r="2.5" class="body-highlight" opacity="0.85" stroke="none"/>
+  <circle cx="290" cy="200" r="2"   class="body-highlight" opacity="0.7" stroke="none"/>
+  <circle cx="184" cy="320" r="2.5" class="body-highlight" opacity="0.7" stroke="none"/>
+  <circle cx="328" cy="332" r="2"   class="body-highlight" opacity="0.7" stroke="none"/>
+  <circle cx="232" cy="372" r="2"   class="body-highlight" opacity="0.6" stroke="none"/>
+  <circle cx="280" cy="380" r="2"   class="body-highlight" opacity="0.6" stroke="none"/>
+  <circle cx="246" cy="148" r="2"   class="accent-base" opacity="0.55" stroke="none"/>
+  <circle cx="266" cy="148" r="2"   class="accent-base" opacity="0.55" stroke="none"/>
+
+  <!-- ═══════ AMBIENT BUBBLES + DRIFTING MIST WISPS ═══════ -->
+  <circle cx="50"  cy="260" r="5" fill="none" stroke="#80c8e8" stroke-width="2" opacity="0.6"/>
+  <circle cx="78"  cy="218" r="3" fill="none" stroke="#80c8e8" stroke-width="1.5" opacity="0.55"/>
+  <circle cx="462" cy="260" r="5" fill="none" stroke="#80c8e8" stroke-width="2" opacity="0.6"/>
+  <circle cx="434" cy="218" r="3" fill="none" stroke="#80c8e8" stroke-width="1.5" opacity="0.55"/>
+  <!-- drifting mist wisps -->
+  <path d="M60,140 Q90,134 110,144 Q90,148 60,140 Z" fill="#ffffff" opacity="0.45"/>
+  <path d="M40,360 Q72,354 92,366 Q70,370 40,360 Z" fill="#ffffff" opacity="0.4"/>
+  <path d="M402,140 Q432,134 452,144 Q432,148 402,140 Z" fill="#ffffff" opacity="0.45"/>
+  <path d="M420,360 Q452,354 472,366 Q450,370 420,360 Z" fill="#ffffff" opacity="0.4"/>
+
+  <!-- ═══════ SPARKLE ACCENTS ═══════ -->
+  <path d="M86,180 L88,186 L94,188 L88,190 L86,196 L84,190 L78,188 L84,186 Z"
+        fill="#ffffff" opacity="0.85"/>
+  <path d="M426,180 L428,186 L434,188 L428,190 L426,196 L424,190 L418,188 L424,186 Z"
+        fill="#ffffff" opacity="0.85"/>
+  <path d="M256,80 L258,86 L264,88 L258,90 L256,96 L254,90 L248,88 L254,86 Z"
+        fill="#ffffff" opacity="0.85"/>
+</svg>

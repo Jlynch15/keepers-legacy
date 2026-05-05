@@ -1,0 +1,172 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- PALETTE
+       v1: body-base=#f06820 body-shadow=#a83400 body-highlight=#ff9648 body-stroke=#5a1f00 accent-base=#ff5020 accent-shadow=#a02000 accent-highlight=#ff8050
+       v2: body-base=#f08aa8 body-shadow=#a8345a body-highlight=#ffb0c8 body-stroke=#5a1030 accent-base=#e85070 accent-shadow=#a02040 accent-highlight=#ff80a0
+       v3: body-base=#f5dc78 body-shadow=#a89030 body-highlight=#fff0b0 body-stroke=#5a4a10 accent-base=#f0c050 accent-shadow=#a07a18 accent-highlight=#ffe080
+       v4: body-base=#a070d0 body-shadow=#503080 body-highlight=#c8a8e8 body-stroke=#2a1050 accent-base=#7040b0 accent-shadow=#3a1080 accent-highlight=#a880e0
+  -->
+  <style>
+    /* Each palette class gets both fill and stroke rules so the same class works for filled shapes
+       and stroked paths. Elements that want stroke-only use fill="none" inline. */
+    .body-base       { fill: #f06820; }
+    .body-base       { stroke: #f06820; }
+    .body-shadow     { fill: #a83400; }
+    .body-shadow     { stroke: #a83400; }
+    .body-highlight  { fill: #ff9648; }
+    .body-highlight  { stroke: #ff9648; }
+    .body-stroke     { fill: #5a1f00; }
+    .body-stroke     { stroke: #5a1f00; }
+    .accent-base     { fill: #ff5020; }
+    .accent-base     { stroke: #ff5020; }
+    .accent-shadow   { fill: #a02000; }
+    .accent-shadow   { stroke: #a02000; }
+    .accent-highlight{ fill: #ff8050; }
+    .accent-highlight{ stroke: #ff8050; }
+    /* Constants — same across mutations */
+    .eye-white       { fill: #ffffff; }
+    .eye-pupil       { fill: #2a1500; }
+    .eye-highlight   { fill: #ffffff; }
+    .mouth-interior  { fill: #4a1010; }
+    .tongue          { fill: #ff8090; }
+  </style>
+
+  <!-- ═══════ COMPOSITION ═══════
+       Canvas 512x512. Creature center (256, 296) — slightly below for happy-bounce headroom.
+       Round body, coral antler signature, large eyes, wide grin. Eyes constant across mutations.
+  -->
+
+  <!-- ═══════ LEGS + FEET ═══════ -->
+  <ellipse cx="200" cy="430" rx="40" ry="22" class="body-shadow"/>
+  <ellipse cx="312" cy="430" rx="40" ry="22" class="body-shadow"/>
+  <ellipse cx="200" cy="425" rx="34" ry="18" class="body-base"/>
+  <ellipse cx="312" cy="425" rx="34" ry="18" class="body-base"/>
+
+  <!-- ═══════ ARMS ═══════ -->
+  <ellipse cx="120" cy="288" rx="46" ry="28" class="body-shadow" transform="rotate(-22 120 288)"/>
+  <ellipse cx="124" cy="284" rx="40" ry="22" class="body-base"   transform="rotate(-22 124 284)"/>
+  <ellipse cx="392" cy="288" rx="46" ry="28" class="body-shadow" transform="rotate(22 392 288)"/>
+  <ellipse cx="388" cy="284" rx="40" ry="22" class="body-base"   transform="rotate(22 388 284)"/>
+
+  <!-- ═══════ BODY ═══════ -->
+  <circle cx="256" cy="296" r="142" class="body-shadow"/>
+  <circle cx="256" cy="290" r="132" class="body-base"/>
+  <ellipse cx="220" cy="240" rx="49" ry="37" class="body-highlight" opacity="0.42"/>
+  <ellipse cx="256" cy="350" rx="42" ry="23" class="body-highlight" opacity="0.35"/>
+
+  <!-- ═══════ CORAL NUBS ON FINGERTIPS ═══════ -->
+  <!-- left -->
+  <circle cx="68"  cy="266" r="14" class="accent-shadow"/>
+  <circle cx="68"  cy="262" r="12" class="accent-base"/>
+  <circle cx="62"  cy="252" r="6"  class="accent-highlight"/>
+  <path d="M68,250 L60,232 M68,250 L72,228 M68,250 L78,238"
+        class="accent-shadow" fill="none" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="60" cy="226" r="5" class="accent-base"/>
+  <circle cx="74" cy="222" r="5" class="accent-base"/>
+  <circle cx="80" cy="234" r="4" class="accent-highlight"/>
+  <!-- right -->
+  <circle cx="444" cy="266" r="14" class="accent-shadow"/>
+  <circle cx="444" cy="262" r="12" class="accent-base"/>
+  <circle cx="450" cy="252" r="6"  class="accent-highlight"/>
+  <path d="M444,250 L452,232 M444,250 L440,228 M444,250 L434,238"
+        class="accent-shadow" fill="none" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="452" cy="226" r="5" class="accent-base"/>
+  <circle cx="438" cy="222" r="5" class="accent-base"/>
+  <circle cx="432" cy="234" r="4" class="accent-highlight"/>
+
+  <!-- ═══════ CORAL HEAD ANTLERS (signature) ═══════ -->
+  <!-- left antler -->
+  <path d="M196,168 L186,118 L172,82 M186,118 L160,98 M186,118 L208,98"
+        class="accent-shadow" fill="none" stroke-width="14" stroke-linecap="round"/>
+  <path d="M196,168 L186,118 L172,82 M186,118 L160,98 M186,118 L208,98"
+        class="accent-base" fill="none" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="172" cy="82"  r="11" class="accent-shadow"/>
+  <circle cx="172" cy="80"  r="9"  class="accent-base"/>
+  <circle cx="160" cy="98"  r="9"  class="accent-shadow"/>
+  <circle cx="160" cy="96"  r="7"  class="accent-base"/>
+  <circle cx="208" cy="98"  r="9"  class="accent-shadow"/>
+  <circle cx="208" cy="96"  r="7"  class="accent-base"/>
+  <circle cx="170" cy="78"  r="3"  class="accent-highlight"/>
+  <!-- center antler (tallest) -->
+  <path d="M256,160 L256,90 L240,52 M256,90 L274,56 M256,90 L256,46"
+        class="accent-shadow" fill="none" stroke-width="14" stroke-linecap="round"/>
+  <path d="M256,160 L256,90 L240,52 M256,90 L274,56 M256,90 L256,46"
+        class="accent-base" fill="none" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="240" cy="52"  r="11" class="accent-shadow"/>
+  <circle cx="240" cy="50"  r="9"  class="accent-base"/>
+  <circle cx="274" cy="56"  r="11" class="accent-shadow"/>
+  <circle cx="274" cy="54"  r="9"  class="accent-base"/>
+  <circle cx="256" cy="46"  r="11" class="accent-shadow"/>
+  <circle cx="256" cy="44"  r="9"  class="accent-base"/>
+  <circle cx="254" cy="42"  r="3"  class="accent-highlight"/>
+  <!-- right antler -->
+  <path d="M316,168 L326,118 L340,82 M326,118 L352,98 M326,118 L304,98"
+        class="accent-shadow" fill="none" stroke-width="14" stroke-linecap="round"/>
+  <path d="M316,168 L326,118 L340,82 M326,118 L352,98 M326,118 L304,98"
+        class="accent-base" fill="none" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="340" cy="82"  r="11" class="accent-shadow"/>
+  <circle cx="340" cy="80"  r="9"  class="accent-base"/>
+  <circle cx="352" cy="98"  r="9"  class="accent-shadow"/>
+  <circle cx="352" cy="96"  r="7"  class="accent-base"/>
+  <circle cx="304" cy="98"  r="9"  class="accent-shadow"/>
+  <circle cx="304" cy="96"  r="7"  class="accent-base"/>
+  <circle cx="338" cy="78"  r="3"  class="accent-highlight"/>
+
+  <!-- ═══════ EYES (constant across mutations) ═══════ -->
+  <ellipse cx="216" cy="282" rx="32" ry="36" class="eye-white" stroke="none"/>
+  <ellipse cx="216" cy="282" rx="28" ry="32" class="body-stroke" fill="none" stroke-width="3"/>
+  <ellipse cx="220" cy="290" rx="14" ry="17" class="eye-pupil" stroke="none"/>
+  <circle  cx="225" cy="282" r="6" class="eye-highlight" stroke="none"/>
+  <circle  cx="214" cy="298" r="3" class="eye-highlight" stroke="none"/>
+  <ellipse cx="296" cy="282" rx="32" ry="36" class="eye-white" stroke="none"/>
+  <ellipse cx="296" cy="282" rx="28" ry="32" class="body-stroke" fill="none" stroke-width="3"/>
+  <ellipse cx="292" cy="290" rx="14" ry="17" class="eye-pupil" stroke="none"/>
+  <circle  cx="287" cy="282" r="6" class="eye-highlight" stroke="none"/>
+  <circle  cx="298" cy="298" r="3" class="eye-highlight" stroke="none"/>
+
+  <!-- ═══════ MOUTH (wide grin) ═══════ -->
+  <path d="M212,345 Q256,395 300,345 Q280,360 256,360 Q232,360 212,345 Z"
+        class="mouth-interior" stroke="#5a1f00" stroke-width="3" stroke-linejoin="round"/>
+  <ellipse cx="256" cy="368" rx="22" ry="10" class="tongue" stroke="none"/>
+  <path d="M210,343 Q204,338 200,332" class="body-stroke" fill="none" stroke-width="3" stroke-linecap="round"/>
+  <path d="M302,343 Q308,338 312,332" class="body-stroke" fill="none" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- ═══════ CHEEK BLUSH ═══════ -->
+  <ellipse cx="178" cy="328" rx="18" ry="11" class="accent-base" opacity="0.32" stroke="none"/>
+  <ellipse cx="334" cy="328" rx="18" ry="11" class="accent-base" opacity="0.32" stroke="none"/>
+
+  <!-- ═══════ BODY SPECKS (small light dots for texture) ═══════ -->
+  <circle cx="216" cy="200" r="3" class="body-highlight" opacity="0.7" stroke="none"/>
+  <circle cx="174" cy="270" r="2" class="body-highlight" opacity="0.6" stroke="none"/>
+  <circle cx="158" cy="318" r="3" class="body-highlight" opacity="0.5" stroke="none"/>
+  <circle cx="280" cy="376" r="3" class="body-highlight" opacity="0.5" stroke="none"/>
+  <circle cx="232" cy="380" r="2" class="body-highlight" opacity="0.6" stroke="none"/>
+  <circle cx="346" cy="304" r="3" class="body-highlight" opacity="0.55" stroke="none"/>
+  <circle cx="372" cy="340" r="2" class="body-highlight" opacity="0.5" stroke="none"/>
+  <circle cx="148" cy="362" r="2" class="body-highlight" opacity="0.55" stroke="none"/>
+  <!-- Small accent freckles -->
+  <circle cx="190" cy="208" r="2" class="accent-base" opacity="0.55" stroke="none"/>
+  <circle cx="320" cy="230" r="2" class="accent-base" opacity="0.55" stroke="none"/>
+  <circle cx="244" cy="232" r="2" class="accent-base" opacity="0.6" stroke="none"/>
+
+  <!-- ═══════ AMBIENT BUBBLES (floating around creature) ═══════ -->
+  <circle cx="44"  cy="170" r="6" fill="none" stroke="#80c8e8" stroke-width="2" opacity="0.7"/>
+  <circle cx="44"  cy="170" r="6" fill="#a0e0ff" opacity="0.18"/>
+  <circle cx="78"  cy="148" r="4" fill="none" stroke="#80c8e8" stroke-width="2" opacity="0.7"/>
+  <circle cx="78"  cy="148" r="4" fill="#a0e0ff" opacity="0.2"/>
+  <circle cx="110" cy="186" r="3" fill="none" stroke="#80c8e8" stroke-width="1.5" opacity="0.6"/>
+  <circle cx="464" cy="160" r="6" fill="none" stroke="#80c8e8" stroke-width="2" opacity="0.7"/>
+  <circle cx="464" cy="160" r="6" fill="#a0e0ff" opacity="0.18"/>
+  <circle cx="438" cy="138" r="4" fill="none" stroke="#80c8e8" stroke-width="2" opacity="0.7"/>
+  <circle cx="438" cy="138" r="4" fill="#a0e0ff" opacity="0.2"/>
+  <circle cx="408" cy="178" r="3" fill="none" stroke="#80c8e8" stroke-width="1.5" opacity="0.6"/>
+  <circle cx="32"  cy="240" r="3" fill="none" stroke="#80c8e8" stroke-width="1.5" opacity="0.5"/>
+  <circle cx="478" cy="232" r="3" fill="none" stroke="#80c8e8" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- ═══════ SPARKLE ACCENTS (near antlers, small 4-point stars) ═══════ -->
+  <path d="M152,68 L154,76 L162,78 L154,80 L152,88 L150,80 L142,78 L150,76 Z"
+        fill="#ffe080" opacity="0.85"/>
+  <path d="M362,68 L364,76 L372,78 L364,80 L362,88 L360,80 L352,78 L360,76 Z"
+        fill="#ffe080" opacity="0.85"/>
+  <path d="M256,30 L257,36 L263,37 L257,38 L256,44 L255,38 L249,37 L255,36 Z"
+        fill="#ffe080" opacity="0.85"/>
+</svg>

@@ -1,0 +1,103 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- SANDWHISTLE — dirt, uncommon — porous body holes, haunting whistle
+       Mutations: v1 Desert Sand · v2 Pale Orange · v3 Tan · v4 Dune Gold
+       Signature: tall thin body covered in visible HOLES (porous), wind-swept posture
+  -->
+  <!-- PALETTE
+       v1: body-base=#e8c898 body-shadow=#a08858 body-highlight=#fff0c8 body-stroke=#403018 accent-base=#c8a878 accent-shadow=#806838 accent-highlight=#fff8e0
+       v2: body-base=#f8a878 body-shadow=#a05828 body-highlight=#ffd0a8 body-stroke=#481808 accent-base=#d88058 accent-shadow=#804020 accent-highlight=#ffe0c0
+       v3: body-base=#c8a878 body-shadow=#806838 body-highlight=#e8c898 body-stroke=#382818 accent-base=#a88858 accent-shadow=#604828 accent-highlight=#d0b888
+       v4: body-base=#e8b858 body-shadow=#9a7820 body-highlight=#f8d878 body-stroke=#403008 accent-base=#c89838 accent-shadow=#805818 accent-highlight=#f0c878
+  -->
+  <style>
+    .body-base       { fill: #e8c898; }
+    .body-base       { stroke: #e8c898; }
+    .body-shadow     { fill: #a08858; }
+    .body-shadow     { stroke: #a08858; }
+    .body-highlight  { fill: #fff0c8; }
+    .body-highlight  { stroke: #fff0c8; }
+    .body-stroke     { fill: #403018; }
+    .body-stroke     { stroke: #403018; }
+    .accent-base     { fill: #c8a878; }
+    .accent-base     { stroke: #c8a878; }
+    .accent-shadow   { fill: #806838; }
+    .accent-shadow   { stroke: #806838; }
+    .accent-highlight{ fill: #fff8e0; }
+    .accent-highlight{ stroke: #fff8e0; }
+    .eye-iris        { fill: #6a4830; }
+    .eye-pupil       { fill: #1a0a00; }
+    .eye-highlight   { fill: #ffffff; }
+    .eye-sclera      { fill: #fff8e0; }
+    .mouth-interior  { fill: #2a1008; }
+  </style>
+
+  <!-- feet -->
+  <ellipse cx="232" cy="448" rx="22" ry="11" class="body-shadow"/>
+  <ellipse cx="280" cy="448" rx="22" ry="11" class="body-shadow"/>
+  <ellipse cx="232" cy="445" rx="18" ry="8" class="body-base"/>
+  <ellipse cx="280" cy="445" rx="18" ry="8" class="body-base"/>
+
+  <!-- arms (slim, wind-swept) -->
+  <ellipse cx="180" cy="290" rx="34" ry="14" class="body-shadow" transform="rotate(-25 180 290)"/>
+  <ellipse cx="184" cy="287" rx="28" ry="10" class="body-base"   transform="rotate(-25 184 287)"/>
+  <ellipse cx="332" cy="290" rx="34" ry="14" class="body-shadow" transform="rotate(25 332 290)"/>
+  <ellipse cx="328" cy="287" rx="28" ry="10" class="body-base"   transform="rotate(25 328 287)"/>
+
+  <!-- ═══════ TALL THIN BODY (signature: lithe, wind-swept, slightly leaning) ═══════ -->
+  <ellipse cx="256" cy="280" rx="74" ry="156" class="body-shadow" transform="rotate(8 256 280)"/>
+  <ellipse cx="256" cy="276" rx="68" ry="150" class="body-base"   transform="rotate(8 256 276)"/>
+  <ellipse cx="226" cy="200" rx="24" ry="37" class="body-highlight" opacity="0.42"/>
+
+  <!-- ═══════ POROUS HOLES (signature) ═══════ -->
+  <circle cx="222" cy="280" r="6" fill="#382818" opacity="0.85"/>
+  <circle cx="222" cy="280" r="4" fill="#1a1008" opacity="0.95"/>
+  <circle cx="294" cy="290" r="5" fill="#382818" opacity="0.85"/>
+  <circle cx="294" cy="290" r="3.5" fill="#1a1008" opacity="0.95"/>
+  <circle cx="246" cy="332" r="6" fill="#382818" opacity="0.85"/>
+  <circle cx="246" cy="332" r="4" fill="#1a1008" opacity="0.95"/>
+  <circle cx="282" cy="370" r="5" fill="#382818" opacity="0.85"/>
+  <circle cx="282" cy="370" r="3.5" fill="#1a1008" opacity="0.95"/>
+  <circle cx="220" cy="396" r="4" fill="#382818" opacity="0.85"/>
+  <circle cx="220" cy="396" r="2.5" fill="#1a1008" opacity="0.95"/>
+
+  <!-- ═══════ EYES (dirt family — TINY SLIT eyes, focused on whistling) ═══════ -->
+  <ellipse cx="220" cy="220" rx="18" ry="6" class="eye-sclera" stroke="none"/>
+  <ellipse cx="220" cy="220" rx="14" ry="3" fill="none" stroke="#1a0800" stroke-width="2"/>
+  <ellipse cx="222" cy="221" rx="6" ry="2.5" class="eye-pupil"/>
+  <ellipse cx="294" cy="220" rx="18" ry="6" class="eye-sclera" stroke="none"/>
+  <ellipse cx="294" cy="220" rx="14" ry="3" fill="none" stroke="#1a0800" stroke-width="2"/>
+  <ellipse cx="292" cy="221" rx="6" ry="2.5" class="eye-pupil"/>
+  <!-- tiny eyebrow arch -->
+  <path d="M204,210 Q220,206 236,210" class="body-stroke" fill="none" stroke-width="2" stroke-linecap="round"/>
+  <path d="M278,210 Q294,206 310,210" class="body-stroke" fill="none" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- ═══════ MOUTH (round whistle "o" — distinctive) ═══════ -->
+  <circle cx="256" cy="252" r="10" class="mouth-interior"/>
+  <circle cx="256" cy="252" r="10" fill="none" stroke="#1a0800" stroke-width="2.5"/>
+
+  <!-- whistle wind-puff above mouth -->
+  <path d="M270,234 Q286,226 300,232 Q286,238 270,234 Z" class="accent-highlight" opacity="0.7"/>
+  <path d="M310,228 Q322,224 334,228 Q322,232 310,228 Z" class="accent-highlight" opacity="0.55"/>
+  <path d="M340,224 Q350,220 358,224 Q350,228 340,224 Z" class="accent-highlight" opacity="0.45"/>
+
+  <!-- body specks -->
+  <circle cx="240" cy="180" r="2" class="body-highlight" opacity="0.7" stroke="none"/>
+  <circle cx="270" cy="200" r="2" class="body-highlight" opacity="0.6" stroke="none"/>
+
+  <!-- ambient dust -->
+  <circle cx="60"  cy="430" r="2" class="body-base" opacity="0.55" stroke="none"/>
+  <circle cx="74"  cy="466" r="1.5" class="body-base" opacity="0.5" stroke="none"/>
+  <circle cx="442" cy="430" r="2" class="body-base" opacity="0.55" stroke="none"/>
+  <circle cx="430" cy="466" r="1.5" class="body-base" opacity="0.5" stroke="none"/>
+
+  <!-- sand drift particles (signature: wind-blown sand) -->
+  <ellipse cx="380" cy="240" rx="4" ry="1.5" class="body-base" opacity="0.6" transform="rotate(-15 380 240)"/>
+  <ellipse cx="412" cy="226" rx="3" ry="1" class="body-base" opacity="0.55" transform="rotate(-15 412 226)"/>
+  <ellipse cx="430" cy="208" rx="3" ry="1" class="body-base" opacity="0.5" transform="rotate(-15 430 208)"/>
+
+  <!-- sparkles -->
+  <path d="M88,120 L90,126 L96,128 L90,130 L88,136 L86,130 L80,128 L86,126 Z"
+        fill="#ffffff" opacity="0.85"/>
+  <path d="M424,120 L426,126 L432,128 L426,130 L424,136 L422,130 L416,128 L422,126 Z"
+        fill="#ffffff" opacity="0.85"/>
+</svg>

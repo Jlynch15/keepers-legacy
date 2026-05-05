@@ -1,0 +1,90 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- DIVINITY — magical, RARE — divine guardian, ALL magic
+       Mutations: v1 Holy Gold · v2 White Light · v3 Soft Purple · v4 Celestial Blue
+       Signature: GOLDEN HALO above head + radiating light rays + serene posture
+  -->
+  <!-- PALETTE
+       v1: body-base=#fae878 body-shadow=#a89028 body-highlight=#fff8a8 body-stroke=#403008 accent-base=#ffd028 accent-shadow=#a07810 accent-highlight=#fff088
+       v2: body-base=#fafafa body-shadow=#a8b0b8 body-highlight=#ffffff body-stroke=#383848 accent-base=#fff088 accent-shadow=#a08820 accent-highlight=#ffffff
+       v3: body-base=#c8a8e0 body-shadow=#7058a0 body-highlight=#e0c8f0 body-stroke=#280850 accent-base=#a878d8 accent-shadow=#583880 accent-highlight=#d8b0e8
+       v4: body-base=#80c0f0 body-shadow=#3878 b0 body-highlight=#a8d8f8 body-stroke=#102848 accent-base=#a0c8ff accent-shadow=#5078 b8 accent-highlight=#d0e8ff
+  -->
+  <style>
+    .body-base       { fill: #fae878; }
+    .body-base       { stroke: #fae878; }
+    .body-shadow     { fill: #a89028; }
+    .body-shadow     { stroke: #a89028; }
+    .body-highlight  { fill: #fff8a8; }
+    .body-highlight  { stroke: #fff8a8; }
+    .body-stroke     { fill: #403008; }
+    .body-stroke     { stroke: #403008; }
+    .accent-base     { fill: #ffd028; }
+    .accent-base     { stroke: #ffd028; }
+    .accent-shadow   { fill: #a07810; }
+    .accent-shadow   { stroke: #a07810; }
+    .accent-highlight{ fill: #fff088; }
+    .accent-highlight{ stroke: #fff088; }
+    .eye-iris        { fill: #ffd028; }
+    .eye-pupil       { fill: #1a1000; }
+    .eye-highlight   { fill: #ffffff; }
+    .eye-sclera      { fill: #fff8d8; }
+    .mouth-interior  { fill: #2a1808; }
+  </style>
+
+  <!-- Custom glow: divine halo + light rays (signature) -->
+  <ellipse cx="256" cy="158" rx="80" ry="20" fill="none" stroke="#ffd028" stroke-width="8" opacity="0.85"/>
+  <ellipse cx="256" cy="158" rx="74" ry="16" fill="none" stroke="#fff088" stroke-width="3" opacity="0.95"/>
+  <!-- light rays radiating from halo -->
+  <g stroke="#ffd028" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.7">
+    <line x1="256" y1="100" x2="256" y2="60"/>
+    <line x1="180" y1="120" x2="160" y2="92"/>
+    <line x1="332" y1="120" x2="352" y2="92"/>
+    <line x1="148" y1="158" x2="108" y2="158"/>
+    <line x1="364" y1="158" x2="404" y2="158"/>
+    <line x1="180" y1="200" x2="160" y2="224"/>
+    <line x1="332" y1="200" x2="352" y2="224"/>
+  </g>
+
+  <!-- feet -->
+  <ellipse cx="216" cy="446" rx="28" ry="13" class="body-shadow"/>
+  <ellipse cx="296" cy="446" rx="28" ry="13" class="body-shadow"/>
+  <ellipse cx="216" cy="442" rx="22" ry="9" class="body-base"/>
+  <ellipse cx="296" cy="442" rx="22" ry="9" class="body-base"/>
+
+  <!-- arms (peaceful clasped) -->
+  <ellipse cx="186" cy="346" rx="32" ry="14" class="body-shadow" transform="rotate(-25 186 346)"/>
+  <ellipse cx="190" cy="343" rx="26" ry="10" class="body-base"   transform="rotate(-25 190 343)"/>
+  <ellipse cx="326" cy="346" rx="32" ry="14" class="body-shadow" transform="rotate(25 326 346)"/>
+  <ellipse cx="322" cy="343" rx="26" ry="10" class="body-base"   transform="rotate(25 322 343)"/>
+  <ellipse cx="256" cy="364" rx="22" ry="14" class="body-shadow"/>
+  <ellipse cx="256" cy="360" rx="18" ry="11" class="body-base"/>
+
+  <!-- body -->
+  <ellipse cx="256" cy="306" rx="100" ry="120" class="body-shadow"/>
+  <ellipse cx="256" cy="300" rx="94" ry="114" class="body-base"/>
+  <ellipse cx="220" cy="240" rx="22" ry="14" class="body-highlight" opacity="0.55"/>
+
+  <!-- divine glow inner -->
+  <ellipse cx="256" cy="306" rx="56" ry="76" fill="#ffffff" opacity="0.4"/>
+
+  <!-- ═══════ EYES (magical — serene, soft glow) ═══════ -->
+  <ellipse cx="220" cy="280" rx="22" ry="22" class="eye-sclera" stroke="none"/>
+  <ellipse cx="220" cy="280" rx="18" ry="18" fill="none" stroke="#403008" stroke-width="2"/>
+  <circle cx="222" cy="284" r="13" class="accent-base"/>
+  <circle cx="222" cy="284" r="13" fill="none" stroke="#a07810" stroke-width="1.5"/>
+  <circle cx="222" cy="284" r="9" class="eye-pupil"/>
+  <circle cx="226" cy="278" r="3" class="eye-highlight"/>
+  <ellipse cx="292" cy="280" rx="22" ry="22" class="eye-sclera" stroke="none"/>
+  <ellipse cx="292" cy="280" rx="18" ry="18" fill="none" stroke="#403008" stroke-width="2"/>
+  <circle cx="290" cy="284" r="13" class="accent-base"/>
+  <circle cx="290" cy="284" r="13" fill="none" stroke="#a07810" stroke-width="1.5"/>
+  <circle cx="290" cy="284" r="9" class="eye-pupil"/>
+  <circle cx="286" cy="278" r="3" class="eye-highlight"/>
+
+  <!-- mouth: serene -->
+  <path d="M236,328 Q256,338 276,328" class="body-stroke" fill="none" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- sparkles around -->
+  <path d="M88,200 L90,206 L96,208 L90,210 L88,216 L86,210 L80,208 L86,206 Z" fill="#fff088" opacity="0.9"/>
+  <path d="M424,200 L426,206 L432,208 L426,210 L424,216 L422,210 L416,208 L422,206 Z" fill="#fff088" opacity="0.9"/>
+</svg>

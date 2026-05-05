@@ -1,0 +1,82 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- HAILSTONE — ice, common — flicks hail with accuracy
+       Mutations: v1 Clear Ice · v2 White · v3 Blue Grey · v4 Frost Blue
+       Signature: alert compact body w/ ORBITING HAILSTONES around it
+  -->
+  <!-- PALETTE
+       v1: body-base=#d0e0e8 body-shadow=#7090a0 body-highlight=#e8f0f8 body-stroke=#202830 accent-base=#a8c0d0 accent-shadow=#5878 88 accent-highlight=#c8d8e8
+       v2: body-base=#f8fbff body-shadow=#a8b0b8 body-highlight=#ffffff body-stroke=#383848 accent-base=#d8e0e8 accent-shadow=#788088 accent-highlight=#ffffff
+       v3: body-base=#7898a8 body-shadow=#385868 body-highlight=#a0c0d0 body-stroke=#10202a accent-base=#608898 accent-shadow=#283848 accent-highlight=#a0c0d0
+       v4: body-base=#a0c8e0 body-shadow=#5080a0 body-highlight=#c0e0f0 body-stroke=#1a3848 accent-base=#80b0d0 accent-shadow=#387098 accent-highlight=#a8d0e8
+  -->
+  <style>
+    .body-base       { fill: #d0e0e8; }
+    .body-base       { stroke: #d0e0e8; }
+    .body-shadow     { fill: #7090a0; }
+    .body-shadow     { stroke: #7090a0; }
+    .body-highlight  { fill: #e8f0f8; }
+    .body-highlight  { stroke: #e8f0f8; }
+    .body-stroke     { fill: #202830; }
+    .body-stroke     { stroke: #202830; }
+    .accent-base     { fill: #a8c0d0; }
+    .accent-base     { stroke: #a8c0d0; }
+    .accent-shadow   { fill: #587888; }
+    .accent-shadow   { stroke: #587888; }
+    .accent-highlight{ fill: #c8d8e8; }
+    .accent-highlight{ stroke: #c8d8e8; }
+    .eye-iris        { fill: #5090c0; }
+    .eye-pupil       { fill: #001828; }
+    .eye-highlight   { fill: #ffffff; }
+    .eye-sclera      { fill: #f0f8ff; }
+    .mouth-interior  { fill: #102838; }
+  </style>
+
+  <!-- Custom glow: motion arcs showing orbit paths of hailstones (signature) -->
+  <ellipse cx="256" cy="296" rx="180" ry="60" fill="none" stroke="#a8c8e0" stroke-width="2" opacity="0.4" stroke-dasharray="6,8"/>
+  <ellipse cx="256" cy="296" rx="180" ry="60" fill="none" stroke="#a8c8e0" stroke-width="2" opacity="0.4" stroke-dasharray="6,8" transform="rotate(60 256 296)"/>
+
+  <!-- ═══════ ORBITING HAILSTONES (signature) ═══════ -->
+  <circle cx="80"  cy="260" r="16" class="accent-shadow"/>
+  <circle cx="80"  cy="258" r="13" class="accent-base"/>
+  <circle cx="78"  cy="252" r="4" class="accent-highlight"/>
+  <circle cx="432" cy="332" r="18" class="accent-shadow"/>
+  <circle cx="432" cy="330" r="15" class="accent-base"/>
+  <circle cx="430" cy="324" r="5" class="accent-highlight"/>
+  <circle cx="156" cy="100" r="12" class="accent-shadow"/>
+  <circle cx="156" cy="98"  r="10" class="accent-base"/>
+  <circle cx="154" cy="94"  r="3" class="accent-highlight"/>
+  <circle cx="356" cy="80"  r="10" class="accent-shadow"/>
+  <circle cx="356" cy="78"  r="8" class="accent-base"/>
+
+  <!-- feet -->
+  <ellipse cx="220" cy="436" rx="26" ry="13" class="body-shadow"/>
+  <ellipse cx="292" cy="436" rx="26" ry="13" class="body-shadow"/>
+  <ellipse cx="220" cy="432" rx="22" ry="9" class="body-base"/>
+  <ellipse cx="292" cy="432" rx="22" ry="9" class="body-base"/>
+
+  <!-- arms (one raised in throwing pose) -->
+  <ellipse cx="148" cy="288" rx="34" ry="16" class="body-shadow" transform="rotate(-30 148 288)"/>
+  <ellipse cx="152" cy="285" rx="28" ry="11" class="body-base"   transform="rotate(-30 152 285)"/>
+  <ellipse cx="370" cy="296" rx="34" ry="16" class="body-shadow" transform="rotate(20 370 296)"/>
+  <ellipse cx="366" cy="293" rx="28" ry="11" class="body-base"   transform="rotate(20 366 293)"/>
+
+  <!-- body (compact alert) -->
+  <ellipse cx="256" cy="306" rx="100" ry="116" class="body-shadow"/>
+  <ellipse cx="256" cy="300" rx="94" ry="110" class="body-base"/>
+  <ellipse cx="222" cy="248" rx="20" ry="14" class="body-highlight" opacity="0.55"/>
+
+  <!-- ═══════ EYES (ice family — alert focused, diamond highlight) ═══════ -->
+  <ellipse cx="220" cy="290" rx="24" ry="26" class="eye-sclera" stroke="none"/>
+  <ellipse cx="220" cy="290" rx="20" ry="22" fill="none" stroke="#202830" stroke-width="2.5"/>
+  <circle cx="222" cy="296" r="14" class="eye-iris"/>
+  <circle cx="222" cy="296" r="10" class="eye-pupil"/>
+  <path d="M226,284 L230,288 L226,292 L222,288 Z" class="eye-highlight"/>
+  <ellipse cx="292" cy="290" rx="24" ry="26" class="eye-sclera" stroke="none"/>
+  <ellipse cx="292" cy="290" rx="20" ry="22" fill="none" stroke="#202830" stroke-width="2.5"/>
+  <circle cx="290" cy="296" r="14" class="eye-iris"/>
+  <circle cx="290" cy="296" r="10" class="eye-pupil"/>
+  <path d="M286,284 L282,288 L286,292 L290,288 Z" class="eye-highlight"/>
+
+  <!-- mouth: small smirk -->
+  <path d="M236,344 Q256,352 276,344" class="body-stroke" fill="none" stroke-width="3" stroke-linecap="round"/>
+</svg>

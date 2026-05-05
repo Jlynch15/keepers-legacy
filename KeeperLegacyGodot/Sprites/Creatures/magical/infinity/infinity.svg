@@ -1,0 +1,74 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- INFINITY — magical, RARE — paradoxical, body forms infinity loop
+       Mutations: v1 Void Black · v2 Neon Loop · v3 Rainbow · v4 Pure White
+       Signature: body forming an INFINITY LOOP shape, mirror copy
+  -->
+  <!-- PALETTE
+       v1: body-base=#100018 body-shadow=#000000 body-highlight=#280838 body-stroke=#000000 accent-base=#5098 ff accent-shadow=#1a4880 accent-highlight=#a0d0ff
+       v2: body-base=#28d8a0 body-shadow=#106848 body-highlight=#5898 c0 body-stroke=#001818 accent-base=#80f8c0 accent-shadow=#388 858 accent-highlight=#c0ffe0
+       v3: body-base=#7048b0 body-shadow=#281858 body-highlight=#a880d8 body-stroke=#100018 accent-base=#ff80a0 accent-shadow=#a04060 accent-highlight=#ffc0d0
+       v4: body-base=#fafafa body-shadow=#a8a8a8 body-highlight=#ffffff body-stroke=#404040 accent-base=#c0c0c0 accent-shadow=#787878 accent-highlight=#ffffff
+  -->
+  <style>
+    .body-base       { fill: #100018; }
+    .body-base       { stroke: #100018; }
+    .body-shadow     { fill: #000000; }
+    .body-shadow     { stroke: #000000; }
+    .body-highlight  { fill: #280838; }
+    .body-highlight  { stroke: #280838; }
+    .body-stroke     { fill: #000000; }
+    .body-stroke     { stroke: #000000; }
+    .accent-base     { fill: #5098ff; }
+    .accent-base     { stroke: #5098ff; }
+    .accent-shadow   { fill: #1a4880; }
+    .accent-shadow   { stroke: #1a4880; }
+    .accent-highlight{ fill: #a0d0ff; }
+    .accent-highlight{ stroke: #a0d0ff; }
+    .eye-iris        { fill: #5098ff; }
+    .eye-pupil       { fill: #000000; }
+    .eye-highlight   { fill: #ffffff; }
+    .eye-sclera      { fill: #e0eaff; }
+    .mouth-interior  { fill: #000000; }
+  </style>
+
+  <!-- Custom glow: infinity loop trail (signature) -->
+  <path d="M180,308 C140,260 140,360 180,308 C220,260 290,360 330,308 C370,260 370,360 330,308 C290,360 220,260 180,308" stroke="#5098ff" stroke-width="50" fill="none" stroke-linecap="round" opacity="0.18"/>
+  <path d="M180,308 C140,260 140,360 180,308 C220,260 290,360 330,308 C370,260 370,360 330,308 C290,360 220,260 180,308" stroke="#a0d0ff" stroke-width="14" fill="none" stroke-linecap="round" opacity="0.55"/>
+
+  <!-- feet -->
+  <ellipse cx="180" cy="446" rx="22" ry="11" class="body-shadow"/>
+  <ellipse cx="332" cy="446" rx="22" ry="11" class="body-shadow"/>
+
+  <!-- ═══════ INFINITY LOOP BODY (signature: two connected lobes) ═══════ -->
+  <circle cx="180" cy="296" r="86" class="body-shadow"/>
+  <circle cx="180" cy="290" r="80" class="body-base"/>
+  <circle cx="332" cy="296" r="86" class="body-shadow"/>
+  <circle cx="332" cy="290" r="80" class="body-base"/>
+  <!-- crossover bridge -->
+  <path d="M256,260 Q220,290 256,330 Q292,290 256,260 Z" class="body-shadow"/>
+  <path d="M256,266 Q224,290 256,322 Q288,290 256,266 Z" class="body-base"/>
+
+  <!-- highlight per lobe -->
+  <ellipse cx="160" cy="240" rx="18" ry="11" class="body-highlight" opacity="0.55"/>
+  <ellipse cx="312" cy="340" rx="18" ry="11" class="body-highlight" opacity="0.55"/>
+
+  <!-- ═══════ EYES (magical — one on each lobe, mirrored) ═══════ -->
+  <ellipse cx="180" cy="284" rx="18" ry="20" class="eye-sclera" stroke="none"/>
+  <ellipse cx="180" cy="284" rx="14" ry="16" fill="none" stroke="#000000" stroke-width="2"/>
+  <circle cx="180" cy="290" r="11" class="accent-base"/>
+  <circle cx="180" cy="290" r="7" class="eye-pupil"/>
+  <circle cx="184" cy="282" r="2" class="eye-highlight"/>
+  <ellipse cx="332" cy="284" rx="18" ry="20" class="eye-sclera" stroke="none"/>
+  <ellipse cx="332" cy="284" rx="14" ry="16" fill="none" stroke="#000000" stroke-width="2"/>
+  <circle cx="332" cy="290" r="11" class="accent-base"/>
+  <circle cx="332" cy="290" r="7" class="eye-pupil"/>
+  <circle cx="328" cy="282" r="2" class="eye-highlight"/>
+
+  <!-- mouths (one per lobe — twin smiles) -->
+  <path d="M168,330 Q180,338 192,330" stroke="#5098ff" fill="none" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M320,330 Q332,338 344,330" stroke="#5098ff" fill="none" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- infinity floating symbols ambient -->
+  <path d="M48,140 Q60,128 72,140 Q60,152 48,140 Q60,128 72,140 Q60,152 48,140 Z" stroke="#5098ff" fill="none" stroke-width="2" opacity="0.6"/>
+  <path d="M440,140 Q452,128 464,140 Q452,152 440,140 Q452,128 464,140 Q452,152 440,140 Z" stroke="#5098ff" fill="none" stroke-width="2" opacity="0.6"/>
+</svg>

@@ -1,0 +1,99 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- TUNNELWORM — dirt, uncommon — drill-shaped head, bores through earth
+       Mutations: v1 Dark Brown · v2 Pink Worm · v3 Grey · v4 Pale Tan
+       Signature: ELONGATED CYLINDRICAL worm body coiled in S-curve, drill nose-tip
+  -->
+  <!-- PALETTE
+       v1: body-base=#5a3818 body-shadow=#281000 body-highlight=#80583a body-stroke=#000000 accent-base=#3a2008 accent-shadow=#180800 accent-highlight=#604028
+       v2: body-base=#e8a8a8 body-shadow=#a06868 body-highlight=#ffd0d0 body-stroke=#403030 accent-base=#c08888 accent-shadow=#705050 accent-highlight=#ffe0e0
+       v3: body-base=#888880 body-shadow=#48484a body-highlight=#b0b0a8 body-stroke=#1a1a1a accent-base=#606058 accent-shadow=#28282a accent-highlight=#909088
+       v4: body-base=#d8b888 body-shadow=#806848 body-highlight=#f0d8a8 body-stroke=#382818 accent-base=#a08058 accent-shadow=#604828 accent-highlight=#d0a878
+  -->
+  <style>
+    .body-base       { fill: #5a3818; }
+    .body-base       { stroke: #5a3818; }
+    .body-shadow     { fill: #281000; }
+    .body-shadow     { stroke: #281000; }
+    .body-highlight  { fill: #80583a; }
+    .body-highlight  { stroke: #80583a; }
+    .body-stroke     { fill: #000000; }
+    .body-stroke     { stroke: #000000; }
+    .accent-base     { fill: #3a2008; }
+    .accent-base     { stroke: #3a2008; }
+    .accent-shadow   { fill: #180800; }
+    .accent-shadow   { stroke: #180800; }
+    .accent-highlight{ fill: #604028; }
+    .accent-highlight{ stroke: #604028; }
+    .eye-iris        { fill: #5a3818; }
+    .eye-pupil       { fill: #1a0a00; }
+    .eye-highlight   { fill: #ffffff; }
+    .eye-sclera      { fill: #f8f0e0; }
+    .mouth-interior  { fill: #2a1008; }
+  </style>
+
+  <!-- ═══════ S-CURVE WORM BODY (signature: long cylindrical, S-shaped coil) ═══════ -->
+  <!-- tail end (right-bottom) -->
+  <path d="M412,432 Q452,432 446,400 Q438,372 408,388 Q380,396 372,420 Z" class="body-shadow"/>
+  <path d="M414,428 Q448,428 442,402 Q436,378 410,392 Q386,398 380,418 Z" class="body-base"/>
+  <!-- mid section (curving) -->
+  <path d="M390,420 Q330,438 280,400 Q230,360 280,320 Q330,280 380,310 Q420,328 410,388 Z" class="body-shadow"/>
+  <path d="M388,418 Q332,432 286,398 Q236,360 282,326 Q330,288 376,316 Q414,332 406,386 Z" class="body-base"/>
+  <!-- second curve -->
+  <path d="M298,318 Q240,300 200,254 Q170,210 220,200 Q280,196 296,250 Q304,290 298,318 Z" class="body-shadow"/>
+  <path d="M296,316 Q240,300 204,256 Q176,216 220,206 Q278,202 292,252 Q300,288 296,316 Z" class="body-base"/>
+  <!-- head section (drill-shaped) -->
+  <path d="M212,206 Q140,180 100,140 Q140,90 200,128 Q252,168 248,196 Z" class="body-shadow"/>
+  <path d="M214,202 Q146,180 110,146 Q146,98 200,134 Q244,168 244,194 Z" class="body-base"/>
+
+  <!-- body segment lines -->
+  <path d="M148,164 Q160,180 144,196" class="body-shadow" fill="none" stroke-width="2.5" opacity="0.7"/>
+  <path d="M180,182 Q192,196 178,212" class="body-shadow" fill="none" stroke-width="2.5" opacity="0.7"/>
+  <path d="M260,332 Q272,350 256,366" class="body-shadow" fill="none" stroke-width="2.5" opacity="0.7"/>
+  <path d="M306,378 Q318,394 300,410" class="body-shadow" fill="none" stroke-width="2.5" opacity="0.7"/>
+  <path d="M360,394 Q372,408 354,422" class="body-shadow" fill="none" stroke-width="2.5" opacity="0.7"/>
+
+  <!-- highlight crescents -->
+  <ellipse cx="180" cy="158" rx="18" ry="6" class="body-highlight" opacity="0.42" transform="rotate(-30 180 158)"/>
+  <ellipse cx="270" cy="248" rx="14" ry="5" class="body-highlight" opacity="0.42"/>
+  <ellipse cx="350" cy="346" rx="14" ry="5" class="body-highlight" opacity="0.5" transform="rotate(20 350 346)"/>
+
+  <!-- ═══════ DRILL TIP (signature: pointed boring head) ═══════ -->
+  <path d="M110,142 L70,108 L84,156 Z" class="accent-shadow"/>
+  <path d="M114,146 L80,118 L92,156 Z" class="accent-base"/>
+  <path d="M114,146 L92,128 L100,138 Z" class="accent-highlight"/>
+  <!-- drill spiral lines -->
+  <path d="M88,124 L108,150" class="body-stroke" fill="none" stroke-width="1.5" opacity="0.7"/>
+  <path d="M82,140 L100,162" class="body-stroke" fill="none" stroke-width="1.5" opacity="0.7"/>
+
+  <!-- ═══════ EYES (dirt family — TINY DOTS on small worm head) ═══════ -->
+  <circle cx="172" cy="148" r="8" class="eye-sclera" stroke="none"/>
+  <circle cx="172" cy="148" r="6" fill="none" stroke="#000000" stroke-width="2"/>
+  <circle cx="172" cy="150" r="4" class="eye-pupil"/>
+  <circle cx="174" cy="146" r="1.5" class="eye-highlight" stroke="none"/>
+  <circle cx="200" cy="172" r="8" class="eye-sclera" stroke="none"/>
+  <circle cx="200" cy="172" r="6" fill="none" stroke="#000000" stroke-width="2"/>
+  <circle cx="200" cy="174" r="4" class="eye-pupil"/>
+  <circle cx="202" cy="170" r="1.5" class="eye-highlight" stroke="none"/>
+
+  <!-- mouth: tiny round drill-mouth "o" between eyes (where drill meets head) -->
+  <circle cx="148" cy="180" r="6" class="mouth-interior"/>
+  <circle cx="148" cy="180" r="6" fill="none" stroke="#000000" stroke-width="1.5"/>
+
+  <!-- body specks -->
+  <circle cx="220" cy="200" r="2" class="body-highlight" opacity="0.7" stroke="none"/>
+  <circle cx="288" cy="304" r="2" class="body-highlight" opacity="0.6" stroke="none"/>
+  <circle cx="368" cy="356" r="2" class="body-highlight" opacity="0.55" stroke="none"/>
+
+  <!-- ambient dust -->
+  <circle cx="50"  cy="280" r="2" class="body-base" opacity="0.5" stroke="none"/>
+  <circle cx="74"  cy="320" r="1.5" class="body-base" opacity="0.5" stroke="none"/>
+  <circle cx="32"  cy="356" r="1.5" class="body-base" opacity="0.45" stroke="none"/>
+  <circle cx="448" cy="280" r="2" class="body-base" opacity="0.5" stroke="none"/>
+  <circle cx="476" cy="320" r="1.5" class="body-base" opacity="0.5" stroke="none"/>
+
+  <!-- sparkles near drill tip (signature: motion sparks) -->
+  <path d="M44,90 L46,96 L52,98 L46,100 L44,106 L42,100 L36,98 L42,96 Z"
+        fill="#ffffff" opacity="0.9"/>
+  <path d="M70,68 L72,74 L78,76 L72,78 L70,84 L68,78 L62,76 L68,74 Z"
+        fill="#ffffff" opacity="0.85"/>
+</svg>
