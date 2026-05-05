@@ -32,11 +32,24 @@ namespace KeeperLegacy.Models
                 if (entry != null && entry.HabitatType != habitat.Type) return false;
             }
 
-            // Evict from previous habitat if any
-            var previous = habitats.FirstOrDefault(h => h.OccupantIds.Contains(creatureId));
-            previous?.RemoveCreature(creatureId);
+            // Try the destination FIRST. If it rejects (full, duplicate, etc.),
+            // we must NOT have already evicted from the previous habitat — doing so
+            // would leave the creature in the ledger with no home, violating the
+            // "every creature lives in a habitat at all times" invariant.
+            var previous = habitats.FirstOrDefault(h => h != habitat && h.OccupantIds.Contains(creatureId));
+            if (previous == habitat) return true; // already there — no-op success
 
-            return habitat.TryPlaceCreature(creatureId);
+            // If the creature is currently in `previous`, the destination's duplicate
+            // check won't matter (different habitat), but if `habitat` is full we must
+            // bail before touching `previous`.
+            if (habitat.IsFull) return false;
+
+            // Atomic-ish: place first, then evict. If TryPlaceCreature returns false
+            // for any reason we haven't accounted for, the previous habitat is
+            // unchanged.
+            if (!habitat.TryPlaceCreature(creatureId)) return false;
+            previous?.RemoveCreature(creatureId);
+            return true;
         }
 
         /// Filter habitats by biome.

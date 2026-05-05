@@ -110,6 +110,8 @@ namespace KeeperLegacy.UI.Habitat
             _floorOverlay.SetAnchorsAndOffsetsPreset(LayoutPreset.BottomWide);
             _floorOverlay.MouseFilter = MouseFilterEnum.Ignore;
             AddChild(_floorOverlay);
+
+            _rng.Randomize();
         }
 
         private Control NewLayer()
@@ -222,10 +224,13 @@ namespace KeeperLegacy.UI.Habitat
             _floorOverlay.OffsetTop = -_theme.Floor.HeightPx;
         }
 
+        private readonly RandomNumberGenerator _rng = new RandomNumberGenerator();
+
         private void SpawnParticle(ParticleConfig cfg)
         {
-            var rng = new RandomNumberGenerator();
-            rng.Randomize();
+            // Reuse a single RNG instance — allocating on every spawn (or every
+            // _Process tick on creatures) thrashes the GC on mobile.
+            var rng = _rng;
 
             var label = new Label();
             label.Text = cfg.PlaceholderEmoji;
@@ -483,6 +488,7 @@ namespace KeeperLegacy.UI.Habitat
                     _body = panel;
                 }
 
+                _rng.Randomize();
                 _retargetIn = 0;
                 Position    = RandomPointInZone();
                 _target     = RandomPointInZone();
@@ -504,8 +510,7 @@ namespace KeeperLegacy.UI.Habitat
                 if (_retargetIn <= 0 || dist < 4f)
                 {
                     _target = RandomPointInZone();
-                    var rng = new RandomNumberGenerator(); rng.Randomize();
-                    _retargetIn = rng.RandfRange(MinRetarget, MaxRetarget);
+                    _retargetIn = _rng.RandfRange(MinRetarget, MaxRetarget);
                 }
 
                 // Squash-stretch on body
@@ -537,12 +542,13 @@ namespace KeeperLegacy.UI.Habitat
                 GetTree().CreateTimer(ClickHaloMs / 1000f).Timeout += () => ZIndex = prior;
             }
 
+            private readonly RandomNumberGenerator _rng = new RandomNumberGenerator();
+
             private Vector2 RandomPointInZone()
             {
-                var rng = new RandomNumberGenerator(); rng.Randomize();
                 return new Vector2(
-                    rng.RandfRange(_wanderZone.Position.X, _wanderZone.End.X),
-                    rng.RandfRange(_wanderZone.Position.Y, _wanderZone.End.Y));
+                    _rng.RandfRange(_wanderZone.Position.X, _wanderZone.End.X),
+                    _rng.RandfRange(_wanderZone.Position.Y, _wanderZone.End.Y));
             }
         }
     }
