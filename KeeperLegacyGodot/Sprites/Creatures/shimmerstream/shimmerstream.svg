@@ -1,0 +1,130 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- SHIMMERSTREAM — water, common — prismatic fish, scales catch light like a prism
+       Mutations: v1 Rainbow Silver · v2 Deep Blue · v3 Rose Gold · v4 Midnight
+       Signature: fish-shaped with a fan tail, visible scale pattern, rainbow shimmer accents
+  -->
+  <!-- PALETTE
+       v1: body-base=#c0c8d8 body-shadow=#6a7080 body-highlight=#f0f4ff body-stroke=#3a3e48 accent-base=#a0c8e8 accent-shadow=#5078a0 accent-highlight=#e8f0ff
+       v2: body-base=#1a3868 body-shadow=#0a1838 body-highlight=#3060a8 body-stroke=#000820 accent-base=#3070b8 accent-shadow=#102048 accent-highlight=#80b0e8
+       v3: body-base=#d09060 body-shadow=#80502a body-highlight=#f0c080 body-stroke=#481a08 accent-base=#e8a060 accent-shadow=#a06030 accent-highlight=#fff0c8
+       v4: body-base=#1a1828 body-shadow=#000010 body-highlight=#3a3a58 body-stroke=#000000 accent-base=#5050a0 accent-shadow=#1a1a40 accent-highlight=#9090d0
+  -->
+  <style>
+    .body-base       { fill: #c0c8d8; }
+    .body-base       { stroke: #c0c8d8; }
+    .body-shadow     { fill: #6a7080; }
+    .body-shadow     { stroke: #6a7080; }
+    .body-highlight  { fill: #f0f4ff; }
+    .body-highlight  { stroke: #f0f4ff; }
+    .body-stroke     { fill: #3a3e48; }
+    .body-stroke     { stroke: #3a3e48; }
+    .accent-base     { fill: #a0c8e8; }
+    .accent-base     { stroke: #a0c8e8; }
+    .accent-shadow   { fill: #5078a0; }
+    .accent-shadow   { stroke: #5078a0; }
+    .accent-highlight{ fill: #e8f0ff; }
+    .accent-highlight{ stroke: #e8f0ff; }
+    .eye-iris        { fill: #1a4868; }
+    .eye-pupil       { fill: #0a1828; }
+    .eye-highlight   { fill: #ffffff; }
+    .eye-sclera      { fill: #d8eef0; }
+    .mouth-interior  { fill: #2a0820; }
+  </style>
+
+  <!-- ═══════ COMPOSITION — fish-shaped, body horizontal oval, large fan tail right side ═══════ -->
+
+  <!-- ═══════ FAN TAIL (signature: large fan tail on right) ═══════ -->
+  <path d="M396,260 L470,180 L460,260 L470,340 Z" class="body-shadow"/>
+  <path d="M400,260 L462,196 L454,260 L462,324 Z" class="body-base"/>
+  <path d="M408,260 L450,220 L408,260 L450,300 Z" class="body-highlight" opacity="0.5"/>
+  <!-- tail spine details -->
+  <path d="M404,260 L460,210 M404,260 L460,310 M408,260 L456,250 M408,260 L456,270"
+        class="body-stroke" fill="none" stroke-width="2" opacity="0.7"/>
+
+  <!-- ═══════ TOP DORSAL FIN ═══════ -->
+  <path d="M200,182 L218,140 L240,170 L260,138 L280,168 Z" class="body-shadow"/>
+  <path d="M204,182 L220,148 L240,176 L260,146 L276,174 Z" class="body-base"/>
+
+  <!-- ═══════ BOTTOM FIN ═══════ -->
+  <path d="M210,360 L228,400 L264,388 Z" class="body-shadow"/>
+  <path d="M214,358 L232,394 L260,386 Z" class="body-base"/>
+
+  <!-- ═══════ MAIN BODY (oval, fish-like) ═══════ -->
+  <ellipse cx="240" cy="270" rx="160" ry="108" class="body-shadow"/>
+  <ellipse cx="240" cy="266" rx="152" ry="102" class="body-base"/>
+  <ellipse cx="200" cy="226" rx="78" ry="42" class="body-highlight" opacity="0.55"/>
+  <ellipse cx="240" cy="328" rx="84" ry="22" class="body-highlight" opacity="0.32"/>
+
+  <!-- ═══════ SCALE PATTERN (signature: visible scales catching light like prism) ═══════ -->
+  <!-- row 1 -->
+  <path d="M180,222 Q190,232 200,222" class="accent-shadow" fill="none" stroke-width="2" opacity="0.7"/>
+  <path d="M210,222 Q220,232 230,222" class="accent-shadow" fill="none" stroke-width="2" opacity="0.7"/>
+  <path d="M240,222 Q250,232 260,222" class="accent-shadow" fill="none" stroke-width="2" opacity="0.7"/>
+  <path d="M270,222 Q280,232 290,222" class="accent-shadow" fill="none" stroke-width="2" opacity="0.7"/>
+  <path d="M300,222 Q310,232 320,222" class="accent-shadow" fill="none" stroke-width="2" opacity="0.7"/>
+  <!-- row 2 (offset) -->
+  <path d="M170,250 Q180,260 190,250" class="accent-shadow" fill="none" stroke-width="2" opacity="0.7"/>
+  <path d="M200,250 Q210,260 220,250" class="accent-shadow" fill="none" stroke-width="2" opacity="0.7"/>
+  <path d="M260,250 Q270,260 280,250" class="accent-shadow" fill="none" stroke-width="2" opacity="0.7"/>
+  <path d="M290,250 Q300,260 310,250" class="accent-shadow" fill="none" stroke-width="2" opacity="0.7"/>
+  <!-- row 3 -->
+  <path d="M180,278 Q190,288 200,278" class="accent-shadow" fill="none" stroke-width="2" opacity="0.7"/>
+  <path d="M210,278 Q220,288 230,278" class="accent-shadow" fill="none" stroke-width="2" opacity="0.7"/>
+  <path d="M270,278 Q280,288 290,278" class="accent-shadow" fill="none" stroke-width="2" opacity="0.7"/>
+  <path d="M300,278 Q310,288 320,278" class="accent-shadow" fill="none" stroke-width="2" opacity="0.7"/>
+  <!-- row 4 -->
+  <path d="M190,306 Q200,316 210,306" class="accent-shadow" fill="none" stroke-width="2" opacity="0.7"/>
+  <path d="M250,306 Q260,316 270,306" class="accent-shadow" fill="none" stroke-width="2" opacity="0.7"/>
+  <path d="M280,306 Q290,316 300,306" class="accent-shadow" fill="none" stroke-width="2" opacity="0.7"/>
+
+  <!-- prismatic shimmer specks (rainbow accents) -->
+  <circle cx="186" cy="248" r="2" fill="#ff80a0" opacity="0.65"/>
+  <circle cx="216" cy="276" r="2" fill="#80c8ff" opacity="0.65"/>
+  <circle cx="246" cy="248" r="2" fill="#ffff80" opacity="0.65"/>
+  <circle cx="276" cy="276" r="2" fill="#80ff80" opacity="0.65"/>
+  <circle cx="306" cy="248" r="2" fill="#c080ff" opacity="0.65"/>
+  <circle cx="226" cy="304" r="2" fill="#ffa080" opacity="0.65"/>
+  <circle cx="286" cy="304" r="2" fill="#80ffe0" opacity="0.65"/>
+
+  <!-- ═══════ EYES (water style — large round wet, on left side facing forward) ═══════ -->
+  <ellipse cx="160" cy="262" rx="32" ry="36" class="eye-sclera" stroke="none"/>
+  <ellipse cx="160" cy="262" rx="28" ry="32" fill="none" stroke="#ffffff" stroke-width="3"/>
+  <circle  cx="162" cy="268" r="20" class="eye-iris"/>
+  <circle  cx="162" cy="268" r="13" class="eye-pupil"/>
+  <ellipse cx="170" cy="256" rx="6" ry="7" class="eye-highlight" stroke="none"/>
+  <circle  cx="156" cy="278" r="2.5" class="eye-highlight" stroke="none"/>
+  <circle  cx="172" cy="276" r="1.5" class="eye-highlight" stroke="none" opacity="0.8"/>
+
+  <!-- ═══════ MOUTH (small puckered "kiss" shape — fish mouth) ═══════ -->
+  <ellipse cx="100" cy="290" rx="14" ry="10" class="mouth-interior"/>
+  <ellipse cx="100" cy="290" rx="14" ry="10" fill="none" stroke="#3a3e48" stroke-width="3"/>
+  <ellipse cx="100" cy="294" rx="8" ry="4" fill="#ff8090" opacity="0.7" stroke="none"/>
+
+  <!-- ═══════ GILL LINES (small fish detail near eye) ═══════ -->
+  <path d="M124,256 Q130,272 124,288" class="body-stroke" fill="none" stroke-width="2"/>
+  <path d="M134,256 Q140,272 134,288" class="body-stroke" fill="none" stroke-width="2"/>
+
+  <!-- ═══════ BODY SPECKS (additional sparkle texture) ═══════ -->
+  <circle cx="200" cy="200" r="3" class="body-highlight" opacity="0.7" stroke="none"/>
+  <circle cx="280" cy="208" r="2" class="body-highlight" opacity="0.6" stroke="none"/>
+  <circle cx="320" cy="232" r="2" class="body-highlight" opacity="0.6" stroke="none"/>
+  <circle cx="240" cy="350" r="3" class="body-highlight" opacity="0.55" stroke="none"/>
+  <circle cx="180" cy="340" r="2" class="body-highlight" opacity="0.5" stroke="none"/>
+  <circle cx="340" cy="320" r="2" class="body-highlight" opacity="0.55" stroke="none"/>
+
+  <!-- ═══════ AMBIENT BUBBLES ═══════ -->
+  <circle cx="60"  cy="170" r="6" fill="none" stroke="#80c8e8" stroke-width="2" opacity="0.7"/>
+  <circle cx="60"  cy="170" r="6" fill="#a0e0ff" opacity="0.18"/>
+  <circle cx="92"  cy="142" r="4" fill="none" stroke="#80c8e8" stroke-width="2" opacity="0.7"/>
+  <circle cx="40"  cy="240" r="3" fill="none" stroke="#80c8e8" stroke-width="1.5" opacity="0.6"/>
+  <circle cx="68"  cy="380" r="4" fill="none" stroke="#80c8e8" stroke-width="2" opacity="0.65"/>
+  <circle cx="44"  cy="416" r="3" fill="none" stroke="#80c8e8" stroke-width="1.5" opacity="0.55"/>
+
+  <!-- ═══════ RAINBOW SPARKLE ACCENTS (signature: refracts light into rainbows) ═══════ -->
+  <path d="M390,140 L392,148 L400,150 L392,152 L390,160 L388,152 L380,150 L388,148 Z"
+        fill="#ffd080" opacity="0.9"/>
+  <path d="M450,170 L452,176 L458,177 L452,178 L450,184 L448,178 L442,177 L448,176 Z"
+        fill="#80c8ff" opacity="0.9"/>
+  <path d="M420,400 L422,408 L430,410 L422,412 L420,420 L418,412 L410,410 L418,408 Z"
+        fill="#ff80c0" opacity="0.85"/>
+</svg>
