@@ -1,0 +1,14 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- PALETTE
+       v1: body-base=#ff0000 body-shadow=#800000
+       v2: body-base=#00ff00 body-shadow=#008000
+       v3: body-base=#0000ff body-shadow=#000080
+       v4: body-base=#ffff00 body-shadow=#808000
+  -->
+  <style>
+    .body-base   { fill: #ff0000; }
+    .body-shadow { fill: #800000; }
+  </style>
+  <circle cx="256" cy="256" r="180" class="body-base" />
+  <circle cx="256" cy="380" r="40"  class="body-shadow" />
+</svg>
