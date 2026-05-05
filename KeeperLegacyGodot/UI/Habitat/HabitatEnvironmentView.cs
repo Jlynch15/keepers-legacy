@@ -102,7 +102,10 @@ namespace KeeperLegacy.UI.Habitat
 
             _wanderZoneOverlay = new WanderZoneOverlay();
             _wanderZoneOverlay.SetAnchorsAndOffsetsPreset(LayoutPreset.FullRect);
-            _wanderZoneOverlay.MouseFilter = MouseFilterEnum.Pass;
+            // Ignore: don't intercept clicks at the GUI layer — decorations beneath
+            // need to receive their own input. Wander-zone hit-testing happens via
+            // _UnhandledInput which runs independent of MouseFilter.
+            _wanderZoneOverlay.MouseFilter = MouseFilterEnum.Ignore;
             AddChild(_wanderZoneOverlay);
 
             _creatureLayer = NewLayer();
@@ -295,23 +298,30 @@ namespace KeeperLegacy.UI.Habitat
                 yield return Zone.Position + new Vector2(Zone.Size.X, Zone.Size.Y / 2);             // R-mid
             }
 
-            public override void _GuiInput(InputEvent @event)
+            // _UnhandledInput rather than _GuiInput: this overlay has MouseFilter=Ignore
+            // so it doesn't block decoration clicks. _UnhandledInput fires independent
+            // of MouseFilter, after _Input and any focused-Control _GuiInput. So a
+            // decoration drag (which AcceptEvents in _GuiInput) consumes input first;
+            // clicks elsewhere fall through to here for handle hit-testing.
+            public override void _UnhandledInput(InputEvent @event)
             {
                 if (!DebugEnabled) return;
+
+                Vector2 localPos = GetLocalMousePosition();
 
                 if (@event is InputEventMouseButton mb && mb.ButtonIndex == MouseButton.Left)
                 {
                     if (mb.Pressed)
                     {
-                        _dragHandle = HitTestHandle(mb.Position);
-                        if (_dragHandle >= 0) AcceptEvent();
+                        _dragHandle = HitTestHandle(localPos);
+                        if (_dragHandle >= 0) GetViewport().SetInputAsHandled();
                     }
                     else _dragHandle = -1;
                 }
                 else if (@event is InputEventMouseMotion mm && _dragHandle >= 0)
                 {
-                    ApplyDragToHandle(_dragHandle, mm.Position);
-                    AcceptEvent();
+                    ApplyDragToHandle(_dragHandle, localPos);
+                    GetViewport().SetInputAsHandled();
                 }
             }
 
