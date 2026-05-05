@@ -317,6 +317,12 @@ Bottom-right small label: "Habitat N · X / 4" (matches mockup).
 - Click emits `CreatureClicked` (suppressed when env view is in debug mode)
 - Tap visual: ring highlight + temporary z-index boost for 0.3s so tap target is unobstructed
 
+**Creature texture resolution (env view, roster panel, future detail screen):**
+- Resolve path: `res://Sprites/Creatures/{catalogId}.svg` (or `.png`) using `CreatureInstance.CatalogId`. Godot auto-imports SVG to raster.
+- Render via `TextureRect` (or `Sprite2D` if migrating to Node2D for easier scaling).
+- **Graceful fallback to colored-circle blob** when the texture is missing — uses the biome's accent color from `BiomeTheme`. SVG placeholder art is landing incrementally from a parallel session; the screen must work whether 0% or 100% of catalog entries have textures available.
+- Mutation-aware path lookup is a future concern — initial implementation uses base `CatalogId` only; `MutationIndex` variants land later.
+
 ### `HabitatRosterPanel.cs`
 
 **Role:** 4-slot grid render. Reactive to changes in active habitat's occupants.
