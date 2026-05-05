@@ -129,19 +129,36 @@ def main() -> None:
     if not inkscape:
         sys.exit("ERROR: Inkscape not found. Install from https://inkscape.org")
 
+    # Sprites/Creatures/<biome>/<creature>/<creature>.svg
+    biome_dirs = sorted(
+        p for p in CREATURES_DIR.iterdir()
+        if p.is_dir() and not p.name.startswith("_")
+    )
+
     if args.creature:
-        targets = [CREATURES_DIR / args.creature]
+        # Find which biome this creature lives in
+        targets = []
+        for biome in biome_dirs:
+            candidate = biome / args.creature
+            if candidate.is_dir():
+                targets.append(candidate)
+                break
+        if not targets:
+            sys.exit(f"ERROR: creature '{args.creature}' not found under any biome subfolder")
     else:
         targets = sorted(
-            p for p in CREATURES_DIR.iterdir()
-            if p.is_dir() and not p.name.startswith("_")
+            creature
+            for biome in biome_dirs
+            for creature in biome.iterdir()
+            if creature.is_dir() and not creature.name.startswith("_")
         )
 
     for d in targets:
         if not d.is_dir():
             print(f"SKIP: {d} not a directory")
             continue
-        print(d.name)
+        # Show biome/creature for clarity
+        print(f"{d.parent.name}/{d.name}")
         render_creature(inkscape, d, pilot_render=args.pilot_render)
 
 

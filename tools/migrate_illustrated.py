@@ -1,7 +1,7 @@
 """
 migrate_illustrated.py
 Copies the 3 illustrated PNGs from CharacterModels/ into the canonical
-Sprites/Creatures/<id>/ structure with backgrounds removed and 1-indexed names.
+Sprites/Creatures/<biome>/<id>/ structure with backgrounds removed and 1-indexed names.
 
 Mutation order matches CreatureRosterData.cs.
 """
@@ -14,17 +14,17 @@ ROOT = Path(__file__).resolve().parent.parent
 SRC  = ROOT / "CharacterModels"
 DST  = ROOT / "KeeperLegacyGodot" / "Sprites" / "Creatures"
 
-# id -> ordered list of source filenames matching mutation index 0..3
+# id -> (biome, ordered list of source filenames matching mutation index 0..3)
 MAPPING = {
-    "coralsprite": ["VividOrange.png", "PinkCoral.png", "PaleYellow.png", "Purple.png"],
-    "deepecho":    ["AbyssBlack.png",  "BioluminescentBlue.png", "DeepPurple.png", "Emerald.png"],
-    "tidecaller":  ["StormGrey.png",   "Seafoam.png",  "SandyTan.png",   "SlateBlue.png"],
+    "coralsprite": ("water", ["VividOrange.png", "PinkCoral.png", "PaleYellow.png", "Purple.png"]),
+    "deepecho":    ("water", ["AbyssBlack.png",  "BioluminescentBlue.png", "DeepPurple.png", "Emerald.png"]),
+    "tidecaller":  ("water", ["StormGrey.png",   "Seafoam.png",  "SandyTan.png",   "SlateBlue.png"]),
 }
 
 
 def main() -> None:
-    for creature_id, source_names in MAPPING.items():
-        out_dir = DST / creature_id
+    for creature_id, (biome, source_names) in MAPPING.items():
+        out_dir = DST / biome / creature_id
         out_dir.mkdir(parents=True, exist_ok=True)
         # Source dir uses CamelCase folder name (Coralsprite, Deepecho, Tidecaller)
         src_dir = SRC / creature_id.capitalize()

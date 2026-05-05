@@ -8,10 +8,17 @@ namespace KeeperLegacy.Tests
     public class CreatureSpriteLoaderTests
     {
         [Test]
-        public void ResolveIdlePath_BuildsCanonicalPath()
+        public void ResolveIdlePath_BuildsCanonicalPathWithBiomeFolder()
         {
             var path = CreatureSpriteLoader.ResolveIdlePath("coralsprite", 0);
-            Assert.That(path, Is.EqualTo("res://Sprites/Creatures/coralsprite/coralsprite_v1.png"));
+            Assert.That(path, Is.EqualTo("res://Sprites/Creatures/water/coralsprite/coralsprite_v1.png"));
+        }
+
+        [Test]
+        public void ResolveIdlePath_DirtCreatureUsesDirtFolder()
+        {
+            var path = CreatureSpriteLoader.ResolveIdlePath("bedrock", 0);
+            Assert.That(path, Is.EqualTo("res://Sprites/Creatures/dirt/bedrock/bedrock_v1.png"));
         }
 
         [Test]
@@ -29,6 +36,13 @@ namespace KeeperLegacy.Tests
         {
             Assert.Throws<System.ArgumentException>(
                 () => CreatureSpriteLoader.ResolveIdlePath("", 0));
+        }
+
+        [Test]
+        public void ResolveIdlePath_ThrowsOnUnknownCreature()
+        {
+            Assert.Throws<System.ArgumentException>(
+                () => CreatureSpriteLoader.ResolveIdlePath("not_a_real_creature", 0));
         }
 
         [Test]
