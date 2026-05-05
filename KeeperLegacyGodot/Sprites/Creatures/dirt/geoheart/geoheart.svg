@@ -1,0 +1,113 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- GEOHEART — dirt, rare — chest cavity contains a beating geode — heart literally glitters
+       Mutations: v1 Purple Geode · v2 Blue Crystal · v3 Pink Quartz · v4 Gold Vein
+       Signature: stone body with VISIBLE GEODE WINDOW in chest, glittering inner gem
+  -->
+  <!-- PALETTE
+       v1: body-base=#605070 body-shadow=#2a2038 body-highlight=#807090 body-stroke=#0a0820 accent-base=#9050d0 accent-shadow=#502880 accent-highlight=#d098f0
+       v2: body-base=#506880 body-shadow=#283848 body-highlight=#7090b0 body-stroke=#0a1828 accent-base=#3080c0 accent-shadow=#103868 accent-highlight=#80b8e8
+       v3: body-base=#705060 body-shadow=#382030 body-highlight=#907080 body-stroke=#1a0810 accent-base=#e070a0 accent-shadow=#883050 accent-highlight=#ff98c0
+       v4: body-base=#605040 body-shadow=#2a2010 body-highlight=#807058 body-stroke=#180800 accent-base=#e8c038 accent-shadow=#806818 accent-highlight=#fff088
+  -->
+  <style>
+    .body-base       { fill: #605070; }
+    .body-base       { stroke: #605070; }
+    .body-shadow     { fill: #2a2038; }
+    .body-shadow     { stroke: #2a2038; }
+    .body-highlight  { fill: #807090; }
+    .body-highlight  { stroke: #807090; }
+    .body-stroke     { fill: #0a0820; }
+    .body-stroke     { stroke: #0a0820; }
+    .accent-base     { fill: #9050d0; }
+    .accent-base     { stroke: #9050d0; }
+    .accent-shadow   { fill: #502880; }
+    .accent-shadow   { stroke: #502880; }
+    .accent-highlight{ fill: #d098f0; }
+    .accent-highlight{ stroke: #d098f0; }
+    .eye-iris        { fill: #4a3858; }
+    .eye-pupil       { fill: #0a0818; }
+    .eye-highlight   { fill: #ffffff; }
+    .eye-sclera      { fill: #f0e8f8; }
+    .mouth-interior  { fill: #1a0820; }
+  </style>
+
+  <!-- soft outer aura halo -->
+  <circle cx="256" cy="296" r="200" class="accent-base" opacity="0.1"/>
+  <circle cx="256" cy="296" r="170" class="accent-base" opacity="0.15"/>
+
+  <!-- feet -->
+  <ellipse cx="216" cy="446" rx="28" ry="13" class="body-shadow"/>
+  <ellipse cx="296" cy="446" rx="28" ry="13" class="body-shadow"/>
+  <ellipse cx="216" cy="442" rx="22" ry="9" class="body-base"/>
+  <ellipse cx="296" cy="442" rx="22" ry="9" class="body-base"/>
+
+  <!-- arms (stately at sides) -->
+  <ellipse cx="138" cy="320" rx="36" ry="20" class="body-shadow"/>
+  <ellipse cx="142" cy="316" rx="30" ry="15" class="body-base"/>
+  <ellipse cx="374" cy="320" rx="36" ry="20" class="body-shadow"/>
+  <ellipse cx="370" cy="316" rx="30" ry="15" class="body-base"/>
+
+  <!-- ═══════ STONE BODY (rounded, regal) ═══════ -->
+  <ellipse cx="256" cy="306" rx="120" ry="138" class="body-shadow"/>
+  <ellipse cx="256" cy="300" rx="114" ry="132" class="body-base"/>
+  <ellipse cx="220" cy="240" rx="60" ry="48" class="body-highlight" opacity="0.55"/>
+
+  <!-- ═══════ GEODE CHEST WINDOW (signature: hollow with glittering gem) ═══════ -->
+  <!-- outer dark cavity ring -->
+  <ellipse cx="256" cy="320" rx="58" ry="68" class="body-stroke"/>
+  <!-- inner cavity (very dark) -->
+  <ellipse cx="256" cy="320" rx="52" ry="62" fill="#080010"/>
+  <!-- crystal facets inside -->
+  <path d="M256,266 L284,302 L256,320 L228,302 Z" class="accent-shadow"/>
+  <path d="M256,272 L278,302 L256,316 L234,302 Z" class="accent-base"/>
+  <path d="M256,278 L272,302 L256,310 L240,302 Z" class="accent-highlight"/>
+  <!-- bottom facets -->
+  <path d="M228,310 L256,374 L284,310 Z" class="accent-shadow"/>
+  <path d="M234,314 L256,366 L278,314 Z" class="accent-base"/>
+  <path d="M256,322 L256,360 L268,330 Z" class="accent-highlight" opacity="0.85"/>
+  <path d="M256,322 L256,360 L244,330 Z" class="accent-highlight" opacity="0.7"/>
+  <!-- glittering inner sparkles -->
+  <circle cx="246" cy="294" r="2" fill="#ffffff" opacity="0.95"/>
+  <circle cx="266" cy="296" r="1.5" fill="#ffffff" opacity="0.9"/>
+  <circle cx="252" cy="324" r="2" fill="#ffffff" opacity="0.9"/>
+  <circle cx="270" cy="350" r="1.5" fill="#ffffff" opacity="0.85"/>
+  <circle cx="240" cy="338" r="1.5" fill="#ffffff" opacity="0.85"/>
+
+  <!-- ═══════ EYES (dirt family — GEM-CUT MULTI-FACET, regal) ═══════ -->
+  <ellipse cx="216" cy="240" rx="22" ry="24" class="eye-sclera" stroke="none"/>
+  <ellipse cx="216" cy="240" rx="18" ry="20" fill="none" stroke="#0a0820" stroke-width="2.5"/>
+  <circle  cx="218" cy="246" r="13" class="eye-iris"/>
+  <circle  cx="218" cy="246" r="8"  class="eye-pupil"/>
+  <!-- multi-facet diamond highlights -->
+  <path d="M222,238 L226,242 L222,246 L218,242 Z" class="eye-highlight" stroke="none"/>
+  <circle cx="214" cy="252" r="2" class="eye-highlight" stroke="none"/>
+  <circle cx="224" cy="252" r="1.5" class="eye-highlight" stroke="none" opacity="0.8"/>
+  <ellipse cx="296" cy="240" rx="22" ry="24" class="eye-sclera" stroke="none"/>
+  <ellipse cx="296" cy="240" rx="18" ry="20" fill="none" stroke="#0a0820" stroke-width="2.5"/>
+  <circle  cx="294" cy="246" r="13" class="eye-iris"/>
+  <circle  cx="294" cy="246" r="8"  class="eye-pupil"/>
+  <path d="M290,238 L286,242 L290,246 L294,242 Z" class="eye-highlight" stroke="none"/>
+  <circle cx="298" cy="252" r="2" class="eye-highlight" stroke="none"/>
+  <circle cx="288" cy="252" r="1.5" class="eye-highlight" stroke="none" opacity="0.8"/>
+
+  <!-- mouth: regal closed thin smile -->
+  <path d="M236,400 Q256,408 276,400" class="body-stroke" fill="none" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- body specks -->
+  <circle cx="190" cy="280" r="2" class="body-highlight" opacity="0.7" stroke="none"/>
+  <circle cx="322" cy="280" r="2" class="body-highlight" opacity="0.7" stroke="none"/>
+  <circle cx="180" cy="380" r="2" class="body-highlight" opacity="0.6" stroke="none"/>
+  <circle cx="332" cy="380" r="2" class="body-highlight" opacity="0.6" stroke="none"/>
+
+  <!-- ambient dust + sparkle stars (rare-tier signature) -->
+  <path d="M64,160 L66,168 L74,170 L66,172 L64,180 L62,172 L54,170 L62,168 Z"
+        class="accent-base" opacity="0.9"/>
+  <path d="M448,160 L450,168 L458,170 L450,172 L448,180 L446,172 L438,170 L446,168 Z"
+        class="accent-base" opacity="0.9"/>
+  <path d="M256,68 L258,76 L266,78 L258,80 L256,88 L254,80 L246,78 L254,76 Z"
+        class="accent-base" opacity="0.85"/>
+  <path d="M84,400 L86,406 L92,408 L86,410 L84,416 L82,410 L76,408 L82,406 Z"
+        fill="#ffffff" opacity="0.85"/>
+  <path d="M428,400 L430,406 L436,408 L430,410 L428,416 L426,410 L420,408 L426,406 Z"
+        fill="#ffffff" opacity="0.85"/>
+</svg>

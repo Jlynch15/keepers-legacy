@@ -1,0 +1,98 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- DUSTDEVIL — dirt, common — whips up dust tornadoes when spinning excitedly
+       Mutations: v1 Dust Brown · v2 Tan · v3 Russet · v4 Pale Beige
+       Signature: round head atop swirling dust tornado base, mid-spin pose
+  -->
+  <!-- PALETTE
+       v1: body-base=#a8804a body-shadow=#603a18 body-highlight=#d8a878 body-stroke=#1a0a00 accent-base=#c8a088 accent-shadow=#705038 accent-highlight=#f0d8b8
+       v2: body-base=#d0a878 body-shadow=#806038 body-highlight=#f0d0a0 body-stroke=#281808 accent-base=#e0c098 accent-shadow=#806848 accent-highlight=#fff0d0
+       v3: body-base=#a8542a body-shadow=#5a2810 body-highlight=#d87850 body-stroke=#280a00 accent-base=#c88068 accent-shadow=#704030 accent-highlight=#e8a880
+       v4: body-base=#d8c098 body-shadow=#8a7050 body-highlight=#f0e0c0 body-stroke=#383020 accent-base=#e8d8b0 accent-shadow=#a88858 accent-highlight=#fff8e0
+  -->
+  <style>
+    .body-base       { fill: #a8804a; }
+    .body-base       { stroke: #a8804a; }
+    .body-shadow     { fill: #603a18; }
+    .body-shadow     { stroke: #603a18; }
+    .body-highlight  { fill: #d8a878; }
+    .body-highlight  { stroke: #d8a878; }
+    .body-stroke     { fill: #1a0a00; }
+    .body-stroke     { stroke: #1a0a00; }
+    .accent-base     { fill: #c8a088; }
+    .accent-base     { stroke: #c8a088; }
+    .accent-shadow   { fill: #705038; }
+    .accent-shadow   { stroke: #705038; }
+    .accent-highlight{ fill: #f0d8b8; }
+    .accent-highlight{ stroke: #f0d8b8; }
+    .eye-iris        { fill: #6a4830; }
+    .eye-pupil       { fill: #1a0a00; }
+    .eye-highlight   { fill: #ffffff; }
+    .eye-sclera      { fill: #f8f0e0; }
+    .mouth-interior  { fill: #2a1008; }
+    .tongue          { fill: #ff8090; }
+  </style>
+
+  <!-- ═══════ DUST TORNADO BASE (signature) ═══════ -->
+  <path d="M148,460 Q256,478 364,460 Q400,480 364,490 Q256,498 148,490 Q116,480 148,460 Z" class="accent-shadow"/>
+  <path d="M156,440 Q256,458 356,440 Q386,460 356,470 Q256,476 156,470 Q126,460 156,440 Z" class="accent-base"/>
+  <path d="M168,402 Q256,418 344,402 Q374,420 344,432 Q256,438 168,432 Q138,420 168,402 Z" class="accent-shadow"/>
+  <path d="M176,378 Q256,392 336,378 Q360,394 336,402 Q256,408 176,402 Q152,394 176,378 Z" class="accent-base"/>
+  <path d="M192,348 Q256,358 320,348 Q340,362 320,372 Q256,378 192,372 Q172,362 192,348 Z" class="accent-shadow"/>
+  <path d="M198,326 Q256,334 314,326 Q330,336 314,344 Q256,350 198,344 Q182,336 198,326 Z" class="accent-base"/>
+  <!-- dust swirl lines -->
+  <path d="M180,440 Q220,420 256,440" class="accent-highlight" fill="none" stroke-width="2.5" opacity="0.7" stroke-linecap="round"/>
+  <path d="M256,468 Q296,448 336,468" class="accent-highlight" fill="none" stroke-width="2.5" opacity="0.7" stroke-linecap="round"/>
+  <path d="M196,388 Q236,376 276,388" class="accent-highlight" fill="none" stroke-width="2" opacity="0.65" stroke-linecap="round"/>
+
+  <!-- arms -->
+  <ellipse cx="142" cy="280" rx="36" ry="20" class="body-shadow" transform="rotate(-30 142 280)"/>
+  <ellipse cx="146" cy="276" rx="30" ry="15" class="body-base"   transform="rotate(-30 146 276)"/>
+  <ellipse cx="370" cy="280" rx="36" ry="20" class="body-shadow" transform="rotate(30 370 280)"/>
+  <ellipse cx="366" cy="276" rx="30" ry="15" class="body-base"   transform="rotate(30 366 276)"/>
+
+  <!-- head (round) -->
+  <circle cx="256" cy="240" r="120" class="body-shadow"/>
+  <circle cx="256" cy="234" r="112" class="body-base"/>
+  <ellipse cx="220" cy="186" rx="64" ry="42" class="body-highlight" opacity="0.55"/>
+
+  <!-- ═══════ EYES (dirt family — SPIRAL-shaped highlight, matching tornado theme) ═══════ -->
+  <ellipse cx="216" cy="232" rx="22" ry="24" class="eye-sclera" stroke="none"/>
+  <ellipse cx="216" cy="232" rx="18" ry="20" fill="none" stroke="#382818" stroke-width="2.5"/>
+  <circle  cx="218" cy="238" r="13" class="eye-iris"/>
+  <circle  cx="218" cy="238" r="8"  class="eye-pupil"/>
+  <!-- spiral-shaped highlight -->
+  <path d="M222,228 Q227,232 224,236 Q220,234 222,228" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+  <ellipse cx="296" cy="232" rx="22" ry="24" class="eye-sclera" stroke="none"/>
+  <ellipse cx="296" cy="232" rx="18" ry="20" fill="none" stroke="#382818" stroke-width="2.5"/>
+  <circle  cx="294" cy="238" r="13" class="eye-iris"/>
+  <circle  cx="294" cy="238" r="8"  class="eye-pupil"/>
+  <path d="M290,228 Q285,232 288,236 Q292,234 290,228" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- mouth: open excited grin with tongue -->
+  <path d="M218,272 Q256,296 294,276 Q280,284 256,284 Q236,284 218,272 Z" class="mouth-interior"/>
+  <ellipse cx="256" cy="284" rx="14" ry="6" class="tongue" stroke="none"/>
+
+  <!-- cheeks -->
+  <ellipse cx="174" cy="266" rx="12" ry="7" fill="#c06848" opacity="0.45" stroke="none"/>
+  <ellipse cx="338" cy="266" rx="12" ry="7" fill="#c06848" opacity="0.45" stroke="none"/>
+
+  <!-- body specks -->
+  <circle cx="248" cy="158" r="2" class="body-highlight" opacity="0.7" stroke="none"/>
+  <circle cx="296" cy="180" r="2" class="body-highlight" opacity="0.6" stroke="none"/>
+  <circle cx="180" cy="220" r="2" class="body-highlight" opacity="0.55" stroke="none"/>
+  <circle cx="332" cy="220" r="2" class="body-highlight" opacity="0.55" stroke="none"/>
+
+  <!-- ambient dust -->
+  <circle cx="60"  cy="380" r="2" class="body-base" opacity="0.6" stroke="none"/>
+  <circle cx="38"  cy="412" r="1.5" class="body-base" opacity="0.55" stroke="none"/>
+  <circle cx="74"  cy="430" r="1.5" class="body-base" opacity="0.5" stroke="none"/>
+  <circle cx="450" cy="380" r="2" class="body-base" opacity="0.6" stroke="none"/>
+  <circle cx="476" cy="412" r="1.5" class="body-base" opacity="0.55" stroke="none"/>
+  <circle cx="438" cy="430" r="1.5" class="body-base" opacity="0.5" stroke="none"/>
+
+  <!-- sparkles -->
+  <path d="M88,140 L90,146 L96,148 L90,150 L88,156 L86,150 L80,148 L86,146 Z"
+        fill="#ffe0a8" opacity="0.85"/>
+  <path d="M424,140 L426,146 L432,148 L426,150 L424,156 L422,150 L416,148 L422,146 Z"
+        fill="#ffe0a8" opacity="0.85"/>
+</svg>

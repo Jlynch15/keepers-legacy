@@ -1,0 +1,97 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- PEBBLESNAP — dirt, common — flicks pebbles with powerful coiled tail
+       Mutations: v1 Brown · v2 Spotted Grey · v3 Sandy · v4 Dark Tan
+       Signature: alert compact body with coiled WHIP TAIL holding pebbles ready to snap
+  -->
+  <!-- PALETTE
+       v1: body-base=#7a4a28 body-shadow=#3a2008 body-highlight=#a87858 body-stroke=#1a0800 accent-base=#5a3018 accent-shadow=#2a1808 accent-highlight=#806048
+       v2: body-base=#888880 body-shadow=#48484a body-highlight=#b0b0a8 body-stroke=#1a1a1a accent-base=#606058 accent-shadow=#28282a accent-highlight=#909088
+       v3: body-base=#d0a868 body-shadow=#806838 body-highlight=#f0d098 body-stroke=#382818 accent-base=#a08858 accent-shadow=#604828 accent-highlight=#d8b888
+       v4: body-base=#603a18 body-shadow=#281808 body-highlight=#805848 body-stroke=#000000 accent-base=#402810 accent-shadow=#180800 accent-highlight=#604028
+  -->
+  <style>
+    .body-base       { fill: #7a4a28; }
+    .body-base       { stroke: #7a4a28; }
+    .body-shadow     { fill: #3a2008; }
+    .body-shadow     { stroke: #3a2008; }
+    .body-highlight  { fill: #a87858; }
+    .body-highlight  { stroke: #a87858; }
+    .body-stroke     { fill: #1a0800; }
+    .body-stroke     { stroke: #1a0800; }
+    .accent-base     { fill: #5a3018; }
+    .accent-base     { stroke: #5a3018; }
+    .accent-shadow   { fill: #2a1808; }
+    .accent-shadow   { stroke: #2a1808; }
+    .accent-highlight{ fill: #806048; }
+    .accent-highlight{ stroke: #806048; }
+    .eye-iris        { fill: #5a3818; }
+    .eye-pupil       { fill: #1a0a00; }
+    .eye-highlight   { fill: #ffffff; }
+    .eye-sclera      { fill: #f8f0e0; }
+    .mouth-interior  { fill: #2a1008; }
+  </style>
+
+  <!-- ═══════ COILED WHIP TAIL (signature: behind body, coiled with pebble) ═══════ -->
+  <path d="M340,330 Q420,300 440,232 Q460,180 432,168 Q412,168 416,196 Q420,224 396,236 Q364,248 340,260 Z" class="body-shadow"/>
+  <path d="M340,330 Q416,302 434,236 Q450,188 430,176 Q416,178 420,200 Q424,228 398,240 Q368,250 340,260 Z" class="body-base"/>
+  <!-- pebble at tail tip -->
+  <circle cx="438" cy="172" r="14" class="accent-shadow"/>
+  <circle cx="438" cy="170" r="11" class="accent-base"/>
+  <circle cx="434" cy="166" r="3" class="accent-highlight"/>
+
+  <!-- feet -->
+  <ellipse cx="220" cy="430" rx="26" ry="13" class="body-shadow"/>
+  <ellipse cx="288" cy="430" rx="26" ry="13" class="body-shadow"/>
+  <ellipse cx="220" cy="426" rx="22" ry="9" class="body-base"/>
+  <ellipse cx="288" cy="426" rx="22" ry="9" class="body-base"/>
+
+  <!-- arms (small, alert pose) -->
+  <ellipse cx="146" cy="304" rx="32" ry="18" class="body-shadow" transform="rotate(-15 146 304)"/>
+  <ellipse cx="150" cy="300" rx="26" ry="13" class="body-base"   transform="rotate(-15 150 300)"/>
+  <ellipse cx="354" cy="304" rx="32" ry="18" class="body-shadow" transform="rotate(15 354 304)"/>
+  <ellipse cx="350" cy="300" rx="26" ry="13" class="body-base"   transform="rotate(15 350 300)"/>
+
+  <!-- compact body (alert posture) -->
+  <ellipse cx="254" cy="298" rx="106" ry="120" class="body-shadow"/>
+  <ellipse cx="254" cy="294" rx="100" ry="114" class="body-base"/>
+  <ellipse cx="220" cy="246" rx="56" ry="42" class="body-highlight" opacity="0.55"/>
+
+  <!-- pebble specks scattered on body (matches v2 mutation theme) -->
+  <circle cx="276" cy="280" r="3" class="accent-shadow" opacity="0.7"/>
+  <circle cx="232" cy="320" r="2.5" class="accent-shadow" opacity="0.7"/>
+  <circle cx="296" cy="340" r="2.5" class="accent-shadow" opacity="0.7"/>
+
+  <!-- ═══════ EYES (dirt family — alert wide bright with single small highlight) ═══════ -->
+  <ellipse cx="218" cy="280" rx="26" ry="30" class="eye-sclera" stroke="none"/>
+  <ellipse cx="218" cy="280" rx="22" ry="26" fill="none" stroke="#1a0800" stroke-width="3"/>
+  <circle  cx="220" cy="286" r="16" class="eye-iris"/>
+  <circle  cx="220" cy="286" r="11" class="eye-pupil"/>
+  <circle cx="226" cy="278" r="4" class="eye-highlight" stroke="none"/>
+  <ellipse cx="290" cy="280" rx="26" ry="30" class="eye-sclera" stroke="none"/>
+  <ellipse cx="290" cy="280" rx="22" ry="26" fill="none" stroke="#1a0800" stroke-width="3"/>
+  <circle  cx="288" cy="286" r="16" class="eye-iris"/>
+  <circle  cx="288" cy="286" r="11" class="eye-pupil"/>
+  <circle cx="282" cy="278" r="4" class="eye-highlight" stroke="none"/>
+
+  <!-- mouth: small smirk -->
+  <path d="M232,338 Q256,346 280,338" class="body-stroke" fill="none" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- cheek blush -->
+  <ellipse cx="174" cy="324" rx="11" ry="7" fill="#a07050" opacity="0.42" stroke="none"/>
+  <ellipse cx="332" cy="324" rx="11" ry="7" fill="#a07050" opacity="0.42" stroke="none"/>
+
+  <!-- body specks -->
+  <circle cx="248" cy="218" r="2" class="body-highlight" opacity="0.7" stroke="none"/>
+  <circle cx="200" cy="370" r="2" class="body-highlight" opacity="0.6" stroke="none"/>
+
+  <!-- ambient dust -->
+  <circle cx="40"  cy="430" r="2" class="body-base" opacity="0.5" stroke="none"/>
+  <circle cx="74"  cy="466" r="1.5" class="body-base" opacity="0.5" stroke="none"/>
+  <circle cx="100" cy="436" r="1.5" class="body-base" opacity="0.45" stroke="none"/>
+
+  <!-- sparkles near pebble (signature: motion implied) -->
+  <path d="M460,150 L462,156 L468,158 L462,160 L460,166 L458,160 L452,158 L458,156 Z"
+        fill="#ffffff" opacity="0.85"/>
+  <path d="M88,200 L90,206 L96,208 L90,210 L88,216 L86,210 L80,208 L86,206 Z"
+        fill="#ffffff" opacity="0.85"/>
+</svg>

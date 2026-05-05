@@ -1,0 +1,115 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- CRUMBLEBANE — dirt, common — constantly sheds pebbles, collects obsessively
+       Mutations: v1 Sandstone · v2 Dark Brown · v3 Red Clay · v4 Ash Grey
+       Signature: round body with pebbles tumbling at feet + a few stuck on body
+  -->
+  <!-- PALETTE
+       v1: body-base=#d8b878 body-shadow=#80683a body-highlight=#f0d8a0 body-stroke=#382818 accent-base=#a08858 accent-shadow=#5a4828 accent-highlight=#d8c098
+       v2: body-base=#7a4a28 body-shadow=#3a2008 body-highlight=#a87858 body-stroke=#1a0a00 accent-base=#5a3818 accent-shadow=#2a1808 accent-highlight=#a07858
+       v3: body-base=#b06848 body-shadow=#683020 body-highlight=#d89878 body-stroke=#301010 accent-base=#884028 accent-shadow=#481810 accent-highlight=#c88068
+       v4: body-base=#9a9a9a body-shadow=#585858 body-highlight=#c8c8c8 body-stroke=#202020 accent-base=#707070 accent-shadow=#303030 accent-highlight=#a8a8a8
+  -->
+  <style>
+    .body-base       { fill: #d8b878; }
+    .body-base       { stroke: #d8b878; }
+    .body-shadow     { fill: #80683a; }
+    .body-shadow     { stroke: #80683a; }
+    .body-highlight  { fill: #f0d8a0; }
+    .body-highlight  { stroke: #f0d8a0; }
+    .body-stroke     { fill: #382818; }
+    .body-stroke     { stroke: #382818; }
+    .accent-base     { fill: #a08858; }
+    .accent-base     { stroke: #a08858; }
+    .accent-shadow   { fill: #5a4828; }
+    .accent-shadow   { stroke: #5a4828; }
+    .accent-highlight{ fill: #d8c098; }
+    .accent-highlight{ stroke: #d8c098; }
+    .eye-iris        { fill: #6a4830; }
+    .eye-pupil       { fill: #1a0a00; }
+    .eye-highlight   { fill: #ffffff; }
+    .eye-sclera      { fill: #f8f0e0; }
+    .mouth-interior  { fill: #2a1008; }
+  </style>
+
+  <!-- ═══════ FEET ═══════ -->
+  <ellipse cx="200" cy="436" rx="32" ry="14" class="body-shadow"/>
+  <ellipse cx="312" cy="436" rx="32" ry="14" class="body-shadow"/>
+  <ellipse cx="200" cy="432" rx="26" ry="11" class="body-base"/>
+  <ellipse cx="312" cy="432" rx="26" ry="11" class="body-base"/>
+
+  <!-- arms -->
+  <ellipse cx="128" cy="296" rx="40" ry="22" class="body-shadow" transform="rotate(-15 128 296)"/>
+  <ellipse cx="132" cy="292" rx="34" ry="17" class="body-base"   transform="rotate(-15 132 292)"/>
+  <ellipse cx="384" cy="296" rx="40" ry="22" class="body-shadow" transform="rotate(15 384 296)"/>
+  <ellipse cx="380" cy="292" rx="34" ry="17" class="body-base"   transform="rotate(15 380 292)"/>
+
+  <!-- ═══════ BODY (round, sandstone) ═══════ -->
+  <circle cx="256" cy="296" r="138" class="body-shadow"/>
+  <circle cx="256" cy="290" r="128" class="body-base"/>
+  <ellipse cx="218" cy="240" rx="74" ry="48" class="body-highlight" opacity="0.55"/>
+  <ellipse cx="256" cy="360" rx="64" ry="28" class="body-highlight" opacity="0.32"/>
+
+  <!-- ═══════ PEBBLES STUCK ON BODY (signature: shedding pebbles) ═══════ -->
+  <circle cx="206" cy="220" r="6" class="accent-shadow"/>
+  <circle cx="206" cy="218" r="4" class="accent-base"/>
+  <circle cx="298" cy="208" r="7" class="accent-shadow"/>
+  <circle cx="298" cy="206" r="5" class="accent-base"/>
+  <circle cx="328" cy="280" r="6" class="accent-shadow"/>
+  <circle cx="328" cy="278" r="4" class="accent-base"/>
+  <circle cx="186" cy="304" r="5" class="accent-shadow"/>
+  <circle cx="186" cy="302" r="3.5" class="accent-base"/>
+  <circle cx="232" cy="372" r="6" class="accent-shadow"/>
+  <circle cx="232" cy="370" r="4" class="accent-base"/>
+  <circle cx="286" cy="384" r="5" class="accent-shadow"/>
+  <circle cx="286" cy="382" r="3.5" class="accent-base"/>
+
+  <!-- ═══════ EYES (dirt family — round earthy with small PEBBLE-DROP highlight) ═══════ -->
+  <ellipse cx="218" cy="280" rx="24" ry="26" class="eye-sclera" stroke="none"/>
+  <ellipse cx="218" cy="280" rx="20" ry="22" fill="none" stroke="#382818" stroke-width="2.5"/>
+  <circle  cx="220" cy="286" r="14" class="eye-iris"/>
+  <circle  cx="220" cy="286" r="9"  class="eye-pupil"/>
+  <!-- pebble-drop highlight (small oval-shaped, like falling pebble) -->
+  <ellipse cx="225" cy="276" rx="3" ry="4" class="eye-highlight" stroke="none"/>
+  <ellipse cx="296" cy="280" rx="24" ry="26" class="eye-sclera" stroke="none"/>
+  <ellipse cx="296" cy="280" rx="20" ry="22" fill="none" stroke="#382818" stroke-width="2.5"/>
+  <circle  cx="294" cy="286" r="14" class="eye-iris"/>
+  <circle  cx="294" cy="286" r="9"  class="eye-pupil"/>
+  <ellipse cx="289" cy="276" rx="3" ry="4" class="eye-highlight" stroke="none"/>
+
+  <!-- ═══════ MOUTH (asymmetric crooked grin — pebble-mouth) ═══════ -->
+  <path d="M226,326 Q256,344 288,330" class="body-stroke" fill="none" stroke-width="3.5" stroke-linecap="round"/>
+
+  <!-- cheek blush -->
+  <ellipse cx="178" cy="318" rx="13" ry="8" fill="#c08060" opacity="0.42" stroke="none"/>
+  <ellipse cx="334" cy="318" rx="13" ry="8" fill="#c08060" opacity="0.42" stroke="none"/>
+
+  <!-- body specks -->
+  <circle cx="246" cy="200" r="2" class="body-highlight" opacity="0.7" stroke="none"/>
+  <circle cx="172" cy="278" r="2" class="body-highlight" opacity="0.6" stroke="none"/>
+  <circle cx="350" cy="320" r="2" class="body-highlight" opacity="0.55" stroke="none"/>
+  <circle cx="216" cy="396" r="2" class="body-highlight" opacity="0.55" stroke="none"/>
+
+  <!-- ═══════ FALLING PEBBLES (signature: shedding pebbles at feet) ═══════ -->
+  <circle cx="146" cy="466" r="7" class="accent-shadow"/>
+  <circle cx="146" cy="464" r="5" class="accent-base"/>
+  <circle cx="178" cy="478" r="5" class="accent-shadow"/>
+  <circle cx="178" cy="476" r="3.5" class="accent-base"/>
+  <circle cx="362" cy="466" r="6" class="accent-shadow"/>
+  <circle cx="362" cy="464" r="4" class="accent-base"/>
+  <circle cx="334" cy="478" r="4" class="accent-shadow"/>
+  <circle cx="334" cy="476" r="3" class="accent-base"/>
+
+  <!-- ambient dust -->
+  <circle cx="60"  cy="430" r="2" class="body-base" opacity="0.5" stroke="none"/>
+  <circle cx="92"  cy="466" r="1.5" class="body-base" opacity="0.5" stroke="none"/>
+  <circle cx="38"  cy="460" r="1.5" class="body-base" opacity="0.45" stroke="none"/>
+  <circle cx="450" cy="430" r="2" class="body-base" opacity="0.5" stroke="none"/>
+  <circle cx="420" cy="466" r="1.5" class="body-base" opacity="0.5" stroke="none"/>
+  <circle cx="474" cy="460" r="1.5" class="body-base" opacity="0.45" stroke="none"/>
+
+  <!-- sparkle accents -->
+  <path d="M84,180 L86,186 L92,188 L86,190 L84,196 L82,190 L76,188 L82,186 Z"
+        fill="#ffffff" opacity="0.85"/>
+  <path d="M428,180 L430,186 L436,188 L430,190 L428,196 L426,190 L420,188 L426,186 Z"
+        fill="#ffffff" opacity="0.85"/>
+</svg>

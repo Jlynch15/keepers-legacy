@@ -1,0 +1,105 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- ROOTBOUND — dirt, common — roots from feet anchor it during sleep
+       Mutations: v1 Brown · v2 Dark Root · v3 Pale Wood · v4 Mossy Green
+       Signature: round body with prominent ROOTS curling beneath like a natural anchor
+  -->
+  <!-- PALETTE
+       v1: body-base=#80583a body-shadow=#3a2818 body-highlight=#a8805a body-stroke=#1a0800 accent-base=#5a3a20 accent-shadow=#2a1808 accent-highlight=#806040
+       v2: body-base=#4a2810 body-shadow=#1a0a00 body-highlight=#7a4828 body-stroke=#000000 accent-base=#382010 accent-shadow=#000000 accent-highlight=#603820
+       v3: body-base=#d8b888 body-shadow=#806848 body-highlight=#f0d8a8 body-stroke=#382818 accent-base=#a08058 accent-shadow=#604828 accent-highlight=#d0a878
+       v4: body-base=#5a7038 body-shadow=#283018 body-highlight=#80a058 body-stroke=#101808 accent-base=#384828 accent-shadow=#182010 accent-highlight=#608848
+  -->
+  <style>
+    .body-base       { fill: #80583a; }
+    .body-base       { stroke: #80583a; }
+    .body-shadow     { fill: #3a2818; }
+    .body-shadow     { stroke: #3a2818; }
+    .body-highlight  { fill: #a8805a; }
+    .body-highlight  { stroke: #a8805a; }
+    .body-stroke     { fill: #1a0800; }
+    .body-stroke     { stroke: #1a0800; }
+    .accent-base     { fill: #5a3a20; }
+    .accent-base     { stroke: #5a3a20; }
+    .accent-shadow   { fill: #2a1808; }
+    .accent-shadow   { stroke: #2a1808; }
+    .accent-highlight{ fill: #806040; }
+    .accent-highlight{ stroke: #806040; }
+    .eye-iris        { fill: #5a3818; }
+    .eye-pupil       { fill: #1a0a00; }
+    .eye-highlight   { fill: #ffffff; }
+    .eye-sclera      { fill: #f8f0e0; }
+    .mouth-interior  { fill: #2a1008; }
+  </style>
+
+  <!-- ═══════ ROOTS BENEATH (signature: anchor roots curling underneath) ═══════ -->
+  <!-- main root tendrils curling downward and outward -->
+  <path d="M180,420 Q140,460 100,470 Q120,440 160,420 Q120,490 90,490 Q70,470 80,452 Z" class="accent-shadow"/>
+  <path d="M188,420 Q150,452 116,464 Q132,442 168,422 Q140,484 100,484 Q88,468 96,456 Z" class="accent-base"/>
+  <path d="M332,420 Q372,460 412,470 Q392,440 352,420 Q392,490 422,490 Q442,470 432,452 Z" class="accent-shadow"/>
+  <path d="M324,420 Q362,452 396,464 Q380,442 344,422 Q372,484 412,484 Q424,468 416,456 Z" class="accent-base"/>
+  <!-- root highlight veins -->
+  <path d="M156,440 Q128,460 110,476" class="accent-highlight" fill="none" stroke-width="2.5" opacity="0.7"/>
+  <path d="M356,440 Q384,460 402,476" class="accent-highlight" fill="none" stroke-width="2.5" opacity="0.7"/>
+  <!-- center anchor root -->
+  <path d="M232,432 Q236,470 248,484" class="accent-shadow" fill="none" stroke-width="6" stroke-linecap="round"/>
+  <path d="M280,432 Q276,470 264,484" class="accent-shadow" fill="none" stroke-width="6" stroke-linecap="round"/>
+
+  <!-- arms (small chubby) -->
+  <ellipse cx="138" cy="304" rx="34" ry="18" class="body-shadow" transform="rotate(-18 138 304)"/>
+  <ellipse cx="142" cy="300" rx="28" ry="14" class="body-base"   transform="rotate(-18 142 300)"/>
+  <ellipse cx="374" cy="304" rx="34" ry="18" class="body-shadow" transform="rotate(18 374 304)"/>
+  <ellipse cx="370" cy="300" rx="28" ry="14" class="body-base"   transform="rotate(18 370 300)"/>
+
+  <!-- ═══════ BODY (round, earthen) ═══════ -->
+  <circle cx="256" cy="290" r="138" class="body-shadow"/>
+  <circle cx="256" cy="284" r="128" class="body-base"/>
+  <ellipse cx="220" cy="232" rx="74" ry="48" class="body-highlight" opacity="0.55"/>
+  <ellipse cx="256" cy="356" rx="64" ry="28" class="body-highlight" opacity="0.32"/>
+
+  <!-- bark texture lines -->
+  <path d="M200,260 Q198,300 200,340" class="body-shadow" fill="none" stroke-width="2" opacity="0.4"/>
+  <path d="M312,260 Q314,300 312,340" class="body-shadow" fill="none" stroke-width="2" opacity="0.4"/>
+  <path d="M256,220 Q254,260 256,300" class="body-shadow" fill="none" stroke-width="2" opacity="0.35"/>
+
+  <!-- ═══════ EYES (dirt family — sleepy with LEAF-shaped highlight, peaceful) ═══════ -->
+  <ellipse cx="218" cy="276" rx="22" ry="20" class="eye-sclera" stroke="none"/>
+  <!-- droopy upper lid (sleepy) -->
+  <path d="M196,276 Q218,260 240,276 Q236,268 218,266 Q200,268 196,276 Z" class="body-shadow" stroke="none"/>
+  <ellipse cx="218" cy="276" rx="18" ry="16" fill="none" stroke="#1a0800" stroke-width="2.5"/>
+  <circle  cx="220" cy="282" r="11" class="eye-iris"/>
+  <circle  cx="220" cy="282" r="7"  class="eye-pupil"/>
+  <!-- leaf-shaped highlight -->
+  <path d="M223,272 Q229,276 226,282 Q220,278 223,272 Z" class="eye-highlight" stroke="none"/>
+  <ellipse cx="294" cy="276" rx="22" ry="20" class="eye-sclera" stroke="none"/>
+  <path d="M272,276 Q294,260 316,276 Q312,268 294,266 Q276,268 272,276 Z" class="body-shadow" stroke="none"/>
+  <ellipse cx="294" cy="276" rx="18" ry="16" fill="none" stroke="#1a0800" stroke-width="2.5"/>
+  <circle  cx="292" cy="282" r="11" class="eye-iris"/>
+  <circle  cx="292" cy="282" r="7"  class="eye-pupil"/>
+  <path d="M289,272 Q283,276 286,282 Q292,278 289,272 Z" class="eye-highlight" stroke="none"/>
+
+  <!-- mouth: peaceful gentle smile -->
+  <path d="M232,322 Q256,338 280,322" class="body-stroke" fill="none" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- small leaves on top of head (signature accent: rooted/grown) -->
+  <ellipse cx="240" cy="148" rx="6" ry="14" fill="#5a7038" opacity="0.85" transform="rotate(-25 240 148)"/>
+  <ellipse cx="272" cy="148" rx="6" ry="14" fill="#5a7038" opacity="0.85" transform="rotate(25 272 148)"/>
+
+  <!-- cheek blush -->
+  <ellipse cx="178" cy="312" rx="13" ry="8" fill="#a07050" opacity="0.42" stroke="none"/>
+  <ellipse cx="334" cy="312" rx="13" ry="8" fill="#a07050" opacity="0.42" stroke="none"/>
+
+  <!-- body specks -->
+  <circle cx="246" cy="200" r="2" class="body-highlight" opacity="0.7" stroke="none"/>
+  <circle cx="172" cy="276" r="2" class="body-highlight" opacity="0.6" stroke="none"/>
+  <circle cx="346" cy="320" r="2" class="body-highlight" opacity="0.55" stroke="none"/>
+
+  <!-- ambient dust -->
+  <circle cx="40"  cy="430" r="2" class="body-base" opacity="0.5" stroke="none"/>
+  <circle cx="472" cy="430" r="2" class="body-base" opacity="0.5" stroke="none"/>
+
+  <!-- sparkles -->
+  <path d="M88,180 L90,186 L96,188 L90,190 L88,196 L86,190 L80,188 L86,186 Z"
+        fill="#ffffff" opacity="0.85"/>
+  <path d="M424,180 L426,186 L432,188 L426,190 L424,196 L422,190 L416,188 L422,186 Z"
+        fill="#ffffff" opacity="0.85"/>
+</svg>

@@ -1,0 +1,103 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- MOUNDMAKER — dirt, common — builder, holds tiny dirt mound replica
+       Mutations: v1 Earth Brown · v2 Red Soil · v3 Sand · v4 Clay Orange
+       Signature: proud chest-out posture HOLDING A MINI MOUND in front
+  -->
+  <!-- PALETTE
+       v1: body-base=#806038 body-shadow=#3a2810 body-highlight=#a8885a body-stroke=#1a0800 accent-base=#603810 accent-shadow=#2a1808 accent-highlight=#805838
+       v2: body-base=#a04830 body-shadow=#5a2010 body-highlight=#d8784a body-stroke=#280800 accent-base=#883820 accent-shadow=#4a1808 accent-highlight=#c0603a
+       v3: body-base=#e0c898 body-shadow=#a08858 body-highlight=#fff0c8 body-stroke=#403018 accent-base=#c8a878 accent-shadow=#806838 accent-highlight=#fff8e0
+       v4: body-base=#d08038 body-shadow=#804020 body-highlight=#f0a868 body-stroke=#281000 accent-base=#a86028 accent-shadow=#603010 accent-highlight=#e89868
+  -->
+  <style>
+    .body-base       { fill: #806038; }
+    .body-base       { stroke: #806038; }
+    .body-shadow     { fill: #3a2810; }
+    .body-shadow     { stroke: #3a2810; }
+    .body-highlight  { fill: #a8885a; }
+    .body-highlight  { stroke: #a8885a; }
+    .body-stroke     { fill: #1a0800; }
+    .body-stroke     { stroke: #1a0800; }
+    .accent-base     { fill: #603810; }
+    .accent-base     { stroke: #603810; }
+    .accent-shadow   { fill: #2a1808; }
+    .accent-shadow   { stroke: #2a1808; }
+    .accent-highlight{ fill: #805838; }
+    .accent-highlight{ stroke: #805838; }
+    .eye-iris        { fill: #5a3818; }
+    .eye-pupil       { fill: #1a0a00; }
+    .eye-highlight   { fill: #ffffff; }
+    .eye-sclera      { fill: #f8f0e0; }
+    .mouth-interior  { fill: #2a1008; }
+  </style>
+
+  <!-- feet (planted proud stance) -->
+  <ellipse cx="200" cy="442" rx="30" ry="14" class="body-shadow"/>
+  <ellipse cx="312" cy="442" rx="30" ry="14" class="body-shadow"/>
+  <ellipse cx="200" cy="438" rx="24" ry="10" class="body-base"/>
+  <ellipse cx="312" cy="438" rx="24" ry="10" class="body-base"/>
+
+  <!-- arms cradling the mound -->
+  <ellipse cx="150" cy="320" rx="40" ry="18" class="body-shadow" transform="rotate(-15 150 320)"/>
+  <ellipse cx="154" cy="316" rx="34" ry="14" class="body-base"   transform="rotate(-15 154 316)"/>
+  <ellipse cx="362" cy="320" rx="40" ry="18" class="body-shadow" transform="rotate(15 362 320)"/>
+  <ellipse cx="358" cy="316" rx="34" ry="14" class="body-base"   transform="rotate(15 358 316)"/>
+
+  <!-- chest-out body (proud) -->
+  <ellipse cx="256" cy="306" rx="100" ry="118" class="body-shadow"/>
+  <ellipse cx="256" cy="300" rx="94" ry="112" class="body-base"/>
+  <ellipse cx="222" cy="246" rx="56" ry="44" class="body-highlight" opacity="0.55"/>
+
+  <!-- ═══════ MINI MOUND HELD IN FRONT (signature) ═══════ -->
+  <ellipse cx="256" cy="380" rx="64" ry="22" class="accent-shadow"/>
+  <path d="M196,374 Q256,310 316,374 Z" class="accent-shadow"/>
+  <path d="M204,374 Q256,322 308,374 Z" class="accent-base"/>
+  <!-- mound highlight -->
+  <path d="M232,360 Q252,338 268,348 Q260,348 232,360 Z" class="accent-highlight" opacity="0.7"/>
+  <!-- tiny pebbles on mound -->
+  <circle cx="234" cy="364" r="2.5" class="body-stroke" stroke="none"/>
+  <circle cx="276" cy="360" r="2" class="body-stroke" stroke="none"/>
+  <circle cx="252" cy="342" r="2" class="body-stroke" stroke="none"/>
+  <!-- tiny flag/marker on top of mound -->
+  <path d="M256,322 L256,302 L268,308 L256,314" class="body-stroke" fill="none" stroke-width="2" stroke-linecap="round"/>
+  <path d="M256,302 L268,308 L256,314 Z" fill="#c8c8c8" stroke="#1a0800" stroke-width="1.5"/>
+
+  <!-- ═══════ EYES (dirt family — proud upright bright) ═══════ -->
+  <ellipse cx="218" cy="246" rx="22" ry="24" class="eye-sclera" stroke="none"/>
+  <ellipse cx="218" cy="246" rx="18" ry="20" fill="none" stroke="#1a0800" stroke-width="2.5"/>
+  <circle  cx="220" cy="252" r="13" class="eye-iris"/>
+  <circle  cx="220" cy="252" r="8"  class="eye-pupil"/>
+  <circle cx="224" cy="246" r="3" class="eye-highlight" stroke="none"/>
+  <ellipse cx="294" cy="246" rx="22" ry="24" class="eye-sclera" stroke="none"/>
+  <ellipse cx="294" cy="246" rx="18" ry="20" fill="none" stroke="#1a0800" stroke-width="2.5"/>
+  <circle  cx="292" cy="252" r="13" class="eye-iris"/>
+  <circle  cx="292" cy="252" r="8"  class="eye-pupil"/>
+  <circle cx="288" cy="246" r="3" class="eye-highlight" stroke="none"/>
+  <!-- proud upturned eyebrows -->
+  <path d="M198,228 Q218,222 238,228" class="body-stroke" fill="none" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M274,228 Q294,222 314,228" class="body-stroke" fill="none" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- mouth: satisfied content smile -->
+  <path d="M232,294 Q256,310 280,294" class="body-stroke" fill="none" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- cheek blush -->
+  <ellipse cx="180" cy="276" rx="11" ry="7" fill="#a86048" opacity="0.45" stroke="none"/>
+  <ellipse cx="332" cy="276" rx="11" ry="7" fill="#a86048" opacity="0.45" stroke="none"/>
+
+  <!-- body specks -->
+  <circle cx="248" cy="220" r="2" class="body-highlight" opacity="0.7" stroke="none"/>
+  <circle cx="200" cy="380" r="2" class="body-highlight" opacity="0.6" stroke="none"/>
+  <circle cx="316" cy="400" r="2" class="body-highlight" opacity="0.55" stroke="none"/>
+
+  <!-- ambient dust -->
+  <circle cx="40"  cy="450" r="2" class="body-base" opacity="0.5" stroke="none"/>
+  <circle cx="76"  cy="466" r="1.5" class="body-base" opacity="0.5" stroke="none"/>
+  <circle cx="436" cy="450" r="2" class="body-base" opacity="0.5" stroke="none"/>
+  <circle cx="476" cy="466" r="1.5" class="body-base" opacity="0.5" stroke="none"/>
+
+  <!-- sparkles -->
+  <path d="M88,180 L90,186 L96,188 L90,190 L88,196 L86,190 L80,188 L86,186 Z"
+        fill="#ffffff" opacity="0.85"/>
+  <path d="M424,180 L426,186 L432,188 L426,190 L424,196 L422,190 L416,188 L422,186 Z"
+        fill="#ffffff" opacity="0.85"/>
+</svg>

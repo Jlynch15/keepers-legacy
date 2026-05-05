@@ -1,0 +1,108 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- TERRACLAW — dirt, common — oversized digging claws, shovel-shaped tail
+       Mutations: v1 Earth Brown · v2 Orange Clay · v3 Dark Grey · v4 Sand
+       Signature: prominent oversized FRONT CLAWS, broad chest, narrow body
+  -->
+  <!-- PALETTE
+       v1: body-base=#785030 body-shadow=#3a2010 body-highlight=#a87858 body-stroke=#1a0800 accent-base=#a08058 accent-shadow=#5a3818 accent-highlight=#c8a880
+       v2: body-base=#c87838 body-shadow=#704018 body-highlight=#f0a868 body-stroke=#280a00 accent-base=#a86028 accent-shadow=#603010 accent-highlight=#e89868
+       v3: body-base=#404040 body-shadow=#1a1a1a body-highlight=#686868 body-stroke=#000000 accent-base=#606060 accent-shadow=#282828 accent-highlight=#909090
+       v4: body-base=#d0b078 body-shadow=#80683a body-highlight=#f0d8a0 body-stroke=#382818 accent-base=#a89058 accent-shadow=#5a4828 accent-highlight=#d8c098
+  -->
+  <style>
+    .body-base       { fill: #785030; }
+    .body-base       { stroke: #785030; }
+    .body-shadow     { fill: #3a2010; }
+    .body-shadow     { stroke: #3a2010; }
+    .body-highlight  { fill: #a87858; }
+    .body-highlight  { stroke: #a87858; }
+    .body-stroke     { fill: #1a0800; }
+    .body-stroke     { stroke: #1a0800; }
+    .accent-base     { fill: #a08058; }
+    .accent-base     { stroke: #a08058; }
+    .accent-shadow   { fill: #5a3818; }
+    .accent-shadow   { stroke: #5a3818; }
+    .accent-highlight{ fill: #c8a880; }
+    .accent-highlight{ stroke: #c8a880; }
+    .eye-iris        { fill: #6a4830; }
+    .eye-pupil       { fill: #1a0a00; }
+    .eye-highlight   { fill: #ffffff; }
+    .eye-sclera      { fill: #f8f0e0; }
+    .mouth-interior  { fill: #2a1008; }
+  </style>
+
+  <!-- shovel-shaped tail at back (visible behind body) -->
+  <path d="M380,300 L460,260 L460,340 Z" class="body-shadow"/>
+  <path d="M380,302 L452,266 L452,334 Z" class="body-base"/>
+
+  <!-- feet -->
+  <ellipse cx="200" cy="430" rx="32" ry="14" class="body-shadow"/>
+  <ellipse cx="312" cy="430" rx="32" ry="14" class="body-shadow"/>
+  <ellipse cx="200" cy="426" rx="26" ry="10" class="body-base"/>
+  <ellipse cx="312" cy="426" rx="26" ry="10" class="body-base"/>
+
+  <!-- ═══════ HUGE FRONT CLAWS (signature) ═══════ -->
+  <!-- left claw -->
+  <ellipse cx="138" cy="288" rx="48" ry="32" class="body-shadow"/>
+  <ellipse cx="142" cy="284" rx="42" ry="26" class="body-base"/>
+  <!-- claw fingers -->
+  <path d="M100,288 L60,272 L80,300 Z" class="accent-shadow"/>
+  <path d="M104,288 L68,276 L82,298 Z" class="accent-base"/>
+  <path d="M100,316 L60,310 L84,332 Z" class="accent-shadow"/>
+  <path d="M104,316 L68,312 L86,328 Z" class="accent-base"/>
+  <path d="M104,260 L72,238 L88,268 Z" class="accent-shadow"/>
+  <path d="M108,260 L78,242 L90,266 Z" class="accent-base"/>
+  <!-- right claw -->
+  <ellipse cx="374" cy="288" rx="48" ry="32" class="body-shadow"/>
+  <ellipse cx="370" cy="284" rx="42" ry="26" class="body-base"/>
+  <path d="M412,288 L452,272 L432,300 Z" class="accent-shadow"/>
+  <path d="M408,288 L444,276 L430,298 Z" class="accent-base"/>
+  <path d="M412,316 L452,310 L428,332 Z" class="accent-shadow"/>
+  <path d="M408,316 L444,312 L426,328 Z" class="accent-base"/>
+  <path d="M408,260 L440,238 L424,268 Z" class="accent-shadow"/>
+  <path d="M404,260 L434,242 L422,266 Z" class="accent-base"/>
+
+  <!-- ═══════ BROAD CHEST BODY ═══════ -->
+  <ellipse cx="256" cy="296" rx="106" ry="120" class="body-shadow"/>
+  <ellipse cx="256" cy="290" rx="100" ry="114" class="body-base"/>
+  <ellipse cx="220" cy="240" rx="56" ry="44" class="body-highlight" opacity="0.55"/>
+  <ellipse cx="256" cy="368" rx="58" ry="22" class="body-highlight" opacity="0.32"/>
+
+  <!-- chest plate detail -->
+  <path d="M200,260 Q256,254 312,260 Q310,346 256,358 Q202,346 200,260 Z" class="accent-shadow" fill="none" stroke-width="3" opacity="0.6"/>
+
+  <!-- ═══════ EYES (dirt family — narrow determined, single small line highlight) ═══════ -->
+  <ellipse cx="220" cy="244" rx="22" ry="14" class="eye-sclera" stroke="none"/>
+  <ellipse cx="220" cy="244" rx="18" ry="10" fill="none" stroke="#1a0800" stroke-width="2.5"/>
+  <ellipse cx="222" cy="248" rx="9" ry="7" class="eye-iris"/>
+  <ellipse cx="222" cy="248" rx="6" ry="5" class="eye-pupil"/>
+  <path d="M226,240 L230,242" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+  <ellipse cx="292" cy="244" rx="22" ry="14" class="eye-sclera" stroke="none"/>
+  <ellipse cx="292" cy="244" rx="18" ry="10" fill="none" stroke="#1a0800" stroke-width="2.5"/>
+  <ellipse cx="290" cy="248" rx="9" ry="7" class="eye-iris"/>
+  <ellipse cx="290" cy="248" rx="6" ry="5" class="eye-pupil"/>
+  <path d="M286,240 L282,242" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+  <!-- determined eyebrow -->
+  <path d="M196,232 L246,228" class="body-stroke" fill="none" stroke-width="3" stroke-linecap="round"/>
+  <path d="M316,232 L266,228" class="body-stroke" fill="none" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- mouth: firm horizontal line -->
+  <path d="M232,290 L280,290" class="body-stroke" fill="none" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="232" cy="290" r="2" class="body-shadow" stroke="none"/>
+  <circle cx="280" cy="290" r="2" class="body-shadow" stroke="none"/>
+
+  <!-- body specks -->
+  <circle cx="216" cy="320" r="2" class="body-highlight" opacity="0.6" stroke="none"/>
+  <circle cx="296" cy="320" r="2" class="body-highlight" opacity="0.55" stroke="none"/>
+  <circle cx="246" cy="384" r="2" class="body-highlight" opacity="0.55" stroke="none"/>
+
+  <!-- ambient dust -->
+  <circle cx="40"  cy="430" r="2" class="body-base" opacity="0.5" stroke="none"/>
+  <circle cx="74"  cy="466" r="1.5" class="body-base" opacity="0.5" stroke="none"/>
+  <circle cx="472" cy="430" r="2" class="body-base" opacity="0.5" stroke="none"/>
+  <circle cx="438" cy="466" r="1.5" class="body-base" opacity="0.5" stroke="none"/>
+
+  <!-- sparkles -->
+  <path d="M256,150 L258,156 L264,158 L258,160 L256,166 L254,160 L248,158 L254,156 Z"
+        fill="#ffffff" opacity="0.85"/>
+</svg>

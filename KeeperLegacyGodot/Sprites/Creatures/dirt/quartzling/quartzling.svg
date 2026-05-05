@@ -1,0 +1,120 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- QUARTZLING — dirt, rare — quartz crystal spines along back, chime softly
+       Mutations: v1 Rose Quartz · v2 Smoky Grey · v3 Clear Crystal · v4 Amethyst
+       Signature: cat-like elegant posture with row of CRYSTAL SPINES along back
+  -->
+  <!-- PALETTE
+       v1: body-base=#f0c0d0 body-shadow=#a87880 body-highlight=#ffd8e0 body-stroke=#603040 accent-base=#e89098 accent-shadow=#a05868 accent-highlight=#ffb0c0
+       v2: body-base=#888880 body-shadow=#404048 body-highlight=#a8a8a0 body-stroke=#181818 accent-base=#5a5a58 accent-shadow=#28282a accent-highlight=#a8a8a0
+       v3: body-base=#e0e8f0 body-shadow=#90a0b0 body-highlight=#ffffff body-stroke=#404858 accent-base=#a0b8d0 accent-shadow=#608098 accent-highlight=#ffffff
+       v4: body-base=#a878c8 body-shadow=#583878 body-highlight=#c8a8e0 body-stroke=#1a0838 accent-base=#8858a8 accent-shadow=#403070 accent-highlight=#b890d0
+  -->
+  <style>
+    .body-base       { fill: #f0c0d0; }
+    .body-base       { stroke: #f0c0d0; }
+    .body-shadow     { fill: #a87880; }
+    .body-shadow     { stroke: #a87880; }
+    .body-highlight  { fill: #ffd8e0; }
+    .body-highlight  { stroke: #ffd8e0; }
+    .body-stroke     { fill: #603040; }
+    .body-stroke     { stroke: #603040; }
+    .accent-base     { fill: #e89098; }
+    .accent-base     { stroke: #e89098; }
+    .accent-shadow   { fill: #a05868; }
+    .accent-shadow   { stroke: #a05868; }
+    .accent-highlight{ fill: #ffb0c0; }
+    .accent-highlight{ stroke: #ffb0c0; }
+    .eye-iris        { fill: #5a3848; }
+    .eye-pupil       { fill: #1a0a10; }
+    .eye-highlight   { fill: #ffffff; }
+    .eye-sclera      { fill: #fff0f4; }
+    .mouth-interior  { fill: #2a0810; }
+  </style>
+
+  <!-- elegant cat-like body — horizontal oval with slight arch -->
+  <!-- back legs -->
+  <ellipse cx="172" cy="392" rx="24" ry="40" class="body-shadow"/>
+  <ellipse cx="174" cy="388" rx="20" ry="36" class="body-base"/>
+  <!-- front legs -->
+  <ellipse cx="332" cy="392" rx="24" ry="40" class="body-shadow"/>
+  <ellipse cx="334" cy="388" rx="20" ry="36" class="body-base"/>
+  <ellipse cx="372" cy="392" rx="20" ry="36" class="body-shadow"/>
+  <ellipse cx="374" cy="388" rx="16" ry="32" class="body-base"/>
+  <!-- feet -->
+  <ellipse cx="172" cy="430" rx="22" ry="10" class="body-shadow"/>
+  <ellipse cx="332" cy="430" rx="22" ry="10" class="body-shadow"/>
+  <ellipse cx="372" cy="430" rx="20" ry="9" class="body-shadow"/>
+
+  <!-- tail (elegant curl up) -->
+  <path d="M104,360 Q60,332 80,278 Q108,260 112,300 Q108,334 124,358 Z" class="body-shadow"/>
+  <path d="M108,358 Q66,332 84,284 Q108,268 110,306 Q108,332 126,354 Z" class="body-base"/>
+
+  <!-- ═══════ ELEGANT BODY (cat-like elongated) ═══════ -->
+  <ellipse cx="256" cy="320" rx="160" ry="76" class="body-shadow"/>
+  <ellipse cx="256" cy="316" rx="154" ry="70" class="body-base"/>
+  <ellipse cx="220" cy="280" rx="80" ry="28" class="body-highlight" opacity="0.55"/>
+
+  <!-- ═══════ CRYSTAL SPINES ALONG BACK (signature) ═══════ -->
+  <!-- 5 crystal spines of varying heights -->
+  <path d="M168,260 L172,210 L188,254 L184,258 Z" class="accent-shadow"/>
+  <path d="M170,258 L174,216 L186,254 Z" class="accent-base"/>
+  <path d="M170,224 L174,216 L182,234 L178,238 Z" class="accent-highlight"/>
+
+  <path d="M212,250 L218,184 L236,244 L232,248 Z" class="accent-shadow"/>
+  <path d="M214,248 L220,190 L234,244 Z" class="accent-base"/>
+  <path d="M214,202 L220,190 L230,220 L226,224 Z" class="accent-highlight"/>
+
+  <path d="M256,246 L262,170 L284,242 L280,246 Z" class="accent-shadow"/>
+  <path d="M258,244 L264,176 L282,242 Z" class="accent-base"/>
+  <path d="M258,194 L264,176 L276,212 L272,216 Z" class="accent-highlight"/>
+
+  <path d="M300,250 L306,184 L324,244 L320,248 Z" class="accent-shadow"/>
+  <path d="M302,248 L308,190 L322,244 Z" class="accent-base"/>
+  <path d="M302,202 L308,190 L318,220 L314,224 Z" class="accent-highlight"/>
+
+  <path d="M340,260 L344,210 L360,254 L356,258 Z" class="accent-shadow"/>
+  <path d="M342,258 L346,216 L358,254 Z" class="accent-base"/>
+  <path d="M342,224 L346,216 L354,234 L350,238 Z" class="accent-highlight"/>
+
+  <!-- ═══════ HEAD (cat-like) ═══════ -->
+  <ellipse cx="408" cy="312" rx="58" ry="56" class="body-shadow"/>
+  <ellipse cx="408" cy="308" rx="52" ry="50" class="body-base"/>
+  <ellipse cx="392" cy="288" rx="22" ry="14" class="body-highlight" opacity="0.55"/>
+  <!-- cat ears -->
+  <path d="M376,254 L368,224 L390,250 Z" class="body-shadow"/>
+  <path d="M378,254 L372,232 L388,250 Z" class="body-base"/>
+  <path d="M442,254 L450,224 L428,250 Z" class="body-shadow"/>
+  <path d="M440,254 L446,232 L430,250 Z" class="body-base"/>
+
+  <!-- ═══════ EYES (dirt family — DIAMOND-shaped highlight, crystal theme) ═══════ -->
+  <ellipse cx="392" cy="304" rx="14" ry="16" class="eye-sclera" stroke="none"/>
+  <ellipse cx="392" cy="304" rx="12" ry="14" fill="none" stroke="#603040" stroke-width="2"/>
+  <circle  cx="394" cy="308" r="9" class="eye-iris"/>
+  <circle  cx="394" cy="308" r="6" class="eye-pupil"/>
+  <!-- diamond highlight -->
+  <path d="M396,300 L400,304 L396,308 L392,304 Z" class="eye-highlight" stroke="none"/>
+  <ellipse cx="424" cy="304" rx="14" ry="16" class="eye-sclera" stroke="none"/>
+  <ellipse cx="424" cy="304" rx="12" ry="14" fill="none" stroke="#603040" stroke-width="2"/>
+  <circle  cx="422" cy="308" r="9" class="eye-iris"/>
+  <circle  cx="422" cy="308" r="6" class="eye-pupil"/>
+  <path d="M420,300 L416,304 L420,308 L424,304 Z" class="eye-highlight" stroke="none"/>
+
+  <!-- mouth: elegant gentle smile -->
+  <path d="M404,332 Q408,338 412,332" class="body-stroke" fill="none" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- nose -->
+  <path d="M406,322 L408,326 L410,322 Z" fill="#603040"/>
+
+  <!-- body specks -->
+  <circle cx="200" cy="304" r="2" class="body-highlight" opacity="0.7" stroke="none"/>
+  <circle cx="288" cy="324" r="2" class="body-highlight" opacity="0.6" stroke="none"/>
+
+  <!-- ambient dust + crystal sparkles -->
+  <path d="M88,240 L90,248 L98,250 L90,252 L88,260 L86,252 L78,250 L86,248 Z"
+        fill="#ffffff" opacity="0.9"/>
+  <path d="M64,160 L66,166 L72,168 L66,170 L64,176 L62,170 L56,168 L62,166 Z"
+        fill="#ffffff" opacity="0.85"/>
+  <path d="M204,150 L206,156 L212,158 L206,160 L204,166 L202,160 L196,158 L202,156 Z"
+        fill="#ffffff" opacity="0.85"/>
+  <path d="M328,140 L330,146 L336,148 L330,150 L328,156 L326,150 L320,148 L326,146 Z"
+        fill="#ffffff" opacity="0.85"/>
+</svg>
