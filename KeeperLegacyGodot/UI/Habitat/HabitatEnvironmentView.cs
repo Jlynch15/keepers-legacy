@@ -47,7 +47,33 @@ namespace KeeperLegacy.UI.Habitat
         public void SetHabitat(HabitatModel habitat)
         {
             _habitat = habitat;
-            // Creature layer rebuilt in Task 11 — for this task creatures are absent.
+            BuildCreatures();
+        }
+
+        private void BuildCreatures()
+        {
+            foreach (Node child in _creatureLayer.GetChildren()) child.QueueFree();
+            if (_habitat == null || _theme == null) return;
+
+            var hm = GetNodeOrNull<HabitatManager>("/root/HabitatManager");
+            foreach (Guid creatureId in _habitat.OccupantIds)
+            {
+                Texture2D? tex = TryLoadCreatureTexture(creatureId, hm);
+                var node = new WanderingCreature(creatureId, _theme.AccentColor, _theme.WanderZone, tex);
+                node.Tapped += () => EmitSignal(SignalName.CreatureClicked, creatureId.ToString());
+                _creatureLayer.AddChild(node);
+            }
+        }
+
+        private static Texture2D? TryLoadCreatureTexture(Guid creatureId, HabitatManager? hm)
+        {
+            var creature = hm?.GetCreature(creatureId);
+            if (creature == null) return null;
+            string svgPath = $"res://Sprites/Creatures/{creature.CatalogId}.svg";
+            string pngPath = $"res://Sprites/Creatures/{creature.CatalogId}.png";
+            if (ResourceLoader.Exists(svgPath)) return GD.Load<Texture2D>(svgPath);
+            if (ResourceLoader.Exists(pngPath)) return GD.Load<Texture2D>(pngPath);
+            return null;
         }
 
         // ── Lifecycle ─────────────────────────────────────────────────────────
@@ -252,6 +278,137 @@ namespace KeeperLegacy.UI.Habitat
                         Position += new Vector2(Mathf.Sin(_time * 0.4f) * 30.0f, 0);
                         break;
                 }
+            }
+        }
+
+        private partial class WanderingCreature : Control
+        {
+            [Signal] public delegate void TappedEventHandler();
+
+            public Guid CreatureId { get; }
+            private readonly Color _fallbackColor;
+            private readonly Rect2 _wanderZone;
+            private readonly Texture2D? _bodyTexture;
+            private Vector2 _target;
+            private float _retargetIn;
+            private float _bobTime;
+            private ColorRect _shadow;
+            private Control _body;
+
+            private const float MoveSpeed     = 30f;   // px/sec
+            private const float MinRetarget   = 3f;
+            private const float MaxRetarget   = 6f;
+            private const float ClickHaloMs   = 300f;
+            private const float BodySizePx    = 52f;
+            private const float ShadowWidthPx = 40f;
+            private const float ShadowHeightPx= 12f;
+
+            public WanderingCreature(Guid id, Color fallbackColor, Rect2 wanderZone, Texture2D? tex)
+            {
+                CreatureId     = id;
+                _fallbackColor = fallbackColor;
+                _wanderZone    = wanderZone;
+                _bodyTexture   = tex;
+            }
+
+            public override void _Ready()
+            {
+                MouseFilter = MouseFilterEnum.Stop;
+                CustomMinimumSize = new Vector2(BodySizePx, BodySizePx);
+
+                // Drop shadow — flat ellipse via ColorRect
+                _shadow = new ColorRect();
+                _shadow.Color = new Color(0, 0, 0, 0.45f);
+                _shadow.Size = new Vector2(ShadowWidthPx, ShadowHeightPx);
+                _shadow.Position = new Vector2((BodySizePx - ShadowWidthPx) / 2f, BodySizePx);
+                _shadow.MouseFilter = MouseFilterEnum.Ignore;
+                AddChild(_shadow);
+
+                // Body — TextureRect when available, else colored circle PanelContainer
+                if (_bodyTexture != null)
+                {
+                    var tr = new TextureRect();
+                    tr.Texture     = _bodyTexture;
+                    tr.ExpandMode  = TextureRect.ExpandModeEnum.IgnoreSize;
+                    tr.StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered;
+                    tr.Size        = new Vector2(BodySizePx, BodySizePx);
+                    tr.MouseFilter = MouseFilterEnum.Ignore;
+                    AddChild(tr);
+                    _body = tr;
+                }
+                else
+                {
+                    var style = new StyleBoxFlat();
+                    style.BgColor = _fallbackColor;
+                    style.SetCornerRadiusAll(26);
+                    var panel = new PanelContainer();
+                    panel.AddThemeStyleboxOverride("panel", style);
+                    panel.Size = new Vector2(BodySizePx, BodySizePx);
+                    panel.MouseFilter = MouseFilterEnum.Ignore;
+                    AddChild(panel);
+                    _body = panel;
+                }
+
+                _retargetIn = 0;
+                Position    = RandomPointInZone();
+                _target     = RandomPointInZone();
+            }
+
+            public override void _Process(double delta)
+            {
+                _bobTime += (float)delta;
+
+                // Move toward target
+                Vector2 toTarget = _target - Position;
+                float dist = toTarget.Length();
+                if (dist > 1f)
+                {
+                    Position += toTarget.Normalized() * MoveSpeed * (float)delta;
+                }
+
+                _retargetIn -= (float)delta;
+                if (_retargetIn <= 0 || dist < 4f)
+                {
+                    _target = RandomPointInZone();
+                    var rng = new RandomNumberGenerator(); rng.Randomize();
+                    _retargetIn = rng.RandfRange(MinRetarget, MaxRetarget);
+                }
+
+                // Squash-stretch on body
+                if (_body != null)
+                {
+                    float bob = Mathf.Sin(_bobTime * 3.5f) * 0.08f;
+                    _body.Scale = new Vector2(1.0f + bob, 1.0f - bob);
+                }
+
+                // Y-sort via z_index
+                ZIndex = (int)Position.Y;
+            }
+
+            public override void _GuiInput(InputEvent @event)
+            {
+                if (@event is InputEventMouseButton mb && mb.Pressed && mb.ButtonIndex == MouseButton.Left)
+                {
+                    EmitClick();
+                    AcceptEvent();
+                }
+            }
+
+            private void EmitClick()
+            {
+                EmitSignal(SignalName.Tapped);
+                // Brief z-index boost so the highlight is on top
+                int prior = ZIndex;
+                ZIndex = 10000;
+                GetTree().CreateTimer(ClickHaloMs / 1000f).Timeout += () => ZIndex = prior;
+            }
+
+            private Vector2 RandomPointInZone()
+            {
+                var rng = new RandomNumberGenerator(); rng.Randomize();
+                return new Vector2(
+                    rng.RandfRange(_wanderZone.Position.X, _wanderZone.End.X),
+                    rng.RandfRange(_wanderZone.Position.Y, _wanderZone.End.Y));
             }
         }
     }
