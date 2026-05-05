@@ -1,0 +1,119 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- SWIRLPOOL — water, common — round soft body that naturally spirals like a shell
+       Mutations: v1 Turquoise · v2 Deep Blue · v3 Teal · v4 Aquamarine
+       Signature: SPIRAL/swirl pattern on body — body looks curled like a snail shell
+       SELF-CHECK vs prior water:
+         - Aquaburst/Pearlescent (round) → DIFFERENT (curled spiral, not flat orb)
+         - Bubblesnout (round + snout) → DIFFERENT (no snout, has spiral)
+         All others non-spiral → DIFFERENT
+         Eye treatment: round eyes with SWIRL-shaped highlight (matches body theme)
+         Mouth: closed cute upturned smile (gentle/restful curl creature)
+  -->
+  <!-- PALETTE
+       v1: body-base=#40c0c0 body-shadow=#1a6878 body-highlight=#80e0e0 body-stroke=#0a3038 accent-base=#80e8e8 accent-shadow=#308898 accent-highlight=#c0f8f8
+       v2: body-base=#1a4090 body-shadow=#0a2050 body-highlight=#3070c8 body-stroke=#000820 accent-base=#3060b8 accent-shadow=#102060 accent-highlight=#80a0e0
+       v3: body-base=#308880 body-shadow=#1a4848 body-highlight=#80b8b0 body-stroke=#082020 accent-base=#5098a0 accent-shadow=#1a4858 accent-highlight=#a0d0d0
+       v4: body-base=#7fdbd1 body-shadow=#3a8880 body-highlight=#b0e8e0 body-stroke=#1a3838 accent-base=#a0e8e0 accent-shadow=#508880 accent-highlight=#d0f8f0
+  -->
+  <style>
+    .body-base       { fill: #40c0c0; }
+    .body-base       { stroke: #40c0c0; }
+    .body-shadow     { fill: #1a6878; }
+    .body-shadow     { stroke: #1a6878; }
+    .body-highlight  { fill: #80e0e0; }
+    .body-highlight  { stroke: #80e0e0; }
+    .body-stroke     { fill: #0a3038; }
+    .body-stroke     { stroke: #0a3038; }
+    .accent-base     { fill: #80e8e8; }
+    .accent-base     { stroke: #80e8e8; }
+    .accent-shadow   { fill: #308898; }
+    .accent-shadow   { stroke: #308898; }
+    .accent-highlight{ fill: #c0f8f8; }
+    .accent-highlight{ stroke: #c0f8f8; }
+    .eye-iris        { fill: #1a4868; }
+    .eye-pupil       { fill: #0a1828; }
+    .eye-highlight   { fill: #ffffff; }
+    .eye-sclera      { fill: #d8eef0; }
+    .mouth-interior  { fill: #2a0820; }
+  </style>
+
+  <!-- ═══════ COMPOSITION — round soft creature, body curled in spiral ═══════ -->
+
+  <!-- ═══════ FEET (soft small) ═══════ -->
+  <ellipse cx="216" cy="442" rx="26" ry="13" class="body-shadow"/>
+  <ellipse cx="296" cy="442" rx="26" ry="13" class="body-shadow"/>
+  <ellipse cx="216" cy="438" rx="22" ry="10" class="body-base"/>
+  <ellipse cx="296" cy="438" rx="22" ry="10" class="body-base"/>
+
+  <!-- ═══════ ARMS (small chubby) ═══════ -->
+  <ellipse cx="124" cy="296" rx="34" ry="20" class="body-shadow" transform="rotate(-15 124 296)"/>
+  <ellipse cx="128" cy="292" rx="28" ry="15" class="body-base"   transform="rotate(-15 128 292)"/>
+  <ellipse cx="388" cy="296" rx="34" ry="20" class="body-shadow" transform="rotate(15 388 296)"/>
+  <ellipse cx="384" cy="292" rx="28" ry="15" class="body-base"   transform="rotate(15 384 292)"/>
+
+  <!-- ═══════ ROUND BODY ═══════ -->
+  <circle cx="256" cy="296" r="148" class="body-shadow"/>
+  <circle cx="256" cy="290" r="138" class="body-base"/>
+  <ellipse cx="220" cy="240" rx="76" ry="50" class="body-highlight" opacity="0.55"/>
+  <ellipse cx="256" cy="370" rx="68" ry="32" class="body-highlight" opacity="0.32"/>
+
+  <!-- ═══════ NAUTILUS SHELL SPIRAL (signature: clear concentric spiral arm) ═══════ -->
+  <!-- Drawn as concentric rings of decreasing size, each only 3/4 visible to imply spiral progression.
+       Cleaner than a single multi-segment path — reads unmistakably as a curl. -->
+  <!-- outermost ring (3/4 arc, opens at upper-right) -->
+  <path d="M256,376 A92,92 0 1,1 332,236" class="accent-shadow" fill="none" stroke-width="10" stroke-linecap="round"/>
+  <path d="M256,376 A92,92 0 1,1 332,236" class="accent-base" fill="none" stroke-width="6" stroke-linecap="round" opacity="0.95"/>
+  <!-- middle ring -->
+  <path d="M236,346 A60,60 0 1,1 304,272" class="accent-shadow" fill="none" stroke-width="8" stroke-linecap="round"/>
+  <path d="M236,346 A60,60 0 1,1 304,272" class="accent-base" fill="none" stroke-width="5" stroke-linecap="round" opacity="0.95"/>
+  <!-- innermost ring -->
+  <path d="M236,310 A30,30 0 1,1 282,278" class="accent-shadow" fill="none" stroke-width="6" stroke-linecap="round"/>
+  <path d="M236,310 A30,30 0 1,1 282,278" class="accent-base" fill="none" stroke-width="4" stroke-linecap="round" opacity="0.95"/>
+  <!-- center spiral pip -->
+  <circle cx="262" cy="288" r="6" class="accent-shadow"/>
+  <circle cx="262" cy="288" r="4" class="accent-highlight"/>
+
+  <!-- ═══════ EYES (water family — round with SWIRL-shaped highlight) ═══════ -->
+  <ellipse cx="200" cy="232" rx="24" ry="26" class="eye-sclera" stroke="none"/>
+  <ellipse cx="200" cy="232" rx="20" ry="22" fill="none" stroke="#ffffff" stroke-width="2.5"/>
+  <circle  cx="202" cy="238" r="13" class="eye-iris"/>
+  <circle  cx="202" cy="238" r="8"  class="eye-pupil"/>
+  <!-- Swirl-shaped highlight (matches body theme) -->
+  <path d="M204,228 Q210,232 207,238 Q204,236 206,232" class="eye-highlight" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="196" cy="244" r="2" class="eye-highlight" stroke="none"/>
+
+  <ellipse cx="312" cy="232" rx="24" ry="26" class="eye-sclera" stroke="none"/>
+  <ellipse cx="312" cy="232" rx="20" ry="22" fill="none" stroke="#ffffff" stroke-width="2.5"/>
+  <circle  cx="310" cy="238" r="13" class="eye-iris"/>
+  <circle  cx="310" cy="238" r="8"  class="eye-pupil"/>
+  <path d="M308,228 Q302,232 305,238 Q308,236 306,232" class="eye-highlight" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="316" cy="244" r="2" class="eye-highlight" stroke="none"/>
+
+  <!-- ═══════ MOUTH (closed upturned content smile) ═══════ -->
+  <path d="M232,278 Q256,294 280,278" class="body-stroke" fill="none" stroke-width="3.5" stroke-linecap="round"/>
+
+  <!-- ═══════ CHEEK BLUSH (placed below eyes, clear of overlap) ═══════ -->
+  <ellipse cx="160" cy="276" rx="13" ry="8" fill="#ff80a8" opacity="0.42" stroke="none"/>
+  <ellipse cx="352" cy="276" rx="13" ry="8" fill="#ff80a8" opacity="0.42" stroke="none"/>
+
+  <!-- ═══════ BODY SPECKS ═══════ -->
+  <circle cx="200" cy="180" r="2.5" class="body-highlight" opacity="0.7" stroke="none"/>
+  <circle cx="316" cy="180" r="2"   class="body-highlight" opacity="0.6" stroke="none"/>
+  <circle cx="170" cy="372" r="2"   class="body-highlight" opacity="0.6" stroke="none"/>
+  <circle cx="342" cy="372" r="2"   class="body-highlight" opacity="0.6" stroke="none"/>
+  <circle cx="256" cy="412" r="2"   class="body-highlight" opacity="0.55" stroke="none"/>
+
+  <!-- ═══════ AMBIENT BUBBLES ═══════ -->
+  <circle cx="50"  cy="180" r="5" fill="none" stroke="#80c8e8" stroke-width="2" opacity="0.6"/>
+  <circle cx="78"  cy="148" r="3" fill="none" stroke="#80c8e8" stroke-width="1.5" opacity="0.55"/>
+  <circle cx="38"  cy="248" r="3" fill="none" stroke="#80c8e8" stroke-width="1.5" opacity="0.5"/>
+  <circle cx="464" cy="180" r="5" fill="none" stroke="#80c8e8" stroke-width="2" opacity="0.6"/>
+  <circle cx="436" cy="148" r="3" fill="none" stroke="#80c8e8" stroke-width="1.5" opacity="0.55"/>
+  <circle cx="476" cy="248" r="3" fill="none" stroke="#80c8e8" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- ═══════ SPARKLE ACCENTS (small swirls in corners) ═══════ -->
+  <path d="M88,116 L90,124 L98,126 L90,128 L88,136 L86,128 L78,126 L86,124 Z"
+        fill="#ffffff" opacity="0.85"/>
+  <path d="M424,116 L426,124 L434,126 L426,128 L424,136 L422,128 L414,126 L422,124 Z"
+        fill="#ffffff" opacity="0.85"/>
+</svg>

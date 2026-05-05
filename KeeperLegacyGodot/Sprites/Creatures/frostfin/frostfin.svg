@@ -1,0 +1,139 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- FROSTFIN — water, uncommon — water/ice hybrid, sleek aquatic body, ice-crystal fin tips
+       Mutations: v1 Ice Blue · v2 Glacier White · v3 Pale Purple · v4 Crystal Clear
+       Signature: sleek fish body with sharp ICE CRYSTAL TIPS on every fin
+       SELF-CHECK vs prior water:
+         - Aquaburst/Pearlescent (round) → DIFFERENT (sleek fish)
+         - Shimmerstream (side fish, fan tail, scales) → DIFFERENT (front-facing, ice tips)
+         - Riptide (torpedo, narrow eye, line mouth) → DIFFERENT (front-facing oval, soft eyes)
+         - Deepecho (fish + lure + glow) → DIFFERENT (no lure, ice crystals)
+         Eye treatment: round with HEXAGONAL/CRYSTAL highlight (ice theme)
+         Mouth: small open with subtle frost breath puff
+  -->
+  <!-- PALETTE
+       v1: body-base=#a0d8e8 body-shadow=#5090a8 body-highlight=#d8f0f8 body-stroke=#1a4858 accent-base=#80c8e0 accent-shadow=#3878a0 accent-highlight=#f0fafc
+       v2: body-base=#e8f0f4 body-shadow=#9aa8b0 body-highlight=#ffffff body-stroke=#5a6868 accent-base=#c8d8e0 accent-shadow=#788890 accent-highlight=#ffffff
+       v3: body-base=#c8b8e0 body-shadow=#7868a0 body-highlight=#e8d8ff body-stroke=#3a2868 accent-base=#a890d8 accent-shadow=#5848a0 accent-highlight=#f0e0ff
+       v4: body-base=#d8e8e8 body-shadow=#88a0a0 body-highlight=#ffffff body-stroke=#3a4848 accent-base=#a8c8d0 accent-shadow=#688088 accent-highlight=#ffffff
+  -->
+  <style>
+    .body-base       { fill: #a0d8e8; }
+    .body-base       { stroke: #a0d8e8; }
+    .body-shadow     { fill: #5090a8; }
+    .body-shadow     { stroke: #5090a8; }
+    .body-highlight  { fill: #d8f0f8; }
+    .body-highlight  { stroke: #d8f0f8; }
+    .body-stroke     { fill: #1a4858; }
+    .body-stroke     { stroke: #1a4858; }
+    .accent-base     { fill: #80c8e0; }
+    .accent-base     { stroke: #80c8e0; }
+    .accent-shadow   { fill: #3878a0; }
+    .accent-shadow   { stroke: #3878a0; }
+    .accent-highlight{ fill: #f0fafc; }
+    .accent-highlight{ stroke: #f0fafc; }
+    .eye-iris        { fill: #1a4868; }
+    .eye-pupil       { fill: #0a1828; }
+    .eye-highlight   { fill: #ffffff; }
+    .eye-sclera      { fill: #d8eef0; }
+    .mouth-interior  { fill: #2a0820; }
+  </style>
+
+  <!-- ═══════ COMPOSITION — sleek front-facing aquatic body, ice crystal fin tips ═══════ -->
+
+  <!-- ═══════ TAIL FIN (back, with crystal tip) ═══════ -->
+  <path d="M256,448 L210,500 L302,500 Z" class="body-shadow"/>
+  <path d="M256,446 L218,494 L294,494 Z" class="body-base"/>
+  <!-- crystal tips on tail corners -->
+  <path d="M218,494 L210,510 L226,500 Z" class="accent-highlight"/>
+  <path d="M218,494 L210,510 L226,500 Z" fill="none" stroke="#1a4858" stroke-width="2"/>
+  <path d="M294,494 L302,510 L286,500 Z" class="accent-highlight"/>
+  <path d="M294,494 L302,510 L286,500 Z" fill="none" stroke="#1a4858" stroke-width="2"/>
+
+  <!-- ═══════ SIDE FINS (left and right, with crystal tips) ═══════ -->
+  <!-- left fin -->
+  <path d="M138,328 L80,352 L130,372 Z" class="body-shadow"/>
+  <path d="M140,326 L86,350 L132,368 Z" class="body-base"/>
+  <path d="M80,352 L72,344 L86,344 Z" class="accent-highlight"/>
+  <path d="M80,352 L72,344 L86,344 Z" fill="none" stroke="#1a4858" stroke-width="2"/>
+  <!-- right fin -->
+  <path d="M374,328 L432,352 L382,372 Z" class="body-shadow"/>
+  <path d="M372,326 L426,350 L380,368 Z" class="body-base"/>
+  <path d="M432,352 L440,344 L426,344 Z" class="accent-highlight"/>
+  <path d="M432,352 L440,344 L426,344 Z" fill="none" stroke="#1a4858" stroke-width="2"/>
+
+  <!-- ═══════ MAIN BODY (vertical oval, sleek aquatic) ═══════ -->
+  <ellipse cx="256" cy="280" rx="120" ry="160" class="body-shadow"/>
+  <ellipse cx="256" cy="276" rx="114" ry="154" class="body-base"/>
+  <ellipse cx="220" cy="220" rx="56" ry="68" class="body-highlight" opacity="0.55"/>
+  <ellipse cx="256" cy="380" rx="78" ry="32" class="body-highlight" opacity="0.32"/>
+
+  <!-- ═══════ DORSAL FIN (top, large, with crystal tip — signature focus) ═══════ -->
+  <path d="M226,138 L256,46 L286,138 Z" class="body-shadow"/>
+  <path d="M230,140 L256,56 L282,140 Z" class="body-base"/>
+  <path d="M252,140 L256,80 L260,140 Z" class="body-highlight" opacity="0.55"/>
+  <!-- crystal tip on top fin -->
+  <path d="M250,52 L256,28 L262,52 L256,40 Z" class="accent-highlight"/>
+  <path d="M250,52 L256,28 L262,52 L256,40 Z" fill="none" stroke="#1a4858" stroke-width="2"/>
+
+  <!-- ═══════ ICE CRYSTAL CLUSTERS ON BODY (signature: ice tipped) ═══════ -->
+  <path d="M174,210 L180,194 L186,210 L180,202 Z" class="accent-highlight"/>
+  <path d="M174,210 L180,194 L186,210 L180,202 Z" fill="none" stroke="#1a4858" stroke-width="1.5"/>
+  <path d="M326,210 L332,194 L338,210 L332,202 Z" class="accent-highlight"/>
+  <path d="M326,210 L332,194 L338,210 L332,202 Z" fill="none" stroke="#1a4858" stroke-width="1.5"/>
+  <path d="M180,360 L186,346 L192,360 L186,352 Z" class="accent-highlight"/>
+  <path d="M180,360 L186,346 L192,360 L186,352 Z" fill="none" stroke="#1a4858" stroke-width="1.5"/>
+  <path d="M320,360 L326,346 L332,360 L326,352 Z" class="accent-highlight"/>
+  <path d="M320,360 L326,346 L332,360 L326,352 Z" fill="none" stroke="#1a4858" stroke-width="1.5"/>
+
+  <!-- ═══════ EYES (water family — round with HEXAGONAL/CRYSTAL highlight) ═══════ -->
+  <ellipse cx="218" cy="270" rx="26" ry="30" class="eye-sclera" stroke="none"/>
+  <ellipse cx="218" cy="270" rx="22" ry="26" fill="none" stroke="#ffffff" stroke-width="3"/>
+  <circle  cx="220" cy="276" r="16" class="eye-iris"/>
+  <circle  cx="220" cy="276" r="10" class="eye-pupil"/>
+  <!-- Hexagonal/crystal-shape highlight (ice theme) -->
+  <path d="M226,262 L232,268 L232,274 L226,280 L220,274 L220,268 Z"
+        class="eye-highlight" stroke="none"/>
+  <circle cx="214" cy="284" r="2" class="eye-highlight" stroke="none"/>
+
+  <ellipse cx="294" cy="270" rx="26" ry="30" class="eye-sclera" stroke="none"/>
+  <ellipse cx="294" cy="270" rx="22" ry="26" fill="none" stroke="#ffffff" stroke-width="3"/>
+  <circle  cx="292" cy="276" r="16" class="eye-iris"/>
+  <circle  cx="292" cy="276" r="10" class="eye-pupil"/>
+  <path d="M286,262 L292,268 L292,274 L286,280 L280,274 L280,268 Z"
+        class="eye-highlight" stroke="none"/>
+  <circle cx="298" cy="284" r="2" class="eye-highlight" stroke="none"/>
+
+  <!-- ═══════ MOUTH (small open with frost breath puff above) ═══════ -->
+  <ellipse cx="256" cy="318" rx="12" ry="8" class="mouth-interior"/>
+  <ellipse cx="256" cy="318" rx="12" ry="8" fill="none" stroke="#1a4858" stroke-width="2.5"/>
+  <!-- frost breath puff -->
+  <ellipse cx="256" cy="296" rx="10" ry="4" fill="#e0f0f8" opacity="0.7" stroke="none"/>
+  <ellipse cx="252" cy="288" rx="6" ry="3" fill="#e0f0f8" opacity="0.55" stroke="none"/>
+
+  <!-- ═══════ CHEEK BLUSH ═══════ -->
+  <ellipse cx="184" cy="304" rx="11" ry="8" fill="#a0c8e0" opacity="0.55" stroke="none"/>
+  <ellipse cx="328" cy="304" rx="11" ry="8" fill="#a0c8e0" opacity="0.55" stroke="none"/>
+
+  <!-- ═══════ BODY SPECKS ═══════ -->
+  <circle cx="232" cy="178" r="2.5" class="body-highlight" opacity="0.7" stroke="none"/>
+  <circle cx="284" cy="200" r="2"   class="body-highlight" opacity="0.6" stroke="none"/>
+  <circle cx="216" cy="350" r="2"   class="body-highlight" opacity="0.55" stroke="none"/>
+  <circle cx="296" cy="380" r="2"   class="body-highlight" opacity="0.55" stroke="none"/>
+  <circle cx="244" cy="408" r="2"   class="body-highlight" opacity="0.5" stroke="none"/>
+
+  <!-- ═══════ AMBIENT BUBBLES ═══════ -->
+  <circle cx="50"  cy="180" r="5" fill="none" stroke="#80c8e8" stroke-width="2" opacity="0.6"/>
+  <circle cx="78"  cy="148" r="3" fill="none" stroke="#80c8e8" stroke-width="1.5" opacity="0.55"/>
+  <circle cx="38"  cy="248" r="3" fill="none" stroke="#80c8e8" stroke-width="1.5" opacity="0.5"/>
+  <circle cx="464" cy="180" r="5" fill="none" stroke="#80c8e8" stroke-width="2" opacity="0.6"/>
+  <circle cx="436" cy="148" r="3" fill="none" stroke="#80c8e8" stroke-width="1.5" opacity="0.55"/>
+  <circle cx="476" cy="248" r="3" fill="none" stroke="#80c8e8" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- ═══════ SPARKLE ACCENTS (ice crystal sparkles) ═══════ -->
+  <path d="M88,300 L90,308 L98,310 L90,312 L88,320 L86,312 L78,310 L86,308 Z"
+        fill="#ffffff" opacity="0.95"/>
+  <path d="M424,300 L426,308 L434,310 L426,312 L424,320 L422,312 L414,310 L422,308 Z"
+        fill="#ffffff" opacity="0.95"/>
+  <path d="M256,16  L258,22  L264,24  L258,26  L256,32  L254,26  L248,24  L254,22 Z"
+        fill="#ffffff" opacity="0.9"/>
+</svg>
