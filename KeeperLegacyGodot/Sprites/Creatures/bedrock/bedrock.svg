@@ -110,4 +110,58 @@
   <!-- ═══════ EYEBROW RIDGE (sturdy/wise look) ═══════ -->
   <path d="M192,194 Q216,188 240,194" class="body-shadow" fill="none" stroke-width="5" stroke-linecap="round"/>
   <path d="M272,194 Q296,188 320,194" class="body-shadow" fill="none" stroke-width="5" stroke-linecap="round"/>
+
+  <!-- ═══════ EXTRA MINERAL NODULES (more gems scattered) ═══════ -->
+  <circle cx="220" cy="406" r="4" class="accent-shadow" stroke="none"/>
+  <circle cx="220" cy="404" r="3" class="accent-base" stroke="none"/>
+  <circle cx="220" cy="403" r="1" class="accent-highlight" stroke="none"/>
+
+  <circle cx="320" cy="408" r="5" class="accent-shadow" stroke="none"/>
+  <circle cx="320" cy="406" r="3" class="accent-base" stroke="none"/>
+  <circle cx="319" cy="405" r="1" class="accent-highlight" stroke="none"/>
+
+  <circle cx="226" cy="324" r="4" class="accent-shadow" stroke="none"/>
+  <circle cx="226" cy="322" r="2" class="accent-base" stroke="none"/>
+
+  <circle cx="290" cy="316" r="3" class="accent-shadow" stroke="none"/>
+  <circle cx="290" cy="314" r="2" class="accent-base" stroke="none"/>
+
+  <circle cx="180" cy="248" r="3" class="accent-shadow" stroke="none"/>
+  <circle cx="180" cy="246" r="2" class="accent-base" stroke="none"/>
+
+  <circle cx="340" cy="244" r="3" class="accent-shadow" stroke="none"/>
+  <circle cx="340" cy="242" r="2" class="accent-base" stroke="none"/>
+
+  <!-- ═══════ SURFACE CHIPS (small angular notches on edges) ═══════ -->
+  <path d="M104,442 L96,438 L100,432 Z" class="body-shadow" stroke="none"/>
+  <path d="M408,442 L416,438 L412,432 Z" class="body-shadow" stroke="none"/>
+  <path d="M124,360 L116,356 L122,352 Z" class="body-shadow" stroke="none"/>
+  <path d="M388,360 L396,356 L390,352 Z" class="body-shadow" stroke="none"/>
+
+  <!-- ═══════ BODY TEXTURE SPECKS (small darker pits across stone) ═══════ -->
+  <circle cx="160" cy="408" r="2" class="body-shadow" opacity="0.6" stroke="none"/>
+  <circle cx="244" cy="416" r="1.8" class="body-shadow" opacity="0.6" stroke="none"/>
+  <circle cx="356" cy="412" r="2" class="body-shadow" opacity="0.6" stroke="none"/>
+  <circle cx="200" cy="334" r="1.8" class="body-shadow" opacity="0.6" stroke="none"/>
+  <circle cx="316" cy="338" r="1.8" class="body-shadow" opacity="0.6" stroke="none"/>
+  <circle cx="172" cy="252" r="1.5" class="body-shadow" opacity="0.6" stroke="none"/>
+  <circle cx="356" cy="252" r="1.5" class="body-shadow" opacity="0.6" stroke="none"/>
+  <circle cx="248" cy="190" r="1.5" class="body-shadow" opacity="0.55" stroke="none"/>
+
+  <!-- ═══════ HIGHLIGHT GLINTS (small light dots — catching light) ═══════ -->
+  <circle cx="138" cy="404" r="2" class="body-highlight" opacity="0.8" stroke="none"/>
+  <circle cx="378" cy="406" r="2" class="body-highlight" opacity="0.8" stroke="none"/>
+  <circle cx="160" cy="312" r="2" class="body-highlight" opacity="0.7" stroke="none"/>
+  <circle cx="356" cy="316" r="2" class="body-highlight" opacity="0.7" stroke="none"/>
+  <circle cx="160" cy="220" r="2" class="body-highlight" opacity="0.7" stroke="none"/>
+
+  <!-- ═══════ AMBIENT DUST PARTICLES (small specks floating around base) ═══════ -->
+  <circle cx="58"  cy="438" r="2.5" class="body-base" opacity="0.45" stroke="none"/>
+  <circle cx="84"  cy="464" r="1.8" class="body-base" opacity="0.5" stroke="none"/>
+  <circle cx="44"  cy="466" r="1.5" class="body-base" opacity="0.4" stroke="none"/>
+  <circle cx="454" cy="438" r="2.5" class="body-base" opacity="0.45" stroke="none"/>
+  <circle cx="428" cy="464" r="1.8" class="body-base" opacity="0.5" stroke="none"/>
+  <circle cx="468" cy="466" r="1.5" class="body-base" opacity="0.4" stroke="none"/>
+  <circle cx="244" cy="476" r="1.5" class="body-base" opacity="0.4" stroke="none"/>
+  <circle cx="280" cy="480" r="1.2" class="body-base" opacity="0.4" stroke="none"/>
 </svg>

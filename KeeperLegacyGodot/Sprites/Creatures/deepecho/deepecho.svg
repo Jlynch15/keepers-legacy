@@ -138,4 +138,63 @@
   <path d="M310,343 L314,350 L318,343 Z" fill="#ffffff" opacity="0.85"/>
   <path d="M324,343 L328,350 L332,343 Z" fill="#ffffff" opacity="0.85"/>
   <path d="M334,341 L338,348 L342,341 Z" fill="#ffffff" opacity="0.85"/>
+
+  <!-- ═══════ EXTRA GLOW DOTS (more bioluminescent freckles) ═══════ -->
+  <g>
+    <circle cx="240" cy="200" r="9" class="glow-halo" opacity="0.32"/>
+    <circle cx="240" cy="200" r="6" class="glow-halo" opacity="0.50"/>
+    <circle cx="240" cy="200" r="3" class="glow-base"/>
+  </g>
+  <g>
+    <circle cx="372" cy="216" r="9" class="glow-halo" opacity="0.32"/>
+    <circle cx="372" cy="216" r="6" class="glow-halo" opacity="0.50"/>
+    <circle cx="372" cy="216" r="3" class="glow-base"/>
+  </g>
+  <g>
+    <circle cx="404" cy="280" r="9" class="glow-halo" opacity="0.32"/>
+    <circle cx="404" cy="280" r="6" class="glow-halo" opacity="0.50"/>
+    <circle cx="404" cy="280" r="3" class="glow-base"/>
+  </g>
+  <g>
+    <circle cx="386" cy="346" r="9" class="glow-halo" opacity="0.32"/>
+    <circle cx="386" cy="346" r="6" class="glow-halo" opacity="0.50"/>
+    <circle cx="386" cy="346" r="3" class="glow-base"/>
+  </g>
+  <g>
+    <circle cx="220" cy="356" r="8" class="glow-halo" opacity="0.32"/>
+    <circle cx="220" cy="356" r="5" class="glow-halo" opacity="0.50"/>
+    <circle cx="220" cy="356" r="2.5" class="glow-base"/>
+  </g>
+  <g>
+    <circle cx="138" cy="276" r="8" class="glow-halo" opacity="0.32"/>
+    <circle cx="138" cy="276" r="5" class="glow-halo" opacity="0.50"/>
+    <circle cx="138" cy="276" r="2.5" class="glow-base"/>
+  </g>
+
+  <!-- ═══════ SCALE DOTS (subtle body texture — darker specks) ═══════ -->
+  <circle cx="232" cy="240" r="2"   class="body-shadow" opacity="0.6" stroke="none"/>
+  <circle cx="296" cy="206" r="2"   class="body-shadow" opacity="0.55" stroke="none"/>
+  <circle cx="340" cy="216" r="1.8" class="body-shadow" opacity="0.55" stroke="none"/>
+  <circle cx="184" cy="334" r="2"   class="body-shadow" opacity="0.55" stroke="none"/>
+  <circle cx="248" cy="320" r="1.8" class="body-shadow" opacity="0.55" stroke="none"/>
+  <circle cx="328" cy="316" r="2"   class="body-shadow" opacity="0.55" stroke="none"/>
+  <circle cx="376" cy="312" r="1.8" class="body-shadow" opacity="0.55" stroke="none"/>
+
+  <!-- ═══════ SPARKLE STAR PARTICLES (around lure + drifting) ═══════ -->
+  <path d="M396,60 L398,68 L406,70 L398,72 L396,80 L394,72 L386,70 L394,68 Z"
+        class="glow-base" opacity="0.85"/>
+  <path d="M340,46 L342,52 L348,53 L342,54 L340,60 L338,54 L332,53 L338,52 Z"
+        class="glow-base" opacity="0.75"/>
+  <path d="M422,118 L424,124 L430,125 L424,126 L422,132 L420,126 L414,125 L420,124 Z"
+        class="glow-base" opacity="0.75"/>
+
+  <!-- ═══════ AMBIENT BUBBLES (small floating circles around creature) ═══════ -->
+  <circle cx="56"  cy="120" r="5" fill="none" stroke="#80c0e0" stroke-width="1.5" opacity="0.6"/>
+  <circle cx="56"  cy="120" r="5" class="glow-halo" opacity="0.18"/>
+  <circle cx="84"  cy="92"  r="3" fill="none" stroke="#80c0e0" stroke-width="1.5" opacity="0.55"/>
+  <circle cx="44"  cy="170" r="3" fill="none" stroke="#80c0e0" stroke-width="1.5" opacity="0.5"/>
+  <circle cx="468" cy="380" r="4" fill="none" stroke="#80c0e0" stroke-width="1.5" opacity="0.55"/>
+  <circle cx="486" cy="346" r="2.5" fill="none" stroke="#80c0e0" stroke-width="1.5" opacity="0.5"/>
+  <circle cx="476" cy="412" r="3" fill="none" stroke="#80c0e0" stroke-width="1.5" opacity="0.5"/>
+  <circle cx="40"  cy="380" r="3" fill="none" stroke="#80c0e0" stroke-width="1.5" opacity="0.5"/>
 </svg>

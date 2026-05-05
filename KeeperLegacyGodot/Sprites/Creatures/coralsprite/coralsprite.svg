@@ -133,4 +133,40 @@
   <!-- ═══════ CHEEK BLUSH ═══════ -->
   <ellipse cx="178" cy="328" rx="18" ry="11" class="accent-base" opacity="0.32" stroke="none"/>
   <ellipse cx="334" cy="328" rx="18" ry="11" class="accent-base" opacity="0.32" stroke="none"/>
+
+  <!-- ═══════ BODY SPECKS (small light dots for texture) ═══════ -->
+  <circle cx="216" cy="200" r="3" class="body-highlight" opacity="0.7" stroke="none"/>
+  <circle cx="174" cy="270" r="2" class="body-highlight" opacity="0.6" stroke="none"/>
+  <circle cx="158" cy="318" r="3" class="body-highlight" opacity="0.5" stroke="none"/>
+  <circle cx="280" cy="376" r="3" class="body-highlight" opacity="0.5" stroke="none"/>
+  <circle cx="232" cy="380" r="2" class="body-highlight" opacity="0.6" stroke="none"/>
+  <circle cx="346" cy="304" r="3" class="body-highlight" opacity="0.55" stroke="none"/>
+  <circle cx="372" cy="340" r="2" class="body-highlight" opacity="0.5" stroke="none"/>
+  <circle cx="148" cy="362" r="2" class="body-highlight" opacity="0.55" stroke="none"/>
+  <!-- Small accent freckles -->
+  <circle cx="190" cy="208" r="2" class="accent-base" opacity="0.55" stroke="none"/>
+  <circle cx="320" cy="230" r="2" class="accent-base" opacity="0.55" stroke="none"/>
+  <circle cx="244" cy="232" r="2" class="accent-base" opacity="0.6" stroke="none"/>
+
+  <!-- ═══════ AMBIENT BUBBLES (floating around creature) ═══════ -->
+  <circle cx="44"  cy="170" r="6" fill="none" stroke="#80c8e8" stroke-width="2" opacity="0.7"/>
+  <circle cx="44"  cy="170" r="6" fill="#a0e0ff" opacity="0.18"/>
+  <circle cx="78"  cy="148" r="4" fill="none" stroke="#80c8e8" stroke-width="2" opacity="0.7"/>
+  <circle cx="78"  cy="148" r="4" fill="#a0e0ff" opacity="0.2"/>
+  <circle cx="110" cy="186" r="3" fill="none" stroke="#80c8e8" stroke-width="1.5" opacity="0.6"/>
+  <circle cx="464" cy="160" r="6" fill="none" stroke="#80c8e8" stroke-width="2" opacity="0.7"/>
+  <circle cx="464" cy="160" r="6" fill="#a0e0ff" opacity="0.18"/>
+  <circle cx="438" cy="138" r="4" fill="none" stroke="#80c8e8" stroke-width="2" opacity="0.7"/>
+  <circle cx="438" cy="138" r="4" fill="#a0e0ff" opacity="0.2"/>
+  <circle cx="408" cy="178" r="3" fill="none" stroke="#80c8e8" stroke-width="1.5" opacity="0.6"/>
+  <circle cx="32"  cy="240" r="3" fill="none" stroke="#80c8e8" stroke-width="1.5" opacity="0.5"/>
+  <circle cx="478" cy="232" r="3" fill="none" stroke="#80c8e8" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- ═══════ SPARKLE ACCENTS (near antlers, small 4-point stars) ═══════ -->
+  <path d="M152,68 L154,76 L162,78 L154,80 L152,88 L150,80 L142,78 L150,76 Z"
+        fill="#ffe080" opacity="0.85"/>
+  <path d="M362,68 L364,76 L372,78 L364,80 L362,88 L360,80 L352,78 L360,76 Z"
+        fill="#ffe080" opacity="0.85"/>
+  <path d="M256,30 L257,36 L263,37 L257,38 L256,44 L255,38 L249,37 L255,36 Z"
+        fill="#ffe080" opacity="0.85"/>
 </svg>
