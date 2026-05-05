@@ -46,8 +46,8 @@
   <!-- ═══════ BODY (round, sandstone) ═══════ -->
   <circle cx="256" cy="296" r="138" class="body-shadow"/>
   <circle cx="256" cy="290" r="128" class="body-base"/>
-  <ellipse cx="218" cy="240" rx="74" ry="48" class="body-highlight" opacity="0.55"/>
-  <ellipse cx="256" cy="360" rx="64" ry="28" class="body-highlight" opacity="0.32"/>
+  <ellipse cx="218" cy="240" rx="48" ry="31" class="body-highlight" opacity="0.42"/>
+  <ellipse cx="256" cy="360" rx="41" ry="18" class="body-highlight" opacity="0.32"/>
 
   <!-- ═══════ PEBBLES STUCK ON BODY (signature: shedding pebbles) ═══════ -->
   <circle cx="206" cy="220" r="6" class="accent-shadow"/>

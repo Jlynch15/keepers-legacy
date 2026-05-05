@@ -54,7 +54,7 @@
   <!-- ═══════ CHISELED SQUARE BODY ═══════ -->
   <rect x="156" y="170" width="200" height="252" rx="14" class="body-shadow"/>
   <rect x="160" y="172" width="192" height="246" rx="12" class="body-base"/>
-  <ellipse cx="208" cy="210" rx="56" ry="20" class="body-highlight" opacity="0.55"/>
+  <ellipse cx="208" cy="210" rx="36" ry="13" class="body-highlight" opacity="0.42"/>
 
   <!-- carved pattern lines (signature) -->
   <path d="M180,260 L196,270 L180,280 L196,290 L180,300" class="accent-shadow" fill="none" stroke-width="2.5" opacity="0.8"/>

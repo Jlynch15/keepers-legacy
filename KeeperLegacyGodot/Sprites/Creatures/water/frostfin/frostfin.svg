@@ -64,8 +64,8 @@
   <!-- ═══════ MAIN BODY (vertical oval, sleek aquatic) ═══════ -->
   <ellipse cx="256" cy="280" rx="120" ry="160" class="body-shadow"/>
   <ellipse cx="256" cy="276" rx="114" ry="154" class="body-base"/>
-  <ellipse cx="220" cy="220" rx="56" ry="68" class="body-highlight" opacity="0.55"/>
-  <ellipse cx="256" cy="380" rx="78" ry="32" class="body-highlight" opacity="0.32"/>
+  <ellipse cx="220" cy="220" rx="36" ry="44" class="body-highlight" opacity="0.42"/>
+  <ellipse cx="256" cy="380" rx="50" ry="20" class="body-highlight" opacity="0.32"/>
 
   <!-- ═══════ DORSAL FIN (top, large, with crystal tip — signature focus) ═══════ -->
   <path d="M226,138 L256,46 L286,138 Z" class="body-shadow"/>

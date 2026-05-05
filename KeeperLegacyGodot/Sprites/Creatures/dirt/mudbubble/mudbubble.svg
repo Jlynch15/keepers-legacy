@@ -35,8 +35,8 @@
   <!-- ═══════ BLOB BODY (mud blob with irregular bumpy outline) ═══════ -->
   <path d="M120,332 Q104,224 200,184 Q256,164 312,184 Q408,224 392,332 Q416,408 392,440 Q336,468 256,452 Q176,468 120,440 Q96,408 120,332 Z" class="body-shadow"/>
   <path d="M128,332 Q112,232 204,194 Q256,176 308,194 Q400,232 384,332 Q406,400 384,432 Q330,460 256,446 Q182,460 128,432 Q106,400 128,332 Z" class="body-base"/>
-  <ellipse cx="208" cy="240" rx="74" ry="44" class="body-highlight" opacity="0.55"/>
-  <ellipse cx="256" cy="396" rx="86" ry="22" class="body-highlight" opacity="0.32"/>
+  <ellipse cx="208" cy="240" rx="48" ry="28" class="body-highlight" opacity="0.42"/>
+  <ellipse cx="256" cy="396" rx="55" ry="14" class="body-highlight" opacity="0.32"/>
 
   <!-- ═══════ MUD DRIPS (signature: dripping mud) ═══════ -->
   <path d="M156,400 Q152,440 162,460 Q170,440 162,400 Z" class="accent-shadow"/>

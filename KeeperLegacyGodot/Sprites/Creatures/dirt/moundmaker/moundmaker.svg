@@ -46,7 +46,7 @@
   <!-- chest-out body (proud) -->
   <ellipse cx="256" cy="306" rx="100" ry="118" class="body-shadow"/>
   <ellipse cx="256" cy="300" rx="94" ry="112" class="body-base"/>
-  <ellipse cx="222" cy="246" rx="56" ry="44" class="body-highlight" opacity="0.55"/>
+  <ellipse cx="222" cy="246" rx="36" ry="28" class="body-highlight" opacity="0.42"/>
 
   <!-- ═══════ MINI MOUND HELD IN FRONT (signature) ═══════ -->
   <ellipse cx="256" cy="380" rx="64" ry="22" class="accent-shadow"/>

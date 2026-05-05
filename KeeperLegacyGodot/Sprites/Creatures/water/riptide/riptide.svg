@@ -56,8 +56,8 @@
   <!-- ═══════ MAIN BODY (elongated torpedo, slight forward tilt — angled diagonal) ═══════ -->
   <ellipse cx="270" cy="296" rx="170" ry="92" class="body-shadow" transform="rotate(-8 270 296)"/>
   <ellipse cx="270" cy="292" rx="164" ry="86" class="body-base" transform="rotate(-8 270 292)"/>
-  <ellipse cx="226" cy="246" rx="80" ry="36" class="body-highlight" opacity="0.55" transform="rotate(-8 226 246)"/>
-  <ellipse cx="284" cy="328" rx="90" ry="20" class="body-highlight" opacity="0.32" transform="rotate(-8 284 328)"/>
+  <ellipse cx="226" cy="246" rx="52" ry="23" class="body-highlight" opacity="0.42" transform="rotate(-8 226 246)"/>
+  <ellipse cx="284" cy="328" rx="58" ry="13" class="body-highlight" opacity="0.32" transform="rotate(-8 284 328)"/>
 
   <!-- ═══════ MOTION LINE STRIPES (signature: speed implied in posture) ═══════ -->
   <path d="M170,234 Q220,232 268,234" class="accent-shadow" fill="none" stroke-width="3" stroke-linecap="round" opacity="0.7"/>

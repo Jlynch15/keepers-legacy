@@ -50,7 +50,7 @@
   <!-- ═══════ STONE BODY (rounded, regal) ═══════ -->
   <ellipse cx="256" cy="306" rx="120" ry="138" class="body-shadow"/>
   <ellipse cx="256" cy="300" rx="114" ry="132" class="body-base"/>
-  <ellipse cx="220" cy="240" rx="60" ry="48" class="body-highlight" opacity="0.55"/>
+  <ellipse cx="220" cy="240" rx="39" ry="31" class="body-highlight" opacity="0.42"/>
 
   <!-- ═══════ GEODE CHEST WINDOW (signature: hollow with glittering gem) ═══════ -->
   <!-- outer dark cavity ring -->

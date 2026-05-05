@@ -62,8 +62,8 @@
   <!-- ═══════ STREAMLINED OVAL BODY (slim athletic) ═══════ -->
   <ellipse cx="256" cy="320" rx="92" ry="118" class="body-shadow"/>
   <ellipse cx="256" cy="316" rx="86" ry="112" class="body-base"/>
-  <ellipse cx="220" cy="252" rx="48" ry="56" class="body-highlight" opacity="0.55"/>
-  <ellipse cx="256" cy="396" rx="58" ry="22" class="body-highlight" opacity="0.32"/>
+  <ellipse cx="220" cy="252" rx="31" ry="36" class="body-highlight" opacity="0.42"/>
+  <ellipse cx="256" cy="396" rx="37" ry="14" class="body-highlight" opacity="0.32"/>
 
   <!-- ═══════ WAVE-CREST FIN (signature: curling wave atop head) ═══════ -->
   <!-- under-curl shadow -->

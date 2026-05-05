@@ -63,7 +63,7 @@
         class="body-shadow"/>
   <path d="M120,316 Q120,182 256,176 Q392,182 392,316 Q392,396 256,402 Q120,396 120,316 Z"
         class="body-base"/>
-  <ellipse cx="220" cy="232" rx="80" ry="44" class="body-highlight" opacity="0.55"/>
+  <ellipse cx="220" cy="232" rx="52" ry="28" class="body-highlight" opacity="0.42"/>
 
   <!-- ═══════ INNER GLOW CORE (signature: bright internal core radiating) ═══════ -->
   <circle cx="256" cy="284" r="64" class="glow-halo" opacity="0.55"/>

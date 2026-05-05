@@ -53,9 +53,9 @@
   <path d="M360,394 Q372,408 354,422" class="body-shadow" fill="none" stroke-width="2.5" opacity="0.7"/>
 
   <!-- highlight crescents -->
-  <ellipse cx="180" cy="158" rx="28" ry="10" class="body-highlight" opacity="0.55" transform="rotate(-30 180 158)"/>
-  <ellipse cx="270" cy="248" rx="22" ry="8" class="body-highlight" opacity="0.55"/>
-  <ellipse cx="350" cy="346" rx="22" ry="8" class="body-highlight" opacity="0.5" transform="rotate(20 350 346)"/>
+  <ellipse cx="180" cy="158" rx="18" ry="6" class="body-highlight" opacity="0.42" transform="rotate(-30 180 158)"/>
+  <ellipse cx="270" cy="248" rx="14" ry="5" class="body-highlight" opacity="0.42"/>
+  <ellipse cx="350" cy="346" rx="14" ry="5" class="body-highlight" opacity="0.5" transform="rotate(20 350 346)"/>
 
   <!-- ═══════ DRILL TIP (signature: pointed boring head) ═══════ -->
   <path d="M110,142 L70,108 L84,156 Z" class="accent-shadow"/>

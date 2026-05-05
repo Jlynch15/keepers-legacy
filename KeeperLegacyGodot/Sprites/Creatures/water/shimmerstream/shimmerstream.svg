@@ -52,8 +52,8 @@
   <!-- ═══════ MAIN BODY (oval, fish-like) ═══════ -->
   <ellipse cx="240" cy="270" rx="160" ry="108" class="body-shadow"/>
   <ellipse cx="240" cy="266" rx="152" ry="102" class="body-base"/>
-  <ellipse cx="200" cy="226" rx="78" ry="42" class="body-highlight" opacity="0.55"/>
-  <ellipse cx="240" cy="328" rx="84" ry="22" class="body-highlight" opacity="0.32"/>
+  <ellipse cx="200" cy="226" rx="50" ry="27" class="body-highlight" opacity="0.42"/>
+  <ellipse cx="240" cy="328" rx="54" ry="14" class="body-highlight" opacity="0.32"/>
 
   <!-- ═══════ SCALE PATTERN (signature: visible scales catching light like prism) ═══════ -->
   <!-- row 1 -->

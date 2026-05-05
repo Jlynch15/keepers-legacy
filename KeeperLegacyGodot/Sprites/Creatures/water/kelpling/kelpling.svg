@@ -61,7 +61,7 @@
   <!-- ═══════ HEAD (peeks out through cape opening) ═══════ -->
   <ellipse cx="256" cy="252" rx="86" ry="92" class="body-shadow"/>
   <ellipse cx="256" cy="248" rx="80" ry="86" class="body-base"/>
-  <ellipse cx="226" cy="208" rx="42" ry="38" class="body-highlight" opacity="0.55"/>
+  <ellipse cx="226" cy="208" rx="27" ry="24" class="body-highlight" opacity="0.42"/>
 
   <!-- ═══════ EYES (water family — round friendly with TEAR-DROP highlight) ═══════ -->
   <ellipse cx="226" cy="240" rx="22" ry="26" class="eye-sclera" stroke="none"/>

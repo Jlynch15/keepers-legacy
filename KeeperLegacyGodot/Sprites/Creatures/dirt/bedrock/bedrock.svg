@@ -47,12 +47,12 @@
   <!-- Middle layer -->
   <path d="M104,360 L408,360 L388,272 L124,272 Z" class="body-shadow"/>
   <path d="M110,358 L402,358 L384,274 L128,274 Z" class="body-base"/>
-  <ellipse cx="180" cy="318" rx="50" ry="14" class="body-highlight" opacity="0.42"/>
+  <ellipse cx="180" cy="318" rx="32" ry="9" class="body-highlight" opacity="0.42"/>
   <!-- Top layer (creature head/body) -->
   <path d="M124,272 L388,272 L368,168 L144,168 Z" class="body-shadow"/>
   <path d="M128,270 L384,270 L364,170 L148,170 Z" class="body-base"/>
   <!-- Highlight crescent on top layer -->
-  <ellipse cx="200" cy="210" rx="60" ry="22" class="body-highlight" opacity="0.55"/>
+  <ellipse cx="200" cy="210" rx="39" ry="14" class="body-highlight" opacity="0.42"/>
 
   <!-- ═══════ LAYER DIVISION LINES (signature: layered stone) ═══════ -->
   <path d="M104,362 L408,362" class="body-stroke" fill="none" stroke-width="4" stroke-linecap="round"/>

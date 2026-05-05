@@ -55,7 +55,7 @@
   <path d="M200,158 Q248,148 290,168 Q280,200 230,210 Q198,200 200,158 Z"
         class="body-highlight" opacity="0.62"/>
   <!-- soft secondary highlight -->
-  <ellipse cx="256" cy="350" rx="76" ry="22" class="body-highlight" opacity="0.32"/>
+  <ellipse cx="256" cy="350" rx="49" ry="14" class="body-highlight" opacity="0.32"/>
 
   <!-- ═══════ BODY EDGE WISP STREAKS (wispy/translucent feel) ═══════ -->
   <path d="M150,260 Q140,290 154,320" class="body-shadow" fill="none" stroke-width="3" opacity="0.55"/>
