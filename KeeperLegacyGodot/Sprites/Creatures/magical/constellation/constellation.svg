@@ -1,0 +1,104 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- CONSTELLATION — magical, RARE — stars mapped on body
+       Mutations: v1 Midnight Blue · v2 Gold Stars · v3 Silver · v4 Deep Space
+       Signature: dark body w/ STAR-MAP CONNECTED with constellation lines
+  -->
+  <!-- PALETTE
+       v1: body-base=#0a1830 body-shadow=#000010 body-highlight=#1a2848 body-stroke=#000000 accent-base=#fff088 accent-shadow=#a08820 accent-highlight=#ffffff
+       v2: body-base=#000018 body-shadow=#000000 body-highlight=#101830 body-stroke=#000000 accent-base=#ffd028 accent-shadow=#a07810 accent-highlight=#fff088
+       v3: body-base=#181828 body-shadow=#000000 body-highlight=#383848 body-stroke=#000000 accent-base=#e0e8f0 accent-shadow=#9098a8 accent-highlight=#ffffff
+       v4: body-base=#000008 body-shadow=#000000 body-highlight=#100828 body-stroke=#000000 accent-base=#c080f0 accent-shadow=#7038a0 accent-highlight=#e8c0ff
+  -->
+  <style>
+    .body-base       { fill: #0a1830; }
+    .body-base       { stroke: #0a1830; }
+    .body-shadow     { fill: #000010; }
+    .body-shadow     { stroke: #000010; }
+    .body-highlight  { fill: #1a2848; }
+    .body-highlight  { stroke: #1a2848; }
+    .body-stroke     { fill: #000000; }
+    .body-stroke     { stroke: #000000; }
+    .accent-base     { fill: #fff088; }
+    .accent-base     { stroke: #fff088; }
+    .accent-shadow   { fill: #a08820; }
+    .accent-shadow   { stroke: #a08820; }
+    .accent-highlight{ fill: #ffffff; }
+    .accent-highlight{ stroke: #ffffff; }
+    .eye-iris        { fill: #fff088; }
+    .eye-pupil       { fill: #000000; }
+    .eye-highlight   { fill: #ffffff; }
+    .eye-sclera      { fill: #f0f0ff; }
+    .mouth-interior  { fill: #000000; }
+  </style>
+
+  <!-- Custom glow: connecting constellation lines + bright stars across body (signature) -->
+  <g stroke="#fff088" stroke-width="1.5" fill="none" opacity="0.85">
+    <line x1="200" y1="220" x2="240" y2="260"/>
+    <line x1="240" y1="260" x2="290" y2="232"/>
+    <line x1="290" y1="232" x2="312" y2="280"/>
+    <line x1="312" y1="280" x2="280" y2="340"/>
+    <line x1="280" y1="340" x2="220" y2="360"/>
+    <line x1="220" y1="360" x2="240" y2="260"/>
+  </g>
+
+  <!-- feet -->
+  <ellipse cx="216" cy="446" rx="28" ry="13" class="body-shadow"/>
+  <ellipse cx="296" cy="446" rx="28" ry="13" class="body-shadow"/>
+  <ellipse cx="216" cy="442" rx="22" ry="9" class="body-base"/>
+  <ellipse cx="296" cy="442" rx="22" ry="9" class="body-base"/>
+
+  <!-- arms -->
+  <ellipse cx="138" cy="316" rx="36" ry="20" class="body-shadow"/>
+  <ellipse cx="142" cy="312" rx="30" ry="15" class="body-base"/>
+  <ellipse cx="374" cy="316" rx="36" ry="20" class="body-shadow"/>
+  <ellipse cx="370" cy="312" rx="30" ry="15" class="body-base"/>
+
+  <!-- body (deep space dark) -->
+  <ellipse cx="256" cy="306" rx="120" ry="138" class="body-shadow"/>
+  <ellipse cx="256" cy="300" rx="114" ry="132" class="body-base"/>
+  <ellipse cx="220" cy="220" rx="22" ry="14" class="body-highlight" opacity="0.55"/>
+
+  <!-- ═══════ STARS (signature: stars across body, glowing) ═══════ -->
+  <circle cx="200" cy="220" r="3" class="accent-highlight"/>
+  <circle cx="200" cy="220" r="6" class="accent-base" opacity="0.4"/>
+  <circle cx="240" cy="260" r="4" class="accent-highlight"/>
+  <circle cx="240" cy="260" r="8" class="accent-base" opacity="0.4"/>
+  <circle cx="290" cy="232" r="3" class="accent-highlight"/>
+  <circle cx="290" cy="232" r="6" class="accent-base" opacity="0.4"/>
+  <circle cx="312" cy="280" r="3" class="accent-highlight"/>
+  <circle cx="312" cy="280" r="6" class="accent-base" opacity="0.4"/>
+  <circle cx="280" cy="340" r="4" class="accent-highlight"/>
+  <circle cx="280" cy="340" r="8" class="accent-base" opacity="0.4"/>
+  <circle cx="220" cy="360" r="3" class="accent-highlight"/>
+  <circle cx="220" cy="360" r="6" class="accent-base" opacity="0.4"/>
+  <!-- additional small stars -->
+  <circle cx="180" cy="300" r="1.5" class="accent-highlight" opacity="0.85"/>
+  <circle cx="332" cy="380" r="1.5" class="accent-highlight" opacity="0.85"/>
+  <circle cx="248" cy="400" r="1.5" class="accent-highlight" opacity="0.85"/>
+
+  <!-- ═══════ EYES (magical — STAR-pupil) ═══════ -->
+  <ellipse cx="220" cy="288" rx="18" ry="20" class="eye-sclera" stroke="none"/>
+  <ellipse cx="220" cy="288" rx="14" ry="16" fill="none" stroke="#000000" stroke-width="2"/>
+  <path d="M222,278 L226,288 L236,290 L226,292 L222,302 L218,292 L208,290 L218,288 Z" fill="#000000"/>
+  <circle cx="226" cy="284" r="2" class="eye-highlight"/>
+  <ellipse cx="292" cy="288" rx="18" ry="20" class="eye-sclera" stroke="none"/>
+  <ellipse cx="292" cy="288" rx="14" ry="16" fill="none" stroke="#000000" stroke-width="2"/>
+  <path d="M290,278 L286,288 L276,290 L286,292 L290,302 L294,292 L304,290 L294,288 Z" fill="#000000"/>
+  <circle cx="286" cy="284" r="2" class="eye-highlight"/>
+
+  <!-- mouth -->
+  <path d="M236,406 Q256,416 276,406" stroke="#fff088" fill="none" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- ambient stars in space around -->
+  <g fill="#ffffff">
+    <circle cx="40" cy="80" r="2"/>
+    <circle cx="100" cy="60" r="1.5"/>
+    <circle cx="80" cy="160" r="1.5"/>
+    <circle cx="430" cy="80" r="2"/>
+    <circle cx="470" cy="160" r="1.5"/>
+    <circle cx="40" cy="380" r="1.5"/>
+    <circle cx="80" cy="450" r="2"/>
+    <circle cx="470" cy="380" r="1.5"/>
+    <circle cx="430" cy="450" r="2"/>
+  </g>
+</svg>
