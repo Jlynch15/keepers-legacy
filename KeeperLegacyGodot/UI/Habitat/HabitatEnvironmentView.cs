@@ -298,12 +298,13 @@ namespace KeeperLegacy.UI.Habitat
                 yield return Zone.Position + new Vector2(Zone.Size.X, Zone.Size.Y / 2);             // R-mid
             }
 
-            // _UnhandledInput rather than _GuiInput: this overlay has MouseFilter=Ignore
-            // so it doesn't block decoration clicks. _UnhandledInput fires independent
-            // of MouseFilter, after _Input and any focused-Control _GuiInput. So a
-            // decoration drag (which AcceptEvents in _GuiInput) consumes input first;
-            // clicks elsewhere fall through to here for handle hit-testing.
-            public override void _UnhandledInput(InputEvent @event)
+            // _Input (not _UnhandledInput): fires unconditionally before _GuiInput
+            // dispatch, so we can hit-test handles without competing with the
+            // category screen's default Stop MouseFilter consuming clicks first.
+            // Critically, we ONLY consume the event when the cursor is over a
+            // handle (or during an ongoing handle drag) — otherwise the event
+            // continues to normal _GuiInput dispatch where decoration clicks land.
+            public override void _Input(InputEvent @event)
             {
                 if (!DebugEnabled) return;
 
@@ -313,8 +314,12 @@ namespace KeeperLegacy.UI.Habitat
                 {
                     if (mb.Pressed)
                     {
-                        _dragHandle = HitTestHandle(localPos);
-                        if (_dragHandle >= 0) GetViewport().SetInputAsHandled();
+                        int hit = HitTestHandle(localPos);
+                        if (hit >= 0)
+                        {
+                            _dragHandle = hit;
+                            GetViewport().SetInputAsHandled();
+                        }
                     }
                     else _dragHandle = -1;
                 }
