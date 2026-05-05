@@ -86,19 +86,29 @@
   <circle cx="226" cy="304" r="2" fill="#ffa080" opacity="0.65"/>
   <circle cx="286" cy="304" r="2" fill="#80ffe0" opacity="0.65"/>
 
-  <!-- ═══════ EYES (water style — large round wet, on left side facing forward) ═══════ -->
-  <ellipse cx="160" cy="262" rx="32" ry="36" class="eye-sclera" stroke="none"/>
-  <ellipse cx="160" cy="262" rx="28" ry="32" fill="none" stroke="#ffffff" stroke-width="3"/>
-  <circle  cx="162" cy="268" r="20" class="eye-iris"/>
-  <circle  cx="162" cy="268" r="13" class="eye-pupil"/>
-  <ellipse cx="170" cy="256" rx="6" ry="7" class="eye-highlight" stroke="none"/>
-  <circle  cx="156" cy="278" r="2.5" class="eye-highlight" stroke="none"/>
-  <circle  cx="172" cy="276" r="1.5" class="eye-highlight" stroke="none" opacity="0.8"/>
+  <!-- ═══════ EYES (water family — single oversized side-eye, brighter teal iris, star highlight) ═══════ -->
+  <!-- Eye sclera larger than aquaburst — single dominant fish eye -->
+  <ellipse cx="158" cy="262" rx="40" ry="42" class="eye-sclera" stroke="none"/>
+  <ellipse cx="158" cy="262" rx="36" ry="38" fill="none" stroke="#ffffff" stroke-width="3"/>
+  <!-- Iris in brighter aqua-teal (different from aquaburst's deep teal) -->
+  <circle  cx="160" cy="266" r="26" fill="#3098b0"/>
+  <!-- Inner iris ring detail (concentric ring) -->
+  <circle  cx="160" cy="266" r="20" fill="none" stroke="#80d0e0" stroke-width="2" opacity="0.7"/>
+  <circle  cx="160" cy="266" r="14" class="eye-pupil"/>
+  <!-- Star-shaped primary highlight (prismatic creature theme) -->
+  <path d="M170,250 L172,258 L180,260 L172,262 L170,270 L168,262 L160,260 L168,258 Z"
+        fill="#ffffff"/>
+  <!-- Two small shimmer dots -->
+  <circle  cx="148" cy="282" r="3" class="eye-highlight" stroke="none"/>
+  <circle  cx="174" cy="278" r="1.5" class="eye-highlight" stroke="none" opacity="0.85"/>
 
-  <!-- ═══════ MOUTH (small puckered "kiss" shape — fish mouth) ═══════ -->
-  <ellipse cx="100" cy="290" rx="14" ry="10" class="mouth-interior"/>
-  <ellipse cx="100" cy="290" rx="14" ry="10" fill="none" stroke="#3a3e48" stroke-width="3"/>
-  <ellipse cx="100" cy="294" rx="8" ry="4" fill="#ff8090" opacity="0.7" stroke="none"/>
+  <!-- ═══════ MOUTH (closed fish-lip smile — curved upward with subtle lip line) ═══════ -->
+  <path d="M86,290 Q104,304 122,290" class="body-stroke" fill="none" stroke-width="4" stroke-linecap="round"/>
+  <!-- subtle lip line between upper/lower lip -->
+  <path d="M90,290 Q104,288 118,290" class="body-shadow" fill="none" stroke-width="1.5" opacity="0.6" stroke-linecap="round"/>
+  <!-- mouth corner dimples -->
+  <circle cx="86" cy="290" r="1.5" class="body-shadow" stroke="none"/>
+  <circle cx="122" cy="290" r="1.5" class="body-shadow" stroke="none"/>
 
   <!-- ═══════ GILL LINES (small fish detail near eye) ═══════ -->
   <path d="M124,256 Q130,272 124,288" class="body-stroke" fill="none" stroke-width="2"/>
