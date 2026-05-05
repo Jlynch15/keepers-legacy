@@ -110,9 +110,9 @@
   <circle cx="86" cy="290" r="1.5" class="body-shadow" stroke="none"/>
   <circle cx="122" cy="290" r="1.5" class="body-shadow" stroke="none"/>
 
-  <!-- ═══════ GILL LINES (small fish detail near eye) ═══════ -->
-  <path d="M124,256 Q130,272 124,288" class="body-stroke" fill="none" stroke-width="2"/>
-  <path d="M134,256 Q140,272 134,288" class="body-stroke" fill="none" stroke-width="2"/>
+  <!-- ═══════ GILL LINES (small fish detail behind eye, clear of overlap) ═══════ -->
+  <path d="M210,250 Q216,266 210,282" class="body-stroke" fill="none" stroke-width="2"/>
+  <path d="M222,252 Q228,266 222,280" class="body-stroke" fill="none" stroke-width="2" opacity="0.7"/>
 
   <!-- ═══════ BODY SPECKS (additional sparkle texture) ═══════ -->
   <circle cx="200" cy="200" r="3" class="body-highlight" opacity="0.7" stroke="none"/>
